@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vdqims/Page/HomePage/HomePage.dart';
 
 import 'Page/LoginPage/LoginPage.dart';
+import 'Page/MenuPage/MenuPage.dart';
 
 void main() => runApp(MyApp());
 

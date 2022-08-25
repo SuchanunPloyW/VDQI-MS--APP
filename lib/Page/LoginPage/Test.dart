@@ -20,47 +20,33 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController mailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   late ScaffoldState scaffoldState;
-  Color baseColor1 = const Color(0xffE52628);
-  Color baseColor2 = const Color(0xffA10002);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(children: <Widget>[
-      Align(
-        alignment: Alignment.topCenter,
-        child: Container(
+      // ignore: unnecessary_new
+      new Container(
+          alignment: AlignmentDirectional.topEnd,
+          height: 298,
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Color(0xffE52628),
+              Color(0xffA10002),
+            ],
+          ))),
 
-            // alignment: AlignmentDirectional.center,
-            height: 350,
-           /*  child: Image.asset(
-               'assets/images/logo.png',
-                height: 1.0,
-              
-            ), */
-          
-            decoration: BoxDecoration(
-               
-                
-                gradient: LinearGradient(
-                  stops: const [0.0, 2.0],
-                  begin: FractionalOffset.topCenter,
-                  end: FractionalOffset.bottomCenter,
-                  colors: [baseColor1, baseColor2],
-                ))),
-      ),
       Positioned(
-          top: 20,
-          bottom: 0,
-          left: 0,
-          right: 0,
           child: Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(
-                      height: 380,
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.42,
                       width: MediaQuery.of(context).size.width,
                       child: Card(
                           color: const Color.fromARGB(255, 255, 255, 255),
@@ -70,17 +56,17 @@ class _LoginPageState extends State<LoginPage> {
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                const SizedBox(height: 25),
+                                const SizedBox(height: 10),
                                 Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 25.0),
                                     child: Container(
                                         child: const Text(
                                       "ระบบบริหารจัดการสต๊อครถยนต์",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 17,
                                         fontFamily: ('IBM Plex Sans Thai'),
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ))),
                                 const SizedBox(height: 20),
@@ -118,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                                     child: TextField(
                                       controller: mailController,
                                       keyboardType: TextInputType.text,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         border: OutlineInputBorder(),
                                       ),
                                     ),
@@ -145,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                                       controller: passwordController,
                                       obscureText: true,
                                       keyboardType: TextInputType.text,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         border: OutlineInputBorder(),
                                       ),
                                     ),
@@ -177,11 +163,8 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                       child: const Text(
                         'Powered by Weise Technika',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: Color.fromARGB(255, 228, 223, 223),
-                          fontFamily: ('IBM Plex Sans Thai'),
-                        ),
+                        style:
+                            TextStyle(fontSize: 12, color: Color(0xff9F9F9F)),
                       ),
                     ),
                   ]))),
