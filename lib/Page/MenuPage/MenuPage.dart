@@ -49,7 +49,6 @@ class _MenuPageState extends State<MenuPage> {
                         padding: EdgeInsets.symmetric(horizontal: 20.0),
                         child: Align(
                           alignment: Alignment.centerLeft,
-                        
                           child: const Text(
                             'ระบบบริหารจัดการรถยนต์',
                             style: TextStyle(
@@ -92,89 +91,53 @@ class _MenuPageState extends State<MenuPage> {
                               crossAxisSpacing: 4.0,  
                               mainAxisSpacing: 8.0,
                               children: <Widget>[
-                                Card(
-                                  
-                                  margin: EdgeInsets.all(8.0),
-                                  child: InkWell(
-                                    onTap: () { },
-                                    splashColor: Colors.red,
-                                    child: Center(
-                                        child: Column(
-                                      // ignore: prefer_const_literals_to_create_immutables
-                                      children: <Widget>[
-                                         const SizedBox(height: 20),
-                                           Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(horizontal: 100.0),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text("ค้นหารถยนต์ ",
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontFamily: ('IBM Plex Sans Thai'),
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        ),
-                                      ),
-                                         Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(horizontal: 100.0),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text("Find My Car ",
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontFamily: ('IBM Plex Sans Thai'),
-                                                
-                                              )),
-                                        ),
-                                      ),
-                                        
-                                      ],
-                                    )),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 10),
+                                  child:  FlatButton(
+                                    padding: EdgeInsets.all(20),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                    color: Color(0xfff5f6f9),
+                                    onPressed: () {},
+                                    child: Row
+                                             (children:  [
+                                              Image.asset(
+                                            'assets/images/car1.png',
+                                            height: 80.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                          SizedBox(width: 19),
+                                          Expanded(
+                                            child:Text('ค้นหารถยนต์')
+                                          
+                                          ),
+                                          Icon(Icons.arrow_forward_ios)
+
+                                             ],))
                                   ),
-                                ),
-                                Card(
-                                  margin: EdgeInsets.all(8.0),
-                                  child: InkWell(
-                                    onTap: () { },
-                                    splashColor: Colors.red,
-                                    child: Center(
-                                        child: Column(
-                                      // ignore: prefer_const_literals_to_create_immutables
-                                      children: <Widget>[
-                                         const SizedBox(height: 20),
-                                           Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(horizontal: 100.0),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text("เพิ่มรถยนต์ใหม่ ",
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontFamily: ('IBM Plex Sans Thai'),
-                                                fontWeight: FontWeight.bold,
-                                              )),
-                                        ),
-                                      ),
-                                         Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(horizontal: 100.0),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text("Add New Car ",
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontFamily: ('IBM Plex Sans Thai'),
-                                                
-                                              )),
-                                        ),
-                                      ),
-                                        
-                                      ],
-                                    )),
-                                  ),
-                                ),
+                                   Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 10),
+                                  child:  FlatButton(
+                                    padding: EdgeInsets.all(20),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                    color: Color(0xfff5f6f9),
+                                    onPressed: () {},
+                                    child: Row
+                                             (children:  [
+                                              Image.asset(
+                                            'assets/images/car1.png',
+                                            height: 80.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                          SizedBox(width: 19),
+                                          Expanded(
+                                            child:Text('เพิ่มรถยนต์ใหม่')
+                                          
+                                          ),
+                                          Icon(Icons.arrow_forward_ios)
+
+                                             ],))
+                                  )
+                                
 
                               ],
                             ),

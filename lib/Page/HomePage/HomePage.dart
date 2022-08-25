@@ -17,25 +17,22 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         appBar: AppBar(
           leading: Icon(Icons.menu),
-       
           backgroundColor: baseColor1,
           elevation: 0,
-          actions: <Widget>[
-            Container(
-              width: 45,
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://cdn-icons-png.flaticon.com/512/147/147140.png'),
-                radius: 35,
-              ),
-            ),
-           
-            /* CircleAvatar(
+          actions: const <Widget>[
+            
+            CircleAvatar(
              backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
              radius: 20,
-            ), */
+            ),
+           
           ],
         ),
+
+
+
+
+
         body: Stack(children: <Widget>[
           Align(
             alignment: Alignment.topCenter,
