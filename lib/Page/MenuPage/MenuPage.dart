@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import '../FindcarPage/FindcarPage.dart';
 
 class MenuPage extends StatefulWidget {
   @override
@@ -19,7 +20,12 @@ class _MenuPageState extends State<MenuPage> {
           backgroundColor: baseColor1,
           title: const Text(''),
           elevation: 0,
-          actions: const <Widget>[],
+          actions: const <Widget>[
+             CircleAvatar(
+             backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
+             radius: 20,
+            ),
+          ],
         ),
         body: Stack(children: <Widget>[
           Align(
@@ -77,7 +83,7 @@ class _MenuPageState extends State<MenuPage> {
                       const SizedBox(height: 50),
                       SingleChildScrollView(
                         child:  SizedBox(
-                          height: 500,
+                          height: 450,
                           child: Card(
                             color: const Color.fromARGB(255, 255, 255, 255),
                             margin: const EdgeInsets.only(left: 10, right: 10),
@@ -87,11 +93,11 @@ class _MenuPageState extends State<MenuPage> {
                             child: GridView.count(
                             padding: EdgeInsets.all(5.0),
                               crossAxisCount: 1,
-                               childAspectRatio: (1 / .3),
+                              childAspectRatio: (1 / .3),
                               crossAxisSpacing: 4.0,  
-                              mainAxisSpacing: 8.0,
+                              mainAxisSpacing: 1.0,
                               children: <Widget>[
-                                
+                              //------------------------------- ค้นหา  -----------------------------------  
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 10),
                                  child: Container(
@@ -107,43 +113,41 @@ class _MenuPageState extends State<MenuPage> {
                                 ),
                                    // ignore: deprecated_member_use
                                    child:  FlatButton(
-                                    
                                     padding: EdgeInsets.all(20),
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15) , 
+                                      borderRadius: BorderRadius.circular(10) , 
                                       side: BorderSide(color: Color(0xffF6F6F6), width: 2 ,
                                       style: BorderStyle.solid
                                       )
                                       ),
-                                 
                                     color: const Color.fromARGB(255, 255, 255, 255),                     
-                                    
-                                    onPressed: () {},
-                                    child: Row
-                                             (children:  [
-                                              Image.asset(
+                                    onPressed: () {
+                                      Future.delayed(Duration(seconds: 1), () {
+                                           Navigator.push(context, MaterialPageRoute(builder: (_) => FindcarPage())); }); 
+                                    },
+                                    child: Row(
+                                      children:  [
+                                        Container(
+                                          child: Image.asset(
                                             'assets/images/car2.png',
-                                            height: 55.0,
-                                            width: 55,
-                                            fit: BoxFit.cover,
+                                            height: 45.0,
+                                            width: 45,
                                           ),
-                                          SizedBox(width: 30),
-                                          Expanded(
-                                            child:Text(' ค้นหารถยนต์ \n Find My Car'
-                                                    ,style: TextStyle(
-                                                        fontFamily: ('IBM Plex Sans Thai'),  
-                                                    )
-                                            )
-                                          ),
-                                          Icon(Icons.arrow_forward_ios)
-
-                                             ],))
-                                  )
-                                  ),
-                                  Padding(
+                                        ),
+                                        SizedBox(width: 30),
+                                        Expanded(
+                                            child:Text(' ค้นหารถยนต์ \n Find My Car',
+                                            style: TextStyle(
+                                              fontFamily: ('IBM Plex Sans Thai'),))
+                                                ),
+                                              Icon(Icons.arrow_forward_ios)],)))),    
+                        
+                        //------------------------------- ค้นหา  -----------------------------------
+                        //------------------------------- เพิ่มรถ  -----------------------------------
+                        Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 10),
-                                  child: Container(
-                                    decoration: BoxDecoration(
+                                 child: Container(
+                                  decoration: BoxDecoration(
                                   // ignore: prefer_const_literals_to_create_immutables
                                   boxShadow: <BoxShadow>[
                                     BoxShadow(
@@ -153,44 +157,40 @@ class _MenuPageState extends State<MenuPage> {
                                     ),
                                   ],
                                 ),
-                                     child:  FlatButton(
+                                   // ignore: deprecated_member_use
+                                   child:  FlatButton(
                                     padding: EdgeInsets.all(20),
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15) , 
+                                      borderRadius: BorderRadius.circular(10) , 
                                       side: BorderSide(color: Color(0xffF6F6F6), width: 2 ,
-                                      style: BorderStyle.solid,
-                                     
-                                      )),
-                                 
-                                    color: const Color.fromARGB(255, 255, 255, 255),    
+                                      style: BorderStyle.solid
+                                      )
+                                      ),
+                                    color: const Color.fromARGB(255, 255, 255, 255),                     
                                     onPressed: () {},
-                                    child: Row
-                                             (children:  [
-                                              Image.asset(
+                                    child: Row(
+                                      children:  [
+                                        Container(
+                                          child: Image.asset(
                                             'assets/images/plus.png',
-                                            height: 43.0,
-                                             width: 43,
-                                            fit: BoxFit.cover,
+                                            height: 45.0,
+                                            width: 45,
                                           ),
-                                          SizedBox(width: 36),
-                                          Expanded(
-                                            child:Text(' เพิ่มรถยนต์ใหม่ \n Add New Car' ,style: TextStyle(
-                                                        fontFamily: ('IBM Plex Sans Thai'),  
-                                                    ))
-                                          
-                                          ),
-                                          Icon(Icons.arrow_forward_ios)
+                                        ),
+                                        SizedBox(width: 30),
+                                        Expanded(
+                                            child:Text(' เพิ่มรถยนต์ใหม่ \n Add New Car',
+                                            style: TextStyle(
+                                              fontFamily: ('IBM Plex Sans Thai'),))
+                                                ),
+                                              Icon(Icons.arrow_forward_ios)],)))),    
 
-                                             ],))
-
-                                  )
-                                  // ignore: deprecated_member_use
-                                 
-                                  ),
-                                  Padding(
+                        //------------------------------- เพิ่มรถ  -----------------------------------
+                        //------------------------------- เบิกรถ  -----------------------------------
+                        Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 10),
-                                  child: Container(
-                                    decoration: BoxDecoration(
+                                 child: Container(
+                                  decoration: BoxDecoration(
                                   // ignore: prefer_const_literals_to_create_immutables
                                   boxShadow: <BoxShadow>[
                                     BoxShadow(
@@ -200,55 +200,47 @@ class _MenuPageState extends State<MenuPage> {
                                     ),
                                   ],
                                 ),
-                                  child:  FlatButton(
+                                   // ignore: deprecated_member_use
+                                   child:  FlatButton(
                                     padding: EdgeInsets.all(20),
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15) , 
+                                      borderRadius: BorderRadius.circular(10) , 
                                       side: BorderSide(color: Color(0xffF6F6F6), width: 2 ,
-                                      style: BorderStyle.solid,
-                                     
-                                      )),
-                                 
-                                    color: const Color.fromARGB(255, 255, 255, 255),    
+                                      style: BorderStyle.solid
+                                      )
+                                      ),
+                                    color: const Color.fromARGB(255, 255, 255, 255),                     
                                     onPressed: () {},
-                                    child: Row
-                                             (children:  [
-                                              Image.asset(
+                                    child: Row(
+                                      children:  [
+                                        Container(
+                                          child: Image.asset(
                                             'assets/images/car3.png',
-                                            height: 48.0,
-                                             width: 48,
-                                            fit: BoxFit.cover,
+                                            height: 45.0,
+                                            width: 45,
                                           ),
-                                          SizedBox(width: 36),
-                                          Expanded(
-                                            child:Text(' เบิกรถยนต์ \n Withdraw' ,style: TextStyle(
-                                                        fontFamily: ('IBM Plex Sans Thai'),  
-                                                    ))
-                                          
-                                          ),
-                                          Icon(Icons.arrow_forward_ios)
-
-                                             ],))
-
-                                  )
-                                  // ignore: deprecated_member_use
-                                
-                                  ),
-                                
-
+                                        ),
+                                        SizedBox(width: 30),
+                                        Expanded(
+                                            child:Text(' เบิกรถยนต์ \n Withdraw',
+                                            style: TextStyle(
+                                              fontFamily: ('IBM Plex Sans Thai'),))
+                                                ),
+                                              Icon(Icons.arrow_forward_ios)],)))),   
+                             //------------------------------- เบิกรถ  -----------------------------------                 
                               ],
                             ),
                           )),
-                        
-
                       ),
+                      
                       const SizedBox(height: 10),
+                      // ignore: avoid_unnecessary_containers
                       Container(
                         child: const Text(
                           'Powered by Weise Technika',
                           style:
-                              TextStyle(fontSize: 11, color: Color.fromARGB(255, 228, 223, 223),fontFamily: ('IBM Plex Sans Thai'),
-                              ),
+                              TextStyle(fontSize: 11, color: Color.fromARGB(255, 228, 223, 223),fontFamily: ('IBM Plex Sans Thai'),),
+                              
                         ),
                       ),
                     ])),

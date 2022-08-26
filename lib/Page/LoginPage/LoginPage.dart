@@ -78,12 +78,12 @@ class _LoginPageState extends State<LoginPage> {
                                         child: const Text(
                                       "ระบบบริหารจัดการสต๊อครถยนต์",
                                       style: TextStyle(
-                                        fontSize: 17,
+                                        fontSize: 16,
                                         fontFamily: ('IBM Plex Sans Thai'),
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ))),
-                                const SizedBox(height: 20),
+                                const SizedBox(height: 15),
                                 const Padding(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 20.0),

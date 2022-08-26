@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 50),
                       SingleChildScrollView(
                         child: SizedBox(
-                            height: 500,
+                            height: 450,
                             child: Card(
                               color: const Color.fromARGB(255, 255, 255, 255),
                               margin:
@@ -102,15 +102,15 @@ class _HomePageState extends State<HomePage> {
                                 crossAxisSpacing: 4.0,
                                 mainAxisSpacing: 8.0,
                                 children: <Widget>[
-                                  Card(
+                                  Container(
+                                    
+                                    child: Card(
                                     margin: EdgeInsets.all(8.0),
                                     child: InkWell(
                                       onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => MenuPage(),
-                                            ));
+                                        Future.delayed(Duration(seconds: 1), () {
+                                           Navigator.push(context, MaterialPageRoute(builder: (_) => MenuPage())); }); 
+                                     
                                       },
                                       splashColor: Colors.red,
                                       child: Center(
@@ -144,6 +144,9 @@ class _HomePageState extends State<HomePage> {
                                       )),
                                     ),
                                   ),
+                                    
+                                  ),
+                                  
                                   Card(
                                     margin: EdgeInsets.all(8.0),
                                     child: InkWell(
