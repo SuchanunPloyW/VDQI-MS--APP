@@ -91,52 +91,149 @@ class _MenuPageState extends State<MenuPage> {
                               crossAxisSpacing: 4.0,  
                               mainAxisSpacing: 8.0,
                               children: <Widget>[
+                                
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 10),
-                                  child:  FlatButton(
+                                 child: Container(
+                                  decoration: BoxDecoration(
+                                  // ignore: prefer_const_literals_to_create_immutables
+                                  boxShadow: <BoxShadow>[
+                                    BoxShadow(
+                                      color: Color(0xffF6F6F6),
+                                      blurRadius: 20,
+                                      offset: Offset(5, 5),
+                                    ),
+                                  ],
+                                ),
+                                   // ignore: deprecated_member_use
+                                   child:  FlatButton(
+                                    
                                     padding: EdgeInsets.all(20),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                                    color: Color(0xfff5f6f9),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15) , 
+                                      side: BorderSide(color: Color(0xffF6F6F6), width: 2 ,
+                                      style: BorderStyle.solid
+                                      )
+                                      ),
+                                 
+                                    color: const Color.fromARGB(255, 255, 255, 255),                     
+                                    
                                     onPressed: () {},
                                     child: Row
                                              (children:  [
                                               Image.asset(
-                                            'assets/images/car1.png',
-                                            height: 80.0,
+                                            'assets/images/car2.png',
+                                            height: 55.0,
+                                            width: 55,
                                             fit: BoxFit.cover,
                                           ),
-                                          SizedBox(width: 19),
+                                          SizedBox(width: 30),
                                           Expanded(
-                                            child:Text('ค้นหารถยนต์')
-                                          
-                                          ),
-                                          Icon(Icons.arrow_forward_ios)
-
-                                             ],))
-                                  ),
-                                   Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 10),
-                                  child:  FlatButton(
-                                    padding: EdgeInsets.all(20),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                                    color: Color(0xfff5f6f9),
-                                    onPressed: () {},
-                                    child: Row
-                                             (children:  [
-                                              Image.asset(
-                                            'assets/images/car1.png',
-                                            height: 80.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                          SizedBox(width: 19),
-                                          Expanded(
-                                            child:Text('เพิ่มรถยนต์ใหม่')
-                                          
+                                            child:Text(' ค้นหารถยนต์ \n Find My Car'
+                                                    ,style: TextStyle(
+                                                        fontFamily: ('IBM Plex Sans Thai'),  
+                                                    )
+                                            )
                                           ),
                                           Icon(Icons.arrow_forward_ios)
 
                                              ],))
                                   )
+                                  ),
+                                  Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 10),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                  // ignore: prefer_const_literals_to_create_immutables
+                                  boxShadow: <BoxShadow>[
+                                    BoxShadow(
+                                      color: Color(0xffF6F6F6),
+                                      blurRadius: 20,
+                                      offset: Offset(5, 5),
+                                    ),
+                                  ],
+                                ),
+                                     child:  FlatButton(
+                                    padding: EdgeInsets.all(20),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15) , 
+                                      side: BorderSide(color: Color(0xffF6F6F6), width: 2 ,
+                                      style: BorderStyle.solid,
+                                     
+                                      )),
+                                 
+                                    color: const Color.fromARGB(255, 255, 255, 255),    
+                                    onPressed: () {},
+                                    child: Row
+                                             (children:  [
+                                              Image.asset(
+                                            'assets/images/plus.png',
+                                            height: 43.0,
+                                             width: 43,
+                                            fit: BoxFit.cover,
+                                          ),
+                                          SizedBox(width: 36),
+                                          Expanded(
+                                            child:Text(' เพิ่มรถยนต์ใหม่ \n Add New Car' ,style: TextStyle(
+                                                        fontFamily: ('IBM Plex Sans Thai'),  
+                                                    ))
+                                          
+                                          ),
+                                          Icon(Icons.arrow_forward_ios)
+
+                                             ],))
+
+                                  )
+                                  // ignore: deprecated_member_use
+                                 
+                                  ),
+                                  Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 10),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                  // ignore: prefer_const_literals_to_create_immutables
+                                  boxShadow: <BoxShadow>[
+                                    BoxShadow(
+                                      color: Color(0xffF6F6F6),
+                                      blurRadius: 20,
+                                      offset: Offset(5, 5),
+                                    ),
+                                  ],
+                                ),
+                                  child:  FlatButton(
+                                    padding: EdgeInsets.all(20),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15) , 
+                                      side: BorderSide(color: Color(0xffF6F6F6), width: 2 ,
+                                      style: BorderStyle.solid,
+                                     
+                                      )),
+                                 
+                                    color: const Color.fromARGB(255, 255, 255, 255),    
+                                    onPressed: () {},
+                                    child: Row
+                                             (children:  [
+                                              Image.asset(
+                                            'assets/images/car3.png',
+                                            height: 48.0,
+                                             width: 48,
+                                            fit: BoxFit.cover,
+                                          ),
+                                          SizedBox(width: 36),
+                                          Expanded(
+                                            child:Text(' เบิกรถยนต์ \n Withdraw' ,style: TextStyle(
+                                                        fontFamily: ('IBM Plex Sans Thai'),  
+                                                    ))
+                                          
+                                          ),
+                                          Icon(Icons.arrow_forward_ios)
+
+                                             ],))
+
+                                  )
+                                  // ignore: deprecated_member_use
+                                
+                                  ),
                                 
 
                               ],
