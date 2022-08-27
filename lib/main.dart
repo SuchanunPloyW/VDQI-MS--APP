@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/HomePage/HomePage.dart';
 
@@ -61,7 +62,7 @@ class _MyAppState extends State<MyApp> {
       ),
 
       debugShowCheckedModeBanner: false,
-      home :FindcarPage() ,
+      home :CardetailPage() ,
       
     );
   }

@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                 // alignment: AlignmentDirectional.center,
                 height: 298,
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                  gradient: LinearGradient(
                   stops: const [0.0, 2.0],
                   begin: FractionalOffset.topCenter,
                   end: FractionalOffset.bottomCenter,
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                                     margin: EdgeInsets.all(8.0),
                                     child: InkWell(
                                       onTap: () {
-                                        Future.delayed(Duration(seconds: 1), () {
+                                        Future.delayed(Duration(milliseconds: 300), () {
                                            Navigator.push(context, MaterialPageRoute(builder: (_) => MenuPage())); }); 
                                      
                                       },

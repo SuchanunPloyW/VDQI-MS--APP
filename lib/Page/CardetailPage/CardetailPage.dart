@@ -6,28 +6,28 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 //import '../MenuPage/MenuPage.dart';
 
-class FindcarPage extends StatefulWidget {
+class CardetailPage extends StatefulWidget {
   @override
-  const FindcarPage({Key? key}) : super(key: key);
-  State<FindcarPage> createState() => _FindcarPageState();
+  const CardetailPage({Key? key}) : super(key: key);
+  State<CardetailPage> createState() => _CardetailPageState();
 }
 
-class _FindcarPageState extends State<FindcarPage> {
-  String qrCode = '';  
-  TextEditingController chassisController = TextEditingController();
+class _CardetailPageState extends State<CardetailPage> {
+  
 
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                  text: "ค้นหารถยนต์",
+                  text: "รายละเอียดรถยนต์",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -36,7 +36,7 @@ class _FindcarPageState extends State<FindcarPage> {
                   ),
                   children: const <TextSpan>[
                     TextSpan(
-                      text: '\nFind My Car',
+                      text: '\nCar Infomation',
                       style: TextStyle(
                         fontSize: 12,
                         fontFamily: ('IBM Plex Sans Thai'),
@@ -72,7 +72,6 @@ class _FindcarPageState extends State<FindcarPage> {
         body:
          SingleChildScrollView(
            child: Stack(
-            
             children: <Widget>[
             Align(
               alignment: Alignment.topCenter,
@@ -93,57 +92,7 @@ class _FindcarPageState extends State<FindcarPage> {
                     child: Row(
                       //mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Flexible(
-                          child: TextField(
-                            controller: chassisController = TextEditingController(text: "$qrCode"),
-                            decoration: InputDecoration(
-                                fillColor: Color(0xff9F1E1E),
-                                filled: true,
-                                hintText: " เลขตัวถัง",
-                                hintStyle: TextStyle(
-                                    fontFamily: ('IBM Plex Sans Thai'),
-                                    color: Color(0xffE24646)),
-                                contentPadding:
-                                    EdgeInsets.only(left: 15, right: 10),
-                                border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30)),
-                                  borderSide: BorderSide.none,
-                                ),
-                                suffixIcon: Icon(
-                                  Icons.search,
-                                  color: Color(0xffE24646),
-                                ),
-                                suffixIconColor: Colors.grey),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                wordSpacing: 1),
-                          ),
-                        ),
-                        SizedBox(width: 10),
-                        InkWell(
-                          child: SizedBox(
-                            height: 55,
-                            width: 55,
-                            child: Card(
-                                semanticContainer: true,
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50.0),
-                                ),
-                                color: Color(0xff9F1E1E),
-                                child: IconButton(
-                                  icon: Icon(
-                                    Icons.qr_code_scanner_sharp,
-                                    color: Color(0xffE24646),
-                                  ),
-                                  onPressed: ()  => scanQRCode(),
-         
-                                )),
-                          ),
-                        )
+                        
                       ],
                     ),
                   ),
@@ -151,17 +100,17 @@ class _FindcarPageState extends State<FindcarPage> {
               ),
             ),
             Positioned(
-              top: 50,
+              top: 100,
               bottom: 0,
               left: 0,
               right: 0,
               child: Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10 ,top: 46),
+                  padding: const EdgeInsets.only(left: 10, right: 10),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                           SizedBox(
-                              height: 550,
+                              height: 500,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Card(
@@ -171,20 +120,18 @@ class _FindcarPageState extends State<FindcarPage> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
                                   child: ListView.builder(
-                                    itemCount: 20,
-                                    itemBuilder: (_, index){
-                                      return Card(
-                                        child: ListTile(
-                                          title: Text('MNTADFC56966FGTY'),
-                                          leading: CircleAvatar(backgroundColor: Color(0xff89EB80),),
-                                          subtitle: Text('Yaris Ativ 1.2 G'),
-                                          ),
-                                          );
-                                          }
-                                          )),
-                                          )),
-                            
-                        const SizedBox(height: 15),
+                          itemCount: 10,
+                          itemBuilder: (_, index){
+                            return ListTile(
+                              title: Text('MNTADFC56966FGTY'),
+                            );
+                          }
+                        )
+                                ),
+                              )),
+                        
+         
+                        const SizedBox(height: 10),
                         // ignore: avoid_unnecessary_containers
                         Container(
                           child: const Text(
@@ -201,22 +148,5 @@ class _FindcarPageState extends State<FindcarPage> {
                  ]),
          ));
   }
-   Future<void> scanQRCode() async {
-    try {
-      final qrCode = await FlutterBarcodeScanner.scanBarcode(
-        '#ff6666',
-        'Cancel',
-        true,
-        ScanMode.QR,
-      );
-
-      if (!mounted) return;
-
-      setState(() {
-        this.qrCode = qrCode;
-      });
-    } on PlatformException {
-      qrCode = 'Failed to get platform version.';
-    }
-  }
+   
 }

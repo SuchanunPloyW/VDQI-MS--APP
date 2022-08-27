@@ -122,8 +122,8 @@ class _MenuPageState extends State<MenuPage> {
                                       ),
                                     color: const Color.fromARGB(255, 255, 255, 255),                     
                                     onPressed: () {
-                                      Future.delayed(Duration(seconds: 1), () {
-                                           Navigator.push(context, MaterialPageRoute(builder: (_) => FindcarPage())); }); 
+                                      Future.delayed(Duration(milliseconds: 500), () {
+                                           Navigator.push(context, MaterialPageRoute(builder: (context) => FindcarPage())); }); 
                                     },
                                     child: Row(
                                       children:  [
