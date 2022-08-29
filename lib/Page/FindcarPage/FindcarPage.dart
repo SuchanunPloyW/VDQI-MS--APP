@@ -13,7 +13,8 @@ class FindcarPage extends StatefulWidget {
 }
 
 class _FindcarPageState extends State<FindcarPage> {
-  String qrCode = '';  
+  String qrCode = '';
+  String search = '';
   TextEditingController chassisController = TextEditingController();
 
   Color baseColor1 = const Color(0xffE52628);
@@ -69,10 +70,8 @@ class _FindcarPageState extends State<FindcarPage> {
             )
           ],
         ),
-        body:
-         SingleChildScrollView(
-           child: Stack(
-            children: <Widget>[
+        body: SingleChildScrollView(
+          child: Stack(children: <Widget>[
             Align(
               alignment: Alignment.topCenter,
               child: Container(
@@ -94,32 +93,38 @@ class _FindcarPageState extends State<FindcarPage> {
                       children: [
                         Flexible(
                           child: TextField(
-                            controller: chassisController = TextEditingController(text: "$qrCode"),
-                            decoration: InputDecoration(
-                                fillColor: Color(0xff9F1E1E),
-                                filled: true,
-                                hintText: " เลขตัวถัง",
-                                hintStyle: TextStyle(
-                                    fontFamily: ('IBM Plex Sans Thai'),
-                                    color: Color(0xffE24646)),
-                                contentPadding:
-                                    EdgeInsets.only(left: 15, right: 10),
-                                border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30)),
-                                  borderSide: BorderSide.none,
-                                ),
-                                suffixIcon: Icon(
-                                  Icons.search,
-                                  color: Color(0xffE24646),
-                                ),
-                                suffixIconColor: Colors.grey),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                wordSpacing: 1),
-                          ),
+                              controller: chassisController =
+                                  TextEditingController(text: "$qrCode"),
+                              decoration: InputDecoration(
+                                  fillColor: Color(0xff9F1E1E),
+                                  filled: true,
+                                  hintText: " เลขตัวถัง",
+                                  hintStyle: TextStyle(
+                                      fontFamily: ('IBM Plex Sans Thai'),
+                                      color: Color(0xffE24646)),
+                                  contentPadding:
+                                      EdgeInsets.only(left: 15, right: 10),
+                                  border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(30)),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  suffixIcon: Icon(
+                                    Icons.search,
+                                    color: Color(0xffE24646),
+                                  ),
+                                  suffixIconColor: Colors.grey),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  wordSpacing: 1),
+                              onChanged: (String? value) {
+                                print(value);
+                                setState(() {
+                                  qrCode = value.toString();
+                                });
+                              }),
                         ),
                         SizedBox(width: 10),
                         InkWell(
@@ -138,8 +143,7 @@ class _FindcarPageState extends State<FindcarPage> {
                                     Icons.qr_code_scanner_sharp,
                                     color: Color(0xffE24646),
                                   ),
-                                  onPressed: ()  => scanQRCode(),
-         
+                                  onPressed: () => scanQRCode(),
                                 )),
                           ),
                         )
@@ -150,7 +154,7 @@ class _FindcarPageState extends State<FindcarPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only( top: 40),
+              padding: const EdgeInsets.only(top: 50),
               child: SingleChildScrollView(
                 child: Positioned(
                   top: 50,
@@ -158,34 +162,64 @@ class _FindcarPageState extends State<FindcarPage> {
                   left: 0,
                   right: 0,
                   child: Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10 ,top: 46),
+                      padding:
+                          const EdgeInsets.only(left: 10, right: 10, top: 46),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                              SizedBox(
-                                  height: 550,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Card(
-                                      color: const Color.fromARGB(255, 255, 255, 255),
-                                      margin:
-                                          const EdgeInsets.only(left: 10, right: 10),
+                            SizedBox(
+                                height: 550,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Card(
+                                      color: const Color.fromARGB(
+                                          255, 255, 255, 255),
+                                      margin: const EdgeInsets.only(
+                                          left: 10, right: 10),
                                       shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10)),
-                                      child: ListView.builder(
-                                        itemCount: 20,
-                                        itemBuilder: (_, index){
-                                          return Card(
-                                            child: ListTile(
-                                              title: Text('MNTADFC56966FGTY'),
-                                              leading: CircleAvatar(backgroundColor: Color(0xff89EB80),),
-                                              subtitle: Text('Yaris Ativ 1.2 G'),
-                                              ),
-                                              );
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Expanded(
+                                        child: ListView.builder(
+                                            itemCount: 20,
+                                            itemBuilder: (context, index) {
+                                              String positon = index.toString();
+                                              if (chassisController
+                                                  .text.isEmpty) {
+                                                return ListTile(
+                                                  title: Text(
+                                                      'MNTADFC56966FGTY ' +
+                                                          positon),
+                                                  leading: CircleAvatar(
+                                                    backgroundColor:
+                                                        Color(0xff89EB80),
+                                                  ),
+                                                  subtitle:
+                                                      Text('Yaris Ativ 1.2 G'),
+                                                );
+                                              } else if (positon
+                                                  .toLowerCase()
+                                                  .contains(chassisController
+                                                      .text
+                                                      .toLowerCase())) {
+                                                return ListTile(
+                                                  title: Text(
+                                                      'MNTADFC56966FGTY ' +
+                                                          positon),
+                                                  leading: CircleAvatar(
+                                                    backgroundColor:
+                                                        Color(0xff89EB80),
+                                                  ),
+                                                  subtitle:
+                                                      Text('Yaris Ativ 1.2 G'),
+                                                );
+                                              } else {
+                                                return Container();
                                               }
-                                              )),
-                                              )),
-                                
+                                            }),
+                                      )),
+                                )),
+
                             const SizedBox(height: 15),
                             // ignore: avoid_unnecessary_containers
                             Container(
@@ -202,10 +236,11 @@ class _FindcarPageState extends State<FindcarPage> {
                 ),
               ),
             )
-                 ]),
-         ));
+          ]),
+        ));
   }
-   Future<void> scanQRCode() async {
+
+  Future<void> scanQRCode() async {
     try {
       final qrCode = await FlutterBarcodeScanner.scanBarcode(
         '#ff6666',

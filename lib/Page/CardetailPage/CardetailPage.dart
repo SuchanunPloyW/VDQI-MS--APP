@@ -99,51 +99,101 @@ class _CardetailPageState extends State<CardetailPage> {
                 ),
               ),
             ),
-            Positioned(
-              top: 100,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                          SizedBox(
-                              height: 500,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                  color: const Color.fromARGB(255, 255, 255, 255),
-                                  margin:
-                                      const EdgeInsets.only(left: 10, right: 10),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder: (_, index){
-                            return ListTile(
-                              title: Text('MNTADFC56966FGTY'),
-                            );
-                          }
-                        )
+            Padding(
+              padding: const EdgeInsets.only( top: 30),
+              child: SingleChildScrollView(
+                child: Positioned(
+                  top: 80,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                              SizedBox(
+                                  height: 600,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Card(
+                                      color: const Color.fromARGB(255, 255, 255, 255),
+                                      margin:
+                                          const EdgeInsets.only(left: 10, right: 10),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10)),
+                                      child: GridView.count(
+                                        padding: EdgeInsets.all(5.0),
+                                        crossAxisCount: 1,
+                                        childAspectRatio: (1 / .3),
+                                        crossAxisSpacing: 4.0,  
+                                        mainAxisSpacing: 1.0,
+                                        children: <Widget>[
+                                           Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 10),
+                                            child: Container(
+                                              child: Card(
+                                                child: ListTile(
+                                                  title: Text('MNTADFC56966FGTY',
+                                                    style: TextStyle(
+                                                    fontFamily: ('IBM Plex Sans Thai'),
+                                                    fontWeight: FontWeight.bold,
+                                                    ),),
+                                                  leading: CircleAvatar(backgroundColor: Color(0xff89EB80),),
+                                                  subtitle: Text('Yaris Ativ 1.2 G \n สถานะ : ว่าง',
+                                                            style: TextStyle(
+                                                              color: Colors.black,
+                                                              fontFamily: ('IBM Plex Sans Thai'),
+                                                              fontWeight: FontWeight.w300,
+                                                              ),),
+                                                ),
+                                              ),
+                                            )
+                                           ),
+                                           Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 20 ,vertical: 10),
+                                            /* child: Container(
+                                              child: Card(
+                                                child: ListTile(
+                                                  title: Text('MNTADFC56966FGTY',
+                                                    style: TextStyle(
+                                                    fontFamily: ('IBM Plex Sans Thai'),
+                                                    fontWeight: FontWeight.bold,
+                                                    ),),
+                                                  leading: CircleAvatar(backgroundColor: Color(0xff89EB80),),
+                                                  subtitle: Text('Yaris Ativ 1.2 G \n สถานะ : ว่าง',
+                                                            style: TextStyle(
+                                                              color: Colors.black,
+                                                              fontFamily: ('IBM Plex Sans Thai'),
+                                                              fontWeight: FontWeight.w300,
+                                                              ),),
+                                                ),
+                                              ),
+                                            ) */
+                                           )
+
+                                        ]
+
+                                      )
+                                    ),
+                                  )),
+                            
+                       
+                            const SizedBox(height: 10),
+                            // ignore: avoid_unnecessary_containers
+                            Container(
+                              child: const Text(
+                                'Powered by Weise Technika',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Color.fromARGB(255, 228, 223, 223),
+                                  fontFamily: ('IBM Plex Sans Thai'),
                                 ),
-                              )),
-                        
-         
-                        const SizedBox(height: 10),
-                        // ignore: avoid_unnecessary_containers
-                        Container(
-                          child: const Text(
-                            'Powered by Weise Technika',
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: Color.fromARGB(255, 228, 223, 223),
-                              fontFamily: ('IBM Plex Sans Thai'),
+                              ),
                             ),
-                          ),
-                        ),
-                      ])),
+                          ])),
+                ),
+              ),
             )
                  ]),
          ));
