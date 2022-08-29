@@ -1,120 +1,185 @@
+// To parse this JSON data, do
+//
+//     final car = carFromJson(jsonString);
+
+import 'dart:convert';
+
+Car carFromJson(String str) => Car.fromJson(json.decode(str));
+
+String carToJson(Car data) => json.encode(data.toJson());
+
 class Car {
-  int? currentPage;
-  List<Data>? data;
+    Car({
+        required this.currentPage,
+        required this.data,
+        required this.firstPageUrl,
+        required this.from,
+        required this.lastPage,
+        required this.lastPageUrl,
+        required this.links,
+        required this.nextPageUrl,
+        required this.path,
+        required this.perPage,
+        required this.prevPageUrl,
+        required this.to,
+        required this.total,
+    });
 
-  Car({this.currentPage, this.data});
+    int currentPage;
+    List<Passenger> data;
+    String firstPageUrl;
+    int from;
+    int lastPage;
+    String lastPageUrl;
+    List<Link> links;
+    dynamic nextPageUrl;
+    String path;
+    int perPage;
+    dynamic prevPageUrl;
+    int to;
+    int total;
 
-  Car.fromJson(Map<String, dynamic> json) {
-    currentPage = json['current_page'];
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
-      });
-    }
-  }
+    factory Car.fromJson(Map<String, dynamic> json) => Car(
+        currentPage: json["current_page"],
+        data: List<Passenger>.from(json["data"].map((x) => Passenger.fromJson(x))),
+        firstPageUrl: json["first_page_url"],
+        from: json["from"],
+        lastPage: json["last_page"],
+        lastPageUrl: json["last_page_url"],
+        links: List<Link>.from(json["links"].map((x) => Link.fromJson(x))),
+        nextPageUrl: json["next_page_url"],
+        path: json["path"],
+        perPage: json["per_page"],
+        prevPageUrl: json["prev_page_url"],
+        to: json["to"],
+        total: json["total"],
+    );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['current_page'] = this.currentPage;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+    Map<String, dynamic> toJson() => {
+        "current_page": currentPage,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "first_page_url": firstPageUrl,
+        "from": from,
+        "last_page": lastPage,
+        "last_page_url": lastPageUrl,
+        "links": List<dynamic>.from(links.map((x) => x.toJson())),
+        "next_page_url": nextPageUrl,
+        "path": path,
+        "per_page": perPage,
+        "prev_page_url": prevPageUrl,
+        "to": to,
+        "total": total,
+    };
 }
 
-class Data {
-  int? carId;
-  String? carChassis;
-  CarStatus? carStatus;
-  CarWhere? carWhere;
-  String? carPosition;
-  String? fullname;
-  String? lastname;
-  String? date;
-  String? time;
+class Passenger {
+    Passenger({
+        required this.carId,
+        required this.carChassis,
+        required this.carStatus,
+        required this.carWhere,
+        required this.carPosition,
+        required this.fullname,
+        required this.lastname,
+        required this.date,
+        required this.time,
+    });
 
-  Data(
-      {this.carId,
-      this.carChassis,
-      this.carStatus,
-      this.carWhere,
-      this.carPosition,
-      this.fullname,
-      this.lastname,
-      this.date,
-      this.time});
+    int carId;
+    String carChassis;
+    CarStatus carStatus;
+    CarWhere carWhere;
+    String carPosition;
+    String fullname;
+    String lastname;
+    DateTime date;
+    String time;
 
-  Data.fromJson(Map<String, dynamic> json) {
-    carId = json['car_id'];
-    carChassis = json['car_chassis'];
-    carStatus = json['car_status'] != null
-        ? new CarStatus.fromJson(json['car_status'])
-        : null;
-    carWhere = json['car_where'] != null
-        ? new CarWhere.fromJson(json['car_where'])
-        : null;
-    carPosition = json['car_position'];
-    fullname = json['fullname'];
-    lastname = json['lastname'];
-    date = json['date'];
-    time = json['time'];
-  }
+    factory Passenger.fromJson(Map<String, dynamic> json) => Passenger(
+        carId: json["car_id"],
+        carChassis: json["car_chassis"],
+        carStatus: CarStatus.fromJson(json["car_status"]),
+        carWhere: CarWhere.fromJson(json["car_where"]),
+        carPosition: json["car_position"],
+        fullname: json["fullname"],
+        lastname: json["lastname"],
+        date: DateTime.parse(json["date"]),
+        time: json["time"],
+    );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['car_id'] = this.carId;
-    data['car_chassis'] = this.carChassis;
-    if (this.carStatus != null) {
-      data['car_status'] = this.carStatus!.toJson();
-    }
-    if (this.carWhere != null) {
-      data['car_where'] = this.carWhere!.toJson();
-    }
-    data['car_position'] = this.carPosition;
-    data['fullname'] = this.fullname;
-    data['lastname'] = this.lastname;
-    data['date'] = this.date;
-    data['time'] = this.time;
-    return data;
-  }
+    Map<String, dynamic> toJson() => {
+        "car_id": carId,
+        "car_chassis": carChassis,
+        "car_status": carStatus.toJson(),
+        "car_where": carWhere.toJson(),
+        "car_position": carPosition,
+        "fullname": fullname,
+        "lastname": lastname,
+        "date": "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
+        "time": time,
+    };
 }
 
 class CarStatus {
-  int? statusId;
-  String? carStatus;
+    CarStatus({
+        required this.statusId,
+       required this.carStatus,
+    });
 
-  CarStatus({this.statusId, this.carStatus});
+    int statusId;
+    String carStatus;
 
-  CarStatus.fromJson(Map<String, dynamic> json) {
-    statusId = json['status_id'];
-    carStatus = json['car_status'];
-  }
+    factory CarStatus.fromJson(Map<String, dynamic> json) => CarStatus(
+        statusId: json["status_id"],
+        carStatus: json["car_status"],
+    );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status_id'] = this.statusId;
-    data['car_status'] = this.carStatus;
-    return data;
-  }
+    Map<String, dynamic> toJson() => {
+        "status_id": statusId,
+        "car_status": carStatus,
+    };
 }
 
 class CarWhere {
-  int? whereId;
-  String? carWhere;
+    CarWhere({
+        required this.whereId,
+        required this.carWhere,
+    });
 
-  CarWhere({this.whereId, this.carWhere});
+    int whereId;
+    String carWhere;
 
-  CarWhere.fromJson(Map<String, dynamic> json) {
-    whereId = json['where_id'];
-    carWhere = json['car_where'];
-  }
+    factory CarWhere.fromJson(Map<String, dynamic> json) => CarWhere(
+        whereId: json["where_id"],
+        carWhere: json["car_where"],
+    );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['where_id'] = this.whereId;
-    data['car_where'] = this.carWhere;
-    return data;
-  }
+    Map<String, dynamic> toJson() => {
+        "where_id": whereId,
+        "car_where": carWhere,
+    };
+}
+
+class Link {
+    Link({
+       required this.url,
+        required this.label,
+        required this.active,
+    });
+
+    String url;
+    String label;
+    bool active;
+
+    factory Link.fromJson(Map<String, dynamic> json) => Link(
+        url: json["url"] == null ? null : json["url"],
+        label: json["label"],
+        active: json["active"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "url": url == null ? null : url,
+        "label": label,
+        "active": active,
+    };
 }

@@ -72,7 +72,6 @@ class _FindcarPageState extends State<FindcarPage> {
         body:
          SingleChildScrollView(
            child: Stack(
-            
             children: <Widget>[
             Align(
               alignment: Alignment.topCenter,
@@ -150,53 +149,58 @@ class _FindcarPageState extends State<FindcarPage> {
                 ),
               ),
             ),
-            Positioned(
-              top: 50,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10 ,top: 46),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                          SizedBox(
-                              height: 550,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                  color: const Color.fromARGB(255, 255, 255, 255),
-                                  margin:
-                                      const EdgeInsets.only(left: 10, right: 10),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: ListView.builder(
-                                    itemCount: 20,
-                                    itemBuilder: (_, index){
-                                      return Card(
-                                        child: ListTile(
-                                          title: Text('MNTADFC56966FGTY'),
-                                          leading: CircleAvatar(backgroundColor: Color(0xff89EB80),),
-                                          subtitle: Text('Yaris Ativ 1.2 G'),
-                                          ),
-                                          );
-                                          }
-                                          )),
-                                          )),
-                            
-                        const SizedBox(height: 15),
-                        // ignore: avoid_unnecessary_containers
-                        Container(
-                          child: const Text(
-                            'Powered by Weise Technika',
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: Color.fromARGB(255, 228, 223, 223),
-                              fontFamily: ('IBM Plex Sans Thai'),
+            Padding(
+              padding: const EdgeInsets.only( top: 40),
+              child: SingleChildScrollView(
+                child: Positioned(
+                  top: 50,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10 ,top: 46),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                              SizedBox(
+                                  height: 550,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Card(
+                                      color: const Color.fromARGB(255, 255, 255, 255),
+                                      margin:
+                                          const EdgeInsets.only(left: 10, right: 10),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10)),
+                                      child: ListView.builder(
+                                        itemCount: 20,
+                                        itemBuilder: (_, index){
+                                          return Card(
+                                            child: ListTile(
+                                              title: Text('MNTADFC56966FGTY'),
+                                              leading: CircleAvatar(backgroundColor: Color(0xff89EB80),),
+                                              subtitle: Text('Yaris Ativ 1.2 G'),
+                                              ),
+                                              );
+                                              }
+                                              )),
+                                              )),
+                                
+                            const SizedBox(height: 15),
+                            // ignore: avoid_unnecessary_containers
+                            Container(
+                              child: const Text(
+                                'Powered by Weise Technika',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Color.fromARGB(255, 228, 223, 223),
+                                  fontFamily: ('IBM Plex Sans Thai'),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ])),
+                          ])),
+                ),
+              ),
             )
                  ]),
          ));
