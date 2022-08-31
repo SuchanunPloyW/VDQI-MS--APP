@@ -1,9 +1,9 @@
-import 'dart:async';
+/* import 'dart:async';
 import 'package:http/http.dart';
 class ApiproviderService {
   static const String _apiUrl = "http://206.189.92.79";
    static Future<Response> get(String url) async {
-    var request = Request("get", Uri.https(_apiUrl, url));
+    var request = Request("get", Uri.parse(_apiUrl));
    var response = await _send(request);
 
     return response;
@@ -30,4 +30,4 @@ class ApiproviderService {
     var response = await client.send(request);
     return await Response.fromStream(response);
   }
-}
+}  */

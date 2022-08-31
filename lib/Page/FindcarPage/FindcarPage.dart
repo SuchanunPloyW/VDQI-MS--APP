@@ -3,8 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:vdqims/Page/MenuPage/MenuPage.dart';
-//import '../MenuPage/MenuPage.dart';
+
+import 'package:vdqims/Page/FindcarPage/Model/FindcarModel.dart';
+import 'package:vdqims/Page/FindcarPage/Network/FindcarService.dart';
+import '../MenuPage/MenuPage.dart';
+import 'Detailpage.dart';
 
 class FindcarPage extends StatefulWidget {
   @override
@@ -23,7 +26,7 @@ class _FindcarPageState extends State<FindcarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          toolbarHeight: 70,
+          toolbarHeight: 80,
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
@@ -84,6 +87,7 @@ class _FindcarPageState extends State<FindcarPage> {
                   end: FractionalOffset.bottomCenter,
                   colors: [baseColor1, baseColor2],
                 )),
+
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                   child: Align(
@@ -93,15 +97,13 @@ class _FindcarPageState extends State<FindcarPage> {
                       children: [
                         Flexible(
                           child: TextField(
-                              controller: chassisController =
-                                  TextEditingController(text: "$qrCode"),
+                              controller:
+                                  chassisController /* (text: "$qrCode") */,
                               decoration: InputDecoration(
                                   fillColor: Color(0xff9F1E1E),
                                   filled: true,
-                                  hintText: " เลขตัวถัง",
-                                  hintStyle: TextStyle(
-                                      fontFamily: ('IBM Plex Sans Thai'),
-                                      color: Color(0xffE24646)),
+                                  hintText: "เลขตัวถัง",
+                                  hintStyle: TextStyle(color: Colors.grey),
                                   contentPadding:
                                       EdgeInsets.only(left: 15, right: 10),
                                   border: OutlineInputBorder(
@@ -111,18 +113,18 @@ class _FindcarPageState extends State<FindcarPage> {
                                   ),
                                   suffixIcon: Icon(
                                     Icons.search,
-                                    color: Color(0xffE24646),
+                                    color: Colors.grey,
                                   ),
                                   suffixIconColor: Colors.grey),
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
+                                  color: Colors.black54,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w400,
                                   wordSpacing: 1),
                               onChanged: (String? value) {
                                 print(value);
                                 setState(() {
-                                  qrCode = value.toString();
+                                  search = value.toString();
                                 });
                               }),
                         ),
@@ -172,55 +174,60 @@ class _FindcarPageState extends State<FindcarPage> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Card(
-                                      color: const Color.fromARGB(
-                                          255, 255, 255, 255),
-                                      margin: const EdgeInsets.only(
-                                          left: 10, right: 10),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Expanded(
-                                        child: ListView.builder(
-                                            itemCount: 20,
-                                            itemBuilder: (context, index) {
-                                              String positon = index.toString();
-                                              if (chassisController
-                                                  .text.isEmpty) {
-                                                return ListTile(
-                                                  title: Text(
-                                                      'MNTADFC56966FGTY ' +
-                                                          positon),
-                                                  leading: CircleAvatar(
-                                                    backgroundColor:
-                                                        Color(0xff89EB80),
-                                                  ),
-                                                  subtitle:
-                                                      Text('Yaris Ativ 1.2 G'),
-                                                );
-                                              } else if (positon
-                                                  .toLowerCase()
-                                                  .contains(chassisController
-                                                      .text
-                                                      .toLowerCase())) {
-                                                return ListTile(
-                                                  title: Text(
-                                                      'MNTADFC56966FGTY ' +
-                                                          positon),
-                                                  leading: CircleAvatar(
-                                                    backgroundColor:
-                                                        Color(0xff89EB80),
-                                                  ),
-                                                  subtitle:
-                                                      Text('Yaris Ativ 1.2 G'),
-                                                );
-                                              } else {
-                                                return Container();
-                                              }
-                                            }),
-                                      )),
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    margin: const EdgeInsets.only(
+                                        left: 10, right: 10),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: FutureBuilder(
+                                      future: FindCarService().getcar(),
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot<List<Passenger>?>
+                                              snapshot) {
+                                        if (snapshot.hasData) {
+                                          List<Passenger>? data = snapshot.data;
+                                          return Align(
+                                            alignment: Alignment.topCenter,
+                                            child: ListView.builder(
+                                                shrinkWrap: true,
+                                                scrollDirection: Axis.vertical,
+                                                itemCount: data!.length,
+                                                itemBuilder: (context, index) {
+                                                  //String postion = snapshot.data[index]
+                                                  if (chassisController
+                                                      .text.isEmpty) {
+                                                    return Listcar(
+                                                      model: data[index],
+                                                    );
+                                                  } else if (snapshot
+                                                      .data![index].carChassis
+                                                      .contains(
+                                                          chassisController
+                                                              .text)) {
+                                                    return Listcar(
+                                                      model: data[index],
+                                                    );
+                                                  } else {
+                                                    return Container();
+                                                  }
+                                                }
+                                                /*  Listcar(model: data[index],),  */
+                                                ),
+                                          );
+                                        }
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            color: baseColor1,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
                                 )),
 
-                            const SizedBox(height: 15),
+                            const SizedBox(height: 10),
                             // ignore: avoid_unnecessary_containers
                             Container(
                               child: const Text(
@@ -238,6 +245,37 @@ class _FindcarPageState extends State<FindcarPage> {
             )
           ]),
         ));
+  }
+
+  Widget Listcar({required Passenger model}) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (_) => DetailPage(
+                      model: model,
+                    )));
+      }, //<<<<<<<<<< push to new screen เช่น
+      child: SizedBox(
+        height: 80,
+        width: 55,
+        child: Card(
+          semanticContainer: true,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          /* shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50.0),
+          ), */
+          child: ListTile(
+            leading: CircleAvatar(backgroundColor: Color(0xff89EB80)),
+            title: Text(model.carChassis),
+            subtitle: Text('Yaris Ativ 1.2 G'),
+          ),
+          /*  child:
+              Column(children: [Text(model.carChassis)]), */
+        ),
+      ),
+    );
   }
 
   Future<void> scanQRCode() async {

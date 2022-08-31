@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/HomePage/HomePage.dart';
+import 'package:vdqims/Page/Test/Test.dart';
 
 import 'Page/LoginPage/LoginPage.dart';
 import 'Page/MenuPage/MenuPage.dart';
