@@ -1,11 +1,11 @@
 /* // ignore_for_file: prefer_const_constructors
 
-import 'dart:ffi';
+
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:vdqims/Page/Test/TestModel.dart';
 
+import '../FindcarPage/Model/FindcarModel.dart';
 import '../MenuPage/MenuPage.dart';
 //import '../MenuPage/MenuPage.dart';
 
@@ -16,37 +16,11 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
-  int currentPage = 1;
-
-  List<Passenger> passengers = [];
-
-  Future<bool> PassengersData() async{
-    final Uri uri = Uri.parse('http://206.189.92.79/api/car?page=1');
-    final response = await http.get(uri);
-
-    if(response.statusCode ==200){
-      final result = passengersDataFromJson(response.body);
-      passengers = result.data;
-      currentPage++;
-      print(response.body);
-
-      setState(() {
-        
-      });
 
 
-      return true;
 
-    }else{
-      return false;
-    }
-
-  }
-  @override
-  void initState(){
-    super.initState();
-    PassengersData();
-  }
+ 
+  
   @override
   
 
@@ -104,19 +78,30 @@ class _TestState extends State<Test> {
             )
           ],
         ),
-        body: ListView.separated(
-          itemBuilder: (context, index) {
-            final passenger =passengers[index];
-            return ListTile(
-              title: Text(passenger.carChassis),
-              subtitle: Text(passenger.carStatus.carStatus),
-              
-            );
-            
-          }, 
-          separatorBuilder: (context, index) => Divider(),
-          itemCount: passengers.length
+        body: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: SingleChildScrollView(
+            child: DataTable(
+              columns: const [
+                DataColumn(label: Text('วันที่')),
+                DataColumn(label: Text('สถานะ')),
+                DataColumn(label: Text('ตำแหน่ง')),
+                DataColumn(label: Text('ชื่อ')),
+               
+
+              ], 
+              rows: CarAPI.data.result.map((data)=>
+                DataRow(cells: [
+                  DataCell(Text(widget.carWhere.cacarWhere))
+                ]
+                )
+              )
+
+            ),
+
           ),
+
+        ) 
         );
       
         

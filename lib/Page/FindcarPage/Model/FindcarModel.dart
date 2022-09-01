@@ -17,7 +17,7 @@ class Car {
   });
 
   int currentPage;
-  late List<Passenger> data;
+  late List<CarAPI> data;
   String firstPageUrl;
   int from;
   int lastPage;
@@ -32,8 +32,8 @@ class Car {
 
   factory Car.fromJson(Map<String, dynamic> json) => Car(
         currentPage: json["current_page"],
-        data: List<Passenger>.from(
-            json["data"].map((e) => Passenger.fromJson(e))),
+        data: List<CarAPI>.from(
+            json["data"].map((e) => CarAPI.fromJson(e))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
@@ -50,8 +50,8 @@ class Car {
   
 }
 
-class Passenger {
-  Passenger({
+class CarAPI {
+  CarAPI({
     required this.carId,
     required this.carChassis,
     required this.carStatus,
@@ -73,7 +73,7 @@ class Passenger {
   DateTime date;
   String time;
 
-  factory Passenger.fromJson(Map<String, dynamic> json) => Passenger(
+  factory CarAPI.fromJson(Map<String, dynamic> json) => CarAPI(
         carId: json["car_id"],
         carChassis: json["car_chassis"],
         carStatus: CarStatus.fromJson(json["car_status"]),

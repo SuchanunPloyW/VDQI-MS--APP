@@ -33,15 +33,13 @@ class _LoginPageState extends State<LoginPage> {
 
             // alignment: AlignmentDirectional.center,
             height: 350,
-           /*  child: Image.asset(
+            child: Image.asset(
                'assets/images/logo.png',
                 height: 1.0,
               
-            ), */
+            ),
           
             decoration: BoxDecoration(
-               
-                
                 gradient: LinearGradient(
                   stops: const [0.0, 2.0],
                   begin: FractionalOffset.topCenter,

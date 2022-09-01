@@ -1,13 +1,13 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
 
 import 'package:vdqims/Page/FindcarPage/Model/FindcarModel.dart';
-import 'package:vdqims/Page/FindcarPage/Network/FindcarService.dart';
 import '../MenuPage/MenuPage.dart';
-import 'Detailpage.dart';
+import 'Service/FindcarService.dart';
 
 class FindcarPage extends StatefulWidget {
   @override
@@ -93,17 +93,21 @@ class _FindcarPageState extends State<FindcarPage> {
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Row(
-                      //mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Flexible(
+                          /* width: 280,
+                          height: 60, */
                           child: TextField(
-                              controller:
-                                  chassisController /* (text: "$qrCode") */,
+                              controller: chassisController =
+                                  TextEditingController(text: "$qrCode"),
+                              /* (text: "$qrCode") */
+
                               decoration: InputDecoration(
                                   fillColor: Color(0xff9F1E1E),
                                   filled: true,
                                   hintText: "เลขตัวถัง",
-                                  hintStyle: TextStyle(color: Colors.grey),
+                                  
+                                  hintStyle: TextStyle(color: Colors.grey ,fontFamily: ('IBM Plex Sans Thai'), ),
                                   contentPadding:
                                       EdgeInsets.only(left: 15, right: 10),
                                   border: OutlineInputBorder(
@@ -117,14 +121,14 @@ class _FindcarPageState extends State<FindcarPage> {
                                   ),
                                   suffixIconColor: Colors.grey),
                               style: TextStyle(
-                                  color: Colors.black54,
+                                  color: Colors.white,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
                                   wordSpacing: 1),
                               onChanged: (String? value) {
                                 print(value);
                                 setState(() {
-                                  search = value.toString();
+                                  qrCode = value.toString();
                                 });
                               }),
                         ),
@@ -184,10 +188,10 @@ class _FindcarPageState extends State<FindcarPage> {
                                     child: FutureBuilder(
                                       future: FindCarService().getcar(),
                                       builder: (BuildContext context,
-                                          AsyncSnapshot<List<Passenger>?>
+                                          AsyncSnapshot<List<CarAPI>?>
                                               snapshot) {
                                         if (snapshot.hasData) {
-                                          List<Passenger>? data = snapshot.data;
+                                          List<CarAPI>? data = snapshot.data;
                                           return Align(
                                             alignment: Alignment.topCenter,
                                             child: ListView.builder(
@@ -247,13 +251,13 @@ class _FindcarPageState extends State<FindcarPage> {
         ));
   }
 
-  Widget Listcar({required Passenger model}) {
+  Widget Listcar({required CarAPI model}) {
     return InkWell(
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (_) => DetailPage(
+                builder: (_) => CardetailPage(
                       model: model,
                     )));
       }, //<<<<<<<<<< push to new screen เช่น
@@ -267,9 +271,31 @@ class _FindcarPageState extends State<FindcarPage> {
             borderRadius: BorderRadius.circular(50.0),
           ), */
           child: ListTile(
-            leading: CircleAvatar(backgroundColor: Color(0xff89EB80)),
-            title: Text(model.carChassis),
-            subtitle: Text('Yaris Ativ 1.2 G'),
+            leading: CircleAvatar(
+                child: ClipRRect(
+                  child: Image.asset(
+                    'assets/images/car4.png',
+                    height: 28.0,
+                    width: 30,
+                  ),
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                backgroundColor: Color(0xff89EB80)),
+            title: Text(
+              model.carChassis,
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: ('IBM Plex Sans Thai'),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            subtitle: Text('Yaris Ativ 1.2 G' ,
+            style: TextStyle(
+                fontSize: 16,
+                fontFamily: ('IBM Plex Sans Thai'),
+                
+              ),
+            ),
           ),
           /*  child:
               Column(children: [Text(model.carChassis)]), */
