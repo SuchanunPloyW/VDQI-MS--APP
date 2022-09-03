@@ -391,19 +391,17 @@ class _CardetailPageState extends State<CardetailPage> {
   }
   void _request() async {
      SweetAlert.show(context,
-
           title: ("ต้องการทำรายการ ?"),
           subtitle:  (' คุณต้องการทำรายการเบิกรถยนต์'+"\n"+ widget.model.carChassis +" ใช่หรือไม่") ,
           /* subtitle:  widget.model.carChassis , */
           confirmButtonText: "ยืนยัน",
           cancelButtonText: "ยกเลิก",
-          
           style: SweetAlertStyle.confirm,
           showCancelButton: true, onPress: (bool isConfirm) {
         if(isConfirm){
-          SweetAlert.show(context,subtitle: "Deleting...", style: SweetAlertStyle.loading);
+          SweetAlert.show(context,subtitle: "กำลังทำรายการ...", style: SweetAlertStyle.loading);
           new Future.delayed(new Duration(seconds: 2),(){
-            SweetAlert.show(context,subtitle: "Success!", style: SweetAlertStyle.success);
+            SweetAlert.show(context,subtitle: "ทำรายการเบิกรถยนต์เสร็จสิ้น!", style: SweetAlertStyle.success);
           });
         }else{
           SweetAlert.show(context,subtitle: "Canceled!", style: SweetAlertStyle.error);

@@ -21,7 +21,6 @@ class CallApi{
        );
     }
 
-
     _setHeaders() => {
         'Content-type' : 'application/json',
         'Accept' : 'application/json',

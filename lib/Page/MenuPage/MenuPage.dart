@@ -20,12 +20,34 @@ class _MenuPageState extends State<MenuPage> {
           backgroundColor: baseColor1,
           title: const Text(''),
           elevation: 0,
-          actions: const <Widget>[
+          flexibleSpace: Stack(
+            children: [
+              Align(
+                alignment: AlignmentDirectional(0.9, -0.25),
+                child: Container(
+                  width: 45,
+                  height: 45,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: Image.network(
+                    'https://cdn-icons-png.flaticon.com/512/147/147140.png',
+                  ),
+                ),
+              ),
+             
+            ],
+
+
+          )
+          
+          /* actions: const <Widget>[
              CircleAvatar(
              backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
              radius: 20,
             ),
-          ],
+          ], */
         ),
         body: Stack(children: <Widget>[
           Align(
