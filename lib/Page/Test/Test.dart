@@ -1,4 +1,4 @@
-/* // ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors
 
 
 
@@ -80,27 +80,7 @@ class _TestState extends State<Test> {
         ),
         body: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: SingleChildScrollView(
-            child: DataTable(
-              columns: const [
-                DataColumn(label: Text('วันที่')),
-                DataColumn(label: Text('สถานะ')),
-                DataColumn(label: Text('ตำแหน่ง')),
-                DataColumn(label: Text('ชื่อ')),
-               
-
-              ], 
-              rows: CarAPI.data.result.map((data)=>
-                DataRow(cells: [
-                  DataCell(Text(widget.carWhere.cacarWhere))
-                ]
-                )
-              )
-
-            ),
-
-          ),
-
+          
         ) 
         );
       
@@ -108,4 +88,3 @@ class _TestState extends State<Test> {
   }
    
 }
- */

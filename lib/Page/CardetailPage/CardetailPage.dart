@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, unnecessary_new
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:sweetalert/sweetalert.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 
@@ -337,6 +338,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                         )  
                                                                       ),
                                                                     ),
+                                                                   
                                                                                                                         ])),
                                                         )))),
                                           ),
@@ -355,7 +357,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10))),
-                                              onPressed: () {},
+                                              onPressed: _request,
                                               child: const Text('เบิกรถยนต์',
                                                   style: TextStyle(
                                                     fontFamily:
@@ -386,5 +388,29 @@ class _CardetailPageState extends State<CardetailPage> {
             )
           ]),
         ));
+  }
+  void _request() async {
+     SweetAlert.show(context,
+
+          title: ("ต้องการทำรายการ ?"),
+          subtitle:  (' คุณต้องการทำรายการเบิกรถยนต์'+"\n"+ widget.model.carChassis +" ใช่หรือไม่") ,
+          /* subtitle:  widget.model.carChassis , */
+          confirmButtonText: "ยืนยัน",
+          cancelButtonText: "ยกเลิก",
+          
+          style: SweetAlertStyle.confirm,
+          showCancelButton: true, onPress: (bool isConfirm) {
+        if(isConfirm){
+          SweetAlert.show(context,subtitle: "Deleting...", style: SweetAlertStyle.loading);
+          new Future.delayed(new Duration(seconds: 2),(){
+            SweetAlert.show(context,subtitle: "Success!", style: SweetAlertStyle.success);
+          });
+        }else{
+          SweetAlert.show(context,subtitle: "Canceled!", style: SweetAlertStyle.error);
+        }
+        // return false to keep dialog
+        return false;
+      });
+    
   }
 }

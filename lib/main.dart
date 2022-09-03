@@ -39,31 +39,19 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(
          primarySwatch: Colors.blue,
-         fontFamily: 'Poppins',
+         fontFamily: 'IBM Plex Sans Thai',
          textTheme: const TextTheme(
           titleLarge: TextStyle(
             fontSize: 20,
             color: Colors.white,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.bold,
           ),
-          bodyLarge: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-          ),
-          bodyMedium: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-          displayMedium: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 18,
-            color: Colors.black,
-          ),
+          
         ),
       ),
 
       debugShowCheckedModeBanner: false,
-      home :FindcarPage() ,
+      home :MenuPage() ,
       
     );
   }
