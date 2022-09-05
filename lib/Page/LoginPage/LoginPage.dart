@@ -34,18 +34,22 @@ class _LoginPageState extends State<LoginPage> {
             // alignment: AlignmentDirectional.center,
             height: 350,
             child: Image.asset(
-               'assets/images/logo.png',
-                height: 1.0,
-              
+              'assets/images/logo.png',
+              height: 1.0,
             ),
-          
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  stops: const [0.0, 2.0],
-                  begin: FractionalOffset.topCenter,
-                  end: FractionalOffset.bottomCenter,
-                  colors: [baseColor1, baseColor2],
-                ))),
+              stops: const [
+                0.0,
+                2.0
+              ],
+              begin: FractionalOffset.topCenter,
+              end: FractionalOffset.bottomCenter,
+              colors: [
+                baseColor1,
+                baseColor2
+              ],
+            ))),
       ),
       Positioned(
           top: 20,
@@ -54,135 +58,113 @@ class _LoginPageState extends State<LoginPage> {
           right: 0,
           child: Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 380,
-                      width: MediaQuery.of(context).size.width,
-                      child: Card(
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                          margin: const EdgeInsets.only(left: 20, right: 20),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const SizedBox(height: 25),
-                                Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 25.0),
-                                    child: Container(
-                                        child: const Text(
-                                      "ระบบบริหารจัดการสต๊อครถยนต์",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontFamily: ('IBM Plex Sans Thai'),
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ))),
-                                const SizedBox(height: 15),
-                                const Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(" ลงชื่อเข้าใช้งาน ",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontFamily: ('IBM Plex Sans Thai'),
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                const Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(" ชื่อผู้ใช้งาน",
-                                        style: TextStyle(
-                                          fontFamily: ('IBM Plex Sans Thai'),
-                                          fontSize: 14,
-                                        )),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: SizedBox(
-                                    height: 35.2,
-                                    child: TextField(
-                                      controller: mailController,
-                                      keyboardType: TextInputType.text,
-                                      decoration: const InputDecoration(
-                                        border: OutlineInputBorder(),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text("พาสเวิร์ด",
-                                        style: TextStyle(
-                                            fontFamily: ('IBM Plex Sans Thai'),
-                                            fontSize: 14,
-                                            height: 2.0)),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: SizedBox(
-                                    height: 35.2,
-                                    child: TextField(
-                                      controller: passwordController,
-                                      obscureText: true,
-                                      keyboardType: TextInputType.text,
-                                      decoration: const InputDecoration(
-                                        border: OutlineInputBorder(),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 20),
-                                Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 25.0),
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: const Color(0xffE52628),
-                                          minimumSize:
-                                              const Size.fromHeight(40),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10))),
-                                      onPressed: _login,
-                                      child: const Text('เข้าสู่ระบบ',
-                                          style: TextStyle(
-                                            fontFamily: ('IBM Plex Sans Thai'),
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                    )),
-                              ])),
-                    ),
-                    const SizedBox(height: 10),
-                    // ignore: avoid_unnecessary_containers
-                    Container(
-                      child: const Text(
-                        'Powered by Weise Technika',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: Color.fromARGB(255, 228, 223, 223),
-                          fontFamily: ('IBM Plex Sans Thai'),
+              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                SizedBox(
+                  height: 380,
+                  width: MediaQuery.of(context).size.width,
+                  child: Card(
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      margin: const EdgeInsets.only(left: 20, right: 20),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                      child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                        const SizedBox(height: 25),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                            child: Container(
+                                child: const Text(
+                              "ระบบบริหารจัดการสต๊อครถยนต์",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: ('IBM Plex Sans Thai'),
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ))),
+                        const SizedBox(height: 15),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(" ลงชื่อเข้าใช้งาน ",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: ('IBM Plex Sans Thai'),
+                                  fontWeight: FontWeight.bold,
+                                )),
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 5),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(" ชื่อผู้ใช้งาน",
+                                style: TextStyle(
+                                  fontFamily: ('IBM Plex Sans Thai'),
+                                  fontSize: 14,
+                                )),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                          child: SizedBox(
+                            height: 35.2,
+                            child: TextField(
+                              controller: mailController,
+                              keyboardType: TextInputType.text,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text("พาสเวิร์ด", style: TextStyle(fontFamily: ('IBM Plex Sans Thai'), fontSize: 14, height: 2.0)),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                          child: SizedBox(
+                            height: 35.2,
+                            child: TextField(
+                              controller: passwordController,
+                              obscureText: true,
+                              keyboardType: TextInputType.text,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(primary: const Color(0xffE52628), minimumSize: const Size.fromHeight(40), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                              onPressed: _login,
+                              child: const Text('เข้าสู่ระบบ',
+                                  style: TextStyle(
+                                    fontFamily: ('IBM Plex Sans Thai'),
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            )),
+                      ])),
+                ),
+                const SizedBox(height: 10),
+
+                /* Container(
+                  child: const Text(
+                    'Powered by Weise Technika',
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Color.fromARGB(255, 228, 223, 223),
+                      fontFamily: ('IBM Plex Sans Thai'),
                     ),
-                  ]))),
+                  ),
+                ), */
+              ]))),
     ]));
   }
 
@@ -233,9 +215,7 @@ class _LoginPageState extends State<LoginPage> {
           context, new MaterialPageRoute(builder: (context) => const FirstPage())); */
 
       // ignore: use_build_context_synchronously
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => HomePage()),
-          (Route<dynamic> route) => false);
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage()), (Route<dynamic> route) => false);
     } else {}
 
     setState(() {

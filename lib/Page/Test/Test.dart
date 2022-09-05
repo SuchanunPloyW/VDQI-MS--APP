@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -16,20 +14,12 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
-
-
-
- 
-  
   @override
-  
-
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
@@ -55,8 +45,7 @@ class _TestState extends State<Test> {
           leading: IconButton(
             onPressed: () {
               Future.delayed(Duration(milliseconds: 200), () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => MenuPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => MenuPage()));
               });
             },
             icon: Icon(
@@ -80,11 +69,6 @@ class _TestState extends State<Test> {
         ),
         body: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          
-        ) 
-        );
-      
-        
+        ));
   }
-   
 }

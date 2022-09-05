@@ -106,8 +106,10 @@ class _FindcarPageState extends State<FindcarPage> {
                                   fillColor: Color(0xff9F1E1E),
                                   filled: true,
                                   hintText: "เลขตัวถัง",
-                                  
-                                  hintStyle: TextStyle(color: Colors.grey ,fontFamily: ('IBM Plex Sans Thai'), ),
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                    fontFamily: ('IBM Plex Sans Thai'),
+                                  ),
                                   contentPadding:
                                       EdgeInsets.only(left: 15, right: 10),
                                   border: OutlineInputBorder(
@@ -262,43 +264,46 @@ class _FindcarPageState extends State<FindcarPage> {
                     )));
       }, //<<<<<<<<<< push to new screen เช่น
       child: SizedBox(
-        height: 80,
+        height: 90,
         width: 55,
-        child: Card(
-          semanticContainer: true,
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          /* shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50.0),
-          ), */
-          child: ListTile(
-            leading: CircleAvatar(
-                child: ClipRRect(
-                  child: Image.asset(
-                    'assets/images/car4.png',
-                    height: 28.0,
-                    width: 30,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+          child: Card(
+            semanticContainer: true,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            /* shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0),
+            ), */
+            child: ListTile(
+              leading: CircleAvatar(
+                  child: ClipRRect(
+                    child: Image.asset(
+                      'assets/images/car4.png',
+                      height: 28.0,
+                      width: 25,
+                    ),
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
-                  borderRadius: BorderRadius.circular(50.0),
+                  backgroundColor: Color(0xff89EB80)),
+              title: Text(
+                model.carChassis,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: ('IBM Plex Sans Thai'),
+                  fontWeight: FontWeight.w500,
                 ),
-                backgroundColor: Color(0xff89EB80)),
-            title: Text(
-              model.carChassis,
-              style: TextStyle(
-                fontSize: 16,
-                fontFamily: ('IBM Plex Sans Thai'),
-                fontWeight: FontWeight.bold,
+              ),
+              subtitle: Text(
+                'Yaris Ativ 1.2 G',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: ('IBM Plex Sans Thai'),
+                ),
               ),
             ),
-            subtitle: Text('Yaris Ativ 1.2 G' ,
-            style: TextStyle(
-                fontSize: 16,
-                fontFamily: ('IBM Plex Sans Thai'),
-                
-              ),
-            ),
+            /*  child:
+                Column(children: [Text(model.carChassis)]), */
           ),
-          /*  child:
-              Column(children: [Text(model.carChassis)]), */
         ),
       ),
     );

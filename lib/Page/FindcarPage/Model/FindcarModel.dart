@@ -1,4 +1,3 @@
-
 class Car {
   Car({
     required this.currentPage,
@@ -32,8 +31,7 @@ class Car {
 
   factory Car.fromJson(Map<String, dynamic> json) => Car(
         currentPage: json["current_page"],
-        data: List<CarAPI>.from(
-            json["data"].map((e) => CarAPI.fromJson(e))),
+        data: List<CarAPI>.from(json["data"].map((e) => CarAPI.fromJson(e))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
@@ -46,8 +44,6 @@ class Car {
         to: json["to"],
         total: json["total"],
       );
-
-  
 }
 
 class CarAPI {
@@ -99,8 +95,6 @@ class CarStatus {
         statusId: json["status_id"],
         carStatus: json["car_status"],
       );
-
-  
 }
 
 class CarWhere {
@@ -116,8 +110,6 @@ class CarWhere {
         whereId: json["where_id"],
         carWhere: json["car_where"],
       );
-
- 
 }
 
 class Link {
@@ -136,6 +128,4 @@ class Link {
         label: json["label"],
         active: json["active"],
       );
-
-  
 }
