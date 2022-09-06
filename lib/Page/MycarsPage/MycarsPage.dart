@@ -5,6 +5,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
+import 'package:vdqims/Page/MycarsdetailPage/MycarsdetailPage.dart';
 
 import '../FindcarPage/Model/FindcarModel.dart';
 import '../FindcarPage/Service/FindcarService.dart';
@@ -17,6 +18,11 @@ class MycarsPage extends StatefulWidget {
 }
 
 class _MycarsPageState extends State<MycarsPage> {
+
+
+
+
+  
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
   @override
@@ -175,12 +181,12 @@ class _MycarsPageState extends State<MycarsPage> {
   Widget Listcar({required CarAPI model}) {
     return InkWell(
       onTap: () {
-        /*  Navigator.push(
+         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (_) => CardetailPage(
+                builder: (_) => MycarsdetailPage(
                       model: model,
-                    ))); */
+                    )));
       }, //<<<<<<<<<< push to new screen เช่น
       child: SizedBox(
         height: 100,
@@ -210,7 +216,7 @@ class _MycarsPageState extends State<MycarsPage> {
                 style: const TextStyle(
                   fontSize: 16,
                   fontFamily: ('IBM Plex Sans Thai'),
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               subtitle: const Text(
@@ -218,6 +224,8 @@ class _MycarsPageState extends State<MycarsPage> {
                 style: TextStyle(
                   fontSize: 16,
                   fontFamily: ('IBM Plex Sans Thai'),
+                  color: Color(0xff929292),
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),
@@ -230,36 +238,4 @@ class _MycarsPageState extends State<MycarsPage> {
   }
 }
 
-/*  child: Card(
-                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                                          child:  ListTile(
-                                            leading: AspectRatio(
-                                                      aspectRatio: 1,
-                                                      child: ClipRRect(
-                                                        borderRadius:  BorderRadius.all(Radius.circular(1.0)),
-                                                         child: Image.asset(
-                                                          'assets/images/car3.png',
-                                                          height: 60.0,
-                                                          width: 60,
-                                                        ),
-                                                      ),
-                                                    ),
-                                            title: const Text(
-                                              ' MR1234598745616CD',
-                                              style: TextStyle(
-                                                fontFamily: ('IBM Plex Sans Thai'),
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 16
-                                              ),
-                                            ),
-                      
-                                            subtitle: const Text(
-                                              ' Yaris Ativ 1.2 G ' + '\n' + ' สถานที่'+' :'+' VDQI Station',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontFamily: ('IBM Plex Sans Thai'),
-                                                fontWeight: FontWeight.w300,
-                                              ),
-                                            ),
-                                          ),
-                                        ), */
+

@@ -28,7 +28,6 @@ class MyCarService {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var _authToken = localStorage.getString('token');
     var user = localStorage.getString('user');
-
     print(user);
 
     // response uri

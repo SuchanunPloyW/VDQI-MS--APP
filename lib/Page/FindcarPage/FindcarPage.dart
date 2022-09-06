@@ -101,7 +101,6 @@ class _FindcarPageState extends State<FindcarPage> {
                               controller: chassisController =
                                   TextEditingController(text: "$qrCode"),
                               /* (text: "$qrCode") */
-
                               decoration: InputDecoration(
                                   fillColor: Color(0xff9F1E1E),
                                   filled: true,
@@ -147,10 +146,12 @@ class _FindcarPageState extends State<FindcarPage> {
                                 ),
                                 color: Color(0xff9F1E1E),
                                 child: IconButton(
-                                  icon: Icon(
-                                    Icons.qr_code_scanner_sharp,
-                                    color: Color(0xffE24646),
+                                  icon: Image.asset('assets/images/iconscan.png',
+                                   height: 18.94,
+                                   width: 18.94,
+
                                   ),
+                                  
                                   onPressed: () => scanQRCode(),
                                 )),
                           ),
