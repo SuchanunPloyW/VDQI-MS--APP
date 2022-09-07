@@ -9,7 +9,10 @@ import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 import '../FindcarPage/Model/FindcarModel.dart';
 
 class MycarsdetailPage extends StatefulWidget {
-  const MycarsdetailPage({Key? key, required this.model}) : super(key: key);
+  const MycarsdetailPage({
+    Key? key,
+    required this.model
+  }) : super(key: key);
   final CarAPI model;
   @override
   State<MycarsdetailPage> createState() => _MycarsdetailPageState();
@@ -71,6 +74,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
         ),
         body: SingleChildScrollView(
           child: Stack(children: <Widget>[
+            //////////////// /* BG RED */   ////////////////
             Align(
               alignment: Alignment.topCenter,
               child: Container(
@@ -93,6 +97,8 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                 ),
               ),
             ),
+            //////////////// /* BG RED */   ////////////////
+
             Padding(
               padding: const EdgeInsets.only(top: 30),
               child: SingleChildScrollView(
@@ -107,6 +113,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
+                            //////////////// /* Card white */   ////////////////
                             SizedBox(
                                 height: 650,
                                 child: Padding(
@@ -122,6 +129,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(top: 10),
                                       child: Column(children: <Widget>[
+                                        //////////////// /* Card เลขตัวถัง */   ////////////////
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               left: 10, right: 10),
@@ -141,7 +149,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                   borderRadius:
                                                       BorderRadius.circular(5)),
                                               child: ListTile(
-                                                title: Text(
+                                                 title: Text(
                                                   widget.model.carChassis,
                                                   style: const TextStyle(
                                                     fontFamily:
@@ -153,7 +161,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                   aspectRatio: 1,
                                                   child: ClipRRect(
                                                     borderRadius:
-                                                        BorderRadius.all(
+                                                        const BorderRadius.all(
                                                             Radius.circular(
                                                                 1.0)),
                                                     child: Image.asset(
@@ -176,27 +184,30 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                             ),
                                           ),
                                         ),
+                                        //////////////// /* Card เลขตัวถัง */   ////////////////
+
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               left: 10, right: 10),
                                           child: Container(
-                                            decoration: const BoxDecoration(
-                                              boxShadow: <BoxShadow>[
-                                                BoxShadow(
-                                                  color: Color(0xffF6F6F6),
-                                                  blurRadius: 20,
-                                                  offset: Offset(5, 5),
-                                                ),
-                                              ],
-                                            ),
-                                            height: 85.0,
-                                            child: Align(
-                                              alignment:
-                                                  const AlignmentDirectional(
-                                                      -0.99, -0.45),
+                                              decoration: const BoxDecoration(
+                                                boxShadow: <BoxShadow>[
+                                                  BoxShadow(
+                                                    color: Color(0xffF6F6F6),
+                                                    blurRadius: 20,
+                                                    offset: Offset(5, 5),
+                                                  ),
+                                                ],
+                                              ),
+                                              height: 87.0,
                                               child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
-                                                  Flexible(
+                                                  SizedBox(
+                                                    height: 87,
+                                                    width: 87,
                                                     child: Card(
                                                       shape:
                                                           RoundedRectangleBorder(
@@ -204,6 +215,62 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                   BorderRadius
                                                                       .circular(
                                                                           5)),
+                                                      child: Column(
+                                                        children: <Widget>[
+                                                          Padding(
+                                                            padding: EdgeInsets
+                                                                .only(top: 1),
+                                                            child: IconButton(
+                                                              icon: Image.asset(
+                                                                  'assets/images/iconscan.png'),
+                                                              iconSize: 35,
+                                                              onPressed:
+                                                                  () {},
+                                                            ),
+                                                          ),
+                                                          const Text(
+                                                            "แสกน",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 14,
+                                                                color: Color(
+                                                                    0xff929292)),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: SizedBox(
+                                                      height: 87,
+                                                      width: double.infinity,
+                                                      child: Card(
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5)),
+                                                        child: Column(
+                                                          children: <Widget>[],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                              /*    child: Align(
+                                              alignment:
+                                                  const AlignmentDirectional(
+                                                      -0.99, -0.45),
+                                              child: Row(
+                                                children: [
+                                                  Flexible(
+                                                    child: Card(
+                                                      shape: RoundedRectangleBorder(
+                                                            borderRadius:BorderRadius.circular(5)),
                                                       child: Container(
                                                         height: 87,
                                                         width: 87,
@@ -213,18 +280,16 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                           boxShadow: [
                                                             BoxShadow(
                                                               blurRadius: 2,
-                                                              color: Color(
-                                                                  0x33000000),
+                                                              color: Color(0xffF6F6F6),
                                                               offset:
-                                                                  Offset(0, 2),
+                                                                  Offset(5, 5),
                                                             )
                                                           ],
                                                         ),
                                                         child: Column(
                                                           children: <Widget>[
                                                             Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(top: 1),
+                                                              padding: EdgeInsets.only(top: 1),
                                                               child: IconButton(
                                                                 icon: Image.asset('assets/images/iconscan.png'),
                                                                 iconSize: 35,
@@ -237,10 +302,8 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                               style: TextStyle(
                                                                   fontWeight:FontWeight.bold,
                                                                   fontSize: 14,
-                                                                  color: Color(0xff929292)
-                                                                  
-                                                                      
-                                                                          ),
+                                                                  color: Color(0xff929292)),
+                                                                        
                                                             ),
                                                           ],
                                                         ),
@@ -263,69 +326,48 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                         boxShadow: [
                                                           BoxShadow(
                                                             blurRadius: 2,
-                                                            color: Color(
-                                                                0x33000000),
+                                                            color: Color(0xffF6F6F6),
                                                             offset:
                                                                 Offset(0, 2),
                                                           )
                                                         ],
                                                       ),
+                                                      child:  Stack(children: [
+                                                         Align(
+                                                          alignment: AlignmentDirectional(-0.05, 0.25),
+                                                          child: Text(widget.model.carWhere.carWhere,
+                                                          style: const TextStyle(
+                                                            fontSize: 30,
+                                                            color: Color(0xff404040),
+                                                            fontFamily: ('IBM Plex Sans Thai'),
+                                                            fontWeight: FontWeight.bold,
+                                                          ),
+                                                          ),
+                                                        ),
+                                                        const Align(
+                                                          alignment: AlignmentDirectional(-0.9, -0.9),
+                                                           child: Text('สถานที่',
+                                                          style: TextStyle(
+                                                            fontSize: 16,
+                                                            color: Color(0xffD4D4D4),
+                                                            fontFamily: ('IBM Plex Sans Thai'),
+                                                            
+                                                          ),
+                                                          ),
+                                                        ),
+                                                ]),
+                                                      
+                                                      
                                                     ),
+                                                    
                                                   )
                                                 ],
                                               ),
-                                            ),
-                                          ),
+                                            ), */
+                                              ),
                                         ),
 
-                                        /* Stack(children: [
-                                        /*    child: Card(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5)), */
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 10, right: 10),
-                                            child: Container(
-                                              child: Align(
-                                                  alignment: AlignmentDirectional(-0.99, -0.45),
-                                                
-                                                child: Container(
-                                                  height: 87,
-                                                  width: 87,
-
-                                                  decoration: const BoxDecoration(
-                                                    color: Colors.red,
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        blurRadius: 20,
-                                                        color: Color(0x33000000),
-                                                        offset: Offset(0, 2),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        ]), */
-                                        /* Padding(
-                                          padding: const EdgeInsets.only( left: 10, right: 10),
-                                             
-                                          child: Container(
-                                            decoration: const BoxDecoration(
-                                              // ignore: prefer_const_literals_to_create_immutables
-                                              boxShadow: <BoxShadow>[
-                                                BoxShadow(
-                                                  color:
-                                                      const Color(0xffF6F6F6),
-                                                  blurRadius: 20,
-                                                  offset: const Offset(5, 5),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ), */
-                                        const SizedBox(height: 300),
+                                        const SizedBox(height: 380),
                                         Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 25.0),

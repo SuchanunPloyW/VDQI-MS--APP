@@ -131,7 +131,8 @@ class _FindcarPageState extends State<FindcarPage> {
                                 setState(() {
                                   qrCode = value.toString();
                                 });
-                              }),
+                              }
+                              ),
                         ),
                         SizedBox(width: 10),
                         InkWell(
@@ -181,8 +182,8 @@ class _FindcarPageState extends State<FindcarPage> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Card(
-                                    color: const Color.fromARGB(
-                                        255, 255, 255, 255),
+                                    color: const Color.fromARGB(255, 255, 255, 255),
+                                        
                                     margin: const EdgeInsets.only(
                                         left: 10, right: 10),
                                     shape: RoundedRectangleBorder(

@@ -189,7 +189,7 @@ class _MycarsPageState extends State<MycarsPage> {
                     )));
       }, //<<<<<<<<<< push to new screen เช่น
       child: SizedBox(
-        height: 100,
+        height: 110,
         width: 55,
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
@@ -219,9 +219,10 @@ class _MycarsPageState extends State<MycarsPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              subtitle: const Text(
-                'Yaris Ativ 1.2 G \nสถานที่ : VDQI',
-                style: TextStyle(
+             /*  desc: (' คุณต้องการทำรายการเบิกรถยนต์' + "\n" + widget.model.carChassis + " ใช่หรือไม่"), */
+              subtitle:  Text(
+                'Yaris Ativ 1.2 G \nสถานที่ : ' + model.carWhere.carWhere ,
+                style: const TextStyle(
                   fontSize: 16,
                   fontFamily: ('IBM Plex Sans Thai'),
                   color: Color(0xff929292),

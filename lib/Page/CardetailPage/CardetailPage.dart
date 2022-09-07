@@ -108,8 +108,11 @@ class _CardetailPageState extends State<CardetailPage> {
                   left: 0,
                   right: 0,
                   child: Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                      padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          //////////////// /* Card white */   ////////////////
                         SizedBox(
                             height: 650,
                             child: Padding(
@@ -120,67 +123,85 @@ class _CardetailPageState extends State<CardetailPage> {
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 10),
-                                  child: Column(children: <Widget>[
+                                  child: Column(
+                                    children: <Widget>[
+                                       //////////////// /* Card เลขตัวถัง */   //////////////// 
                                     Padding(
                                       padding: const EdgeInsets.only(left: 10, right: 10),
                                       child: Container(
-                                        decoration: BoxDecoration(
-                                          boxShadow: const <BoxShadow>[
-                                            BoxShadow(
-                                              color: Color(0xffF6F6F6),
-                                              blurRadius: 20,
-                                              offset: Offset(5, 5),
-                                            ),
-                                          ],
-                                        ),
-                                        height: 100.0,
-                                        child: Card(
-                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                                          child: ListTile(
-                                            title: Text(
-                                              widget.model.carChassis,
-                                              style: TextStyle(
-                                                fontFamily: ('IBM Plex Sans Thai'),
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            leading: CircleAvatar(
-                                              child: ClipRRect(
-                                                child: Image.asset(
-                                                  'assets/images/car4.png',
-                                                  height: 28.0,
-                                                  width: 30,
+                                        decoration: new BoxDecoration(
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Color.fromARGB(255, 231, 224, 224),
+                                                blurRadius: 7.0, // soften the shadow
+                                                spreadRadius: 0.0, //extend the shadow
+                                                offset: Offset(
+                                                  5.0, // Move to right 10  horizontally
+                                                  5.0, // Move to bottom 10 Vertically
                                                 ),
-                                                borderRadius: BorderRadius.circular(50.0),
-                                              ),
-                                              radius: 32.0,
-                                              backgroundColor: Color(0xff89EB80),
-                                            ),
-                                            subtitle: Text(
-                                              'Yaris Ativ 1.2 G \nสถานะ : ว่าง',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontFamily: ('IBM Plex Sans Thai'),
-                                                fontWeight: FontWeight.w300,
-                                              ),
-                                            ),
+                                              )
+                                            ],
                                           ),
-                                        ),
+                                                child: Card(
+                                              
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:BorderRadius.circular(5)),
+                                              child: ListTile(
+                                                title: Text(
+                                                  widget.model.carChassis,
+                                                  style: const TextStyle(
+                                                    fontFamily:
+                                                        ('IBM Plex Sans Thai'),
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                leading: AspectRatio(
+                                                  aspectRatio: 1,
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(
+                                                                1.0)),
+                                                    child: CircleAvatar(
+                                                      child: Image.asset(
+                                                        'assets/images/car4.png',
+                                                        height: 28.0,
+                                                        width: 30,),
+                                                        radius: 62.0,
+                                                        backgroundColor: Color(0xff89EB80),
+
+                                                    )
+                                                  ),
+                                                ),
+                                                subtitle: const Text(
+                                                  'Yaris Ativ 1.2 G \n'+'สถานะ :'+' ว่าง',
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontFamily:
+                                                        ('IBM Plex Sans Thai'),
+                                                    fontWeight: FontWeight.w300,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 10, right: 10),
                                       child: Container(
-                                        decoration: BoxDecoration(
-                                          // ignore: prefer_const_literals_to_create_immutables
-                                          boxShadow: <BoxShadow>[
-                                            BoxShadow(
-                                              color: Color(0xffF6F6F6),
-                                              blurRadius: 20,
-                                              offset: Offset(5, 5),
-                                            ),
-                                          ],
-                                        ),
+                                        decoration: new BoxDecoration(
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Color.fromARGB(255, 231, 224, 224),
+                                                blurRadius: 7.0, // soften the shadow
+                                                spreadRadius: 0.0, //extend the shadow
+                                                offset: Offset(
+                                                  5.0, // Move to right 10  horizontally
+                                                  5.0, // Move to bottom 10 Vertically
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         child: Card(
                                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                                             child: GestureDetector(
@@ -226,7 +247,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                   style: TextStyle(
                                                                     color: Color(0xff404040),
                                                                     fontSize: 40,
-                                                                    fontFamily: ('IBM Plex Sans Thai'),
+                                                                    /* fontFamily: ('IBM Plex Sans Thai'), */
                                                                     fontWeight: FontWeight.bold,
                                                                   )),
                                                             ),
@@ -257,7 +278,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                     color: Color(0xffD4D4D4),
                                                                   )),
                                                             ),
-                                                            Align(
+                                                            /* Align(
                                                               alignment: AlignmentDirectional(-0.10, 4.8),
                                                               child: DataTable(
                                                                 columns: const <DataColumn>[
@@ -309,7 +330,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                           color:Color(0xffD4D4D4),
                                                                         )  
                                                                       ), */
-                                                            ),
+                                                            ), */
                                                           ])),
                                                     )))),
                                       ),

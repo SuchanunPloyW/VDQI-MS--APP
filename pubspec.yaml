@@ -38,6 +38,7 @@ dependencies:
   http: ^0.13.5
   flutter_barcode_scanner: ^2.0.0
   rflutter_alert: ^2.0.4
+  sweetalert: ^0.0.1
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +91,7 @@ flutter:
      - assets/images/car3.png
      - assets/images/car4.png
      - assets/images/iconscan.png
+     - assets/images/iconMenu.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
