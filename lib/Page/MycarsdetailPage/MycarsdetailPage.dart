@@ -253,85 +253,45 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                     BorderRadius
                                                                         .circular(
                                                                             5)),
-                                                        child: Column(
-                                                          children: <Widget>[],
+                                                        child: Stack(
+                                                          children:  <Widget>[
+                                                            Align(
+                                                              alignment: AlignmentDirectional(-0.05, 0.25),
+                                                              child: Text(widget.model.carWhere.carWhere,
+                                                              style: const TextStyle(
+                                                              fontSize: 30,
+                                                              color: Color(0xff404040),
+                                                              fontFamily: ('IBM Plex Sans Thai'),
+                                                              fontWeight: FontWeight.bold,
+                                                            ),
+
+                                                              )
+                                                            ),
+                                                            const Align(
+                                                              alignment: AlignmentDirectional(-0.98, -0.97),
+                                                              child: Text(' สถานที่',
+                                                              style: TextStyle(
+                                                              fontSize: 14,
+                                                              color: Color(0xffD4D4D4),
+                                                              fontFamily: ('IBM Plex Sans Thai'),
+                                                              
+                                                            ),
+
+                                                              )
+                                                            ),
+
+
+                                                          ],
                                                         ),
                                                       ),
                                                     ),
                                                   ),
                                                 ],
                                               )
-                                              /*    child: Align(
-                                              alignment:
-                                                  const AlignmentDirectional(
-                                                      -0.99, -0.45),
-                                              child: Row(
-                                                children: [
-                                                  Flexible(
-                                                    child: Card(
-                                                      shape: RoundedRectangleBorder(
-                                                            borderRadius:BorderRadius.circular(5)),
-                                                      child: Container(
-                                                        height: 87,
-                                                        width: 87,
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                          color: Colors.white,
-                                                          boxShadow: [
-                                                            BoxShadow(
-                                                              blurRadius: 2,
-                                                              color: Color(0xffF6F6F6),
-                                                              offset:
-                                                                  Offset(5, 5),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        child: Column(
-                                                          children: <Widget>[
-                                                            Padding(
-                                                              padding: EdgeInsets.only(top: 1),
-                                                              child: IconButton(
-                                                                icon: Image.asset('assets/images/iconscan.png'),
-                                                                iconSize: 35,
-                                                                onPressed:
-                                                                    () {},
-                                                              ),
-                                                            ),
-                                                            const Text(
-                                                              "แสกน",
-                                                              style: TextStyle(
-                                                                  fontWeight:FontWeight.bold,
-                                                                  fontSize: 14,
-                                                                  color: Color(0xff929292)),
-                                                                        
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Card(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5)),
-                                                    child: Container(
-                                                      height: 87,
-                                                      width: 230,
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                        color: Colors.white,
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            blurRadius: 2,
-                                                            color: Color(0xffF6F6F6),
-                                                            offset:
-                                                                Offset(0, 2),
-                                                          )
-                                                        ],
-                                                      ),
+                                              /*    
+                                                        
+                                                      )
+                                                 
                                                       child:  Stack(children: [
                                                          Align(
                                                           alignment: AlignmentDirectional(-0.05, 0.25),

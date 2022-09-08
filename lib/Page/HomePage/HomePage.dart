@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 
+import '../Widget/drawer.dart';
+
 class HomePage extends StatefulWidget {
   @override
   const HomePage({Key? key}) : super(key: key);
@@ -16,16 +18,20 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: Icon(Icons.menu),
           backgroundColor: baseColor1,
           elevation: 0,
-          actions: const <Widget>[
-            CircleAvatar(
-              backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
-              radius: 20,
+          leading: Builder(
+            builder: (context) => IconButton(
+               icon: Image.asset('assets/images/iconMenu.png',
+              height: 16.00,
+              width: 26.67,
+              ), 
+              onPressed: () => Scaffold.of(context).openDrawer(),
             ),
-          ],
-        ),
+          ),
+          iconTheme: const IconThemeData(color: Color(0xFFAB262D)),
+        ), drawer: SideMenu(),
+        
         body: SingleChildScrollView(
           child: Stack(children: <Widget>[
             Align(

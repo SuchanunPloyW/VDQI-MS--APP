@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../FindcarPage/FindcarPage.dart';
+import '../Widget/drawer.dart';
 
 class MenuPage extends StatefulWidget {
   @override
@@ -16,17 +17,37 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: Icon(Icons.menu),
-          backgroundColor: baseColor1,
-          title: const Text(''),
-          elevation: 0,
-          actions: const <Widget>[
-            CircleAvatar(
-              backgroundImage: NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147140.png'),
-              radius: 20,
+       /*  title: Padding(
+          padding: const EdgeInsets.only(left: 150),
+          child: Text('a'),
+        ), */
+         actions:  <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: CircleAvatar(
+                radius: 20.0,
+                child: ClipRRect(
+                  child: Image.asset('assets/images/Profile.png'),
+                  borderRadius: BorderRadius.circular(20.0),
+                  ),         
             ),
+          ),
           ],
-        ),
+
+          backgroundColor: baseColor1,
+          elevation: 0,
+          leading: Builder(
+            builder: (context) => IconButton(
+              icon: Image.asset('assets/images/iconMenu.png',
+              height: 16.00,
+              width: 26.67,
+              ), 
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
+          ),
+         
+        ), drawer: SideMenu(),
+        
         body: Stack(children: <Widget>[
           Align(
             alignment: Alignment.topCenter,

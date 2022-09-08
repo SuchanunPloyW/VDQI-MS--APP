@@ -269,7 +269,7 @@ class _FindcarPageState extends State<FindcarPage> {
         height: 90,
         width: 55,
         child: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+          padding: const EdgeInsets.only(left: 5, right: 5, ),
           child: Card(
             semanticContainer: true,
             clipBehavior: Clip.antiAliasWithSaveLayer,
