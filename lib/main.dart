@@ -3,7 +3,7 @@ import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/HomePage/HomePage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
-import 'package:vdqims/Page/Test/Test.dart';
+
 
 import 'Page/LoginPage/LoginPage.dart';
 import 'Page/MenuPage/MenuPage.dart';
@@ -41,15 +41,15 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
         fontFamily: 'IBM Plex Sans Thai',
         textTheme: const TextTheme(
-          titleLarge: TextStyle(
+          /* titleLarge: TextStyle(
             fontSize: 20,
             color: Colors.white,
             fontWeight: FontWeight.bold,
-          ),
+          ), */
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const FindcarPage(),
+      home: const MycarsPage(),
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
 
 import 'package:vdqims/Page/FindcarPage/Model/FindcarModel.dart';
+import 'package:vdqims/Style/TextStyle.dart';
 import '../MenuPage/MenuPage.dart';
 import 'Service/FindcarService.dart';
 
@@ -26,25 +27,17 @@ class _FindcarPageState extends State<FindcarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          toolbarHeight: 80,
+          toolbarHeight: 70,
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
                   text: "ค้นหารถยนต์",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontFamily: ('IBM Plex Sans Thai'),
-                    fontWeight: FontWeight.bold,
-                  ),
-                  children: const <TextSpan>[
+                  style: TextStyleMenuName.bodyMenuThai,
+                  children:  <TextSpan>[
                     TextSpan(
                       text: '\nFind My Car',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontFamily: ('IBM Plex Sans Thai'),
-                      ),
+                      style: TextStyleMenuName.bodyMenuEng
                     ),
                   ])),
           leading: IconButton(
@@ -236,16 +229,9 @@ class _FindcarPageState extends State<FindcarPage> {
                                 )),
 
                             const SizedBox(height: 10),
-                            // ignore: avoid_unnecessary_containers
-                            Container(
-                              child: const Text(
-                                'Powered by Weise Technika',
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  color: Color.fromARGB(255, 228, 223, 223),
-                                  fontFamily: ('IBM Plex Sans Thai'),
-                                ),
-                              ),
+                            Text(
+                              'Powered by Weise Technika',
+                              style: TextStyleFoot.bodyfoot
                             ),
                           ])),
                 ),

@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/MycarsdetailPage/MycarsdetailPage.dart';
+import 'package:vdqims/Style/TextStyle.dart';
 
 import '../FindcarPage/Model/FindcarModel.dart';
 import '../FindcarPage/Service/FindcarService.dart';
@@ -33,21 +34,13 @@ class _MycarsPageState extends State<MycarsPage> {
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
-              text: const TextSpan(
+              text:  TextSpan(
                   text: "รถยนต์ของฉัน",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontFamily: ('IBM Plex Sans Thai'),
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyleMenuName.bodyMenuThai,
                   children: <TextSpan>[
                     TextSpan(
                       text: '\nMy Cars',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontFamily: ('IBM Plex Sans Thai'),
-                      ),
+                      style: TextStyleMenuName.bodyMenuEng
                     ),
                   ])),
           leading: IconButton(
@@ -91,19 +84,11 @@ class _MycarsPageState extends State<MycarsPage> {
                   colors: [baseColor1, baseColor2],
                 )),
 
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Row(
-                      children: [],
-                    ),
-                  ),
-                ),
+                
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 5),
               child: SingleChildScrollView(
                 child: Positioned(
                   top: 80,
@@ -111,7 +96,7 @@ class _MycarsPageState extends State<MycarsPage> {
                   left: 0,
                   right: 0,
                   child: Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[

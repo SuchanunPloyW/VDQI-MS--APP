@@ -20,10 +20,7 @@ class CardetailPage extends StatefulWidget {
 class _CardetailPageState extends State<CardetailPage> {
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
-  var abc = Text(
-    'data',
-    style: TextStyle(color: Colors.red),
-  );
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,19 +31,11 @@ class _CardetailPageState extends State<CardetailPage> {
               textAlign: TextAlign.center,
               text: TextSpan(
                   text: "รายละเอียดรถยนต์",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontFamily: ('IBM Plex Sans Thai'),
-                    fontWeight: FontWeight.bold,
-                  ),
-                  children: const <TextSpan>[
+                  style: TextStyleMenuName.bodyMenuThai,
+                  children:  <TextSpan>[
                     TextSpan(
                       text: '\nCar Infomation',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontFamily: ('IBM Plex Sans Thai'),
-                      ),
+                      style: TextStyleMenuName.bodyMenuEng
                     ),
                   ])),
           leading: IconButton(
@@ -88,19 +77,11 @@ class _CardetailPageState extends State<CardetailPage> {
                   end: FractionalOffset.bottomCenter,
                   colors: [baseColor1, baseColor2],
                 )),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Row(
-                      children: const [],
-                    ),
-                  ),
-                ),
+                
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 5),
               child: SingleChildScrollView(
                 child: Positioned(
                   top: 80,
@@ -109,7 +90,7 @@ class _CardetailPageState extends State<CardetailPage> {
                   right: 0,
                   child: Padding(
                       padding:
-                          const EdgeInsets.only(left: 10, right: 10, top: 10),
+                          const EdgeInsets.only(left: 10, right: 10, top: 5),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -119,8 +100,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Card(
-                                    color: const Color.fromARGB(
-                                        255, 255, 255, 255),
+                                    color: const Color.fromARGB(255, 255, 255, 255),
                                     margin: const EdgeInsets.only(
                                         left: 10, right: 10),
                                     shape: RoundedRectangleBorder(
@@ -364,9 +344,11 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                                 Color(0xffD4D4D4),
                                                                           )),
                                                                     ),
-                                                                    /* Align(
+                                                              Align(
                                                               alignment: AlignmentDirectional(-0.10, 4.8),
                                                               child: DataTable(
+                                                                horizontalMargin: 0,
+                                                                columnSpacing: 30,
                                                                 columns: const <DataColumn>[
                                                                   DataColumn(
                                                                     label: Expanded(
@@ -408,15 +390,8 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                   ),
                                                                 ],
                                                               ),
-                                                              /* child: Text(
-                                                                        'ประวัติรถยนต์',
-                                                                        style: TextStyle(
-                                                                          fontSize: 16,
-                                                                          fontFamily:('IBM Plex Sans Thai'),
-                                                                          color:Color(0xffD4D4D4),
-                                                                        )  
-                                                                      ), */
-                                                            ), */
+                                                              
+                                                            ),
                                                                   ])),
                                                         )))),
                                           ),
@@ -450,16 +425,9 @@ class _CardetailPageState extends State<CardetailPage> {
                                 )),
 
                             const SizedBox(height: 10),
-                            // ignore: avoid_unnecessary_containers
-                            Container(
-                              child: const Text(
-                                'Powered by Weise Technika',
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  color: Color.fromARGB(255, 228, 223, 223),
-                                  fontFamily: ('IBM Plex Sans Thai'),
-                                ),
-                              ),
+                            Text(
+                              'Powered by Weise Technika',
+                              style: TextStyleFoot.bodyfoot
                             ),
                           ])),
                 ),
@@ -468,13 +436,12 @@ class _CardetailPageState extends State<CardetailPage> {
           ]),
         ));
   }
-  // < ------------------      Alert        ------------------>
 
-  // Advanced using of alerts
+  // < ------------------      Alert        ------------------>
   _request(context) {
     // Reusable alert style
     var alertStyle = AlertStyle(
-      animationType: AnimationType.fromTop,
+      animationType: AnimationType.fromBottom,
       isCloseButton: false,
       isOverlayTapDismiss: false,
       animationDuration: Duration(milliseconds: 400),
@@ -486,8 +453,6 @@ class _CardetailPageState extends State<CardetailPage> {
       ),
       
     );
-    
-    // Alert dialog using custom alert style
     Alert(
       context: context,
       style: alertStyle,
@@ -496,7 +461,7 @@ class _CardetailPageState extends State<CardetailPage> {
         padding: const EdgeInsets.only(top : 8.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text("ต้องการทำรายการ ?", style: TextStyleAlert.body18bold),
-          SizedBox(height: 8),
+          SizedBox(height: 5),
           Text("คุณต้องการทำรายการเบิกรถยนต์",
               style: TextStyleAlert.body15normal),
           Row(
@@ -544,4 +509,5 @@ class _CardetailPageState extends State<CardetailPage> {
       ],
     ).show();
   }
+  // < ------------------      Alert        ------------------>
 }
