@@ -218,7 +218,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                       child: Column(
                                                         children: <Widget>[
                                                           Padding(
-                                                            padding: EdgeInsets
+                                                            padding: const EdgeInsets
                                                                 .only(top: 1),
                                                             child: IconButton(
                                                               icon: Image.asset(
@@ -256,7 +256,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                         child: Stack(
                                                           children:  <Widget>[
                                                             Align(
-                                                              alignment: AlignmentDirectional(-0.05, 0.25),
+                                                              alignment: const AlignmentDirectional(-0.05, 0.25),
                                                               child: Text(widget.model.carWhere.carWhere,
                                                               style: const TextStyle(
                                                               fontSize: 30,
@@ -264,7 +264,6 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                               fontFamily: ('IBM Plex Sans Thai'),
                                                               fontWeight: FontWeight.bold,
                                                             ),
-
                                                               )
                                                             ),
                                                             const Align(
@@ -288,46 +287,127 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                   ),
                                                 ],
                                               )
-                                              /*    
-                                                        
-                                                      )
-                                                 
-                                                      child:  Stack(children: [
-                                                         Align(
-                                                          alignment: AlignmentDirectional(-0.05, 0.25),
-                                                          child: Text(widget.model.carWhere.carWhere,
-                                                          style: const TextStyle(
-                                                            fontSize: 30,
-                                                            color: Color(0xff404040),
-                                                            fontFamily: ('IBM Plex Sans Thai'),
-                                                            fontWeight: FontWeight.bold,
-                                                          ),
-                                                          ),
-                                                        ),
-                                                        const Align(
-                                                          alignment: AlignmentDirectional(-0.9, -0.9),
-                                                           child: Text('สถานที่',
-                                                          style: TextStyle(
-                                                            fontSize: 16,
-                                                            color: Color(0xffD4D4D4),
-                                                            fontFamily: ('IBM Plex Sans Thai'),
-                                                            
-                                                          ),
-                                                          ),
-                                                        ),
-                                                ]),
-                                                      
-                                                      
-                                                    ),
-                                                    
-                                                  )
+                                              ),
+                                            /* /////////////  แถว ลำดับ  /////////////// */  
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 10),
+                                          child: Container(
+                                              decoration: const BoxDecoration(
+                                                boxShadow: <BoxShadow>[
+                                                  BoxShadow(
+                                                    color: Color(0xffF6F6F6),
+                                                    blurRadius: 20,
+                                                    offset: Offset(5, 5),
+                                                  ),
                                                 ],
                                               ),
-                                            ), */
+                                              height: 87.0,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Expanded(
+                                                    child: SizedBox(
+                                                      height: 87,
+                                                      width: double.infinity,
+                                                      child: Card(
+                                                        
+                                                        
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5)),
+                                                        child: Column(
+                                                          children:  const <Widget>[
+                                                            Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(top: 1),
+                                                                  child: Text('แถว',
+                                                                  style: TextStyle(
+                                                                    fontSize: 14,
+                                                                    color: Color(0xffD4D4D4),
+                                                                    fontFamily: ('IBM Plex Sans Thai'),
+                                                                  ),),
+                                                              
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets.only(top: 1),
+                                                                  child: Text('A',
+                                                                  style: TextStyle(
+                                                                    fontSize: 32,
+                                                                    color: Color(0xff404040),
+                                                                    fontFamily: ('IBM Plex Sans Thai'),
+                                                                    fontWeight: FontWeight.bold,
+                                                                  ),),
+                                                            ),
+                                                            
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: SizedBox(
+                                                      height: 87,
+                                                      width: double.infinity,
+                                                      child: Card(
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5)),
+                                                        child: Column(
+                                                          children:  <Widget>[
+                                                            const Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(top: 1),
+                                                                  child: Text('ลำดับ',
+                                                                  style: TextStyle(
+                                                                    fontSize: 14,
+                                                                    color: Color(0xffD4D4D4),
+                                                                    fontFamily: ('IBM Plex Sans Thai'),
+                                                                  ),),
+                                                            ),
+                                                            Padding(
+                                                              padding: const EdgeInsets.only(top: 1),
+                                                                  child: Text(widget.model.carPosition,
+                                                                  style: const TextStyle(
+                                                                    fontSize: 32,
+                                                                    color: Color(0xff404040),
+                                                                    fontFamily: ('IBM Plex Sans Thai'),
+                                                                    fontWeight: FontWeight.bold,
+                                                                  ),),
+                                                            ),
+                                                            
+                                                          ],
+                                                        ),
+                                                        
+                                                      ),
+                                                      
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                              
                                               ),
                                         ),
 
-                                        const SizedBox(height: 380),
+
+
+
+
+
+
+
+
+
+                                        const SizedBox(height: 300),
                                         Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 25.0),
