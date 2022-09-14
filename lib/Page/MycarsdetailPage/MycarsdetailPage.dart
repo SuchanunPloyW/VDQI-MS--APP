@@ -100,8 +100,8 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Card(
-                                    color: const Color.fromARGB(
-                                        255, 255, 255, 255),
+                                    color: const Color.fromARGB(255, 255, 255, 255),
+                                        
                                     margin: const EdgeInsets.only(
                                         left: 10, right: 10),
                                     shape: RoundedRectangleBorder(

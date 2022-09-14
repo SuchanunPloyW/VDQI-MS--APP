@@ -1,4 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../Service/Api.dart';
+import '../LoginPage/LoginPage.dart';
 
   
 class SideMenu extends StatelessWidget {
@@ -48,8 +54,8 @@ class SideMenu extends StatelessWidget {
                       ),  
                       
                         ListTile(
-                        title: Padding(
-                          padding: const EdgeInsets.only(left: 10),
+                        title: const Padding(
+                          padding: EdgeInsets.only(left: 10),
                           child: Text('ออกจากระบบ',
                           style:  TextStyle(
                               fontSize: 24.0,
@@ -58,13 +64,13 @@ class SideMenu extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onTap: () { },
-                      ),   
-               
-                
-                
-                        
-                      
+                        onTap: () { 
+                           logout();
+                            Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => LoginPage()),
+          (Route<dynamic> route) => false);
+                        },
+                      ),    
 
                     ]
 
@@ -79,4 +85,19 @@ class SideMenu extends StatelessWidget {
             
         );
     }
+    void logout() async {
+    // logout from the server ...
+    var res = await CallApi().getData('logout');
+    
+    var body = json.decode(res.body);
+   /*  if (body['success']) { */
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    localStorage.remove('token');
+    localStorage.remove('user');
+   // localStorage.remove('user');
+     
+    
+    /*  } */
+  }
+
 }

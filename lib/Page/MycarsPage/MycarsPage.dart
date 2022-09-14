@@ -5,6 +5,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
+import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 import 'package:vdqims/Page/MycarsdetailPage/MycarsdetailPage.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 
@@ -47,7 +48,7 @@ class _MycarsPageState extends State<MycarsPage> {
             onPressed: () {
               Future.delayed(const Duration(milliseconds: 200), () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const FindcarPage()));
+                    MaterialPageRoute(builder: (_) => const MenuPage()));
               });
             },
             icon: const Icon(

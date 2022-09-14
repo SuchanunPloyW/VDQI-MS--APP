@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vdqims/Page/AddnewcarPage/AddnewcarPage.dart';
 import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
+import 'package:vdqims/Page/CheckinPage/CheckinPage.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/HomePage/HomePage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
@@ -49,7 +51,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const MycarsPage(),
+      home: const LoginPage(),
     );
   }
 }

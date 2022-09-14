@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+
+import 'Model/StationModel.dart';
 
 class CallApi {
   dynamic url = 'http://206.189.92.79/api/';
@@ -10,7 +13,7 @@ class CallApi {
   }
 
   getData(apiUrl) async {
-    var fullUrl = Uri.parse(url + apiUrl + await _getToken());
+    var fullUrl = Uri.parse(url + apiUrl);
     return await http.get(fullUrl, headers: _setHeaders());
   }
 
@@ -25,3 +28,6 @@ class CallApi {
     return '?token=$token';
   }
 }
+
+
+
