@@ -381,7 +381,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                                 child: Text(
                                                                                   'A',
                                                                                   style: TextStyle(
-                                                                                    fontSize: 32,
+                                                                                    fontSize: 25,
                                                                                     color: Color(0xff404040),
                                                                                     fontFamily: ('IBM Plex Sans Thai'),
                                                                                     fontWeight: FontWeight.bold,
@@ -423,7 +423,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                                 child: Text(
                                                                                   '23',
                                                                                   style: TextStyle(
-                                                                                    fontSize: 32,
+                                                                                    fontSize: 25,
                                                                                     color: Color(0xff404040),
                                                                                     fontFamily: ('IBM Plex Sans Thai'),
                                                                                     fontWeight: FontWeight.bold,

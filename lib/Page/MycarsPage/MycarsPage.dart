@@ -1,14 +1,18 @@
 // ignore_for_file: deprecated_member_use, sort_child_properties_last
 
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 import 'package:vdqims/Page/MycarsdetailPage/MycarsdetailPage.dart';
 import 'package:vdqims/Style/TextStyle.dart';
-
+import 'package:http/http.dart' as http;
 import '../FindcarPage/Model/FindcarModel.dart';
 import '../FindcarPage/Service/FindcarService.dart';
 
@@ -20,11 +24,41 @@ class MycarsPage extends StatefulWidget {
 }
 
 class _MycarsPageState extends State<MycarsPage> {
+  var userData;
+  @override
+  void initState() {
+    _getUserInfo();
+    super.initState();
+  }
 
+  void _getUserInfo() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var userJson = localStorage.getString('user');
+    var user = json.decode(userJson!);
+    setState(() {
+      userData = user;
+    });
+  }
 
+  @override
+  Future<List<CarAPI>> getfullname() async {
+    //get token
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var _authToken = localStorage.getString('token');
+    var fullname = localStorage.getString('user');
+    print(fullname);
 
+    // response uri
+    var response = await http.get(
+        Uri.parse('http://206.189.92.79/api/car/name/${userData['fullname']}'),
+        headers: {
+          HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
+        });
+    // return value
+    var car = Car.fromJson(jsonDecode(response.body));
+    return car.data;
+  }
 
-  
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
   @override
@@ -35,14 +69,13 @@ class _MycarsPageState extends State<MycarsPage> {
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
-              text:  TextSpan(
+              text: TextSpan(
                   text: "รถยนต์ของฉัน",
                   style: TextStyleMenuName.bodyMenuThai,
                   children: <TextSpan>[
                     TextSpan(
-                      text: '\nMy Cars',
-                      style: TextStyleMenuName.bodyMenuEng
-                    ),
+                        text: '\nMy Cars',
+                        style: TextStyleMenuName.bodyMenuEng),
                   ])),
           leading: IconButton(
             onPressed: () {
@@ -84,8 +117,6 @@ class _MycarsPageState extends State<MycarsPage> {
                   end: FractionalOffset.bottomCenter,
                   colors: [baseColor1, baseColor2],
                 )),
-
-                
               ),
             ),
             Padding(
@@ -97,7 +128,8 @@ class _MycarsPageState extends State<MycarsPage> {
                   left: 0,
                   right: 0,
                   child: Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
+                      padding:
+                          const EdgeInsets.only(left: 10, right: 10, top: 5),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -106,15 +138,15 @@ class _MycarsPageState extends State<MycarsPage> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Card(
-                                    color: const Color.fromARGB(
-                                        255, 255, 255, 255),
+                                    color: const Color.fromARGB(255, 255, 255, 255),
+                                        
                                     margin: const EdgeInsets.only(
                                         left: 10, right: 10),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     child: FutureBuilder(
-                                      future: MyCarService().getfullname(),
+                                      future: getfullname(),
                                       builder: (BuildContext context,
                                           AsyncSnapshot<List<CarAPI>?>
                                               snapshot) {
@@ -144,19 +176,12 @@ class _MycarsPageState extends State<MycarsPage> {
                                   ),
                                 )),
 
-                            const SizedBox(height: 10),
-                            // ignore: avoid_unnecessary_containers
-                            Container(
-                              child: const Text(
-                                'Powered by Weise Technika',
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  color: Color.fromARGB(255, 228, 223, 223),
-                                  fontFamily: ('IBM Plex Sans Thai'),
-                                ),
-                              ),
-                            ),
-                          ])),
+                             const SizedBox(height: 10),
+                                Text('Powered by Weise Technika',
+                                    style: TextStyleFoot.bodyfoot),
+                          ]
+                          )
+                          ),
                 ),
               ),
             )
@@ -167,7 +192,7 @@ class _MycarsPageState extends State<MycarsPage> {
   Widget Listcar({required CarAPI model}) {
     return InkWell(
       onTap: () {
-         Navigator.push(
+        Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (_) => MycarsdetailPage(
@@ -205,9 +230,9 @@ class _MycarsPageState extends State<MycarsPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-             /*  desc: (' คุณต้องการทำรายการเบิกรถยนต์' + "\n" + widget.model.carChassis + " ใช่หรือไม่"), */
-              subtitle:  Text(
-                'Yaris Ativ 1.2 G \nสถานที่ : ' + model.carWhere.carWhere ,
+              /*  desc: (' คุณต้องการทำรายการเบิกรถยนต์' + "\n" + widget.model.carChassis + " ใช่หรือไม่"), */
+              subtitle: Text(
+                'Yaris Ativ 1.2 G \nสถานที่ : ' + model.carWhere.carWhere,
                 style: const TextStyle(
                   fontSize: 16,
                   fontFamily: ('IBM Plex Sans Thai'),
@@ -224,5 +249,3 @@ class _MycarsPageState extends State<MycarsPage> {
     );
   }
 }
-
-

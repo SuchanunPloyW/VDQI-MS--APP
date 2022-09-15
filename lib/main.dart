@@ -5,6 +5,7 @@ import 'package:vdqims/Page/CheckinPage/CheckinPage.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/HomePage/HomePage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
+import 'package:vdqims/Page/ProfilePage/ProfilePage.dart';
 
 
 import 'Page/LoginPage/LoginPage.dart';

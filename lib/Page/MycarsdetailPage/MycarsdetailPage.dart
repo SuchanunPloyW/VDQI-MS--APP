@@ -346,7 +346,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                 'A',
                                                                 style:
                                                                     TextStyle(
-                                                                  fontSize: 32,
+                                                                  fontSize: 25,
                                                                   color: Color(
                                                                       0xff404040),
                                                                   fontFamily:
@@ -400,7 +400,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                     .carPosition,
                                                                 style:
                                                                     const TextStyle(
-                                                                  fontSize: 32,
+                                                                  fontSize: 25,
                                                                   color: Color(
                                                                       0xff404040),
                                                                   fontFamily:

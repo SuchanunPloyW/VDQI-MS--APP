@@ -285,7 +285,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                             color:
                                                                                 Color(0xff404040),
                                                                             fontSize:
-                                                                                40,
+                                                                                30,
                                                                             /* fontFamily: ('IBM Plex Sans Thai'), */
                                                                             fontWeight:
                                                                                 FontWeight.bold,
@@ -320,7 +320,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                           style:
                                                                               TextStyle(
                                                                             fontSize:
-                                                                                40,
+                                                                                30,
                                                                             fontWeight:
                                                                                 FontWeight.bold,
                                                                             fontFamily:

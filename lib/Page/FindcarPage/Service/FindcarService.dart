@@ -22,7 +22,7 @@ class FindCarService {
   }
 }
 
-class MyCarService {
+/* class MyCarService {
   var fullname;
    @override
  /*   void initState() {
@@ -34,13 +34,15 @@ class MyCarService {
   /*  String token = authToken(); */
   Future<List<CarAPI>> getfullname() async {
     //get token
+    
+
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var _authToken = localStorage.getString('token');
     var fullname = localStorage.getString('user');
     print(fullname);
 
     // response uri
-    var response = await http.get(Uri.parse('http://206.189.92.79/api/car/name/ploy'), headers: {
+    var response = await http.get(Uri.parse('http://206.189.92.79/api/car/name/${userData['fullname']}'), headers: {
       HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
     });
     // return value
@@ -48,7 +50,7 @@ class MyCarService {
     return car.data;
   }
 }
-
+ */
 
 
 

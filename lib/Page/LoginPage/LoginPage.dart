@@ -106,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                                       keyboardType: TextInputType.text,
                                       decoration: const InputDecoration(
                                         contentPadding: EdgeInsets.symmetric(
+                                            horizontal: 15,
                                             vertical: 40.0),
                                         border: OutlineInputBorder(),
                                       ),
@@ -132,6 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                                       keyboardType: TextInputType.text,
                                       decoration: const InputDecoration(
                                         contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 15,
                                             vertical: 40.0),
                                         border: OutlineInputBorder(),
                                       ),
@@ -163,16 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Text('Powered by Weise Technika',
                                     style: TextStyleFoot.bodyfoot),
 
-                    /* Container(
-                  child: const Text(
-                    'Powered by Weise Technika',
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: Color.fromARGB(255, 228, 223, 223),
-                      fontFamily: ('IBM Plex Sans Thai'),
-                    ),
-                  ),
-                ), */
+                 
                   ]))),
     ]));
   }
