@@ -2,15 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vdqims/Page/FindcarPage/Model/FindcarModel.dart';
-import 'package:vdqims/Page/MenuPage/MenuPage.dart';
+
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 import 'package:http/http.dart' as http;
-import '../../Service/Model/StationModel.dart';
 import '../../Style/TextStyle.dart';
 
 class CheckinPage extends StatefulWidget {
@@ -67,8 +63,6 @@ SharedPreferences localStorage = await SharedPreferences.getInstance();
   Color baseColor2 = const Color(0xffA10002);
   @override
   void initState() {
-
-    
     super.initState();
     this.station();
   }

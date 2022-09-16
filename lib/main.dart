@@ -1,15 +1,9 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:vdqims/Page/AddnewcarPage/AddnewcarPage.dart';
-import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
-import 'package:vdqims/Page/CheckinPage/CheckinPage.dart';
-import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
-import 'package:vdqims/Page/HomePage/HomePage.dart';
-import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
-import 'package:vdqims/Page/ProfilePage/ProfilePage.dart';
-
+import 'package:lottie/lottie.dart';
 
 import 'Page/LoginPage/LoginPage.dart';
-import 'Page/MenuPage/MenuPage.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -19,23 +13,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+   Color baseColor1 = const Color(0xffE52628);
+   Color baseColor2 = const Color(0xffA10002);
 /*   bool _isLoggedIn = false; */
 
   @override
-  /* void initState() {
-    _checkIfLoggedIn();
-    super.initState();
-  }
-  void _checkIfLoggedIn() async{
-      // check if token is there
-      SharedPreferences localStorage = await SharedPreferences.getInstance();
-      var token = localStorage.getString('token');
-      if(token!= null){
-         setState(() {
-            _isLoggedIn = true;
-         });
-      }
-  } */
+  
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +35,33 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const MycarsPage(),
+      home: const SplashScreen(),
     );
   }
 }
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+ 
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSplashScreen(
+        splash: Lottie.asset('/images/loadingcircles.json'),
+
+        // Column(
+        //   children: [
+               ///TODO Add your image under assets folder
+        //     Image.asset('assets/logo_icon.png'),
+        //     const Text('Cake app', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),)
+        //   ],
+        // ),
+        backgroundColor: Colors.red,
+        nextScreen: const LoginPage(),
+      splashIconSize: 250,
+      duration: 3000,
+      splashTransition: SplashTransition.fadeTransition,
+      animationDuration: const Duration(seconds: 2),
+    );
+  }
+}
+

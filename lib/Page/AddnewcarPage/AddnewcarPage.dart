@@ -1,8 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:vdqims/Style/TextStyle.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vdqims/Style/TextStyle.dart';
+import 'package:http/http.dart' as http;
 import '../MenuPage/MenuPage.dart';
 
 class AddnewcarPage extends StatefulWidget {
@@ -13,17 +15,33 @@ class AddnewcarPage extends StatefulWidget {
 }
 
 class _AddnewcarPageState extends State<AddnewcarPage> {
+  List ? station_data ;
+  String? Staid;
+
+  var url = Uri.encodeFull('http://206.189.92.79/api/station');
+  Future<String> station() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var _authToken = localStorage.getString('token');
+    var res = await http.get(Uri.parse(url), headers: {
+      "Accept": "application/json",
+      'Authorization': 'Bearer $_authToken',
+    }); 
+    var resBody = json.decode(res.body);
+     print(resBody);
+     setState(() {
+      station_data = resBody;
+    });
+    return "Sucess";
+  }
+
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
-  String title = 'DropDownButton';
-  dynamic _friendsVal;
-  List _friendsName = [
-    'VDQi Station',
-    'A',
-    'B',
-    'C',
-    'D',
-  ];
+  @override
+  void initState() {
+    super.initState();
+    this.station();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -243,45 +261,28 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                             10,
                                                                         right:
                                                                             10),
-                                                                    child:
-                                                                        DropdownButton(
-                                                                      hint: const Text(
-                                                                          'VDQI station'),
-                                                                      elevation:
-                                                                          10,
-                                                                      icon: const Icon(
-                                                                          Icons
-                                                                              .arrow_drop_down),
-                                                                      iconSize:
-                                                                          13.0,
-                                                                      isExpanded:
-                                                                          true,
-                                                                      value:
-                                                                          _friendsVal,
-                                                                      style: const TextStyle(
-                                                                          color: Color(
-                                                                              0xff757575),
-                                                                          fontSize:
-                                                                              14.0),
-                                                                      onChanged:
-                                                                          (value) {
-                                                                        setState(
-                                                                            () {
-                                                                          _friendsVal =
-                                                                              value;
-                                                                        });
-                                                                      },
-                                                                      items: _friendsName
-                                                                          .map(
-                                                                              (value) {
-                                                                        return DropdownMenuItem(
-                                                                          value:
-                                                                              value,
-                                                                          child:
-                                                                              Text(value),
-                                                                        );
-                                                                      }).toList(),
-                                                                    ),
+                                                                   child:DropdownButton(
+                                                          hint: const Text('VDQI station'),
+                                                          elevation:10,
+                                                           icon: const Icon( Icons.arrow_drop_down),
+                                                           iconSize:13.0,
+                                                           isExpanded:true,
+                                                           style: const TextStyle(color: Color(0xff757575),fontSize:14.0),
+                                                           items: station_data?.map((item){
+                                                            return DropdownMenuItem(
+                                                              child: new Text(item['car_station']),
+                                                              value: item['car_station'].toString(),
+                                                            );
+                                                           }).toList(),
+                                                            onChanged: (String? newVal) { 
+                                                              setState(() {
+                                                                Staid = newVal;
+                                                                print(Staid.toString());
+                                                              });
+                                                             },
+                                                             value: Staid,
+                                                                         
+                                                         )            
                                                                   ),
                                                                 ),
                                                               ),
