@@ -511,7 +511,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                               context,
                                                               MaterialPageRoute(
                                                                   builder: (context) =>
-                                                                      CheckinPage(model: widget .model.carChassis,)));
+                                                                      CheckinPage(model: widget.model.carChassis, )));
                                                         });
                                                 
                                                  

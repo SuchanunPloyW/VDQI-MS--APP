@@ -1,11 +1,16 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/FindcarPage/Model/FindcarModel.dart';
 import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
-
+import 'package:http/http.dart' as http;
+import '../../Service/Model/StationModel.dart';
 import '../../Style/TextStyle.dart';
 
 class CheckinPage extends StatefulWidget {
@@ -17,17 +22,56 @@ class CheckinPage extends StatefulWidget {
 }
 
 class _CheckinPageState extends State<CheckinPage> {
+  
+  List ? station_data ;
+  String? Staid;
+
+var url = Uri.encodeFull('http://206.189.92.79/api/station');
+Future<String> station() async {
+SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var _authToken = localStorage.getString('token');
+    var res = await http.get(Uri.parse(url), headers: {
+      "Accept": "application/json",
+      'Authorization': 'Bearer $_authToken',
+    }); 
+    var resBody = json.decode(res.body);
+     print(resBody);
+     setState(() {
+      station_data = resBody;
+    });
+    return "Sucess";
+}
+
+/* Future<List<StationAPI>> getstation() async {
+    //get token
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var _authToken = localStorage.getString('token');
+     
+   
+    // response uri
+    var response = await http.get(Uri.parse('http://206.189.92.79/api/station'), headers: {
+      HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
+    });
+    var car_station = Station.fromJson(jsonDecode(response.body));
+    setState(() {
+      Sta = car_station as List;
+    });
+    
+    // return value
+    return car_station.data;
+  }
+ */
+  
+
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
-  String title = 'DropDownButton';
-  dynamic _friendsVal;
-  List _friendsName = [
-    'VDQi Station',
-    'A',
-    'B',
-    'C',
-    'D',
-  ];
+  @override
+  void initState() {
+
+    
+    super.initState();
+    this.station();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -209,7 +253,51 @@ class _CheckinPageState extends State<CheckinPage> {
                                                           .bodyCheckin14,
                                                     )),
                                               ),
-                                              Center(
+                                               Padding(
+                                                 padding:EdgeInsets.only( left: 15,right:15),
+                                                 child: DecoratedBox(
+                                                   decoration:BoxDecoration(
+                                                    border:  Border.all(
+                                                      color:const Color(0xffE2E8F0),
+                                                    ),
+                                                     borderRadius:BorderRadius.circular(5.5)),
+                                                      child: Container(
+                                                        height: 35.2,
+                                                        child: Padding(
+                                                           padding: EdgeInsets.only(left:10, right:10),
+                                                         child:DropdownButton(
+                                                          hint: const Text('VDQI station'),
+                                                          elevation:10,
+                                                           icon: const Icon( Icons.arrow_drop_down),
+                                                           iconSize:13.0,
+                                                           isExpanded:true,
+                                                           style: const TextStyle(color: Color(0xff757575),fontSize:14.0),
+                                                           items: station_data?.map((item){
+                                                            return DropdownMenuItem(
+                                                              child: new Text(item['car_station']),
+                                                              value: item['car_station'].toString(),
+                                                            );
+                                                           }).toList(),
+                                                            onChanged: (String? newVal) { 
+                                                              setState(() {
+                                                                Staid = newVal;
+                                                                print(Staid.toString());
+                                                              });
+                                                             },
+                                                             value: Staid,
+                                                                         
+                                                         )                   
+                                                                             
+                                                        ) ,
+
+                                                      )
+                                                                            
+                                                   
+                                                 )
+                                              ),
+
+
+                                     /*          Center(
                                                   child: Padding(
                                                       padding:
                                                           const EdgeInsets.all(
@@ -227,34 +315,53 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                     .circular(
                                                                         4.0),
                                                           ),
-                                                          child: DropdownButton(
-                                                            hint: Text(
-                                                                'VDQI station'),
-                                                            elevation: 10,
-                                                            icon: Icon(Icons
-                                                                .arrow_drop_down),
-                                                            iconSize: 13.0,
-                                                            isExpanded: true,
-                                                            value: _friendsVal,
-                                                            style: TextStyle(
-                                                                color: Color(
-                                                                    0xff757575),
-                                                                fontSize: 14.0),
-                                                            onChanged: (value) {
+                                                          child:DecoratedBox(
+                                                             decoration:  BoxDecoration(
+                                                               border: new Border.all(
+                                                                 color:const Color(0xffE2E8F0),
+                                                               ),
+                                                               borderRadius:BorderRadius.circular(5.5)),
+                                                               child:Container(
+                                                                 height: 35.2,
+                                                                 child: Padding(
+                                                                  padding: EdgeInsets.only(left:10, right:10 ),
+                                                               
+                                                                  child: DropdownButton(
+                                                          
+                                                            items: station_data?.map((item){
+                                                            return DropdownMenuItem(
+                                                              child: new Text(item['car_station']),
+                                                              value: item['car_station'].toString(),
+                                                            );
+                                                            }).toList(), 
+                                                            onChanged: (String? newVal) { 
                                                               setState(() {
-                                                                _friendsVal =
-                                                                    value;
+                                                                Staid = newVal;
+                                                                print(Staid.toString());
                                                               });
-                                                            },
-                                                            items: _friendsName
-                                                                .map((value) {
-                                                              return DropdownMenuItem(
-                                                                value: value,
-                                                                child:
-                                                                    Text(value),
-                                                              );
-                                                            }).toList(),
-                                                          )))),
+                                                             },
+                                                             value: Staid,
+                                                          ),
+                                                                 
+                                                                            
+                                                                 )
+                                                                      
+                                                               )      
+                                                                         
+                                                             
+                                                          )
+                                                                  
+
+
+
+
+
+
+
+
+                                                          )
+                                                          )
+                                                          ), */
                                               const SizedBox(height: 330),
                                               Padding(
                                                   padding: EdgeInsets.symmetric(

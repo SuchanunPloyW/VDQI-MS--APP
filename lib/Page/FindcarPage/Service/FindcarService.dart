@@ -61,9 +61,7 @@ class FindCarService {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var _authToken = localStorage.getString('token');
      
-    var fullname = localStorage.getString('');
-    print(fullname);
-
+   
     // response uri
     var response = await http.get(Uri.parse('http://206.189.92.79/api/station'), headers: {
       HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',

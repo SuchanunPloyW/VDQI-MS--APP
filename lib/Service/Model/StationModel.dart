@@ -48,16 +48,16 @@ class Station {
 
 class StationAPI {
   StationAPI({
-    required this.station_id,
-    required this.car_station,
+    required this.stationid,
+    required this.carstation,
   });
 
-  int station_id;
-  String car_station;
+  int stationid;
+  String carstation;
 
   factory StationAPI.fromJson(Map<String, dynamic> json) => StationAPI(
-        station_id: json["station_id"],
-        car_station: json["car_station"],
+        stationid: json["station_id"],
+        carstation: json["car_station"],
       );
 }
 
