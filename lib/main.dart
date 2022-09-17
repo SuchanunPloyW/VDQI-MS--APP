@@ -1,6 +1,11 @@
+import 'dart:html';
+
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
+import 'package:vdqims/Page/MenuPage/MenuPage.dart';
+import 'package:vdqims/Test/Test.dart';
 
 import 'Page/LoginPage/LoginPage.dart';
 
@@ -46,22 +51,16 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-        splash: Lottie.asset('/images/loadingcircles.json'),
-
-        // Column(
-        //   children: [
-               ///TODO Add your image under assets folder
-        //     Image.asset('assets/logo_icon.png'),
-        //     const Text('Cake app', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),)
-        //   ],
-        // ),
-        backgroundColor: Colors.red,
-        nextScreen: const LoginPage(),
+      splash: Lottie.asset('/images/loadingcircles.json'),
+      backgroundColor: Colors.red,
+      nextScreen: const LoginPage(),
       splashIconSize: 250,
       duration: 3000,
       splashTransition: SplashTransition.fadeTransition,
       animationDuration: const Duration(seconds: 2),
+      
     );
+    
   }
 }
 

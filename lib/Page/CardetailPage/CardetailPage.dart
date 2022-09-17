@@ -1,26 +1,50 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, unnecessary_new
+import 'dart:convert';
+import 'dart:html';
+
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
+import 'package:vdqims/Page/FindcarPage/Model/responsModel.dart';
 import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 
+import '../../Service/Api.dart';
 import '../FindcarPage/Model/FindcarModel.dart';
 //import '../MenuPage/MenuPage.dart';
 
 class CardetailPage extends StatefulWidget {
   const CardetailPage({Key? key, required this.model}) : super(key: key);
   final CarAPI model;
+  
   State<CardetailPage> createState() => _CardetailPageState();
 }
 
 class _CardetailPageState extends State<CardetailPage> {
+
+  TextEditingController carchassisController = TextEditingController();
+  TextEditingController fullnameController = TextEditingController();
+  TextEditingController lastnameController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController timeController = TextEditingController();
+  TextEditingController positionController = TextEditingController();
+  TextEditingController whereController = TextEditingController();
+  TextEditingController stationController = TextEditingController();
+  TextEditingController statusController = TextEditingController();
+  bool _isLoading = false;
+
+
+
+
+
+
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
   
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -392,6 +416,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                               ),
                                                               
                                                             ),
+                                                            
                                                                   ])),
                                                         )))),
                                           ),
@@ -485,12 +510,29 @@ class _CardetailPageState extends State<CardetailPage> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          onPressed: () {
-            Future.delayed(Duration(milliseconds: 500), () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MycarsPage()));
-            });
+          onPressed:()async{
+            ResponseModel response = await CallApi().postcar(
+              "car_chassis",
+               "fullname",
+                "lastname",
+                 "req_date",
+                  "req_time",
+                   "car_position",
+                    "car_where",
+                     "car_status",
+                      "car_station");
+              if(response.success){
+                print("สำเร็จ");
+              }else{
+                print("ไม่สำเร็จ");
+              }
+             
+
+
+
+
           },
+          
           color: Color(0xff44A73B),
         ),
         DialogButton(
@@ -508,6 +550,34 @@ class _CardetailPageState extends State<CardetailPage> {
         )
       ],
     ).show();
+  
+   
   }
+  /* Future<void> _confirm() async {
+    setState(() {
+  _isLoading = true;
+});
+    var data = {
+      'car_chassis' : "sss",
+      'fullname' : "sss",
+      'lastname' : "sss",
+      'req_date' : "sss",
+      'req_time' : "sss",
+      'car_position' : "sss",
+      'car_where' : "sss",
+      'car_status' : "sss",
+      'car_station' : "sss",
+     
+
+    };
+    var res = await reqpost().postData(data, 'req');
+    var body = json.decode(res.body);
+    print(body); */
+
+
+
   // < ------------------      Alert        ------------------>
+
+
+
 }

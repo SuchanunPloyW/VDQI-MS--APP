@@ -63,7 +63,8 @@ class FindCarService {
      
    
     // response uri
-    var response = await http.get(Uri.parse('http://206.189.92.79/api/station'), headers: {
+    var response = await http.get(Uri.parse('http://206.189.92.79/api/station'), 
+    headers: {
       HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
     });
     
