@@ -1,15 +1,16 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, unnecessary_new
 import 'dart:convert';
-import 'dart:html';
-
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/FindcarPage/Model/responsModel.dart';
-import 'package:vdqims/Page/MenuPage/MenuPage.dart';
+import 'package:vdqims/Page/LoginPage/LoginPage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
+
 import 'package:vdqims/Style/TextStyle.dart';
 
 import '../../Service/Api.dart';
@@ -24,23 +25,25 @@ class CardetailPage extends StatefulWidget {
 }
 
 class _CardetailPageState extends State<CardetailPage> {
+   var userData;
+  @override
+  void initState() {
+    _getUserInfo();
+    super.initState();
+  }
+  
+  void _getUserInfo() async {
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      var userJson = localStorage.getString('user'); 
+      var user = json.decode(userJson!);
+      setState(() {
+        userData = user;
+      });
+ }
+ 
 
-  TextEditingController carchassisController = TextEditingController();
-  TextEditingController fullnameController = TextEditingController();
-  TextEditingController lastnameController = TextEditingController();
-  TextEditingController dateController = TextEditingController();
-  TextEditingController timeController = TextEditingController();
-  TextEditingController positionController = TextEditingController();
-  TextEditingController whereController = TextEditingController();
-  TextEditingController stationController = TextEditingController();
-  TextEditingController statusController = TextEditingController();
+  
   bool _isLoading = false;
-
-
-
-
-
-
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
   
@@ -107,355 +110,349 @@ class _CardetailPageState extends State<CardetailPage> {
             Padding(
               padding: const EdgeInsets.only(top: 5),
               child: SingleChildScrollView(
-                child: Positioned(
-                  top: 80,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10, right: 10, top: 5),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            //////////////// /* Card white */   ////////////////
-                            SizedBox(
-                                height: 650,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Card(
-                                    color: const Color.fromARGB(255, 255, 255, 255),
-                                    margin: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: Column(children: <Widget>[
-                                        //////////////// /* Card เลขตัวถัง */   ////////////////
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          child: Container(
-                                            decoration: new BoxDecoration(
-                                              boxShadow: const [
-                                                BoxShadow(
-                                                  color: Color.fromARGB(
-                                                      255, 231, 224, 224),
-                                                  blurRadius:
-                                                      7.0, // soften the shadow
-                                                  spreadRadius:
-                                                      0.0, //extend the shadow
-                                                  offset: Offset(
-                                                    5.0, // Move to right 10  horizontally
-                                                    5.0, // Move to bottom 10 Vertically
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            child: Card(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5)),
-                                              child: ListTile(
-                                                title: Text(
-                                                  widget.model.carChassis,
-                                                  style: const TextStyle(
-                                                    fontFamily:
-                                                        ('IBM Plex Sans Thai'),
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
+                child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, top: 5),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          //////////////// /* Card white */   ////////////////
+                          SizedBox(
+                              height: 650,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Card(
+                                  color: const Color.fromARGB(255, 255, 255, 255),
+                                  margin: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: Column(children: <Widget>[
+                                      //////////////// /* Card เลขตัวถัง */   ////////////////
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10),
+                                        child: Container(
+                                          decoration: new BoxDecoration(
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Color.fromARGB(
+                                                    255, 231, 224, 224),
+                                                blurRadius:
+                                                    7.0, // soften the shadow
+                                                spreadRadius:
+                                                    0.0, //extend the shadow
+                                                offset: Offset(
+                                                  5.0, // Move to right 10  horizontally
+                                                  5.0, // Move to bottom 10 Vertically
                                                 ),
-                                                leading: AspectRatio(
-                                                  aspectRatio: 1,
-                                                  child: ClipRRect(
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                                  .all(
-                                                              Radius.circular(
-                                                                  1.0)),
-                                                      child: CircleAvatar(
-                                                        child: Image.asset(
-                                                          'assets/images/car4.png',
-                                                          height: 28.0,
-                                                          width: 30,
-                                                        ),
-                                                        radius: 62.0,
-                                                        backgroundColor:
-                                                            Color(0xff89EB80),
-                                                      )),
+                                              )
+                                            ],
+                                          ),
+                                          child: Card(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5)),
+                                            child: ListTile(
+                                              title: Text(
+                                                widget.model.carChassis,
+                                                style: const TextStyle(
+                                                  fontFamily:
+                                                      ('IBM Plex Sans Thai'),
+                                                  fontWeight: FontWeight.bold,
                                                 ),
-                                                subtitle: const Text(
-                                                  'Yaris Ativ 1.2 G \n' +
-                                                      'สถานะ :' +
-                                                      ' ว่าง',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontFamily:
-                                                        ('IBM Plex Sans Thai'),
-                                                    fontWeight: FontWeight.w300,
-                                                  ),
+                                              ),
+                                              leading: AspectRatio(
+                                                aspectRatio: 1,
+                                                child: ClipRRect(
+                                                    borderRadius:
+                                                        const BorderRadius
+                                                                .all(
+                                                            Radius.circular(
+                                                                1.0)),
+                                                    child: CircleAvatar(
+                                                      child: Image.asset(
+                                                        'assets/images/car4.png',
+                                                        height: 28.0,
+                                                        width: 30,
+                                                      ),
+                                                      radius: 62.0,
+                                                      backgroundColor:
+                                                          Color(0xff89EB80),
+                                                    )),
+                                              ),
+                                              subtitle: const Text(
+                                                'Yaris Ativ 1.2 G \n' +
+                                                    'สถานะ :' +
+                                                    ' ว่าง',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontFamily:
+                                                      ('IBM Plex Sans Thai'),
+                                                  fontWeight: FontWeight.w300,
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          child: Container(
-                                            decoration: new BoxDecoration(
-                                              boxShadow: const [
-                                                BoxShadow(
-                                                  color: Color.fromARGB(
-                                                      255, 231, 224, 224),
-                                                  blurRadius:
-                                                      7.0, // soften the shadow
-                                                  spreadRadius:
-                                                      0.0, //extend the shadow
-                                                  offset: Offset(
-                                                    5.0, // Move to right 10  horizontally
-                                                    5.0, // Move to bottom 10 Vertically
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            child: Card(
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10),
+                                        child: Container(
+                                          decoration: new BoxDecoration(
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Color.fromARGB(
+                                                    255, 231, 224, 224),
+                                                blurRadius:
+                                                    7.0, // soften the shadow
+                                                spreadRadius:
+                                                    0.0, //extend the shadow
+                                                offset: Offset(
+                                                  5.0, // Move to right 10  horizontally
+                                                  5.0, // Move to bottom 10 Vertically
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          5)),
+                                              child: GestureDetector(
+                                                  onTap: () =>
+                                                      FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0, -0.1),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 10,
+                                                                right: 10),
+                                                        child: Container(
+                                                            height: 159,
+                                                            child: Stack(
+                                                                children: [
+                                                                  Align(
+                                                                    alignment: AlignmentDirectional(
+                                                                        -0.9,
+                                                                        -0.9),
+                                                                    child: Text(
+                                                                        'สถานที่',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Color(0xffD4D4D4),
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontFamily:
+                                                                              ('IBM Plex Sans Thai'),
+                                                                        )),
+                                                                  ),
+                                                                  Align(
+                                                                    alignment: AlignmentDirectional(
+                                                                        -0.05,
+                                                                        -0.59),
+                                                                    child: Text(
+                                                                        widget
+                                                                            .model
+                                                                            .carWhere
+                                                                            .carWhere,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Color(0xff404040),
+                                                                          fontSize:
+                                                                              40,
+                                                                          fontFamily:
+                                                                              ('IBM Plex Sans Thai'),
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        )),
+                                                                  ),
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            -0.9,
+                                                                            0.1),
+                                                                    child: Text(
+                                                                        'แถว',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Color(0xffD4D4D4),
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontFamily:
+                                                                              ('IBM Plex Sans Thai'),
+                                                                        )),
+                                                                  ),
+                                                                  Align(
+                                                                    alignment: AlignmentDirectional(
+                                                                        -0.56,
+                                                                        0.7),
+                                                                    child: Text(
+                                                                        'A',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Color(0xff404040),
+                                                                          fontSize:
+                                                                              30,
+                                                                          /* fontFamily: ('IBM Plex Sans Thai'), */
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        )),
+                                                                  ),
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            0.1,
+                                                                            0.1),
+                                                                    child: Text(
+                                                                        'ลำดับ',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontFamily:
+                                                                              ('IBM Plex Sans Thai'),
+                                                                          color:
+                                                                              Color(0xffD4D4D4),
+                                                                        )),
+                                                                  ),
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            0.56,
+                                                                            0.7),
+                                                                    child: Text(
+                                                                        widget
+                                                                            .model
+                                                                            .carPosition,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              30,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontFamily:
+                                                                              ('IBM Plex Sans Thai'),
+                                                                        )),
+                                                                  ),
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            -0.9,
+                                                                            1.7),
+                                                                    child: Text(
+                                                                        'ประวัติรถยนต์',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontFamily:
+                                                                              ('IBM Plex Sans Thai'),
+                                                                          color:
+                                                                              Color(0xffD4D4D4),
+                                                                        )),
+                                                                  ),
+                                                            Align(
+                                                            alignment: AlignmentDirectional(-0.10, 4.8),
+                                                            child: DataTable(
+                                                              horizontalMargin: 0,
+                                                              columnSpacing: 30,
+                                                              columns: const <DataColumn>[
+                                                                DataColumn(
+                                                                  label: Expanded(
+                                                                    child: Text(
+                                                                      '',
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                DataColumn(
+                                                                  label: Expanded(
+                                                                    child: Text(
+                                                                      '',
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                DataColumn(
+                                                                  label: Expanded(
+                                                                    child: Text(
+                                                                      '',
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                DataColumn(
+                                                                  label: Expanded(
+                                                                    child: Text(
+                                                                      '',
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                              rows: const <DataRow>[
+                                                                DataRow(
+                                                                  cells: <DataCell>[
+                                                                    DataCell(Text('26-8-2022', style: TextStyle(fontSize: 10))),
+                                                                    DataCell(Text('นำเข้า', style: TextStyle(fontSize: 10))),
+                                                                    DataCell(Text('Stock A', style: TextStyle(fontSize: 10))),
+                                                                    DataCell(Text('Suchanun', style: TextStyle(fontSize: 10))),
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            
+                                                          ),
+                                                          
+                                                                ])),
+                                                      )))),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 300),
+                                      Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 25.0),
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary:
+                                                    const Color(0xffE52628),
+                                                minimumSize:
+                                                    const Size.fromHeight(40),
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            5)),
-                                                child: GestureDetector(
-                                                    onTap: () =>
-                                                        FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0, -0.1),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 10,
-                                                                  right: 10),
-                                                          child: Container(
-                                                              height: 159,
-                                                              child: Stack(
-                                                                  children: [
-                                                                    Align(
-                                                                      alignment: AlignmentDirectional(
-                                                                          -0.9,
-                                                                          -0.9),
-                                                                      child: Text(
-                                                                          'สถานที่',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            color:
-                                                                                Color(0xffD4D4D4),
-                                                                            fontSize:
-                                                                                16,
-                                                                            fontFamily:
-                                                                                ('IBM Plex Sans Thai'),
-                                                                          )),
-                                                                    ),
-                                                                    Align(
-                                                                      alignment: AlignmentDirectional(
-                                                                          -0.05,
-                                                                          -0.59),
-                                                                      child: Text(
-                                                                          widget
-                                                                              .model
-                                                                              .carWhere
-                                                                              .carWhere,
-                                                                          style:
-                                                                              TextStyle(
-                                                                            color:
-                                                                                Color(0xff404040),
-                                                                            fontSize:
-                                                                                40,
-                                                                            fontFamily:
-                                                                                ('IBM Plex Sans Thai'),
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                          )),
-                                                                    ),
-                                                                    Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              -0.9,
-                                                                              0.1),
-                                                                      child: Text(
-                                                                          'แถว',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            color:
-                                                                                Color(0xffD4D4D4),
-                                                                            fontSize:
-                                                                                16,
-                                                                            fontFamily:
-                                                                                ('IBM Plex Sans Thai'),
-                                                                          )),
-                                                                    ),
-                                                                    Align(
-                                                                      alignment: AlignmentDirectional(
-                                                                          -0.56,
-                                                                          0.7),
-                                                                      child: Text(
-                                                                          'A',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            color:
-                                                                                Color(0xff404040),
-                                                                            fontSize:
-                                                                                30,
-                                                                            /* fontFamily: ('IBM Plex Sans Thai'), */
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                          )),
-                                                                    ),
-                                                                    Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              0.1,
-                                                                              0.1),
-                                                                      child: Text(
-                                                                          'ลำดับ',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontSize:
-                                                                                16,
-                                                                            fontFamily:
-                                                                                ('IBM Plex Sans Thai'),
-                                                                            color:
-                                                                                Color(0xffD4D4D4),
-                                                                          )),
-                                                                    ),
-                                                                    Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              0.56,
-                                                                              0.7),
-                                                                      child: Text(
-                                                                          widget
-                                                                              .model
-                                                                              .carPosition,
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontSize:
-                                                                                30,
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                            fontFamily:
-                                                                                ('IBM Plex Sans Thai'),
-                                                                          )),
-                                                                    ),
-                                                                    Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              -0.9,
-                                                                              1.7),
-                                                                      child: Text(
-                                                                          'ประวัติรถยนต์',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontSize:
-                                                                                16,
-                                                                            fontFamily:
-                                                                                ('IBM Plex Sans Thai'),
-                                                                            color:
-                                                                                Color(0xffD4D4D4),
-                                                                          )),
-                                                                    ),
-                                                              Align(
-                                                              alignment: AlignmentDirectional(-0.10, 4.8),
-                                                              child: DataTable(
-                                                                horizontalMargin: 0,
-                                                                columnSpacing: 30,
-                                                                columns: const <DataColumn>[
-                                                                  DataColumn(
-                                                                    label: Expanded(
-                                                                      child: Text(
-                                                                        '',
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  DataColumn(
-                                                                    label: Expanded(
-                                                                      child: Text(
-                                                                        '',
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  DataColumn(
-                                                                    label: Expanded(
-                                                                      child: Text(
-                                                                        '',
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  DataColumn(
-                                                                    label: Expanded(
-                                                                      child: Text(
-                                                                        '',
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                                rows: const <DataRow>[
-                                                                  DataRow(
-                                                                    cells: <DataCell>[
-                                                                      DataCell(Text('26-8-2022', style: TextStyle(fontSize: 10))),
-                                                                      DataCell(Text('นำเข้า', style: TextStyle(fontSize: 10))),
-                                                                      DataCell(Text('Stock A', style: TextStyle(fontSize: 10))),
-                                                                      DataCell(Text('Suchanun', style: TextStyle(fontSize: 10))),
-                                                                    ],
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              
-                                                            ),
-                                                            
-                                                                  ])),
-                                                        )))),
-                                          ),
-                                        ),
-                                        const SizedBox(height: 300),
-                                        Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 25.0),
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary:
-                                                      const Color(0xffE52628),
-                                                  minimumSize:
-                                                      const Size.fromHeight(40),
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10))),
-                                              onPressed: () =>
-                                                  _request(context),
-                                              child: const Text('เบิกรถยนต์',
-                                                  style: TextStyle(
-                                                    fontFamily:
-                                                        ('IBM Plex Sans Thai'),
-                                                    fontWeight: FontWeight.bold,
-                                                  )),
-                                            )),
-                                      ]),
-                                    ),
+                                                            10))),
+                                            onPressed: () =>
+                                                _request(context),
+                                            child: const Text('เบิกรถยนต์',
+                                                style: TextStyle(
+                                                  fontFamily:
+                                                      ('IBM Plex Sans Thai'),
+                                                  fontWeight: FontWeight.bold,
+                                                )),
+                                          )),
+                                    ]),
                                   ),
-                                )),
+                                ),
+                              )),
 
-                            const SizedBox(height: 10),
-                            Text(
-                              'Powered by Weise Technika',
-                              style: TextStyleFoot.bodyfoot
-                            ),
-                          ])),
-                ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'Powered by Weise Technika',
+                            style: TextStyleFoot.bodyfoot
+                          ),
+                        ])),
               ),
             )
           ]),
@@ -512,24 +509,27 @@ class _CardetailPageState extends State<CardetailPage> {
           ),
           onPressed:()async{
             ResponseModel response = await CallApi().postcar(
-              "car_chassis",
-               "fullname",
-                "lastname",
-                 "req_date",
-                  "req_time",
-                   "car_position",
-                    "car_where",
-                     "car_status",
-                      "car_station");
+              DateFormat("yyyy-MM-dd").format(DateTime.now()),
+               "${userData['fullname']}",
+               "${userData['lastname']}", 
+                DateFormat("yyyy-MM-dd").format(DateTime.now()),
+                DateFormat("hh:mm:ss a").format(DateTime.now()),
+               "car_position",
+               widget.model.carWhere.carWhere,
+               "2",
+               "2");
+                
               if(response.success){
-                print("สำเร็จ");
+                Navigator.push(
+                  context, MaterialPageRoute(
+                    builder: (_) => SplashScreen()));
+                                                       
+                                                       
+                                                            
+                                                               
               }else{
                 print("ไม่สำเร็จ");
               }
-             
-
-
-
 
           },
           
@@ -553,31 +553,26 @@ class _CardetailPageState extends State<CardetailPage> {
   
    
   }
-  /* Future<void> _confirm() async {
-    setState(() {
-  _isLoading = true;
-});
-    var data = {
-      'car_chassis' : "sss",
-      'fullname' : "sss",
-      'lastname' : "sss",
-      'req_date' : "sss",
-      'req_time' : "sss",
-      'car_position' : "sss",
-      'car_where' : "sss",
-      'car_status' : "sss",
-      'car_station' : "sss",
-     
-
-    };
-    var res = await reqpost().postData(data, 'req');
-    var body = json.decode(res.body);
-    print(body); */
+ 
 
 
+}
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+ 
 
-  // < ------------------      Alert        ------------------>
-
-
-
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSplashScreen(
+      splash: Lottie.asset('assets/images/correct.json'),
+      backgroundColor: Colors.red,
+      nextScreen: const MycarsPage(),
+      splashIconSize: 150,
+      duration: 2500,
+      splashTransition: SplashTransition.fadeTransition,
+      animationDuration: const Duration(milliseconds: 50),
+      
+    );
+    
+  }
 }

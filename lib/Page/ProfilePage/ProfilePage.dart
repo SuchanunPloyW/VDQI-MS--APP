@@ -30,8 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
       setState(() {
         userData = user;
       });
-
-  }
+ }
   TextEditingController _namecontroller = new TextEditingController();
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
@@ -101,137 +100,131 @@ class _ProfilePageState extends State<ProfilePage> {
             Padding(
               padding: const EdgeInsets.only(top: 30),
                child: SingleChildScrollView(
-                child: Positioned(
-                  top: 15,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Column(
-                   mainAxisAlignment: MainAxisAlignment.center,
-                   children: [
-                     Align(
-                       alignment: Alignment.topCenter,
-                       child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 72,
-                       child: CircleAvatar(
-                           radius: 70.0,
-                            child: ClipRRect(
-                               child: Image.asset('assets/images/Profile.png'),
-                               borderRadius: BorderRadius.circular(70.0),
-                                         ) ,
-                     
-                       )
-                     
-                       ),
+                child: Column(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: [
+                   Align(
+                     alignment: Alignment.topCenter,
+                     child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 72,
+                     child: CircleAvatar(
+                         radius: 70.0,
+                          child: ClipRRect(
+                             child: Image.asset('assets/images/Profile.png'),
+                             borderRadius: BorderRadius.circular(70.0),
+                                       ) ,
+                   
+                     )
+                   
                      ),
-                      SingleChildScrollView(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 20),
-                         child: SizedBox(
-                          height: 500,
-                          child: Card(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            margin: const EdgeInsets.only(left: 10, right: 10),
-                            shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10)), 
-                           
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 20),
-                                 Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(" ชื่อ",
-                                                style: TextStylelogin.body14),
-                                    ),
-                                  ),
-                                  Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: SizedBox(
-                                    height: 35.2,
-                                    child: TextField(
-                                      enabled: false, 
-                                      controller:TextEditingController(text: "${userData['fullname']}"),
-      
-                                      keyboardType: TextInputType.text,
-                                      decoration: const InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 15,
-                                            vertical: 40.0),
-                                        border: OutlineInputBorder(),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(" นามสกุล",
-                                                style: TextStylelogin.body14),
-                                    ),
-                                  ),
-                                  Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: SizedBox(
-                                    height: 35.2,
-                                    child: TextField(
-                                      enabled: false, 
-                                      controller:TextEditingController(text: "${userData['lastname']}"),
-      
-                                      keyboardType: TextInputType.text,
-                                      decoration: const InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 15,
-                                            vertical: 40.0),
-                                        border: OutlineInputBorder(),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 300),
-                                Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 25.0),
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: const Color(0xffE52628),
-                                          minimumSize:
-                                              const Size.fromHeight(40),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10))),
-                                      onPressed: (() {
-                                        
-                                      }),
-                                      child: const Text('แก้ไข',
-                                          style: TextStyle(
-                                            fontFamily: ('IBM Plex Sans Thai'),
-                                            fontWeight: FontWeight.w600,
-                                          )),
-                                    )),
-                              ],
-                            ),
-                                       
-                          )
-
-                         ),
+                   ),
+                    SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 20),
+                       child: SizedBox(
+                        height: 500,
+                        child: Card(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          margin: const EdgeInsets.only(left: 10, right: 10),
+                          shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10)), 
                          
-                      )
-                     ),
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 20),
+                               Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(" ชื่อ",
+                                              style: TextStylelogin.body14),
+                                  ),
+                                ),
+                                Padding(
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: 20.0),
+                                child: SizedBox(
+                                  height: 35.2,
+                                  child: TextField(
+                                    enabled: false, 
+                                    controller:TextEditingController(text: "${userData['fullname']}"),
+      
+                                    keyboardType: TextInputType.text,
+                                    decoration: const InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 15,
+                                          vertical: 40.0),
+                                      border: OutlineInputBorder(),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(" นามสกุล",
+                                              style: TextStylelogin.body14),
+                                  ),
+                                ),
+                                Padding(
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: 20.0),
+                                child: SizedBox(
+                                  height: 35.2,
+                                  child: TextField(
+                                    enabled: false, 
+                                    controller:TextEditingController(text: "${userData['lastname']}"),
+      
+                                    keyboardType: TextInputType.text,
+                                    decoration: const InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 15,
+                                          vertical: 40.0),
+                                      border: OutlineInputBorder(),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 300),
+                              Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25.0),
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: const Color(0xffE52628),
+                                        minimumSize:
+                                            const Size.fromHeight(40),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10))),
+                                    onPressed: (() {
+                                      
+                                    }),
+                                    child: const Text('แก้ไข',
+                                        style: TextStyle(
+                                          fontFamily: ('IBM Plex Sans Thai'),
+                                          fontWeight: FontWeight.w600,
+                                        )),
+                                  )),
+                            ],
+                          ),
+                                     
+                        )
+
+                       ),
+                       
+                    )
+                   ),
 
 
 
              const SizedBox(height: 10),
-                                Text('Powered by Weise Technika',
-                                    style: TextStyleFoot.bodyfoot),
-                   ],
-                  )
+                              Text('Powered by Weise Technika',
+                                  style: TextStyleFoot.bodyfoot),
+                 ],
                 )
                )
             ),

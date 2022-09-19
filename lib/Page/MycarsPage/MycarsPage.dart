@@ -122,67 +122,61 @@ class _MycarsPageState extends State<MycarsPage> {
             Padding(
               padding: const EdgeInsets.only(top: 5),
               child: SingleChildScrollView(
-                child: Positioned(
-                  top: 80,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10, right: 10, top: 5),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                                height: 650,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Card(
-                                    color: const Color.fromARGB(255, 255, 255, 255),
-                                        
-                                    margin: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: FutureBuilder(
-                                      future: getfullname(),
-                                      builder: (BuildContext context,
-                                          AsyncSnapshot<List<CarAPI>?>
-                                              snapshot) {
-                                        if (snapshot.hasData) {
-                                          List<CarAPI>? data = snapshot.data;
-                                          return Align(
-                                            alignment: Alignment.topCenter,
-                                            child: ListView.builder(
-                                              shrinkWrap: true,
-                                              scrollDirection: Axis.vertical,
-                                              itemCount: data!.length,
-                                              itemBuilder: (context, index) =>
-                                                  Listcar(
-                                                model: data[index],
-                                              ),
-                                              /*  Listcar(model: data[index],),  */
+                child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, top: 5),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                              height: 650,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Card(
+                                  color: const Color.fromARGB(255, 255, 255, 255),
+                                      
+                                  margin: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10)),
+                                  child: FutureBuilder(
+                                    future: getfullname(),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<List<CarAPI>?>
+                                            snapshot) {
+                                      if (snapshot.hasData) {
+                                        List<CarAPI>? data = snapshot.data;
+                                        return Align(
+                                          alignment: Alignment.topCenter,
+                                          child: ListView.builder(
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount: data!.length,
+                                            itemBuilder: (context, index) =>
+                                                Listcar(
+                                              model: data[index],
                                             ),
-                                          );
-                                        }
-                                        return Center(
-                                          child: CircularProgressIndicator(
-                                            color: baseColor1,
+                                            /*  Listcar(model: data[index],),  */
                                           ),
                                         );
-                                      },
-                                    ),
+                                      }
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          color: baseColor1,
+                                        ),
+                                      );
+                                    },
                                   ),
-                                )),
+                                ),
+                              )),
 
-                             const SizedBox(height: 10),
-                                Text('Powered by Weise Technika',
-                                    style: TextStyleFoot.bodyfoot),
-                          ]
-                          )
-                          ),
-                ),
+                           const SizedBox(height: 10),
+                              Text('Powered by Weise Technika',
+                                  style: TextStyleFoot.bodyfoot),
+                        ]
+                        )
+                        ),
               ),
             )
           ]),

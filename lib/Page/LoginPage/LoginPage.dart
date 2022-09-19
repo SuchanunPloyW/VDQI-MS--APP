@@ -18,6 +18,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isLoading = false;
+  
 
   TextEditingController mailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -210,7 +211,6 @@ class _LoginPageState extends State<LoginPage> {
     if (_isLoading == true) {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       localStorage.setString('token', body['token']);
-      
       localStorage.setString('user', json.encode(body['user']));
    
 

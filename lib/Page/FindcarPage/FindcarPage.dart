@@ -168,82 +168,76 @@ class _FindcarPageState extends State<FindcarPage> {
             Padding(
               padding: const EdgeInsets.only(top: 50),
               child: SingleChildScrollView(
-                child: Positioned(
-                  top: 50,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10, right: 10, top: 46),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                                height: 550,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Card(
-                                    color: const Color.fromARGB(255, 255, 255, 255),
-                                        
-                                    margin: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: FutureBuilder(
-                                      future: FindCarService().getcar(),
-                                      builder: (BuildContext context,
-                                          AsyncSnapshot<List<CarAPI>?>
-                                              snapshot) {
-                                        if (snapshot.hasData) {
-                                          List<CarAPI>? data = snapshot.data;
-                                          return Align(
-                                            alignment: Alignment.topCenter,
-                                            child: ListView.builder(
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount: data!.length,
-                                                itemBuilder: (context, index) {
-                                                  //String postion = snapshot.data[index]
-                                                  if (chassisController
-                                                      .text.isEmpty) {
-                                                    return Listcar(
-                                                      model: data[index],
-                                                    );
-                                                  } else if (snapshot
-                                                      .data![index].carChassis
-                                                      .contains(
-                                                          chassisController
-                                                              .text)) {
-                                                    return Listcar(
-                                                      model: data[index],
-                                                    );
-                                                  } else {
-                                                    return Container();
-                                                  }
+                child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, top: 46),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                              height: 550,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Card(
+                                  color: const Color.fromARGB(255, 255, 255, 255),
+                                      
+                                  margin: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10)),
+                                  child: FutureBuilder(
+                                    future: FindCarService().getcar(),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<List<CarAPI>?>
+                                            snapshot) {
+                                      if (snapshot.hasData) {
+                                        List<CarAPI>? data = snapshot.data;
+                                        return Align(
+                                          alignment: Alignment.topCenter,
+                                          child: ListView.builder(
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.vertical,
+                                              itemCount: data!.length,
+                                              itemBuilder: (context, index) {
+                                                //String postion = snapshot.data[index]
+                                                if (chassisController
+                                                    .text.isEmpty) {
+                                                  return Listcar(
+                                                    model: data[index],
+                                                  );
+                                                } else if (snapshot
+                                                    .data![index].carChassis
+                                                    .contains(
+                                                        chassisController
+                                                            .text)) {
+                                                  return Listcar(
+                                                    model: data[index],
+                                                  );
+                                                } else {
+                                                  return Container();
                                                 }
-                                                /*  Listcar(model: data[index],),  */
-                                                ),
-                                          );
-                                        }
-                                        return Center(
-                                          child: CircularProgressIndicator(
-                                            color: baseColor1,
-                                          ),
+                                              }
+                                              /*  Listcar(model: data[index],),  */
+                                              ),
                                         );
-                                      },
-                                    ),
+                                      }
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          color: baseColor1,
+                                        ),
+                                      );
+                                    },
                                   ),
-                                )),
+                                ),
+                              )),
 
-                            const SizedBox(height: 10),
-                            Text(
-                              'Powered by Weise Technika',
-                              style: TextStyleFoot.bodyfoot
-                            ),
-                          ])),
-                ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'Powered by Weise Technika',
+                            style: TextStyleFoot.bodyfoot
+                          ),
+                        ])),
               ),
             )
           ]),

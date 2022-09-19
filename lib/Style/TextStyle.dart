@@ -12,7 +12,7 @@ class TextStylelogin{
 
   );
   static TextStyle body16= TextStyle(
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: FontWeight.w300,
     color: ColorTheme.black,
     fontFamily: ('IBM Plex Sans Thai'),
