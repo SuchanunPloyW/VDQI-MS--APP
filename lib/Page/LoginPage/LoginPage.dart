@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/MenuPage/MenuPage.dart';
-import 'package:vdqims/Service/Api.dart';
+import 'package:vdqims/Service/API/AuthAPI.dart';
+import 'package:vdqims/SplashScreen/loginSplash.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 
 import '../HomePage/HomePage.dart';
@@ -76,7 +77,8 @@ class _LoginPageState extends State<LoginPage> {
                                     child: Container(
                                         child: Text(
                                             "ระบบบริหารจัดการสต๊อครถยนต์",
-                                            style: TextStylelogin.body16))),
+                                            style: TextStylelogin.body16),
+                                            )),
                                 const SizedBox(height: 15),
                                  Padding(
                                   padding:
@@ -107,8 +109,8 @@ class _LoginPageState extends State<LoginPage> {
                                       keyboardType: TextInputType.text,
                                       decoration: const InputDecoration(
                                         contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 15,
-                                            vertical: 40.0),
+                                            horizontal: 10,
+                                            vertical: 25.0),
                                         border: OutlineInputBorder(),
                                       ),
                                     ),
@@ -134,14 +136,14 @@ class _LoginPageState extends State<LoginPage> {
                                       keyboardType: TextInputType.text,
                                       decoration: const InputDecoration(
                                         contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 15,
-                                            vertical: 40.0),
+                                          horizontal: 10,
+                                            vertical: 25.0),
                                         border: OutlineInputBorder(),
                                       ),
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 20),
+                                const SizedBox(height: 30),
                                 Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 25.0),
@@ -174,31 +176,6 @@ class _LoginPageState extends State<LoginPage> {
   void _login() async {
     setState(() {
       _isLoading = true;
-
-      showDialog(
-          context: context,
-          builder: (context) {
-            return Dialog(
-              // The background color
-              backgroundColor: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    // The loading indicator
-                    CircularProgressIndicator(),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    // Some text
-                    Text('Loading...')
-                  ],
-                ),
-              ),
-            );
-            // return Center(child: const CircularProgressIndicator());
-          });
     });
 
     var data = {
@@ -206,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
       'password': passwordController.text
     };
 
-    var res = await CallApi().postData(data, 'login');
+    var res = await LoginAPI().postData(data, 'login');
     var body = json.decode(res.body);
     if (_isLoading == true) {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -220,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
 
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => LoginSplash()),
           (Route<dynamic> route) => false);
     } else {
     }

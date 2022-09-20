@@ -147,14 +147,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: SizedBox(
                                   height: 35.2,
                                   child: TextField(
-                                    enabled: false, 
+                                    readOnly: true,
                                     controller:TextEditingController(text: "${userData['fullname']}"),
       
                                     keyboardType: TextInputType.text,
                                     decoration: const InputDecoration(
                                       contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 15,
-                                          vertical: 40.0),
+                                          horizontal: 10,
+                                          vertical: 25.0),
                                       border: OutlineInputBorder(),
                                     ),
                                   ),
@@ -175,14 +175,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: SizedBox(
                                   height: 35.2,
                                   child: TextField(
-                                    enabled: false, 
+                                    readOnly: true,
                                     controller:TextEditingController(text: "${userData['lastname']}"),
       
                                     keyboardType: TextInputType.text,
                                     decoration: const InputDecoration(
                                       contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 15,
-                                          vertical: 40.0),
+                                          horizontal: 10,
+                                          vertical: 25.0),
                                       border: OutlineInputBorder(),
                                     ),
                                   ),

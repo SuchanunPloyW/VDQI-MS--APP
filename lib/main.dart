@@ -1,15 +1,9 @@
 
-
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:vdqims/Page/AddnewcarPage/AddnewcarPage.dart';
-import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
-import 'package:vdqims/Page/HomePage/HomePage.dart';
-import 'package:vdqims/Page/MenuPage/MenuPage.dart';
-import 'package:vdqims/Test/Test.dart';
+import 'package:vdqims/Page/LoginPage/LoginPage.dart';
 
-import 'Page/LoginPage/LoginPage.dart';
+import 'package:vdqims/SplashScreen/MainSplash.dart';
+
 
 
 void main() => runApp(MyApp());
@@ -32,7 +26,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        fontFamily: 'IBM Plex Sans Thai',
+       /*  fontFamily: 'Kanit', */
         textTheme: const TextTheme(
           /* titleLarge: TextStyle(
             fontSize: 20,
@@ -42,11 +36,11 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: const MainSplash(),
     );
   }
 }
-class SplashScreen extends StatelessWidget {
+/* class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
  
 
@@ -56,7 +50,7 @@ class SplashScreen extends StatelessWidget {
       
       splash: Lottie.asset('assets/images/loadingcircles.json'),
       backgroundColor: Colors.red,
-      nextScreen: const MenuPage(),
+      nextScreen:  MycarsPage(),
       splashIconSize: 250,
       duration: 3000,
       splashTransition: SplashTransition.fadeTransition,
@@ -67,5 +61,5 @@ class SplashScreen extends StatelessWidget {
     
     
   }
-}
+} */
 

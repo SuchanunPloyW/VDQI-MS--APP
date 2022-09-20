@@ -8,14 +8,14 @@ class TextStylelogin{
     fontSize: 14,
     fontWeight: FontWeight.w300,
     color: ColorTheme.black,
-    fontFamily: ('IBM Plex Sans Thai'),
+    fontFamily: ('Kanit'),
 
   );
   static TextStyle body16= TextStyle(
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: FontWeight.w300,
     color: ColorTheme.black,
-    fontFamily: ('IBM Plex Sans Thai'),
+    fontFamily: ('Kanit'),
 
   );
 
@@ -23,7 +23,7 @@ class TextStylelogin{
     fontSize: 20,
     fontWeight: FontWeight.w600,
     color: ColorTheme.black1,
-    fontFamily: ('IBM Plex Sans Thai'),
+    fontFamily: ('Kanit'),
 
   );
   
@@ -34,21 +34,21 @@ class TextStyleAlert{
     fontSize: 18,
     fontWeight: FontWeight.bold,
     color: ColorTheme.bold,
-    fontFamily: ('IBM Plex Sans Thai'),
+    fontFamily: ('Kanit'),
 
   );
   static TextStyle body15normal = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.normal,
     color: ColorTheme.grey,
-    fontFamily: ('IBM Plex Sans Thai'),
+    fontFamily: ('Kanit'),
   );
 
   static TextStyle body15bold = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.bold,
     color: ColorTheme.grey,
-    fontFamily: ('IBM Plex Sans Thai'),
+    fontFamily: ('Kanit'),
   );
 }
 // < ------------------      MenuName        ------------------>
@@ -59,13 +59,13 @@ class TextStyleMenuName{
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: ColorTheme.white,
-    fontFamily: ('IBM Plex Sans Thai'),
+    fontFamily: ('Kanit'),
   );
   static TextStyle bodyMenuEng = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
     color: ColorTheme.white,
-    fontFamily: ('IBM Plex Sans Thai'),
+    fontFamily: ('Kanit'),
   );
 }
 // < ------------------      Checkin        ------------------>
@@ -74,13 +74,13 @@ class TextStyleCheckin {
     fontSize: 20,
     fontWeight: FontWeight.bold,
     color: ColorTheme.black1,
-    fontFamily: ('IBM Plex Sans Thai'),
+    fontFamily: ('Kanit'),
 
   );
   static TextStyle bodyCheckin14= TextStyle(
     fontSize: 14,
     color: ColorTheme.black1,
-    fontFamily: ('IBM Plex Sans Thai'),
+    fontFamily: ('Kanit'),
 
   );
 
@@ -91,24 +91,47 @@ class TextStyleAdd {
     fontSize: 14,
     fontWeight: FontWeight.w300,
     color: ColorTheme.black1,
-    fontFamily: ('IBM Plex Sans Thai'),
+    fontFamily: ('Kanit'),
 
   );
   
-
 }
 
+// < ------------------      Information        ------------------>
+class TextStyleinfor {
+  static TextStyle bodyinfor16= TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: ColorTheme.black1,
+    fontFamily: ('Kanit'),
+  );
+  static TextStyle bodyinfor16light= TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w300,
+    color: ColorTheme.black1,
+    fontFamily: ('Kanit'),
+  );
+  
+}
 
+// < ------------------      DialogButton        ------------------>
 
-
-
+class TDialogButton{
+  static TextStyle body14 = TextStyle(
+    fontSize: 14,
+    color: ColorTheme.white,
+    fontFamily: ('Kanit'),
+    fontWeight: FontWeight.bold,
+  );
+  
+}
 
 // < ------------------      Foot        ------------------>
 class TextStyleFoot{
   static TextStyle bodyfoot= TextStyle(
     fontSize: 11,
     color: ColorTheme.foot,
-    fontFamily: ('IBM Plex Sans Thai'),
+    fontFamily: ('Kanit'),
   );
   
 }

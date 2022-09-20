@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/ProfilePage/ProfilePage.dart';
 
-import '../../Service/Api.dart';
+import '../../Service/API/AuthAPI.dart';
 import '../LoginPage/LoginPage.dart';
-import '../MenuPage/MenuPage.dart';
 
 
 class SideMenu extends StatefulWidget {
@@ -112,8 +111,7 @@ class _SideMenuState extends State<SideMenu> {
 }
  void logout() async {
     // logout from the server ...
-    var res = await CallApi().getData('logout');
-
+    var res = await LoginAPI().getData('logout');
     var body = json.decode(res.body);
     /*  if (body['success']) { */
     SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -123,3 +121,6 @@ class _SideMenuState extends State<SideMenu> {
 
     /*  } */
   }
+
+// suchanun0209@gmail.com
+// 0831345371

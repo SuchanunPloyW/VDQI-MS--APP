@@ -500,7 +500,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                       10))),
                                               onPressed: () {
                                                 Future.delayed(
-                                                          Duration(milliseconds: 500),
+                                                          Duration(milliseconds: 1000),
                                                           () {
                                                         Navigator.push(
                                                             context,

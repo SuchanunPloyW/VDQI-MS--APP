@@ -8,12 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/FindcarPage/Model/responsModel.dart';
-import 'package:vdqims/Page/LoginPage/LoginPage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
+import 'package:vdqims/SplashScreen/ReqSplash.dart';
+
 
 import 'package:vdqims/Style/TextStyle.dart';
-
-import '../../Service/Api.dart';
+import '../../Service/API/AuthAPI.dart';
+import '../../Service/API/PostReqApi.dart';
 import '../FindcarPage/Model/FindcarModel.dart';
 //import '../MenuPage/MenuPage.dart';
 
@@ -508,7 +509,7 @@ class _CardetailPageState extends State<CardetailPage> {
             ),
           ),
           onPressed:()async{
-            ResponseModel response = await CallApi().postcar(
+            ResponseModel response = await PostReqAPI().PostReq(
               DateFormat("yyyy-MM-dd").format(DateTime.now()),
                "${userData['fullname']}",
                "${userData['lastname']}", 
@@ -522,7 +523,7 @@ class _CardetailPageState extends State<CardetailPage> {
               if(response.success){
                 Navigator.push(
                   context, MaterialPageRoute(
-                    builder: (_) => SplashScreen()));
+                    builder: (_) => Reqsplash()));
                                                        
                                                        
                                                             
@@ -556,23 +557,4 @@ class _CardetailPageState extends State<CardetailPage> {
  
 
 
-}
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
- 
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedSplashScreen(
-      splash: Lottie.asset('assets/images/correct.json'),
-      backgroundColor: Colors.red,
-      nextScreen: const MycarsPage(),
-      splashIconSize: 150,
-      duration: 2500,
-      splashTransition: SplashTransition.fadeTransition,
-      animationDuration: const Duration(milliseconds: 50),
-      
-    );
-    
-  }
 }

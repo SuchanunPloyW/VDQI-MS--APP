@@ -45,9 +45,7 @@ class _MycarsPageState extends State<MycarsPage> {
     //get token
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var _authToken = localStorage.getString('token');
-    var fullname = localStorage.getString('user');
-    print(fullname);
-
+   
     // response uri
     var response = await http.get(
         Uri.parse('http://206.189.92.79/api/car/name/${userData['fullname']}'),

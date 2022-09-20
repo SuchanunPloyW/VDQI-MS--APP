@@ -158,6 +158,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                       35.2,
                                                                   child:
                                                                       TextField(
+                                                                        readOnly: true,
                                                                     decoration:
                                                                         InputDecoration(
                                                                       contentPadding:
@@ -312,9 +313,14 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                             width: double
                                                                 .infinity,
                                                             decoration: BoxDecoration(
-                                                                border: Border.all(
-                                                                    color: const Color(
-                                                                        0xffE2E8F0))),
+                                                                border: Border.all(color: const Color(0xffE2E8F0))),
+                                                              child: Row(
+                                                                children: <Widget> [
+
+                                                                ],
+
+                                                              ),      
+                                                                        
                                                           ),
                                                         ),
                                                         Padding(

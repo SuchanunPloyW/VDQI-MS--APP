@@ -66,23 +66,13 @@ flutter:
   uses-material-design: true
 
   fonts:
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/poppins/Poppins-SemiBold.ttf
-          weight: 500
-
-        - asset: assets/fonts/poppins/Poppins-Bold.ttf
-          weight: 700
-
-        - asset: assets/fonts/poppins/Poppins-Medium.ttf
-          weight: 300
-
-        - asset: assets/fonts/poppins/Helvetica.ttf
-          weight: 300
     - family: IBM Plex Sans Thai
       fonts:
         - asset: assets/fonts/SansThai/IBMPlexSansThai-Regular.ttf
-          weight: 400
+    - family: Kanit
+      fonts:
+        - asset: assets/fonts/Kanit/Kanit-Regular.ttf
+          weight: 300
 
   # To add assets to your application, add an assets section, like this:
   assets:
@@ -100,6 +90,8 @@ flutter:
      - assets/images/iconalert.png
      - assets/images/loadingcircles.json
      - assets/images/correct.json
+     - assets/images/loading3.json
+     - assets/images/98432-loading.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
