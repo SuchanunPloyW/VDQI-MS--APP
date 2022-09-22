@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 
+import '../Style/TextStyle.dart';
+
 class Reqsplash extends StatefulWidget {
   const Reqsplash({super.key});
 
@@ -49,14 +51,10 @@ class _ReqsplashState extends State<Reqsplash> {
                 ),
                 SizedBox(height: 30,),
                 
-                const Text(
+                 Text(
                   "ทำการเบิกรถยนต์สำเร็จ",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
-                  ),
+                  style: TextStyleSplash.body
                 ),
               ],
             ),

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 
+import '../Style/TextStyle.dart';
+
 class CheckinSpach extends StatefulWidget {
   const CheckinSpach({super.key});
 
@@ -50,14 +52,10 @@ class _CheckinSpachState extends State<CheckinSpach> {
                 ),
                 SizedBox(height: 30,),
                 
-                const Text(
+                 Text(
                   "เช็คอินเข้าสถานีสำเร็จ",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
-                  ),
+                  style: TextStyleSplash.body
                 ),
               ],
             ),

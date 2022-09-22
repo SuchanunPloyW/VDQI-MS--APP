@@ -1,11 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vdqims/SplashScreen/AddnewSplash.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import 'package:http/http.dart' as http;
 import '../MenuPage/MenuPage.dart';
+
 
 class AddnewcarPage extends StatefulWidget {
   const AddnewcarPage({Key? key}) : super(key: key);
@@ -15,8 +20,17 @@ class AddnewcarPage extends StatefulWidget {
 }
 
 class _AddnewcarPageState extends State<AddnewcarPage> {
+
+  // <------------------------ ตัวแปร ------------------------>
   List ? station_data ;
   String? Staid;
+  String? Groupvalue;
+  String? _radioValue ='';
+  String qrCode = '';
+  Color baseColor1 = const Color(0xffE52628);
+  Color baseColor2 = const Color(0xffA10002);
+
+// <------------------------ Service ------------------------>
 
   var url = Uri.encodeFull('http://206.189.92.79/api/station');
   Future<String> station() async {
@@ -33,16 +47,31 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     });
     return "Sucess";
   }
+  // <------------------------ Controller ------------------------>
 
-  Color baseColor1 = const Color(0xffE52628);
-  Color baseColor2 = const Color(0xffA10002);
+   TextEditingController StationController = TextEditingController();
+   TextEditingController ChassisController = TextEditingController();
+   TextEditingController GroupController = TextEditingController();
+   TextEditingController WhereController = TextEditingController();
+  
+  // <------------------------ Function ------------------------>
+
   @override
   void initState() {
     super.initState();
     this.station();
+    }
+    
+  void _handleRadioValueChange(value) {
+    setState(() {
+      print(value);
+      _radioValue = value;
+      GroupController.text = _radioValue.toString();
+    });
   }
-  
+   
   @override
+  
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -158,11 +187,14 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                       35.2,
                                                                   child:
                                                                       TextField(
+                                                                        controller: ChassisController = TextEditingController(text: "$qrCode"),
+                                  
+                                                                        style: TextStyleAlert.body15bold,
                                                                         readOnly: true,
                                                                     decoration:
                                                                         InputDecoration(
                                                                       contentPadding:
-                                                                          const EdgeInsets.symmetric(vertical: 40.0),
+                                                                          const EdgeInsets.symmetric(vertical: 25.0 , horizontal: 10),
                                                                       focusedBorder:
                                                                           OutlineInputBorder(
                                                                         borderRadius:
@@ -204,7 +236,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                             height: 18.94,
                                                                             width: 18.94,
                                                                           ),
-                                                                          onPressed: () {},
+                                                                          onPressed: () => scanQRCode(),
                                                                         ),
                                                                       )))
                                                             ],
@@ -314,12 +346,37 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                 .infinity,
                                                             decoration: BoxDecoration(
                                                                 border: Border.all(color: const Color(0xffE2E8F0))),
-                                                              child: Row(
-                                                                children: <Widget> [
-
-                                                                ],
-
-                                                              ),      
+                                                                child: Align(
+                                                                  alignment: Alignment.topCenter,
+                                                                  child: Row(
+                                                                    children:  <Widget>[
+                                                                       Container(
+                                                                      width: 150,
+                                                                      child: Row(
+                                                                        children: <Widget>[
+                                                                        
+                                                                         Radio<String>(
+                                                                            value: "1",
+                                                                            activeColor: const Color.fromARGB(255, 255, 0, 0),
+                                                                            groupValue: _radioValue,
+                                                                            onChanged: _handleRadioValueChange,
+                                                                          ),
+                                                                           Radio<String>(
+                                                                            value: "2",
+                                                                            activeColor: const Color.fromARGB(255, 255, 0, 0),
+                                                                            groupValue: _radioValue,
+                                                                            onChanged: _handleRadioValueChange,
+                                                                          ),
+                                                                        
+                                                                                                                                                
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                   
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                               
                                                                         
                                                           ),
                                                         ),
@@ -366,7 +423,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                           RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                                                                       child:
                                                                           Column(
-                                                                        children: const <Widget>[
+                                                                        children:  const <Widget>[
                                                                           Padding(
                                                                             padding: EdgeInsets.only(top: 1),
                                                                             child: Text(
@@ -381,7 +438,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                           Padding(
                                                                             padding: EdgeInsets.only(top: 1),
                                                                             child: Text(
-                                                                              'A',
+                                                                             'A',
                                                                               style: TextStyle(
                                                                                 fontSize: 25,
                                                                                 color: Color(0xff404040),
@@ -408,8 +465,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                           RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                                                                       child:
                                                                           Column(
-                                                                        children: const <Widget>[
-                                                                          Padding(
+                                                                        children:  <Widget>[
+                                                                          const Padding(
                                                                             padding: EdgeInsets.only(top: 1),
                                                                             child: Text(
                                                                               'ลำดับ',
@@ -421,10 +478,10 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: EdgeInsets.only(top: 1),
+                                                                            padding: const EdgeInsets.only(top: 1),
                                                                             child: Text(
-                                                                              '23',
-                                                                              style: TextStyle(
+                                                                               _radioValue!,
+                                                                              style: const TextStyle(
                                                                                 fontSize: 25,
                                                                                 color: Color(0xff404040),
                                                                                 fontFamily: ('IBM Plex Sans Thai'),
@@ -432,8 +489,10 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                               ),
                                                                             ),
                                                                           ),
+                                                                          
                                                                         ],
                                                                       ),
+                                                                      
                                                                     ),
                                                                   ),
                                                                 ),
@@ -446,7 +505,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                   ),
                                                  const SizedBox(height: 130),
                                                  Padding(
-                                                  padding: EdgeInsets.symmetric( horizontal: 25.0),
+                                                  padding: const EdgeInsets.symmetric( horizontal: 25.0),
                                                   child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                                 primary:
@@ -459,10 +518,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                             BorderRadius
                                                                 .circular(
                                                                     10))),
-                                            onPressed: () {
-                                             
-                                             
-                                            },
+                                            onPressed: ()=> _AddCar(context),
                                             child: const Text(
                                                 'บันทึก',
                                                 style: TextStyle(
@@ -481,5 +537,75 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                 style: TextStyleFoot.bodyfoot),
                           ])))),
         ])));
+  }
+  _AddCar(context) {
+    // Reusable alert style
+    var alertStyle = AlertStyle(
+      animationType: AnimationType.fromBottom,
+      isCloseButton: false,
+      isOverlayTapDismiss: false,
+      animationDuration: const Duration(milliseconds: 400),
+      alertBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+        side: const BorderSide(
+          color: Colors.grey,
+        ),
+      ),
+    );
+    Alert(
+      context: context,
+      style: alertStyle,
+      image: Image.asset('assets/images/iconalert.png'),
+      content: Padding(
+        padding: const EdgeInsets.only(top: 8.0),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text("ต้องการทำรายการ ?", style: TextStyleAlert.body18bold),
+          const SizedBox(height: 5),
+          Text("คุณต้องการทำรายการเพิ่มรถยนต์", style: TextStyleAlert.body15normal),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(ChassisController.text, style: TextStyleAlert.body15bold),
+              const SizedBox(width: 5),
+              Text("ใช่หรือไม่", style: TextStyleAlert.body15normal)
+            ],
+          ),
+          
+        ]),
+      ),
+      buttons: [
+        DialogButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const AddnewSplash()));
+          },
+          color: const Color(0xff44A73B),
+          child: Text("ยืนยัน", style: TDialogButton.body14),
+        ),
+        DialogButton(
+          onPressed: () => Navigator.pop(context),
+          color: const Color(0xffE52628),
+          child: Text("ยกเลิก", style: TDialogButton.body14),
+        )
+      ],
+    ).show();
+  }
+  Future<void> scanQRCode() async {
+    try {
+      final qrCode = await FlutterBarcodeScanner.scanBarcode(
+        '#ff6666',
+        'Cancel',
+        true,
+        ScanMode.QR,
+      );
+
+      if (!mounted) return;
+
+      setState(() {
+        this.qrCode = qrCode;
+      });
+    } on PlatformException {
+      qrCode = 'Failed to get platform version.';
+    }
   }
 }

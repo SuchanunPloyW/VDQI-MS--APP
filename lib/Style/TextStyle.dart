@@ -125,6 +125,37 @@ class TDialogButton{
   );
   
 }
+// < ------------------      Drawer        ------------------>
+class TextStyleDrawer{
+  static TextStyle bodyName= const TextStyle(
+    fontSize: 15,
+    color: Color(0xff737373),
+    fontFamily: ('Kanit'),
+    fontWeight: FontWeight.w400,
+  );
+
+   static TextStyle bodyMenu= const TextStyle(
+    fontSize: 20,
+    color: Color(0xff858585),
+    fontFamily: ('Kanit'),
+    fontWeight: FontWeight.bold,
+  );
+  
+}
+
+// < ------------------      Splash        ------------------>
+class TextStyleSplash{
+  static TextStyle body= const TextStyle(
+    fontSize: 18,
+    color: Colors.white,
+    fontFamily: ('Kanit'),
+    fontWeight: FontWeight.bold,
+  );
+  
+}
+
+
+
 
 // < ------------------      Foot        ------------------>
 class TextStyleFoot{

@@ -18,18 +18,17 @@ class FindcarPage extends StatefulWidget {
 
 class _FindcarPageState extends State<FindcarPage> {
   String qrCode = '';
-  String search = '';
+  TextEditingController chassisController =   TextEditingController(text: '');
   
-  TextEditingController chassisController =   TextEditingController();
    @override
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
   @override
 
-  void initState() {
+  /* void initState() {
     super.initState();
      chassisController.text = '';
-  }
+  } */
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -97,10 +96,13 @@ class _FindcarPageState extends State<FindcarPage> {
                           /* width: 280,
                           height: 60, */
                           child: TextField(
-                          
-                             // controller: chassisController,
-                              controller: chassisController =
+                            
+                          controller: chassisController =
                                   TextEditingController(text: "$qrCode"),
+                          
+                               //controller: chassisController,
+                             /*  controller: chassisController =
+                                  TextEditingController(text: "$qrCode"), */
                               /* (text: "$qrCode") */
                               decoration: InputDecoration(
                                 

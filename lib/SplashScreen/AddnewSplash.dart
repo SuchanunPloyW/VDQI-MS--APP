@@ -1,30 +1,31 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:lottie/lottie.dart';
-import 'package:vdqims/Page/HomePage/HomePage.dart';
 
-class LoginSplash extends StatefulWidget {
-  const LoginSplash({super.key});
+
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+
+import '../Page/MycarsPage/MycarsPage.dart';
+import '../Style/TextStyle.dart';
+
+class AddnewSplash extends StatefulWidget {
+  const AddnewSplash({super.key});
 
   @override
-  State<LoginSplash> createState() => _LoginSplashState();
+  State<AddnewSplash> createState() => _AddnewSplashState();
 }
 
-class _LoginSplashState extends State<LoginSplash> {
-    Color baseColor1 = const Color(0xffE52628);
-    Color baseColor2 = const Color(0xffA10002);
+class _AddnewSplashState extends State<AddnewSplash> {
+  Color baseColor1 = const Color(0xffE52628);
+  Color baseColor2 = const Color(0xffA10002);
   @override
-
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 4), () {
+    Future.delayed(const Duration(seconds: 3), () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const HomePage()));
+                    MaterialPageRoute(builder: (_) => const MycarsPage()));
               });
 
   }
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -43,18 +44,23 @@ class _LoginSplashState extends State<LoginSplash> {
           children: [
             Column(
               children: [
-                Lottie.asset('assets/images/loading3.json',
+                Lottie.asset('assets/images/correct.json',
                 height: 200,
                 width: 200
+                ),
+                SizedBox(height: 30,),
+                
+                 Text(
+                  "ทำการเพิ่มรถยนต์สำเร็จ",
+                  textAlign: TextAlign.center,
+                  style: TextStyleSplash.body
                 ),
               ],
             ),
             
           ],
         ),
-        
       ),
-      
     );
   }
 }

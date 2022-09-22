@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/ProfilePage/ProfilePage.dart';
+import 'package:vdqims/Style/TextStyle.dart';
 
 import '../../Service/API/AuthAPI.dart';
 import '../LoginPage/LoginPage.dart';
@@ -48,8 +49,8 @@ class _SideMenuState extends State<SideMenu> {
                       CircleAvatar(
                         radius: 60.0,
                         child: ClipRRect(
-                          child: Image.asset('assets/images/Profile.png'),
                           borderRadius: BorderRadius.circular(60.0),
+                          child: Image.asset('assets/images/Profile.png'),
                         ),
                       ),
                       const SizedBox(
@@ -57,23 +58,17 @@ class _SideMenuState extends State<SideMenu> {
                       ),
                        Text(
                         "${userData['fullname']}" + " " + "${userData['lastname']}",
-                        style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xff737373)),
+                        style: TextStyleDrawer.bodyName
                       ),
                       const SizedBox(
                         height: 15.0,
                       ),
                       ListTile(
-                        title: const Padding(
+                        title:  Padding(
                           padding: EdgeInsets.only(left: 10),
                           child: Text(
                             'ข้อมูลส่วนตัว',
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff858585)),
+                            style: TextStyleDrawer.bodyMenu
                           ),
                         ),
                         onTap: () {
@@ -86,14 +81,11 @@ class _SideMenuState extends State<SideMenu> {
                         },
                       ),
                       ListTile(
-                        title: const Padding(
-                          padding: EdgeInsets.only(left: 10),
+                        title:  Padding(
+                          padding: const EdgeInsets.only(left: 10),
                           child: Text(
                             'ออกจากระบบ',
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff858585)),
+                            style: TextStyleDrawer.bodyMenu
                           ),
                         ),
                         onTap: () {

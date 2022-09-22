@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
+
 import 'package:vdqims/Page/LoginPage/LoginPage.dart';
 
-import 'package:vdqims/SplashScreen/MainSplash.dart';
 
 
 
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const MainSplash(),
+      home: const LoginPage(),
     );
   }
 }
