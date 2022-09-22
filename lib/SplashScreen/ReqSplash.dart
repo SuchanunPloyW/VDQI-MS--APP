@@ -20,8 +20,9 @@ class _ReqsplashState extends State<Reqsplash> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) =>  MycarsPage()));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => MycarsPage()),
+          (Route<dynamic> route) => false);
               });
 
   }

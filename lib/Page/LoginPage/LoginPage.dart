@@ -189,13 +189,7 @@ class _LoginPageState extends State<LoginPage> {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       localStorage.setString('token', body['token']);
       localStorage.setString('user', json.encode(body['user']));
-   
-
-      // ignore: use_build_context_synchronously
-      /* Navigator.push(
-          context, new MaterialPageRoute(builder: (context) => const FirstPage())); */
-
-      // ignore: use_build_context_synchronously
+  
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => LoginSplash()),
           (Route<dynamic> route) => false);

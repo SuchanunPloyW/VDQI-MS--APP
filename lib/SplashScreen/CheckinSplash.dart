@@ -20,8 +20,9 @@ class _CheckinSpachState extends State<CheckinSpach> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const MycarsPage()));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => MycarsPage()),
+          (Route<dynamic> route) => false);
               });
 
   }

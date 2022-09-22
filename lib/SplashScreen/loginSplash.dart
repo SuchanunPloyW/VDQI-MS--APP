@@ -19,8 +19,10 @@ class _LoginSplashState extends State<LoginSplash> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 4), () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const HomePage()));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => HomePage()),
+          (Route<dynamic> route) => false);
+
               });
 
   }

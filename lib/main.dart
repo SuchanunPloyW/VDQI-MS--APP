@@ -1,7 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:vdqims/Page/AddnewcarPage/AddnewcarPage.dart';
 
 import 'package:vdqims/Page/LoginPage/LoginPage.dart';
+import 'package:vdqims/SplashScreen/MainSplash.dart';
+import 'package:vdqims/SplashScreen/loginSplash.dart';
+import 'package:vdqims/Test/Test.dart';
 
 
 
@@ -26,40 +30,15 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
-       /*  fontFamily: 'Kanit', */
+       
         textTheme: const TextTheme(
-          /* titleLarge: TextStyle(
-            fontSize: 20,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ), */
+         
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const LoginPage(),
+      home: const MainSplash(),
     );
   }
 }
-/* class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
- 
 
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedSplashScreen(
-      
-      splash: Lottie.asset('assets/images/loadingcircles.json'),
-      backgroundColor: Colors.red,
-      nextScreen:  MycarsPage(),
-      splashIconSize: 250,
-      duration: 3000,
-      splashTransition: SplashTransition.fadeTransition,
-      animationDuration: const Duration(seconds: 1),
-      
-      
-    );
-    
-    
-  }
-} */
 
