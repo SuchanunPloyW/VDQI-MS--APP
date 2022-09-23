@@ -1,22 +1,15 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, unnecessary_new
 import 'dart:convert';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:intl/intl.dart';
-import 'package:lottie/lottie.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/FindcarPage/Model/responsModel.dart';
-import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 import 'package:vdqims/SplashScreen/ReqSplash.dart';
-
-
 import 'package:vdqims/Style/TextStyle.dart';
-import '../../Service/API/AuthAPI.dart';
 import '../../Service/API/PostReqApi.dart';
 import '../FindcarPage/Model/FindcarModel.dart';
-//import '../MenuPage/MenuPage.dart';
 
 class CardetailPage extends StatefulWidget {
   const CardetailPage({Key? key, required this.model}) : super(key: key);

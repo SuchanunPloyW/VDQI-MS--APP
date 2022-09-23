@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/MenuPage/MenuPage.dart';
@@ -9,6 +10,7 @@ import 'package:vdqims/Service/API/AuthAPI.dart';
 import 'package:vdqims/SplashScreen/loginSplash.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 
+import '../../SplashScreen/AddnewSplash.dart';
 import '../HomePage/HomePage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -185,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
 
     var res = await LoginAPI().postData(data, 'login');
     var body = json.decode(res.body);
-    if (_isLoading == true) {
+    if (res.statusCode == 201) {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       localStorage.setString('token', body['token']);
       localStorage.setString('user', json.encode(body['user']));
@@ -194,10 +196,60 @@ class _LoginPageState extends State<LoginPage> {
           MaterialPageRoute(builder: (context) => LoginSplash()),
           (Route<dynamic> route) => false);
     } else {
+     _ErrorLogin(context);
     }
 
     setState(() {
       _isLoading = false;
     });
   }
+  
 }
+_ErrorLogin(context) {
+    // Reusable alert style
+    var alertStyle = AlertStyle(
+      animationType: AnimationType.fromBottom,
+      isCloseButton: false,
+      isOverlayTapDismiss: false,
+      animationDuration: const Duration(milliseconds: 400),
+      alertBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+        side: const BorderSide(
+          color: Colors.grey,
+        ),
+      ),
+    );
+    Alert(
+      context: context,
+      style: alertStyle,
+      image: Image.asset('assets/images/iconalert.png'),
+      content: Padding(
+        padding: const EdgeInsets.only(top: 8.0),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text("แจ้งเตือน ", style: TextStyleAlert.body18bold),
+          const SizedBox(height: 5),
+          Text("ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง", style: TextStyleAlert.body15normal),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+             
+              const SizedBox(width: 5),
+              Text("กรุณาลองใหม่อีกครั้ง", style: TextStyleAlert.body15normal)
+            ],
+          ),
+          
+        ]),
+      ),
+      buttons: [
+        DialogButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const LoginPage()));
+          },
+          color: const Color(0xff44A73B),
+          child: Text("ตกลง", style: TDialogButton.body14),
+        ),
+        
+      ],
+    ).show();
+  }

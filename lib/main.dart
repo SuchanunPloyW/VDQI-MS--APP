@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vdqims/Page/AddnewcarPage/AddnewcarPage.dart';
 
 import 'package:vdqims/Page/LoginPage/LoginPage.dart';
+import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 import 'package:vdqims/SplashScreen/MainSplash.dart';
 import 'package:vdqims/SplashScreen/loginSplash.dart';
 import 'package:vdqims/Test/Test.dart';
@@ -36,7 +37,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const MainSplash(),
+      home: const LoginPage(),
     );
   }
 }
