@@ -1,10 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../Style/TextStyle.dart';
 import '../MenuPage/MenuPage.dart';
 
@@ -16,6 +12,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  //<--------------------- get user ----------------->
   var userData;
   @override
   void initState() {
@@ -31,12 +28,13 @@ class _ProfilePageState extends State<ProfilePage> {
         userData = user;
       });
  }
+ //<--------------------- Controller ----------------->
+
   TextEditingController _namecontroller = new TextEditingController();
+
+  //<--------------------- variable  ----------------->
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
-
-
-
 
 
   @override

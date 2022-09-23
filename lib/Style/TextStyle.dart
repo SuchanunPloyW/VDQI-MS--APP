@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:vdqims/Style/ColorTheme.dart';
 
-// < ------------------      Alert        ------------------>
+// < ------------------      login        ------------------>
 class TextStylelogin{
   static TextStyle body14= TextStyle(
     fontSize: 14,
@@ -142,6 +142,41 @@ class TextStyleDrawer{
   );
   
 }
+
+//<--------------------- MyCar Page ----------------->
+class TextStyleMycar{
+  static TextStyle title= const TextStyle(
+    fontSize: 16,
+    color: Color(0xff404040),
+    fontFamily: ('Kanit'),
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle subtitle= const TextStyle(
+    fontSize: 16,
+    color: Color(0xff929292),
+    fontFamily: ('Kanit'),
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle scan= const TextStyle(
+    fontSize: 14,
+    color: Color(0xff929292),
+    fontFamily: ('Kanit'),
+    fontWeight: FontWeight.w300,
+  );
+  
+  static TextStyle station= const TextStyle(
+    fontSize: 30,
+    color: Color(0xff404040),
+    fontFamily: ('Kanit'),
+    fontWeight: FontWeight.bold,
+  );
+}
+
+
+
+
+
+
 
 // < ------------------      Splash        ------------------>
 class TextStyleSplash{

@@ -129,12 +129,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                               child: ListTile(
                                                 title: Text(
                                                   widget.model.carChassis,
-                                                  style: const TextStyle(
-                                                    fontFamily:
-                                                        ('IBM Plex Sans Thai'),
-                                                    fontWeight:
-                                                        FontWeight.bold,
-                                                  ),
+                                                  style: TextStyleMycar.title
                                                 ),
                                                 leading: AspectRatio(
                                                   aspectRatio: 1,
@@ -151,15 +146,9 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                     ),
                                                   ),
                                                 ),
-                                                subtitle: const Text(
+                                                subtitle:  Text(
                                                   ' Yaris Ativ 1.2 G ',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontFamily:
-                                                        ('IBM Plex Sans Thai'),
-                                                    fontWeight:
-                                                        FontWeight.w300,
-                                                  ),
+                                                  style: TextStyleMycar.subtitle
                                                 ),
                                               ),
                                             ),
@@ -211,15 +200,9 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                   () {},
                                                             ),
                                                           ),
-                                                          const Text(
+                                                           Text(
                                                             "แสกน",
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontSize: 14,
-                                                                color: Color(
-                                                                    0xff929292)),
+                                                            style: TextStyleMycar.scan
                                                           ),
                                                         ],
                                                       ),
@@ -248,17 +231,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                       .carWhere
                                                                       .carWhere,
                                                                   style:
-                                                                      const TextStyle(
-                                                                    fontSize:
-                                                                        30,
-                                                                    color: Color(
-                                                                        0xff404040),
-                                                                    fontFamily:
-                                                                        ('IBM Plex Sans Thai'),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
+                                                                      TextStyleMycar.station
                                                                 )),
                                                             const Align(
                                                                 alignment:

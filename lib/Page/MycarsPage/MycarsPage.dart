@@ -211,21 +211,12 @@ class _MycarsPageState extends State<MycarsPage> {
               ),
               title: Text(
                 model.carChassis,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontFamily: ('IBM Plex Sans Thai'),
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyleMycar.title
               ),
               /*  desc: (' คุณต้องการทำรายการเบิกรถยนต์' + "\n" + widget.model.carChassis + " ใช่หรือไม่"), */
               subtitle: Text(
                 'Yaris Ativ 1.2 G \nสถานที่ : ' + model.carWhere.carWhere,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontFamily: ('IBM Plex Sans Thai'),
-                  color: Color(0xff929292),
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyleMycar.subtitle
               ),
             ),
             /*  child:
