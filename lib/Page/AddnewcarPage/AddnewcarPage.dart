@@ -11,7 +11,6 @@ import 'package:vdqims/Style/TextStyle.dart';
 import 'package:http/http.dart' as http;
 import '../MenuPage/MenuPage.dart';
 
-
 class AddnewcarPage extends StatefulWidget {
   const AddnewcarPage({Key? key}) : super(key: key);
 
@@ -20,12 +19,12 @@ class AddnewcarPage extends StatefulWidget {
 }
 
 class _AddnewcarPageState extends State<AddnewcarPage> {
-
   // <------------------------ ตัวแปร ------------------------>
-  List ? station_data ;
+  String? selected = '';
+  List? station_data;
   String? Staid;
   String? Groupvalue;
-  String? _radioValue ='';
+  String? _radioValue = '';
   String qrCode = '';
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
@@ -39,29 +38,29 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     var res = await http.get(Uri.parse(url), headers: {
       "Accept": "application/json",
       'Authorization': 'Bearer $_authToken',
-    }); 
+    });
     var resBody = json.decode(res.body);
-     print(resBody);
-     setState(() {
+    print(resBody);
+    setState(() {
       station_data = resBody;
     });
     return "Sucess";
   }
   // <------------------------ Controller ------------------------>
 
-   TextEditingController StationController = TextEditingController();
-   TextEditingController ChassisController = TextEditingController();
-   TextEditingController GroupController = TextEditingController();
-   TextEditingController WhereController = TextEditingController();
-  
+  TextEditingController StationController = TextEditingController();
+  TextEditingController ChassisController = TextEditingController();
+  TextEditingController GroupController = TextEditingController();
+  TextEditingController WhereController = TextEditingController();
+
   // <------------------------ Function ------------------------>
 
   @override
   void initState() {
     super.initState();
     this.station();
-    }
-    
+  }
+
   void _handleRadioValueChange(value) {
     setState(() {
       print(value);
@@ -69,9 +68,41 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       GroupController.text = _radioValue.toString();
     });
   }
-   
+
   @override
-  
+    Widget customRadio(IconData icon , value){
+      return InkWell(
+         onTap: () {
+          setState(() {
+            selected = value;
+            print(value);
+          });
+         },
+         child: Ink(height: 30, width: 30,  color: (selected == value) ? Colors.red : Color(0xff89EB80)),
+         
+      );
+     /*  return OutlinedButton(
+        onPressed: () {
+          setState(() {
+            selected = value;
+            print(value);
+          });
+        },
+        style: OutlinedButton.styleFrom(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),),
+          side: BorderSide(color: (selected == value) ? Colors.red : Colors.grey),
+        ), 
+        child: Icon(
+          icon , 
+          size: 20.0,
+          color: (selected == value) ? Colors.red : Colors.grey),
+       
+                                                                              
+        /* shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)) */
+        ); */
+    }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -130,8 +161,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
               padding: const EdgeInsets.only(top: 5),
               child: SingleChildScrollView(
                   child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10, right: 10, top: 5),
+                      padding:
+                          const EdgeInsets.only(left: 10, right: 10, top: 5),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -148,8 +179,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 10),
+                                            padding:
+                                                const EdgeInsets.only(top: 10),
                                             child: SingleChildScrollView(
                                                 child: Column(
                                                     children: <Widget>[
@@ -157,10 +188,11 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                     child: Column(
                                                       children: [
                                                         Padding(
-                                                          padding: const EdgeInsets
-                                                                  .symmetric(
-                                                              horizontal:
-                                                                  10.0),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      10.0),
                                                           child: Align(
                                                             alignment: Alignment
                                                                 .centerLeft,
@@ -181,20 +213,26 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                           child: Row(
                                                             children: [
                                                               Flexible(
-                                                                child:
-                                                                    SizedBox(
-                                                                  height:
-                                                                      35.2,
+                                                                child: SizedBox(
+                                                                  height: 35.2,
                                                                   child:
                                                                       TextField(
-                                                                        controller: ChassisController = TextEditingController(text: "$qrCode"),
-                                  
-                                                                        style: TextStyleAlert.body15bold,
-                                                                        readOnly: true,
+                                                                    controller: ChassisController =
+                                                                        TextEditingController(
+                                                                            text:
+                                                                                "$qrCode"),
+                                                                    style: TextStyleAlert
+                                                                        .body15bold,
+                                                                    readOnly:
+                                                                        true,
                                                                     decoration:
                                                                         InputDecoration(
-                                                                      contentPadding:
-                                                                          const EdgeInsets.symmetric(vertical: 25.0 , horizontal: 10),
+                                                                      contentPadding: const EdgeInsets
+                                                                              .symmetric(
+                                                                          vertical:
+                                                                              25.0,
+                                                                          horizontal:
+                                                                              10),
                                                                       focusedBorder:
                                                                           OutlineInputBorder(
                                                                         borderRadius:
@@ -202,13 +240,16 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                       ),
                                                                       enabledBorder:
                                                                           const OutlineInputBorder(
-                                                                        borderSide:
-                                                                            const BorderSide(color: const Color(0xffE2E8F0), width: 1),
+                                                                        borderSide: const BorderSide(
+                                                                            color:
+                                                                                const Color(0xffE2E8F0),
+                                                                            width: 1),
                                                                       ),
                                                                       filled:
                                                                           true,
                                                                       fillColor:
-                                                                          Colors.white,
+                                                                          Colors
+                                                                              .white,
                                                                     ),
                                                                   ),
                                                                 ),
@@ -224,19 +265,26 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                             true,
                                                                         shape:
                                                                             const BeveledRectangleBorder(
-                                                                          side: BorderSide(
-                                                                            color: Color(0xffE2E8F0),
-                                                                            width: 0.1,
+                                                                          side:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Color(0xffE2E8F0),
+                                                                            width:
+                                                                                0.1,
                                                                           ),
                                                                         ),
                                                                         child:
                                                                             IconButton(
-                                                                          icon: Image.asset(
+                                                                          icon:
+                                                                              Image.asset(
                                                                             'assets/images/iconscan.png',
-                                                                            height: 18.94,
-                                                                            width: 18.94,
+                                                                            height:
+                                                                                18.94,
+                                                                            width:
+                                                                                18.94,
                                                                           ),
-                                                                          onPressed: () => scanQRCode(),
+                                                                          onPressed: () =>
+                                                                              scanQRCode(),
                                                                         ),
                                                                       )))
                                                             ],
@@ -247,15 +295,15 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                           height: 5,
                                                         ),
                                                         Padding(
-                                                          padding: const EdgeInsets
-                                                                  .symmetric(
-                                                              horizontal:
-                                                                  10.0),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      10.0),
                                                           child: Align(
                                                             alignment: Alignment
                                                                 .centerLeft,
-                                                            child: Text(
-                                                                'สถานี',
+                                                            child: Text('สถานี',
                                                                 style: TextStyleAdd
                                                                     .bodyAdd14),
                                                           ),
@@ -265,53 +313,69 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                               const EdgeInsets
                                                                       .only(
                                                                   left: 10,
-                                                                  right:
-                                                                      10),
-                                                          child:
-                                                              DecoratedBox(
+                                                                  right: 10),
+                                                          child: DecoratedBox(
                                                             decoration:
                                                                 BoxDecoration(
-                                                                    border: new Border
-                                                                        .all(
-                                                                      color:
-                                                                          const Color(0xffE2E8F0),
+                                                                    border:
+                                                                        new Border
+                                                                            .all(
+                                                                      color: const Color(
+                                                                          0xffE2E8F0),
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius.circular(5.5)),
-                                                            child:
-                                                                Container(
+                                                                        BorderRadius.circular(
+                                                                            5.5)),
+                                                            child: Container(
                                                               height: 35.2,
-                                                              child:
-                                                                  Padding(
-                                                                padding: const EdgeInsets
-                                                                        .only(
-                                                                    left:
+                                                              child: Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      left: 10,
+                                                                      right:
+                                                                          10),
+                                                                  child:
+                                                                      DropdownButton(
+                                                                    hint: const Text(
+                                                                        'VDQI station'),
+                                                                    elevation:
                                                                         10,
-                                                                    right:
-                                                                        10),
-                                                               child:DropdownButton(
-                                                      hint: const Text('VDQI station'),
-                                                      elevation:10,
-                                                       icon: const Icon( Icons.arrow_drop_down),
-                                                       iconSize:13.0,
-                                                       isExpanded:true,
-                                                       style: const TextStyle(color: Color(0xff757575),fontSize:14.0),
-                                                       items: station_data?.map((item){
-                                                        return DropdownMenuItem(
-                                                          child: new Text(item['car_station']),
-                                                          value: item['car_station'].toString(),
-                                                        );
-                                                       }).toList(),
-                                                        onChanged: (String? newVal) { 
-                                                          setState(() {
-                                                            Staid = newVal;
-                                                            print(Staid.toString());
-                                                          });
-                                                         },
-                                                         value: Staid,
-                                                                     
-                                                     )            
-                                                              ),
+                                                                    icon: const Icon(
+                                                                        Icons
+                                                                            .arrow_drop_down),
+                                                                    iconSize:
+                                                                        13.0,
+                                                                    isExpanded:
+                                                                        true,
+                                                                    style: const TextStyle(
+                                                                        color: Color(
+                                                                            0xff757575),
+                                                                        fontSize:
+                                                                            14.0),
+                                                                    items: station_data
+                                                                        ?.map(
+                                                                            (item) {
+                                                                      return DropdownMenuItem(
+                                                                        child: new Text(
+                                                                            item['car_station']),
+                                                                        value: item['car_station']
+                                                                            .toString(),
+                                                                      );
+                                                                    }).toList(),
+                                                                    onChanged:
+                                                                        (String?
+                                                                            newVal) {
+                                                                      setState(
+                                                                          () {
+                                                                        Staid =
+                                                                            newVal;
+                                                                        print(Staid
+                                                                            .toString());
+                                                                      });
+                                                                    },
+                                                                    value:
+                                                                        Staid,
+                                                                  )),
                                                             ),
                                                           ),
                                                         ),
@@ -320,10 +384,11 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                           height: 5,
                                                         ),
                                                         Padding(
-                                                          padding: const EdgeInsets
-                                                                  .symmetric(
-                                                              horizontal:
-                                                                  10.0),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      10.0),
                                                           child: Align(
                                                             alignment: Alignment
                                                                 .centerLeft,
@@ -338,46 +403,77 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                               const EdgeInsets
                                                                       .only(
                                                                   left: 10,
-                                                                  right:
-                                                                      10),
+                                                                  right: 10),
                                                           child: Container(
                                                             height: 200,
-                                                            width: double
-                                                                .infinity,
+                                                            width:
+                                                                double.infinity,
                                                             decoration: BoxDecoration(
-                                                                border: Border.all(color: const Color(0xffE2E8F0))),
-                                                                child: Align(
-                                                                  alignment: Alignment.topCenter,
-                                                                  child: Row(
-                                                                    children:  <Widget>[
-                                                                       Container(
-                                                                      width: 150,
+                                                                border: Border.all(
+                                                                    color: const Color(
+                                                                        0xffE2E8F0))),
+                                                            child: Align(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .topCenter,
+                                                              child: Row(
+                                                                children: <
+                                                                    Widget>[
+                                                                  Padding(
+                                                                    padding: const EdgeInsets.only(top: 5, left: 5),
+                                                                    child: Container(
+                                                                      width: 300,
                                                                       child: Row(
-                                                                        children: <Widget>[
-                                                                        
-                                                                         Radio<String>(
-                                                                            value: "1",
-                                                                            activeColor: const Color.fromARGB(255, 255, 0, 0),
-                                                                            groupValue: _radioValue,
-                                                                            onChanged: _handleRadioValueChange,
+                                                                        children:  < Widget>[
+                                                                          Padding(
+                                                                            padding: const EdgeInsets.all(2.0),
+                                                                            child: customRadio(Icons.car_repair, '1'),
                                                                           ),
-                                                                           Radio<String>(
-                                                                            value: "2",
-                                                                            activeColor: const Color.fromARGB(255, 255, 0, 0),
-                                                                            groupValue: _radioValue,
-                                                                            onChanged: _handleRadioValueChange,
+                                                                          Padding(
+                                                                            padding: const EdgeInsets.all(2.0),
+                                                                            child: customRadio(Icons.car_repair, '2'),
                                                                           ),
-                                                                        
-                                                                                                                                                
+                                                                          Padding(
+                                                                            padding: const EdgeInsets.all(2.0),
+                                                                            child: customRadio(Icons.car_repair, '3'),
+                                                                          ),
+                                                                           
+
+                                                                          /* Radio<
+                                                                              String>(
+                                                                            value:
+                                                                                "1",
+                                                                            activeColor: const Color.fromARGB(
+                                                                                255,
+                                                                                255,
+                                                                                0,
+                                                                                0),
+                                                                            groupValue:
+                                                                                _radioValue,
+                                                                            onChanged:
+                                                                                _handleRadioValueChange,
+                                                                          ),
+                                                                          Radio<
+                                                                              String>(
+                                                                            value:
+                                                                                "2",
+                                                                            activeColor: const Color.fromARGB(
+                                                                                255,
+                                                                                255,
+                                                                                0,
+                                                                                0),
+                                                                            groupValue:
+                                                                                _radioValue,
+                                                                            onChanged:
+                                                                                _handleRadioValueChange,
+                                                                          ), */
                                                                         ],
                                                                       ),
                                                                     ),
-                                                                   
-                                                                    ],
                                                                   ),
-                                                                ),
-                                                               
-                                                                        
+                                                                ],
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
                                                         Padding(
@@ -385,8 +481,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                               const EdgeInsets
                                                                       .only(
                                                                   left: 10,
-                                                                  right:
-                                                                      10),
+                                                                  right: 10),
                                                           child: Container(
                                                             decoration:
                                                                 const BoxDecoration(
@@ -399,8 +494,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                       20,
                                                                   offset:
                                                                       Offset(
-                                                                          5,
-                                                                          5),
+                                                                          5, 5),
                                                                 ),
                                                               ],
                                                             ),
@@ -413,20 +507,22 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                 Expanded(
                                                                   child:
                                                                       SizedBox(
-                                                                    height:
-                                                                        87,
+                                                                    height: 87,
                                                                     width: double
                                                                         .infinity,
-                                                                    child:
-                                                                        Card(
-                                                                      shape:
-                                                                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                                                    child: Card(
+                                                                      shape: RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(5)),
                                                                       child:
                                                                           Column(
-                                                                        children:  const <Widget>[
+                                                                        children: const <
+                                                                            Widget>[
                                                                           Padding(
-                                                                            padding: EdgeInsets.only(top: 1),
-                                                                            child: Text(
+                                                                            padding:
+                                                                                EdgeInsets.only(top: 1),
+                                                                            child:
+                                                                                Text(
                                                                               'แถว',
                                                                               style: TextStyle(
                                                                                 fontSize: 14,
@@ -436,9 +532,11 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: EdgeInsets.only(top: 1),
-                                                                            child: Text(
-                                                                             'A',
+                                                                            padding:
+                                                                                EdgeInsets.only(top: 1),
+                                                                            child:
+                                                                                Text(
+                                                                              'A',
                                                                               style: TextStyle(
                                                                                 fontSize: 25,
                                                                                 color: Color(0xff404040),
@@ -455,20 +553,22 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                 Expanded(
                                                                   child:
                                                                       SizedBox(
-                                                                    height:
-                                                                        87,
+                                                                    height: 87,
                                                                     width: double
                                                                         .infinity,
-                                                                    child:
-                                                                        Card(
-                                                                      shape:
-                                                                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                                                    child: Card(
+                                                                      shape: RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(5)),
                                                                       child:
                                                                           Column(
-                                                                        children:  <Widget>[
+                                                                        children: <
+                                                                            Widget>[
                                                                           const Padding(
-                                                                            padding: EdgeInsets.only(top: 1),
-                                                                            child: Text(
+                                                                            padding:
+                                                                                EdgeInsets.only(top: 1),
+                                                                            child:
+                                                                                Text(
                                                                               'ลำดับ',
                                                                               style: TextStyle(
                                                                                 fontSize: 14,
@@ -478,9 +578,11 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsets.only(top: 1),
-                                                                            child: Text(
-                                                                               _radioValue!,
+                                                                            padding:
+                                                                                const EdgeInsets.only(top: 1),
+                                                                            child:
+                                                                                Text(
+                                                                              selected!,
                                                                               style: const TextStyle(
                                                                                 fontSize: 25,
                                                                                 color: Color(0xff404040),
@@ -489,10 +591,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                               ),
                                                                             ),
                                                                           ),
-                                                                          
                                                                         ],
                                                                       ),
-                                                                      
                                                                     ),
                                                                   ),
                                                                 ),
@@ -503,34 +603,35 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                       ],
                                                     ),
                                                   ),
-                                                 const SizedBox(height: 130),
-                                                 Padding(
-                                                  padding: const EdgeInsets.symmetric( horizontal: 25.0),
-                                                  child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                primary:
-                                                    const Color(0xffE52628),
-                                                minimumSize: const Size
-                                                    .fromHeight(40),
-                                                shape:
-                                                    RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    10))),
-                                            onPressed: ()=> _AddCar(context),
-                                            child: const Text(
-                                                'บันทึก',
-                                                style: TextStyle(
-                                                  fontFamily:
-                                                      ('IBM Plex Sans Thai'),
-                                                  fontWeight:
-                                                      FontWeight.bold,
-                                                )),
-                                          )
-                                             
-                                                 )
-                                               
+                                                  const SizedBox(height: 130),
+                                                  Padding(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 25.0),
+                                                      child: ElevatedButton(
+                                                        style: ElevatedButton.styleFrom(
+                                                            primary:
+                                                                const Color(
+                                                                    0xffE52628),
+                                                            minimumSize: const Size
+                                                                .fromHeight(40),
+                                                            shape: RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10))),
+                                                        onPressed: () =>
+                                                            _AddCar(context),
+                                                        child: const Text(
+                                                            'บันทึก',
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                                  ('IBM Plex Sans Thai'),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            )),
+                                                      ))
                                                 ])))))),
                             const SizedBox(height: 10),
                             Text('Powered by Weise Technika',
@@ -538,6 +639,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                           ])))),
         ])));
   }
+
   _AddCar(context) {
     // Reusable alert style
     var alertStyle = AlertStyle(
@@ -561,7 +663,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text("ต้องการทำรายการ ?", style: TextStyleAlert.body18bold),
           const SizedBox(height: 5),
-          Text("คุณต้องการทำรายการเพิ่มรถยนต์", style: TextStyleAlert.body15normal),
+          Text("คุณต้องการทำรายการเพิ่มรถยนต์",
+              style: TextStyleAlert.body15normal),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -570,7 +673,6 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
               Text("ใช่หรือไม่", style: TextStyleAlert.body15normal)
             ],
           ),
-          
         ]),
       ),
       buttons: [
@@ -590,6 +692,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       ],
     ).show();
   }
+
   Future<void> scanQRCode() async {
     try {
       final qrCode = await FlutterBarcodeScanner.scanBarcode(

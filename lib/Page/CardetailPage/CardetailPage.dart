@@ -14,33 +14,30 @@ import '../FindcarPage/Model/FindcarModel.dart';
 class CardetailPage extends StatefulWidget {
   const CardetailPage({Key? key, required this.model}) : super(key: key);
   final CarAPI model;
-  
+
   State<CardetailPage> createState() => _CardetailPageState();
 }
 
 class _CardetailPageState extends State<CardetailPage> {
-   var userData;
+  var userData;
   @override
   void initState() {
     _getUserInfo();
     super.initState();
   }
-  
-  void _getUserInfo() async {
-      SharedPreferences localStorage = await SharedPreferences.getInstance();
-      var userJson = localStorage.getString('user'); 
-      var user = json.decode(userJson!);
-      setState(() {
-        userData = user;
-      });
- }
- 
 
-  
+  void _getUserInfo() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var userJson = localStorage.getString('user');
+    var user = json.decode(userJson!);
+    setState(() {
+      userData = user;
+    });
+  }
+
   bool _isLoading = false;
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
-  
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +50,10 @@ class _CardetailPageState extends State<CardetailPage> {
               text: TextSpan(
                   text: "รายละเอียดรถยนต์",
                   style: TextStyleMenuName.bodyMenuThai,
-                  children:  <TextSpan>[
+                  children: <TextSpan>[
                     TextSpan(
-                      text: '\nCar Infomation',
-                      style: TextStyleMenuName.bodyMenuEng
-                    ),
+                        text: '\nCar Infomation',
+                        style: TextStyleMenuName.bodyMenuEng),
                   ])),
           leading: IconButton(
             onPressed: () {
@@ -98,15 +94,13 @@ class _CardetailPageState extends State<CardetailPage> {
                   end: FractionalOffset.bottomCenter,
                   colors: [baseColor1, baseColor2],
                 )),
-                
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 5),
               child: SingleChildScrollView(
                 child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 10, top: 5),
+                    padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -116,12 +110,12 @@ class _CardetailPageState extends State<CardetailPage> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Card(
-                                  color: const Color.fromARGB(255, 255, 255, 255),
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
                                   margin: const EdgeInsets.only(
                                       left: 10, right: 10),
                                   shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10)),
+                                      borderRadius: BorderRadius.circular(10)),
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: Column(children: <Widget>[
@@ -163,8 +157,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                 aspectRatio: 1,
                                                 child: ClipRRect(
                                                     borderRadius:
-                                                        const BorderRadius
-                                                                .all(
+                                                        const BorderRadius.all(
                                                             Radius.circular(
                                                                 1.0)),
                                                     child: CircleAvatar(
@@ -216,8 +209,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                           child: Card(
                                               shape: RoundedRectangleBorder(
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          5)),
+                                                      BorderRadius.circular(5)),
                                               child: GestureDetector(
                                                   onTap: () =>
                                                       FocusScope.of(context)
@@ -237,9 +229,10 @@ class _CardetailPageState extends State<CardetailPage> {
                                                             child: Stack(
                                                                 children: [
                                                                   Align(
-                                                                    alignment: AlignmentDirectional(
-                                                                        -0.9,
-                                                                        -0.9),
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            -0.9,
+                                                                            -0.9),
                                                                     child: Text(
                                                                         'สถานที่',
                                                                         style:
@@ -253,9 +246,10 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                         )),
                                                                   ),
                                                                   Align(
-                                                                    alignment: AlignmentDirectional(
-                                                                        -0.05,
-                                                                        -0.59),
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            -0.05,
+                                                                            -0.59),
                                                                     child: Text(
                                                                         widget
                                                                             .model
@@ -291,9 +285,10 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                         )),
                                                                   ),
                                                                   Align(
-                                                                    alignment: AlignmentDirectional(
-                                                                        -0.56,
-                                                                        0.7),
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            -0.56,
+                                                                            0.7),
                                                                     child: Text(
                                                                         'A',
                                                                         style:
@@ -360,55 +355,74 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                               Color(0xffD4D4D4),
                                                                         )),
                                                                   ),
-                                                            Align(
-                                                            alignment: AlignmentDirectional(-0.10, 4.8),
-                                                            child: DataTable(
-                                                              horizontalMargin: 0,
-                                                              columnSpacing: 30,
-                                                              columns: const <DataColumn>[
-                                                                DataColumn(
-                                                                  label: Expanded(
-                                                                    child: Text(
-                                                                      '',
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            -0.10,
+                                                                            4.8),
+                                                                    child:
+                                                                        DataTable(
+                                                                      horizontalMargin:
+                                                                          0,
+                                                                      columnSpacing:
+                                                                          30,
+                                                                      columns: const <
+                                                                          DataColumn>[
+                                                                        DataColumn(
+                                                                          label:
+                                                                              Expanded(
+                                                                            child:
+                                                                                Text(
+                                                                              '',
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        DataColumn(
+                                                                          label:
+                                                                              Expanded(
+                                                                            child:
+                                                                                Text(
+                                                                              '',
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        DataColumn(
+                                                                          label:
+                                                                              Expanded(
+                                                                            child:
+                                                                                Text(
+                                                                              '',
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        DataColumn(
+                                                                          label:
+                                                                              Expanded(
+                                                                            child:
+                                                                                Text(
+                                                                              '',
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                      rows: const <
+                                                                          DataRow>[
+                                                                        DataRow(
+                                                                          cells: <
+                                                                              DataCell>[
+                                                                            DataCell(Text('26-8-2022',
+                                                                                style: TextStyle(fontSize: 10))),
+                                                                            DataCell(Text('นำเข้า',
+                                                                                style: TextStyle(fontSize: 10))),
+                                                                            DataCell(Text('Stock A',
+                                                                                style: TextStyle(fontSize: 10))),
+                                                                            DataCell(Text('Suchanun',
+                                                                                style: TextStyle(fontSize: 10))),
+                                                                          ],
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                   ),
-                                                                ),
-                                                                DataColumn(
-                                                                  label: Expanded(
-                                                                    child: Text(
-                                                                      '',
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn(
-                                                                  label: Expanded(
-                                                                    child: Text(
-                                                                      '',
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn(
-                                                                  label: Expanded(
-                                                                    child: Text(
-                                                                      '',
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                              rows: const <DataRow>[
-                                                                DataRow(
-                                                                  cells: <DataCell>[
-                                                                    DataCell(Text('26-8-2022', style: TextStyle(fontSize: 10))),
-                                                                    DataCell(Text('นำเข้า', style: TextStyle(fontSize: 10))),
-                                                                    DataCell(Text('Stock A', style: TextStyle(fontSize: 10))),
-                                                                    DataCell(Text('Suchanun', style: TextStyle(fontSize: 10))),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            
-                                                          ),
-                                                          
                                                                 ])),
                                                       )))),
                                         ),
@@ -427,8 +441,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10))),
-                                            onPressed: () =>
-                                                _request(context),
+                                            onPressed: () => _request(context),
                                             child: const Text('เบิกรถยนต์',
                                                 style: TextStyle(
                                                   fontFamily:
@@ -442,10 +455,8 @@ class _CardetailPageState extends State<CardetailPage> {
                               )),
 
                           const SizedBox(height: 10),
-                          Text(
-                            'Powered by Weise Technika',
-                            style: TextStyleFoot.bodyfoot
-                          ),
+                          Text('Powered by Weise Technika',
+                              style: TextStyleFoot.bodyfoot),
                         ])),
               ),
             )
@@ -467,14 +478,13 @@ class _CardetailPageState extends State<CardetailPage> {
           color: Colors.grey,
         ),
       ),
-      
     );
     Alert(
       context: context,
       style: alertStyle,
       image: Image.asset('assets/images/iconalert.png'),
       content: Padding(
-        padding: const EdgeInsets.only(top : 8.0),
+        padding: const EdgeInsets.only(top: 8.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text("ต้องการทำรายการ ?", style: TextStyleAlert.body18bold),
           SizedBox(height: 5),
@@ -501,32 +511,25 @@ class _CardetailPageState extends State<CardetailPage> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          onPressed:()async{
+          onPressed: () async {
             ResponseModel response = await PostReqAPI().PostReq(
-              DateFormat("yyyy-MM-dd").format(DateTime.now()),
-               "${userData['fullname']}",
-               "${userData['lastname']}", 
+                widget.model.carChassis,
+                "${userData['fullname']}",
+                "${userData['lastname']}",
                 DateFormat("yyyy-MM-dd").format(DateTime.now()),
                 DateFormat("hh:mm:ss a").format(DateTime.now()),
-               "car_position",
-               widget.model.carWhere.carWhere,
-               "2",
-               "2");
-                
-              if(response.success){
-                Navigator.push(
-                  context, MaterialPageRoute(
-                    builder: (_) => Reqsplash()));
-                                                       
-                                                       
-                                                            
-                                                               
-              }else{
-                print("ไม่สำเร็จ");
-              }
+                "VDQI",
+                "5",
+                "1",
+                "2");
 
+            if (response.success) {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => Reqsplash()));
+            } else {
+              print("ไม่สำเร็จ");
+            }
           },
-          
           color: Color(0xff44A73B),
         ),
         DialogButton(
@@ -544,10 +547,5 @@ class _CardetailPageState extends State<CardetailPage> {
         )
       ],
     ).show();
-  
-   
   }
- 
-
-
 }

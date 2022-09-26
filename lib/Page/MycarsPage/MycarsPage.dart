@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 import 'package:vdqims/Page/MycarsdetailPage/MycarsdetailPage.dart';
+import 'package:vdqims/Service/Model/ReqModel.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import 'package:http/http.dart' as http;
 import '../FindcarPage/Model/FindcarModel.dart';
@@ -36,20 +37,20 @@ class _MycarsPageState extends State<MycarsPage> {
   }
 
   @override
-  Future<List<CarAPI>> getfullname() async {
+  Future<List<ReqAPI>> getfullname() async {
     //get token
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var _authToken = localStorage.getString('token');
    
     // response uri
     var response = await http.get(
-        Uri.parse('http://206.189.92.79/api/car/name/${userData['fullname']}'),
+        Uri.parse('http://206.189.92.79/api/req/mycar/${userData['fullname']}/1'),
         headers: {
           HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
         });
     // return value
-    var car = Car.fromJson(jsonDecode(response.body));
-    return car.data;
+    var req = Req.fromJson(jsonDecode(response.body));
+    return req.data;
   }
 
   Color baseColor1 = const Color(0xffE52628);
@@ -136,10 +137,10 @@ class _MycarsPageState extends State<MycarsPage> {
                                   child: FutureBuilder(
                                     future: getfullname(),
                                     builder: (BuildContext context,
-                                        AsyncSnapshot<List<CarAPI>?>
+                                        AsyncSnapshot<List<ReqAPI>?>
                                             snapshot) {
                                       if (snapshot.hasData) {
-                                        List<CarAPI>? data = snapshot.data;
+                                        List<ReqAPI>? data = snapshot.data;
                                         return Align(
                                           alignment: Alignment.topCenter,
                                           child: ListView.builder(
@@ -176,7 +177,7 @@ class _MycarsPageState extends State<MycarsPage> {
         ));
   }
 
-  Widget Listcar({required CarAPI model}) {
+  Widget Listcar({required ReqAPI model}) {
     return InkWell(
       onTap: () {
         Navigator.push(

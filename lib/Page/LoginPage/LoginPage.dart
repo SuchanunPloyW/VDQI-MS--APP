@@ -3,15 +3,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 import 'package:vdqims/Service/API/AuthAPI.dart';
 import 'package:vdqims/SplashScreen/loginSplash.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 
-import '../../SplashScreen/AddnewSplash.dart';
-import '../HomePage/HomePage.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override

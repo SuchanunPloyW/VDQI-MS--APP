@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:vdqims/Page/AddnewcarPage/AddnewcarPage.dart';
+import 'package:vdqims/Page/HomePage/HomePage.dart';
 
 import 'package:vdqims/Page/LoginPage/LoginPage.dart';
+import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 import 'package:vdqims/SplashScreen/MainSplash.dart';
 import 'package:vdqims/SplashScreen/loginSplash.dart';
@@ -25,8 +27,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   
-
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const MycarsPage(),
+      home: const AddnewcarPage(),
     );
   }
 }

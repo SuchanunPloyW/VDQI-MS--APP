@@ -1,18 +1,18 @@
 // ignore_for_file: sort_child_properties_last
 
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:vdqims/Page/CheckinPage/CheckinPage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
+import 'package:vdqims/Service/Model/ReqModel.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 
-import '../FindcarPage/Model/FindcarModel.dart';
+
 
 class MycarsdetailPage extends StatefulWidget {
   const MycarsdetailPage({Key? key, required this.model}) : super(key: key);
-  final CarAPI model;
+  final ReqAPI model;
   @override
   State<MycarsdetailPage> createState() => _MycarsdetailPageState();
 }
