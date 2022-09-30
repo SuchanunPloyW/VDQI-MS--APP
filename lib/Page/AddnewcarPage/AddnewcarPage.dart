@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -6,9 +8,15 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vdqims/Service/API/PositionAPI.dart';
+import 'package:vdqims/Service/Model/PositionModel.dart';
 import 'package:vdqims/SplashScreen/AddnewSplash.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import 'package:http/http.dart' as http;
+import 'package:vdqims/Test/Test.dart';
+import '../../Service/Model/ReqModel.dart';
+import '../FindcarPage/Model/FindcarModel.dart';
+import '../FindcarPage/Service/FindcarService.dart';
 import '../MenuPage/MenuPage.dart';
 
 class AddnewcarPage extends StatefulWidget {
@@ -40,7 +48,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       'Authorization': 'Bearer $_authToken',
     });
     var resBody = json.decode(res.body);
-    print(resBody);
+   
     setState(() {
       station_data = resBody;
     });
@@ -52,7 +60,6 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   TextEditingController ChassisController = TextEditingController();
   TextEditingController GroupController = TextEditingController();
   TextEditingController WhereController = TextEditingController();
-
   // <------------------------ Function ------------------------>
 
   @override
@@ -70,40 +77,10 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   }
 
   @override
-    Widget customRadio(IconData icon , value){
-      return InkWell(
-         onTap: () {
-          setState(() {
-            selected = value;
-            print(value);
-          });
-         },
-         child: Ink(height: 30, width: 30,  color: (selected == value) ? Colors.red : Color(0xff89EB80)),
-         
-      );
-     /*  return OutlinedButton(
-        onPressed: () {
-          setState(() {
-            selected = value;
-            print(value);
-          });
-        },
-        style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),),
-          side: BorderSide(color: (selected == value) ? Colors.red : Colors.grey),
-        ), 
-        child: Icon(
-          icon , 
-          size: 20.0,
-          color: (selected == value) ? Colors.red : Colors.grey),
-       
-                                                                              
-        /* shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)) */
-        ); */
-    }
-
+ 
   @override
   Widget build(BuildContext context) {
+    final mqHeight = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: 70,
@@ -167,7 +144,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             SizedBox(
-                                height: 650,
+                                height: 700,
                                 child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Card(
@@ -405,77 +382,195 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                   left: 10,
                                                                   right: 10),
                                                           child: Container(
-                                                            height: 200,
-                                                            width:
-                                                                double.infinity,
                                                             decoration: BoxDecoration(
                                                                 border: Border.all(
                                                                     color: const Color(
                                                                         0xffE2E8F0))),
-                                                            child: Align(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .topCenter,
-                                                              child: Row(
-                                                                children: <
-                                                                    Widget>[
-                                                                  Padding(
-                                                                    padding: const EdgeInsets.only(top: 5, left: 5),
-                                                                    child: Container(
-                                                                      width: 300,
+                                                            height: 350,
+                                                            child: Column(
+                                                              children: [
+                                                                const SizedBox(
+                                                                  height: 20,
+                                                                ),
+                                                                Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                        horizontal:
+                                                                            25),
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        /*  const Text(
+                                                                          "Front",
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                16,
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                          ),
+                                                                        ), */
+                                                                        Container(
+                                                                          color:
+                                                                              Colors.white,
+                                                                          height:
+                                                                              30,
+                                                                          width:
+                                                                              50,
+                                                                        ),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Container(
+                                                                            padding:
+                                                                                const EdgeInsets.symmetric(horizontal: 35),
+                                                                            child:
+                                                                                Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                              children: const [
+                                                                                Text(
+                                                                                  "A",
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 18,
+                                                                                    fontWeight: FontWeight.bold,
+                                                                                  ),
+                                                                                ),
+                                                                                Text(
+                                                                                  "B",
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 18,
+                                                                                    fontWeight: FontWeight.bold,
+                                                                                  ),
+                                                                                ),
+                                                                                Text(
+                                                                                  "C",
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 18,
+                                                                                    fontWeight: FontWeight.bold,
+                                                                                  ),
+                                                                                ),
+                                                                                Text(
+                                                                                  "D",
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 18,
+                                                                                    fontWeight: FontWeight.bold,
+                                                                                  ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    )),
+                                                                const SizedBox(
+                                                                    height: 10),
+                                                                Expanded(
+                                                                  child: Padding(
+                                                                      padding: const EdgeInsets.symmetric(horizontal: 25),
                                                                       child: Row(
-                                                                        children:  < Widget>[
-                                                                          Padding(
-                                                                            padding: const EdgeInsets.all(2.0),
-                                                                            child: customRadio(Icons.car_repair, '1'),
+                                                                        children: [
+                                                                          Container(
+                                                                            width:
+                                                                                50,
+                                                                            child:
+                                                                                SingleChildScrollView(
+                                                                              scrollDirection: Axis.vertical,
+                                                                              child: Column(children: [
+                                                                                Container(
+                                                                                    height: 250,
+                                                                                    decoration: BoxDecoration(
+                                                                                      border: Border.all(
+                                                                                        color: Colors.black38,
+                                                                                      ),
+                                                                                      color: const Color.fromARGB(246, 231, 230, 236),
+                                                                                      borderRadius: BorderRadius.circular(10),
+                                                                                    ),
+                                                                                    child: const Center(
+                                                                                      child: Text('Lotus'),
+                                                                                    )),
+                                                                              ]),
+                                                                            ),
                                                                           ),
-                                                                          Padding(
-                                                                            padding: const EdgeInsets.all(2.0),
-                                                                            child: customRadio(Icons.car_repair, '2'),
-                                                                          ),
-                                                                          Padding(
-                                                                            padding: const EdgeInsets.all(2.0),
-                                                                            child: customRadio(Icons.car_repair, '3'),
-                                                                          ),
-                                                                           
+                                                                          const SizedBox(
+                                                                              width: 10),
+                                                                          Expanded(
+                                                                              child: Container(
+                                                                            child: FutureBuilder(
+                                                                                future: PostionService().getposition(),
+                                                                                builder: (BuildContext context, AsyncSnapshot<List<PositionAPI>?> snapshot) {
+                                                                                  if (snapshot.hasData) {
+                                                                                    List<PositionAPI>? data = snapshot.data;
+                                                                                    return Container(
+                                                                                      child: GridView.builder(
+                                                                                          
+                                                                                          padding: const EdgeInsets.all(10),
+                                                                                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                            mainAxisSpacing: 10,
+                                                                                            crossAxisSpacing: 10,
+                                                                                            crossAxisCount: 4,
+                                                                                          ),
+                                                                                          itemCount: data!.length,
+                                                                                          itemBuilder: (context, index) {
+                                                                                            return Container(
+                                                                                              width: 40,
+                                                                                              height: 40,
+                                                                                              decoration: BoxDecoration(
+                                                                                                border: Border.all(
+                                                                                                  color: Colors.black38,
+                                                                                                ),
+                                                                                                color: (
+                                                                                                  data[index].position_status == '1'
+                                                                                                  ? Colors.red 
+                                                                                                  : data[index].position_status == '2'
+                                                                                                  ? Colors.grey 
+                                                                                                  : selected == data[index].car_position
+                                                                                                  ? Colors.red 
+                                                                                                  : const Color(0xff89EB80)
+                                                                                                  ) ,
 
-                                                                          /* Radio<
-                                                                              String>(
-                                                                            value:
-                                                                                "1",
-                                                                            activeColor: const Color.fromARGB(
-                                                                                255,
-                                                                                255,
-                                                                                0,
-                                                                                0),
-                                                                            groupValue:
-                                                                                _radioValue,
-                                                                            onChanged:
-                                                                                _handleRadioValueChange,
+                                                                                                borderRadius: BorderRadius.circular(10),
+                                                                                              ),
+                                                                                              child: InkWell(
+                                                                                                child: Center(
+                                                                                                child: Text(
+                                                                                                  data[index].car_position,
+                                                                                                  style: TextStyle(color: Colors.white),
+                                                                                                ),
+
+                                                                                                ),
+                                                                                                onTap: () {
+                                                                                                  setState(() {
+                                                                                                    selected = data[index].car_position;
+                                                                                                    print(data[index].car_position);
+                                                                                                  });
+                                                                                                },
+                                                                                              ),
+                                                                                            );
+                                                                                          }),
+                                                                                    );
+                                                                                  }
+                                                                                  return Center(
+                                                                                    child: CircularProgressIndicator(
+                                                                                      color: baseColor1,
+                                                                                    ),
+                                                                                  );
+                                                                                }),
+                                                                          )
                                                                           ),
-                                                                          Radio<
-                                                                              String>(
-                                                                            value:
-                                                                                "2",
-                                                                            activeColor: const Color.fromARGB(
-                                                                                255,
-                                                                                255,
-                                                                                0,
-                                                                                0),
-                                                                            groupValue:
-                                                                                _radioValue,
-                                                                            onChanged:
-                                                                                _handleRadioValueChange,
-                                                                          ), */
+                                                                          
                                                                         ],
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
+                                                                      )),
+                                                                )
+                                                              ],
                                                             ),
                                                           ),
+                                                         
                                                         ),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+
                                                         Padding(
                                                           padding:
                                                               const EdgeInsets
@@ -603,7 +698,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                       ],
                                                     ),
                                                   ),
-                                                  const SizedBox(height: 130),
+                                                  const SizedBox(height: 20),
                                                   Padding(
                                                       padding: const EdgeInsets
                                                               .symmetric(

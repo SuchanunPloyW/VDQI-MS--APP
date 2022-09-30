@@ -145,6 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: SizedBox(
                                   height: 35.2,
                                   child: TextField(
+                                    style: TextStylelogin.body16,
                                     readOnly: true,
                                     controller:TextEditingController(text: "${userData['fullname']}"),
       
@@ -164,7 +165,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(" นามสกุล",
-                                              style: TextStylelogin.body14),
+                                              style: TextStylelogin.body16),
                                   ),
                                 ),
                                 Padding(
@@ -173,9 +174,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: SizedBox(
                                   height: 35.2,
                                   child: TextField(
+                                    style: TextStylelogin.body14,
                                     readOnly: true,
                                     controller:TextEditingController(text: "${userData['lastname']}"),
-      
                                     keyboardType: TextInputType.text,
                                     decoration: const InputDecoration(
                                       contentPadding: EdgeInsets.symmetric(

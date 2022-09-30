@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 
 import '../Page/MycarsPage/MycarsPage.dart';
 import '../Style/TextStyle.dart';
@@ -21,7 +22,7 @@ class _AddnewSplashState extends State<AddnewSplash> {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => MycarsPage()),
+          MaterialPageRoute(builder: (context) => MenuPage()),
           (Route<dynamic> route) => false);
               });
 

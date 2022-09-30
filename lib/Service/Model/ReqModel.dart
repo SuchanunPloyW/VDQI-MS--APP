@@ -46,8 +46,8 @@ class Req {
 }
 
 class ReqAPI {
-  ReqAPI(
-      {required this.reqId,
+  ReqAPI({
+      required this.reqId,
       required this.carChassis,
       required this.fullname,
       required this.lastname,
