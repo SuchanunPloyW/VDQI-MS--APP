@@ -30,8 +30,7 @@ class Station {
 
   factory Station.fromJson(Map<String, dynamic> json) => Station(
         currentPage: json["current_page"],
-        data: List<StationAPI>.from(
-            json["data"].map((e) => StationAPI.fromJson(e))),
+        data: List<StationAPI>.from(json["data"].map((e) => StationAPI.fromJson(e))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],

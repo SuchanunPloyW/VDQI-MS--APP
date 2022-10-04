@@ -14,17 +14,15 @@ class CheckinSpach extends StatefulWidget {
 }
 
 class _CheckinSpachState extends State<CheckinSpach> {
-    Color baseColor1 = const Color(0xffE52628);
-    Color baseColor2 = const Color(0xffA10002);
+  Color baseColor1 = const Color(0xffE52628);
+  Color baseColor2 = const Color(0xffA10002);
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => MycarsPage()),
-          (Route<dynamic> route) => false);
-              });
-
+      Navigator.of(context)
+          .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MycarsPage()), (Route<dynamic> route) => false);
+    });
   }
 
   @override
@@ -33,13 +31,9 @@ class _CheckinSpachState extends State<CheckinSpach> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration:  BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: FractionalOffset.topCenter,
-              end: FractionalOffset.bottomCenter,
-              colors: [
-               baseColor1, baseColor2
-              ]),
+              begin: FractionalOffset.topCenter, end: FractionalOffset.bottomCenter, colors: [baseColor1, baseColor2]),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,20 +41,13 @@ class _CheckinSpachState extends State<CheckinSpach> {
           children: [
             Column(
               children: [
-                Lottie.asset('assets/images/correct.json',
-                height: 200,
-                width: 200
+                Lottie.asset('assets/images/correct.json', height: 200, width: 200),
+                SizedBox(
+                  height: 30,
                 ),
-                SizedBox(height: 30,),
-                
-                 Text(
-                  "เช็คอินเข้าสถานีสำเร็จ",
-                  textAlign: TextAlign.center,
-                  style: TextStyleSplash.body
-                ),
+                Text("เช็คอินเข้าสถานีสำเร็จ", textAlign: TextAlign.center, style: TextStyleSplash.body),
               ],
             ),
-            
           ],
         ),
       ),

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vdqims/Page/MenuPage/MenuPage.dart';
@@ -21,24 +19,19 @@ class _AddnewSplashState extends State<AddnewSplash> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => MenuPage()),
-          (Route<dynamic> route) => false);
-              });
-
+      Navigator.of(context)
+          .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MenuPage()), (Route<dynamic> route) => false);
+    });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration:  BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: FractionalOffset.topCenter,
-              end: FractionalOffset.bottomCenter,
-              colors: [
-               baseColor1, baseColor2
-              ]),
+              begin: FractionalOffset.topCenter, end: FractionalOffset.bottomCenter, colors: [baseColor1, baseColor2]),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,20 +39,13 @@ class _AddnewSplashState extends State<AddnewSplash> {
           children: [
             Column(
               children: [
-                Lottie.asset('assets/images/correct.json',
-                height: 200,
-                width: 200
+                Lottie.asset('assets/images/correct.json', height: 200, width: 200),
+                SizedBox(
+                  height: 30,
                 ),
-                SizedBox(height: 30,),
-                
-                 Text(
-                  "ทำการเพิ่มรถยนต์สำเร็จ",
-                  textAlign: TextAlign.center,
-                  style: TextStyleSplash.body
-                ),
+                Text("ทำการเพิ่มรถยนต์สำเร็จ", textAlign: TextAlign.center, style: TextStyleSplash.body),
               ],
             ),
-            
           ],
         ),
       ),

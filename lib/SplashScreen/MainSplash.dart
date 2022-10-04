@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vdqims/Page/LoginPage/LoginPage.dart';
 
-
 class MainSplash extends StatefulWidget {
   const MainSplash({super.key});
 
@@ -11,30 +10,25 @@ class MainSplash extends StatefulWidget {
 }
 
 class _MainSplashState extends State<MainSplash> {
-    Color baseColor1 = const Color(0xffE52628);
-    Color baseColor2 = const Color(0xffA10002);
+  Color baseColor1 = const Color(0xffE52628);
+  Color baseColor2 = const Color(0xffA10002);
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 4), () {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => LoginPage()),
-          (Route<dynamic> route) => false);
-              });
-
+      Navigator.of(context)
+          .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);
+    });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration:  BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: FractionalOffset.topCenter,
-              end: FractionalOffset.bottomCenter,
-              colors: [
-               baseColor1, baseColor2
-              ]),
+              begin: FractionalOffset.topCenter, end: FractionalOffset.bottomCenter, colors: [baseColor1, baseColor2]),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -42,21 +36,15 @@ class _MainSplashState extends State<MainSplash> {
           children: [
             Column(
               children: [
-                Lottie.asset('assets/images/loadingcircles.json',
-                height: 400,
-                width: 400
+                Lottie.asset('assets/images/loadingcircles.json', height: 400, width: 400),
+                const CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
-             const CircularProgressIndicator( 
-              valueColor:  AlwaysStoppedAnimation<Color>(Colors.white),
-            ),
               ],
             ),
-            
           ],
         ),
-        
       ),
-      
     );
   }
 }

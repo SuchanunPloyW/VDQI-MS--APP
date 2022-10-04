@@ -19,16 +19,16 @@ class _ProfilePageState extends State<ProfilePage> {
     _getUserInfo();
     super.initState();
   }
-  
+
   void _getUserInfo() async {
-      SharedPreferences localStorage = await SharedPreferences.getInstance();
-      var userJson = localStorage.getString('user'); 
-      var user = json.decode(userJson!);
-      setState(() {
-        userData = user;
-      });
- }
- //<--------------------- Controller ----------------->
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var userJson = localStorage.getString('user');
+    var user = json.decode(userJson!);
+    setState(() {
+      userData = user;
+    });
+  }
+  //<--------------------- Controller ----------------->
 
   TextEditingController _namecontroller = new TextEditingController();
 
@@ -36,28 +36,21 @@ class _ProfilePageState extends State<ProfilePage> {
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
-              text: TextSpan(
-                  text: "ข้อมูลส่วนตัว",
-                  style: TextStyleMenuName.bodyMenuThai,
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: '\nProfile',
-                        style: TextStyleMenuName.bodyMenuEng),
-                  ])),
+              text: TextSpan(text: "ข้อมูลส่วนตัว", style: TextStyleMenuName.bodyMenuThai, children: <TextSpan>[
+                TextSpan(text: '\nProfile', style: TextStyleMenuName.bodyMenuEng),
+              ])),
           leading: IconButton(
             onPressed: () {
               Future.delayed(const Duration(milliseconds: 200), () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const MenuPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const MenuPage()));
               });
             },
             icon: const Icon(
@@ -79,81 +72,71 @@ class _ProfilePageState extends State<ProfilePage> {
             )
           ],
         ),
-      body: SingleChildScrollView(
-         child: Stack(children: <Widget>[
+        body: SingleChildScrollView(
+            child: Stack(children: <Widget>[
           Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                // alignment: AlignmentDirectional.center,
-                height: 290,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                  stops: const [0.0, 2.0],
-                  begin: FractionalOffset.topCenter,
-                  end: FractionalOffset.bottomCenter,
-                  colors: [baseColor1, baseColor2],
-                )),
-              ),
+            alignment: Alignment.topCenter,
+            child: Container(
+              // alignment: AlignmentDirectional.center,
+              height: 290,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                stops: const [0.0, 2.0],
+                begin: FractionalOffset.topCenter,
+                end: FractionalOffset.bottomCenter,
+                colors: [baseColor1, baseColor2],
+              )),
             ),
-            Padding(
+          ),
+          Padding(
               padding: const EdgeInsets.only(top: 30),
-               child: SingleChildScrollView(
-                child: Column(
-                 mainAxisAlignment: MainAxisAlignment.center,
-                 children: [
-                   Align(
-                     alignment: Alignment.topCenter,
-                     child: CircleAvatar(
+              child: SingleChildScrollView(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: CircleAvatar(
                         backgroundColor: Colors.white,
                         radius: 72,
-                     child: CircleAvatar(
-                         radius: 70.0,
+                        child: CircleAvatar(
+                          radius: 70.0,
                           child: ClipRRect(
-                             child: Image.asset('assets/images/Profile.png'),
-                             borderRadius: BorderRadius.circular(70.0),
-                                       ) ,
-                   
-                     )
-                   
-                     ),
-                   ),
-                    SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 20),
-                       child: SizedBox(
+                            child: Image.asset('assets/images/Profile.png'),
+                            borderRadius: BorderRadius.circular(70.0),
+                          ),
+                        )),
+                  ),
+                  SingleChildScrollView(
+                      child: Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: SizedBox(
                         height: 500,
                         child: Card(
                           color: const Color.fromARGB(255, 255, 255, 255),
                           margin: const EdgeInsets.only(left: 10, right: 10),
-                          shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10)), 
-                         
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           child: Column(
                             children: [
                               const SizedBox(height: 20),
-                               Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(" ชื่อ",
-                                              style: TextStylelogin.body14),
-                                  ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(" ชื่อ", style: TextStylelogin.body14),
                                 ),
-                                Padding(
-                                padding:
-                                    EdgeInsets.symmetric(horizontal: 20.0),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20.0),
                                 child: SizedBox(
                                   height: 35.2,
                                   child: TextField(
                                     style: TextStylelogin.body16,
                                     readOnly: true,
-                                    controller:TextEditingController(text: "${userData['fullname']}"),
-      
+                                    controller: TextEditingController(text: "${userData['fullname']}"),
                                     keyboardType: TextInputType.text,
                                     decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 10,
-                                          vertical: 25.0),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 25.0),
                                       border: OutlineInputBorder(),
                                     ),
                                   ),
@@ -161,27 +144,23 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                               const SizedBox(height: 10),
                               Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(" นามสกุล",
-                                              style: TextStylelogin.body16),
-                                  ),
+                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(" นามสกุล", style: TextStylelogin.body16),
                                 ),
-                                Padding(
-                                padding:
-                                    EdgeInsets.symmetric(horizontal: 20.0),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20.0),
                                 child: SizedBox(
                                   height: 35.2,
                                   child: TextField(
                                     style: TextStylelogin.body14,
                                     readOnly: true,
-                                    controller:TextEditingController(text: "${userData['lastname']}"),
+                                    controller: TextEditingController(text: "${userData['lastname']}"),
                                     keyboardType: TextInputType.text,
                                     decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 10,
-                                          vertical: 25.0),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 25.0),
                                       border: OutlineInputBorder(),
                                     ),
                                   ),
@@ -189,19 +168,13 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                               const SizedBox(height: 300),
                               Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 25.0),
+                                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         primary: const Color(0xffE52628),
-                                        minimumSize:
-                                            const Size.fromHeight(40),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10))),
-                                    onPressed: (() {
-                                      
-                                    }),
+                                        minimumSize: const Size.fromHeight(40),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                                    onPressed: (() {}),
                                     child: const Text('แก้ไข',
                                         style: TextStyle(
                                           fontFamily: ('IBM Plex Sans Thai'),
@@ -210,28 +183,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                   )),
                             ],
                           ),
-                                     
-                        )
-
-                       ),
-                       
-                    )
-                   ),
-
-
-
-             const SizedBox(height: 10),
-                              Text('Powered by Weise Technika',
-                                  style: TextStyleFoot.bodyfoot),
-                 ],
-                )
-               )
-            ),
-              
-               
-         ])
-      )
-
-    );
+                        )),
+                  )),
+                  const SizedBox(height: 10),
+                  Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot),
+                ],
+              ))),
+        ])));
   }
 }

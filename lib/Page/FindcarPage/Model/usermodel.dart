@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-class Usermodel{
-  
+class Usermodel {
   Usermodel({
     required this.id,
     required this.fullname,
@@ -14,7 +13,6 @@ class Usermodel{
     required this.remember_token,
     required this.created_at,
     required this.updated_at,
-
   });
   late String id;
   late String fullname;
@@ -28,19 +26,16 @@ class Usermodel{
   late String created_at;
   late String updated_at;
 
-
-
   factory Usermodel.fromJson(Map<String, dynamic> json) => Usermodel(
-    id: json["id"],
-     fullname: json["fullname"],
+      id: json["id"],
+      fullname: json["fullname"],
       lastname: json["lastname"],
-       email: json["email"],
-        email_verified_at: json["email_verified_at"],
-         password: json["password"],
-          tel: json["tel"],
-           role: json["role"],
-           remember_token: json["remember_token"],
-            created_at: json["created_at"],
-             updated_at: json["updated_at"]);
-
+      email: json["email"],
+      email_verified_at: json["email_verified_at"],
+      password: json["password"],
+      tel: json["tel"],
+      role: json["role"],
+      remember_token: json["remember_token"],
+      created_at: json["created_at"],
+      updated_at: json["updated_at"]);
 }

@@ -12,32 +12,25 @@ class LoginSplash extends StatefulWidget {
 }
 
 class _LoginSplashState extends State<LoginSplash> {
-    Color baseColor1 = const Color(0xffE52628);
-    Color baseColor2 = const Color(0xffA10002);
+  Color baseColor1 = const Color(0xffE52628);
+  Color baseColor2 = const Color(0xffA10002);
   @override
-
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 4), () {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => HomePage()),
-          (Route<dynamic> route) => false);
-
-              });
-
+      Navigator.of(context)
+          .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage()), (Route<dynamic> route) => false);
+    });
   }
- Widget build(BuildContext context) {
+
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration:  BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: FractionalOffset.topCenter,
-              end: FractionalOffset.bottomCenter,
-              colors: [
-               baseColor1, baseColor2
-              ]),
+              begin: FractionalOffset.topCenter, end: FractionalOffset.bottomCenter, colors: [baseColor1, baseColor2]),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,18 +38,12 @@ class _LoginSplashState extends State<LoginSplash> {
           children: [
             Column(
               children: [
-                Lottie.asset('assets/images/loading3.json',
-                height: 200,
-                width: 200
-                ),
+                Lottie.asset('assets/images/loading3.json', height: 200, width: 200),
               ],
             ),
-            
           ],
         ),
-        
       ),
-      
     );
   }
 }

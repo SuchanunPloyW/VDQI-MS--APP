@@ -22,25 +22,17 @@ class FindCarService {
   }
 }
 
+Future<List<StationAPI>> getstation() async {
+  //get token
+  SharedPreferences localStorage = await SharedPreferences.getInstance();
+  var _authToken = localStorage.getString('token');
 
+  // response uri
+  var response = await http.get(Uri.parse('http://206.189.92.79/api/station'), headers: {
+    HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
+  });
 
-
-
-
- Future<List<StationAPI>> getstation() async {
-    //get token
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var _authToken = localStorage.getString('token');
-     
-   
-    // response uri
-    var response = await http.get(Uri.parse('http://206.189.92.79/api/station'), 
-    headers: {
-      HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
-    });
-    
-    // return value
-    var car_station = Station.fromJson(jsonDecode(response.body));
-    return car_station.data;
-  }
-
+  // return value
+  var car_station = Station.fromJson(jsonDecode(response.body));
+  return car_station.data;
+}

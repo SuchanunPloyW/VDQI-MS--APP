@@ -1,14 +1,11 @@
 // ignore_for_file: sort_child_properties_last
 
-
 import 'package:flutter/material.dart';
 
 import 'package:vdqims/Page/CheckinPage/CheckinPage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 import 'package:vdqims/Service/Model/ReqModel.dart';
 import 'package:vdqims/Style/TextStyle.dart';
-
-
 
 class MycarsdetailPage extends StatefulWidget {
   const MycarsdetailPage({Key? key, required this.model}) : super(key: key);
@@ -28,19 +25,13 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
-              text: TextSpan(
-                  text: "รายละเอียดรถยนต์",
-                  style: TextStyleMenuName.bodyMenuThai,
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: '\nCar Infomation',
-                        style: TextStyleMenuName.bodyMenuEng),
-                  ])),
+              text: TextSpan(text: "รายละเอียดรถยนต์", style: TextStyleMenuName.bodyMenuThai, children: <TextSpan>[
+                TextSpan(text: '\nCar Infomation', style: TextStyleMenuName.bodyMenuEng),
+              ])),
           leading: IconButton(
             onPressed: () {
               Future.delayed(const Duration(milliseconds: 200), () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const MycarsPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const MycarsPage()));
               });
             },
             icon: const Icon(
@@ -84,311 +75,218 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
               padding: const EdgeInsets.only(top: 5),
               child: SingleChildScrollView(
                 child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 10, top: 5),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          //////////////// /* Card white */   ////////////////
-                          SizedBox(
-                              height: 650,
+                    padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                      //////////////// /* Card white */   ////////////////
+                      SizedBox(
+                          height: 650,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              color: const Color.fromARGB(255, 255, 255, 255),
+                              margin: const EdgeInsets.only(left: 10, right: 10),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                  color: const Color.fromARGB(255, 255, 255, 255),
-                                      
-                                  margin: const EdgeInsets.only(
-                                      left: 10, right: 10),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: SingleChildScrollView(
-                                      child: Column(children: <Widget>[
-                                        //////////////// /* Card เลขตัวถัง */   ////////////////
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          child: Container(
-                                            decoration: const BoxDecoration(
-                                              boxShadow: <BoxShadow>[
-                                                BoxShadow(
-                                                  color: Color(0xffF6F6F6),
-                                                  blurRadius: 20,
-                                                  offset: Offset(5, 5),
-                                                ),
-                                              ],
+                                padding: const EdgeInsets.only(top: 10),
+                                child: SingleChildScrollView(
+                                  child: Column(children: <Widget>[
+                                    //////////////// /* Card เลขตัวถัง */   ////////////////
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10, right: 10),
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          boxShadow: <BoxShadow>[
+                                            BoxShadow(
+                                              color: Color(0xffF6F6F6),
+                                              blurRadius: 20,
+                                              offset: Offset(5, 5),
                                             ),
-                                            height: 85.0,
-                                            child: Card(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          5)),
-                                              child: ListTile(
-                                                title: Text(
-                                                  widget.model.carChassis,
-                                                  style: TextStyleMycar.title
-                                                ),
-                                                leading: AspectRatio(
-                                                  aspectRatio: 1,
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        const BorderRadius
-                                                                .all(
-                                                            Radius.circular(
-                                                                1.0)),
-                                                    child: Image.asset(
-                                                      'assets/images/car3.png',
-                                                      height: 70.0,
-                                                      width: 70,
-                                                    ),
-                                                  ),
-                                                ),
-                                                subtitle:  Text(
-                                                  ' Yaris Ativ 1.2 G ',
-                                                  style: TextStyleMycar.subtitle
+                                          ],
+                                        ),
+                                        height: 85.0,
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                          child: ListTile(
+                                            title: Text(widget.model.carChassis, style: TextStyleMycar.title),
+                                            leading: AspectRatio(
+                                              aspectRatio: 1,
+                                              child: ClipRRect(
+                                                borderRadius: const BorderRadius.all(Radius.circular(1.0)),
+                                                child: Image.asset(
+                                                  'assets/images/car3.png',
+                                                  height: 70.0,
+                                                  width: 70,
                                                 ),
                                               ),
                                             ),
+                                            subtitle: Text(' Yaris Ativ 1.2 G ', style: TextStyleMycar.subtitle),
                                           ),
                                         ),
-                                        //////////////// /* Card เลขตัวถัง */   ////////////////
+                                      ),
+                                    ),
+                                    //////////////// /* Card เลขตัวถัง */   ////////////////
 
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          child: Container(
-                                              decoration: const BoxDecoration(
-                                                boxShadow: <BoxShadow>[
-                                                  BoxShadow(
-                                                    color: Color(0xffF6F6F6),
-                                                    blurRadius: 20,
-                                                    offset: Offset(5, 5),
-                                                  ),
-                                                ],
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10, right: 10),
+                                      child: Container(
+                                          decoration: const BoxDecoration(
+                                            boxShadow: <BoxShadow>[
+                                              BoxShadow(
+                                                color: Color(0xffF6F6F6),
+                                                blurRadius: 20,
+                                                offset: Offset(5, 5),
                                               ),
-                                              height: 87.0,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  SizedBox(
-                                                    height: 87,
-                                                    width: 87,
-                                                    child: Card(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5)),
-                                                      child: Column(
-                                                        children: <Widget>[
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    top: 1),
-                                                            child: IconButton(
-                                                              icon: Image.asset(
-                                                                  'assets/images/iconscan.png'),
-                                                              iconSize: 35,
-                                                              onPressed:
-                                                                  () {},
-                                                            ),
-                                                          ),
-                                                           Text(
-                                                            "แสกน",
-                                                            style: TextStyleMycar.scan
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: SizedBox(
-                                                      height: 87,
-                                                      width: double.infinity,
-                                                      child: Card(
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5)),
-                                                        child: Stack(
-                                                          children: <Widget>[
-                                                            Align(
-                                                                alignment:
-                                                                    const AlignmentDirectional(
-                                                                        -0.05,
-                                                                        0.25),
-                                                                child: Text(
-                                                                  widget
-                                                                      .model
-                                                                      .carWhere
-                                                                      .carWhere,
-                                                                  style:
-                                                                      TextStyleMycar.station
-                                                                )),
-                                                            const Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        -0.98,
-                                                                        -0.97),
-                                                                child: Text(
-                                                                  ' สถานที่',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        14,
-                                                                    color: Color(
-                                                                        0xffD4D4D4),
-                                                                    fontFamily:
-                                                                        ('IBM Plex Sans Thai'),
-                                                                  ),
-                                                                )),
-                                                          ],
+                                            ],
+                                          ),
+                                          height: 87.0,
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              SizedBox(
+                                                height: 87,
+                                                width: 87,
+                                                child: Card(
+                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(top: 1),
+                                                        child: IconButton(
+                                                          icon: Image.asset('assets/images/iconscan.png'),
+                                                          iconSize: 35,
+                                                          onPressed: () {},
                                                         ),
                                                       ),
-                                                    ),
+                                                      Text("แสกน", style: TextStyleMycar.scan),
+                                                    ],
                                                   ),
-                                                ],
-                                              )),
-                                          /* /////////////  แถว ลำดับ  /////////////// */
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          child: Container(
-                                            decoration: const BoxDecoration(
-                                              boxShadow: <BoxShadow>[
-                                                BoxShadow(
-                                                  color: Color(0xffF6F6F6),
-                                                  blurRadius: 20,
-                                                  offset: Offset(5, 5),
                                                 ),
-                                              ],
-                                            ),
-                                            height: 87.0,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Expanded(
-                                                  child: SizedBox(
-                                                    height: 87,
-                                                    width: double.infinity,
-                                                    child: Card(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5)),
-                                                      child: Column(
-                                                        children: const <
-                                                            Widget>[
-                                                          Padding(
-                                                            padding: EdgeInsets
-                                                                .only(top: 1),
+                                              ),
+                                              Expanded(
+                                                child: SizedBox(
+                                                  height: 87,
+                                                  width: double.infinity,
+                                                  child: Card(
+                                                    shape:
+                                                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                                    child: Stack(
+                                                      children: <Widget>[
+                                                        Align(
+                                                            alignment: const AlignmentDirectional(-0.05, 0.25),
+                                                            child: Text(widget.model.carWhere.carWhere,
+                                                                style: TextStyleMycar.station)),
+                                                        const Align(
+                                                            alignment: AlignmentDirectional(-0.98, -0.97),
                                                             child: Text(
-                                                              'แถว',
-                                                              style:
-                                                                  TextStyle(
+                                                              ' สถานที่',
+                                                              style: TextStyle(
                                                                 fontSize: 14,
-                                                                color: Color(
-                                                                    0xffD4D4D4),
-                                                                fontFamily:
-                                                                    ('IBM Plex Sans Thai'),
+                                                                color: Color(0xffD4D4D4),
+                                                                fontFamily: ('IBM Plex Sans Thai'),
                                                               ),
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding: EdgeInsets
-                                                                .only(top: 1),
-                                                            child: Text(
-                                                              'A',
-                                                              style:
-                                                                  TextStyle(
-                                                                fontSize: 25,
-                                                                color: Color(
-                                                                    0xff404040),
-                                                                fontFamily:
-                                                                    ('IBM Plex Sans Thai'),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
+                                                            )),
+                                                      ],
                                                     ),
                                                   ),
                                                 ),
-                                                Expanded(
-                                                  child: SizedBox(
-                                                    height: 87,
-                                                    width: double.infinity,
-                                                    child: Card(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5)),
-                                                      child: Column(
-                                                        children: <Widget>[
-                                                          const Padding(
-                                                            padding: EdgeInsets
-                                                                .only(top: 1),
-                                                            child: Text(
-                                                              'ลำดับ',
-                                                              style:
-                                                                  TextStyle(
-                                                                fontSize: 14,
-                                                                color: Color(
-                                                                    0xffD4D4D4),
-                                                                fontFamily:
-                                                                    ('IBM Plex Sans Thai'),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    top: 1),
-                                                            child: Text(
-                                                              widget.model
-                                                                  .carPosition,
-                                                              style:
-                                                                  const TextStyle(
-                                                                fontSize: 25,
-                                                                color: Color(
-                                                                    0xff404040),
-                                                                fontFamily:
-                                                                    ('IBM Plex Sans Thai'),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
+                                              ),
+                                            ],
+                                          )),
+                                      /* /////////////  แถว ลำดับ  /////////////// */
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10, right: 10),
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          boxShadow: <BoxShadow>[
+                                            BoxShadow(
+                                              color: Color(0xffF6F6F6),
+                                              blurRadius: 20,
+                                              offset: Offset(5, 5),
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                        /* Container(
+                                        height: 87.0,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: SizedBox(
+                                                height: 87,
+                                                width: double.infinity,
+                                                child: Card(
+                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                                  child: Column(
+                                                    children: const <Widget>[
+                                                      Padding(
+                                                        padding: EdgeInsets.only(top: 1),
+                                                        child: Text(
+                                                          'แถว',
+                                                          style: TextStyle(
+                                                            fontSize: 14,
+                                                            color: Color(0xffD4D4D4),
+                                                            fontFamily: ('IBM Plex Sans Thai'),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets.only(top: 1),
+                                                        child: Text(
+                                                          'A',
+                                                          style: TextStyle(
+                                                            fontSize: 25,
+                                                            color: Color(0xff404040),
+                                                            fontFamily: ('IBM Plex Sans Thai'),
+                                                            fontWeight: FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: SizedBox(
+                                                height: 87,
+                                                width: double.infinity,
+                                                child: Card(
+                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      const Padding(
+                                                        padding: EdgeInsets.only(top: 1),
+                                                        child: Text(
+                                                          'ลำดับ',
+                                                          style: TextStyle(
+                                                            fontSize: 14,
+                                                            color: Color(0xffD4D4D4),
+                                                            fontFamily: ('IBM Plex Sans Thai'),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(top: 1),
+                                                        child: Text(
+                                                          widget.model.carPosition,
+                                                          style: const TextStyle(
+                                                            fontSize: 25,
+                                                            color: Color(0xff404040),
+                                                            fontFamily: ('IBM Plex Sans Thai'),
+                                                            fontWeight: FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    /* Container(
                                           child: Stack(
                                             children: [
                                               const Align(
@@ -455,54 +353,39 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                           ]),
                                         ), */
 
-                                        const SizedBox(height: 290),
-                                        Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 25.0),
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary:
-                                                      const Color(0xffE52628),
-                                                  minimumSize: const Size
-                                                      .fromHeight(40),
-                                                  shape:
-                                                      RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10))),
-                                              onPressed: () {
-                                                Future.delayed(
-                                                          Duration(milliseconds: 1000),
-                                                          () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (context) =>
-                                                                    CheckinPage(model: widget.model.carChassis, )));
-                                                      });
-                                              
-                                               
-                                              },
-                                              child: const Text(
-                                                  'เช็คอินเข้าสถานี',
-                                                  style: TextStyle(
-                                                    fontFamily:
-                                                        ('IBM Plex Sans Thai'),
-                                                    fontWeight:
-                                                        FontWeight.bold,
-                                                  )),
-                                            ))
-                                      ]),
-                                    ),
-                                  ),
+                                    const SizedBox(height: 290),
+                                    Padding(
+                                        padding: EdgeInsets.symmetric(horizontal: 25.0),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: const Color(0xffE52628),
+                                              minimumSize: const Size.fromHeight(40),
+                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                                          onPressed: () {
+                                            Future.delayed(Duration(milliseconds: 1000), () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) => CheckinPage(
+                                                            model: widget.model.carChassis,
+                                                          )));
+                                            });
+                                          },
+                                          child: const Text('เช็คอินเข้าสถานี',
+                                              style: TextStyle(
+                                                fontFamily: ('IBM Plex Sans Thai'),
+                                                fontWeight: FontWeight.bold,
+                                              )),
+                                        ))
+                                  ]),
                                 ),
-                              )),
+                              ),
+                            ),
+                          )),
 
-                          const SizedBox(height: 10),
-                          Text('Powered by Weise Technika',
-                              style: TextStyleFoot.bodyfoot),
-                        ])),
+                      const SizedBox(height: 10),
+                      Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot),
+                    ])),
               ),
             )
           ]),

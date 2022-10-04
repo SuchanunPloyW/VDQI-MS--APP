@@ -18,9 +18,9 @@ class FindcarPage extends StatefulWidget {
 
 class _FindcarPageState extends State<FindcarPage> {
   String qrCode = '';
-  TextEditingController chassisController =   TextEditingController(text: '');
-  
-   @override
+  TextEditingController chassisController = TextEditingController(text: '');
+
+  @override
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
   @override
@@ -36,20 +36,13 @@ class _FindcarPageState extends State<FindcarPage> {
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
-              text: TextSpan(
-                  text: "ค้นหารถยนต์",
-                  style: TextStyleMenuName.bodyMenuThai,
-                  children:  <TextSpan>[
-                    TextSpan(
-                      text: '\nFind My Car',
-                      style: TextStyleMenuName.bodyMenuEng
-                    ),
-                  ])),
+              text: TextSpan(text: "ค้นหารถยนต์", style: TextStyleMenuName.bodyMenuThai, children: <TextSpan>[
+                TextSpan(text: '\nFind My Car', style: TextStyleMenuName.bodyMenuEng),
+              ])),
           leading: IconButton(
             onPressed: () {
               Future.delayed(Duration(milliseconds: 200), () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => MenuPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => MenuPage()));
               });
             },
             icon: Icon(
@@ -96,16 +89,13 @@ class _FindcarPageState extends State<FindcarPage> {
                           /* width: 280,
                           height: 60, */
                           child: TextField(
-                            
-                          controller: chassisController =
-                                  TextEditingController(text: "$qrCode"),
-                          
-                               //controller: chassisController,
-                             /*  controller: chassisController =
+                              controller: chassisController = TextEditingController(text: "$qrCode"),
+
+                              //controller: chassisController,
+                              /*  controller: chassisController =
                                   TextEditingController(text: "$qrCode"), */
                               /* (text: "$qrCode") */
                               decoration: InputDecoration(
-                                
                                   fillColor: Color(0xff9F1E1E),
                                   filled: true,
                                   hintText: "เลขตัวถัง",
@@ -113,11 +103,9 @@ class _FindcarPageState extends State<FindcarPage> {
                                     color: Colors.grey,
                                     fontFamily: ('IBM Plex Sans Thai'),
                                   ),
-                                  contentPadding:
-                                      EdgeInsets.only(left: 15, right: 10),
+                                  contentPadding: EdgeInsets.only(left: 15, right: 10),
                                   border: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(30)),
+                                    borderRadius: BorderRadius.all(Radius.circular(30)),
                                     borderSide: BorderSide.none,
                                   ),
                                   suffixIcon: Icon(
@@ -126,17 +114,13 @@ class _FindcarPageState extends State<FindcarPage> {
                                   ),
                                   suffixIconColor: Colors.grey),
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400,
-                                  wordSpacing: 1),
+                                  color: Colors.white, fontSize: 15, fontWeight: FontWeight.w400, wordSpacing: 1),
                               onChanged: (String? value) {
                                 print(value);
                                 setState(() {
                                   qrCode = value.toString();
                                 });
-                              }
-                              ),
+                              }),
                         ),
                         SizedBox(width: 10),
                         InkWell(
@@ -151,12 +135,11 @@ class _FindcarPageState extends State<FindcarPage> {
                                 ),
                                 color: Color(0xff9F1E1E),
                                 child: IconButton(
-                                  icon: Image.asset('assets/images/iconscan.png',
-                                   height: 18.94,
-                                   width: 18.94,
-
+                                  icon: Image.asset(
+                                    'assets/images/iconscan.png',
+                                    height: 18.94,
+                                    width: 18.94,
                                   ),
-                                  
                                   onPressed: () => scanQRCode(),
                                 )),
                           ),
@@ -171,75 +154,58 @@ class _FindcarPageState extends State<FindcarPage> {
               padding: const EdgeInsets.only(top: 50),
               child: SingleChildScrollView(
                 child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 10, top: 46),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(
-                              height: 550,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                  color: const Color.fromARGB(255, 255, 255, 255),
-                                      
-                                  margin: const EdgeInsets.only(
-                                      left: 10, right: 10),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10)),
-                                  child: FutureBuilder(
-                                    future: FindCarService().getcar(),
-                                    builder: (BuildContext context,
-                                        AsyncSnapshot<List<CarAPI>?>
-                                            snapshot) {
-                                      if (snapshot.hasData) {
-                                        List<CarAPI>? data = snapshot.data;
-                                        return Align(
-                                          alignment: Alignment.topCenter,
-                                          child: ListView.builder(
-                                              shrinkWrap: true,
-                                              scrollDirection: Axis.vertical,
-                                              itemCount: data!.length,
-                                              itemBuilder: (context, index) {
-                                                //String postion = snapshot.data[index]
-                                                if (chassisController
-                                                    .text.isEmpty) {
-                                                  return Listcar(
-                                                    model: data[index],
-                                                  );
-                                                } else if (snapshot
-                                                    .data![index].carChassis
-                                                    .contains(
-                                                        chassisController
-                                                            .text)) {
-                                                  return Listcar(
-                                                    model: data[index],
-                                                  );
-                                                } else {
-                                                  return Container();
-                                                }
-                                              }
-                                              /*  Listcar(model: data[index],),  */
-                                              ),
-                                        );
-                                      }
-                                      return Center(
-                                        child: CircularProgressIndicator(
-                                          color: baseColor1,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              )),
-
-                          const SizedBox(height: 10),
-                          Text(
-                            'Powered by Weise Technika',
-                            style: TextStyleFoot.bodyfoot
-                          ),
-                        ])),
+                    padding: const EdgeInsets.only(left: 10, right: 10, top: 46),
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                      SizedBox(
+                          height: 550,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              color: const Color.fromARGB(255, 255, 255, 255),
+                              margin: const EdgeInsets.only(left: 10, right: 10),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                              child: FutureBuilder(
+                                future: FindCarService().getcar(),
+                                builder: (BuildContext context, AsyncSnapshot<List<CarAPI>?> snapshot) {
+                                  if (snapshot.hasData) {
+                                    List<CarAPI>? data = snapshot.data;
+                                    return Align(
+                                      alignment: Alignment.topCenter,
+                                      child: ListView.builder(
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.vertical,
+                                          itemCount: data!.length,
+                                          itemBuilder: (context, index) {
+                                            //String postion = snapshot.data[index]
+                                            if (chassisController.text.isEmpty) {
+                                              return Listcar(
+                                                model: data[index],
+                                              );
+                                            } else if (snapshot.data![index].carChassis
+                                                .contains(chassisController.text)) {
+                                              return Listcar(
+                                                model: data[index],
+                                              );
+                                            } else {
+                                              return Container();
+                                            }
+                                          }
+                                          /*  Listcar(model: data[index],),  */
+                                          ),
+                                    );
+                                  }
+                                  return Center(
+                                    child: CircularProgressIndicator(
+                                      color: baseColor1,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          )),
+                      const SizedBox(height: 10),
+                      Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot),
+                    ])),
               ),
             )
           ]),
@@ -260,7 +226,10 @@ class _FindcarPageState extends State<FindcarPage> {
         height: 90,
         width: 55,
         child: Padding(
-          padding: const EdgeInsets.only(left: 5, right: 5, ),
+          padding: const EdgeInsets.only(
+            left: 5,
+            right: 5,
+          ),
           child: Card(
             semanticContainer: true,
             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -268,6 +237,25 @@ class _FindcarPageState extends State<FindcarPage> {
               borderRadius: BorderRadius.circular(50.0),
             ), */
             child: ListTile(
+              /*  leading: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                color: (model.carStatus == '1' 
+                ? Colors.red
+                : Colors.green            
+                 
+                ),
+                 borderRadius: BorderRadius.circular(100) 
+                 //more than 50% of width makes circle
+              ),
+                /* child: Image.asset(
+                      'assets/images/car4.png',
+                      height: 0.0,
+                      width: 0,
+                    ), */
+
+              ) */
               leading: CircleAvatar(
                   child: ClipRRect(
                     child: Image.asset(

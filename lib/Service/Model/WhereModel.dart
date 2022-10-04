@@ -1,5 +1,5 @@
-class Position {
-  Position({
+class Where {
+  Where({
     required this.currentPage,
     required this.data,
     required this.firstPageUrl,
@@ -15,7 +15,7 @@ class Position {
     required this.total,
   });
   int currentPage;
-  late List<PositionAPI> data;
+  late List<WhereAPI> data;
   String firstPageUrl;
   int from;
   int lastPage;
@@ -28,9 +28,9 @@ class Position {
   int to;
   int total;
 
-  factory Position.fromJson(Map<String, dynamic> json) => Position(
+  factory Where.fromJson(Map<String, dynamic> json) => Where(
         currentPage: json["current_page"],
-        data: List<PositionAPI>.from(json["data"].map((e) => PositionAPI.fromJson(e))),
+        data: List<WhereAPI>.from(json["data"].map((e) => WhereAPI.fromJson(e))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
@@ -45,41 +45,18 @@ class Position {
       );
 }
 
-class PositionAPI {
-  PositionAPI({
-    required this.position_id,
-    required this.car_line,
-    required this.car_position,
-    required this.position_status,
-    required this.carWhere,
-  });
-  int position_id;
-  String car_line;
-  String car_position;
-  String position_status;
-  CarWhere carWhere;
-
-  factory PositionAPI.fromJson(Map<String, dynamic> json) => PositionAPI(
-        position_id: json["position_id"],
-        car_line: json["car_line"],
-        car_position: json["car_position"],
-        position_status: json["position_status"],
-        carWhere: CarWhere.fromJson(json["car_where"]),
-      );
-}
-
-class CarWhere {
-  CarWhere({
-    required this.whereId,
-    required this.carWhere,
+class WhereAPI {
+  WhereAPI({
+    required this.where_id,
+    required this.car_where,
   });
 
-  int whereId;
-  String carWhere;
+  int where_id;
+  String car_where;
 
-  factory CarWhere.fromJson(Map<String, dynamic> json) => CarWhere(
-        whereId: json["where_id"],
-        carWhere: json["car_where"],
+  factory WhereAPI.fromJson(Map<String, dynamic> json) => WhereAPI(
+        where_id: json["where_id"],
+        car_where: json["car_where"],
       );
 }
 

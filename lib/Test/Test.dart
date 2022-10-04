@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new
+/* // ignore_for_file: prefer_const_constructors, unnecessary_new
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -117,8 +117,7 @@ class _TestState extends State<Test> {
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: 35),
                             child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: const [
                                 Text(
                                   "A",
@@ -185,8 +184,7 @@ class _TestState extends State<Test> {
                                       border: Border.all(
                                         color: Colors.black38,
                                       ),
-                                      color:
-                                          Color.fromARGB(246, 231, 230, 236),
+                                      color: Color.fromARGB(246, 231, 230, 236),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Center(
@@ -200,39 +198,35 @@ class _TestState extends State<Test> {
                               child: Container(
                             child: FutureBuilder(
                                 future: PostionService().getposition(),
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<List<PositionAPI>?>
-                                        snapshot) {
+                                builder: (BuildContext context, AsyncSnapshot<List<PositionAPI>?> snapshot) {
                                   if (snapshot.hasData) {
                                     List<PositionAPI>? data = snapshot.data;
                                     return GridView.builder(
                                         padding: EdgeInsets.all(10),
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                           mainAxisSpacing: 10,
                                           crossAxisSpacing: 10,
                                           crossAxisCount: 6,
                                         ),
                                         itemCount: data!.length,
                                         itemBuilder: (context, index) {
-                                          return Container(
+                                          return Container(/*  */
                                             width: 30,
                                             height: 30,
                                             decoration: BoxDecoration(
                                               border: Border.all(
                                                 color: Colors.black38,
                                               ),
-                                              color: (selected == data[index].car_position) ? Colors.red : Color(0xff89EB80),
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                              color: (selected == data[index].car_position)
+                                                  ? Colors.red
+                                                  : Color(0xff89EB80),
+                                              borderRadius: BorderRadius.circular(10),
                                             ),
                                             child: InkWell(
                                               onTap: () {
                                                 setState(() {
-                                                  selected = data[index]
-                                                      .car_position;
-                                                  print(data[index]
-                                                      .car_position);
+                                                  selected = data[index].car_position;
+                                                  print(data[index].car_position);
                                                 });
                                               },
                                             ),
@@ -257,3 +251,4 @@ class _TestState extends State<Test> {
     );
   }
 }
+ */

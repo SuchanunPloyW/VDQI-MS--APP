@@ -6,16 +6,8 @@ import '../../Page/FindcarPage/Model/responsModel.dart';
 
 class PostReqAPI {
   dynamic url = 'http://206.189.92.79/api/';
-  Future<ResponseModel> PostReq(
-      String car_chassis,
-      String fullname,
-      String lastname,
-      String req_date,
-      String req_time,
-      String car_position,
-      String car_where,
-      String car_status,
-      String car_station) async {
+  Future<ResponseModel> PostReq(String car_chassis, String fullname, String lastname, String req_date, String req_time,
+      String car_position, String car_where, String car_status, String car_station) async {
     try {
       Map<String, String> data = {
         'car_chassis': car_chassis,
@@ -31,10 +23,7 @@ class PostReqAPI {
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
-      Map<String, String> headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_authToken'
-      };
+      Map<String, String> headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer $_authToken'};
       if (_authToken != null) {
         url = Uri.parse("http://206.189.92.79/api/req");
         await http.post(

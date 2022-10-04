@@ -8,7 +8,6 @@ import 'package:vdqims/Style/TextStyle.dart';
 import '../../Service/API/AuthAPI.dart';
 import '../LoginPage/LoginPage.dart';
 
-
 class SideMenu extends StatefulWidget {
   const SideMenu({super.key});
 
@@ -17,23 +16,21 @@ class SideMenu extends StatefulWidget {
 }
 
 class _SideMenuState extends State<SideMenu> {
-   var userData;
+  var userData;
   @override
   void initState() {
     _getUserInfo();
     super.initState();
   }
-  
+
   void _getUserInfo() async {
-      SharedPreferences localStorage = await SharedPreferences.getInstance();
-      var userJson = localStorage.getString('user'); 
-      var user = json.decode(userJson!);
-      setState(() {
-        userData = user;
-      });
-
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var userJson = localStorage.getString('user');
+    var user = json.decode(userJson!);
+    setState(() {
+      userData = user;
+    });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -56,44 +53,31 @@ class _SideMenuState extends State<SideMenu> {
                       const SizedBox(
                         height: 10.0,
                       ),
-                       Text(
-                        "${userData['fullname']}" + " " + "${userData['lastname']}",
-                        style: TextStyleDrawer.bodyName
-                      ),
+                      Text("${userData['fullname']}" + " " + "${userData['lastname']}",
+                          style: TextStyleDrawer.bodyName),
                       const SizedBox(
                         height: 15.0,
                       ),
                       ListTile(
-                        title:  Padding(
+                        title: Padding(
                           padding: EdgeInsets.only(left: 10),
-                          child: Text(
-                            'ข้อมูลส่วนตัว',
-                            style: TextStyleDrawer.bodyMenu
-                          ),
+                          child: Text('ข้อมูลส่วนตัว', style: TextStyleDrawer.bodyMenu),
                         ),
                         onTap: () {
                           Future.delayed(const Duration(milliseconds: 300), () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => const ProfilePage()));
+                            Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfilePage()));
                           });
                         },
                       ),
                       ListTile(
-                        title:  Padding(
+                        title: Padding(
                           padding: const EdgeInsets.only(left: 10),
-                          child: Text(
-                            'ออกจากระบบ',
-                            style: TextStyleDrawer.bodyMenu
-                          ),
+                          child: Text('ออกจากระบบ', style: TextStyleDrawer.bodyMenu),
                         ),
                         onTap: () {
                           logout();
                           Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                  builder: (context) => LoginPage()),
-                              (Route<dynamic> route) => false);
+                              MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);
                         },
                       ),
                     ])))
@@ -101,18 +85,19 @@ class _SideMenuState extends State<SideMenu> {
     );
   }
 }
- void logout() async {
-    // logout from the server ...
-    var res = await LoginAPI().getData('logout');
-    var body = json.decode(res.body);
-    /*  if (body['success']) { */
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
-    localStorage.remove('token');
-    localStorage.remove('user');
-    // localStorage.remove('user');
 
-    /*  } */
-  }
+void logout() async {
+  // logout from the server ...
+  var res = await LoginAPI().getData('logout');
+  var body = json.decode(res.body);
+  /*  if (body['success']) { */
+  SharedPreferences localStorage = await SharedPreferences.getInstance();
+  localStorage.remove('token');
+  localStorage.remove('user');
+  // localStorage.remove('user');
+
+  /*  } */
+}
 
 // suchanun0209@gmail.com
 // 0831345371
