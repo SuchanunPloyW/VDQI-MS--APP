@@ -153,7 +153,7 @@ class _CheckinPageState extends State<CheckinPage> {
                                                         ),
                                                       ),
                                                     ),
-                                                    subtitle: Text(' Yaris Ativ 1.2 G ',
+                                                    subtitle: Text('Yaris Ativ 1.2 G ',
                                                         style: TextStyleinfor.bodyinfor16light),
                                                   ),
                                                 ),
@@ -195,7 +195,7 @@ class _CheckinPageState extends State<CheckinPage> {
                                                       child: Padding(
                                                           padding: const EdgeInsets.only(left: 10, right: 10),
                                                           child: DropdownButton(
-                                                            hint: const Text('VDQI station'),
+                                                            hint:  Text('VDQI station',style: TextStyleCheckin.bodyCheckin14,),
                                                             elevation: 10,
                                                             icon: const Icon(Icons.arrow_drop_down),
                                                             iconSize: 13.0,
@@ -205,7 +205,7 @@ class _CheckinPageState extends State<CheckinPage> {
                                                             items: station_data?.map((item) {
                                                               return DropdownMenuItem(
                                                                 value: item['car_station'].toString(),
-                                                                child: new Text(item['car_station']),
+                                                                child: new Text(item['car_station'],style: TextStyle(fontFamily: ('Bai Jamjuree'),),),
                                                               );
                                                             }).toList(),
                                                             onChanged: (String? newVal) {
@@ -221,7 +221,7 @@ class _CheckinPageState extends State<CheckinPage> {
                                                     ))),
 
                                             //<--------------------   Button -------------------->
-                                            const SizedBox(height: 330),
+                                            const SizedBox(height: 350),
                                             Padding(
                                                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                                                 child: ElevatedButton(
@@ -231,11 +231,8 @@ class _CheckinPageState extends State<CheckinPage> {
                                                       shape: RoundedRectangleBorder(
                                                           borderRadius: BorderRadius.circular(10))),
                                                   onPressed: () => _CheckIn(context),
-                                                  child: const Text('เช็คอินเข้าสถานี',
-                                                      style: TextStyle(
-                                                        fontFamily: ('IBM Plex Sans Thai'),
-                                                        fontWeight: FontWeight.bold,
-                                                      )),
+                                                  child:  Text('เช็คอินเข้าสถานี',
+                                                      style: TextStyleBtn.bodybtn),
                                                 ))
                                           ]),
                                         ))))),

@@ -61,7 +61,7 @@ class ReqAPI {
   String carChassis;
   String fullname;
   String lastname;
-  DateTime reqDate;
+  String reqDate;
   String reqTime;
   String carPosition;
   CarWhere carWhere;
@@ -77,7 +77,7 @@ class ReqAPI {
         carPosition: json["car_position"],
         fullname: json["fullname"],
         lastname: json["lastname"],
-        reqDate: DateTime.parse(json["req_date"]),
+        reqDate: json["req_date"],
         reqTime: json["req_time"],
       );
 }

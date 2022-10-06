@@ -7,6 +7,8 @@ import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 import 'package:vdqims/Service/Model/ReqModel.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 
+import '../../Service/API/ReqAPI.dart';
+
 class MycarsdetailPage extends StatefulWidget {
   const MycarsdetailPage({Key? key, required this.model}) : super(key: key);
   final ReqAPI model;
@@ -94,7 +96,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 10, right: 10),
                                       child: Container(
-                                        decoration: const BoxDecoration(
+                                        /* decoration: const BoxDecoration(
                                           boxShadow: <BoxShadow>[
                                             BoxShadow(
                                               color: Color(0xffF6F6F6),
@@ -102,10 +104,10 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                               offset: Offset(5, 5),
                                             ),
                                           ],
-                                        ),
+                                        ), */
                                         height: 85.0,
                                         child: Card(
-                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                           child: ListTile(
                                             title: Text(widget.model.carChassis, style: TextStyleMycar.title),
                                             leading: AspectRatio(
@@ -119,7 +121,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                 ),
                                               ),
                                             ),
-                                            subtitle: Text(' Yaris Ativ 1.2 G ', style: TextStyleMycar.subtitle),
+                                            subtitle: Text('Yaris Ativ 1.2 G ', style: TextStyleMycar.subtitle),
                                           ),
                                         ),
                                       ),
@@ -129,7 +131,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 10, right: 10),
                                       child: Container(
-                                          decoration: const BoxDecoration(
+                                         /*  decoration: const BoxDecoration(
                                             boxShadow: <BoxShadow>[
                                               BoxShadow(
                                                 color: Color(0xffF6F6F6),
@@ -137,7 +139,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                 offset: Offset(5, 5),
                                               ),
                                             ],
-                                          ),
+                                          ), */
                                           height: 87.0,
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -182,7 +184,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                               style: TextStyle(
                                                                 fontSize: 14,
                                                                 color: Color(0xffD4D4D4),
-                                                                fontFamily: ('IBM Plex Sans Thai'),
+                                                                 fontFamily: ('Bai Jamjuree'),
                                                               ),
                                                             )),
                                                       ],
@@ -225,7 +227,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                           style: TextStyle(
                                                             fontSize: 14,
                                                             color: Color(0xffD4D4D4),
-                                                            fontFamily: ('IBM Plex Sans Thai'),
+                                                            fontFamily: ('Bai Jamjuree'),
                                                           ),
                                                         ),
                                                       ),
@@ -236,7 +238,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                           style: TextStyle(
                                                             fontSize: 25,
                                                             color: Color(0xff404040),
-                                                            fontFamily: ('IBM Plex Sans Thai'),
+                                                            fontFamily: ('Kanit'),
                                                             fontWeight: FontWeight.bold,
                                                           ),
                                                         ),
@@ -261,7 +263,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                           style: TextStyle(
                                                             fontSize: 14,
                                                             color: Color(0xffD4D4D4),
-                                                            fontFamily: ('IBM Plex Sans Thai'),
+                                                             fontFamily: ('Bai Jamjuree'),
                                                           ),
                                                         ),
                                                       ),
@@ -272,7 +274,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                           style: const TextStyle(
                                                             fontSize: 25,
                                                             color: Color(0xff404040),
-                                                            fontFamily: ('IBM Plex Sans Thai'),
+                                                            fontFamily: ('Kanit'),
                                                             fontWeight: FontWeight.bold,
                                                           ),
                                                         ),
@@ -286,74 +288,115 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                         ),
                                       ),
                                     ),
-                                    /* Container(
-                                          child: Stack(
-                                            children: [
-                                              const Align(
-                                                /* alignment:AlignmentDirectional(-0.9, 1.7), */
-                                              
-                                              child: Text('ประวัติรถยนต์',
-                                              style: TextStyle( 
-                                                fontSize:16,
-                                                fontFamily:('IBM Plex Sans Thai'),
-                                                 color:Color(0xffD4D4D4),  
-                                                       )),
-                                                          ),                                                      
-                                                                      
-                                              Align(
-                                                            alignment: const AlignmentDirectional(-0.10, 4.8),
-                                                            child: DataTable(
-                                                              horizontalMargin: 0,
-                                                              columnSpacing: 30,
-                                                              columns: const <DataColumn>[
-                                                                DataColumn(
-                                                                  label: Expanded(
-                                                                    child: Text(
-                                                                      '',
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn(
-                                                                  label: Expanded(
-                                                                    child: Text(
-                                                                      '',
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn(
-                                                                  label: Expanded(
-                                                                    child: Text(
-                                                                      '',
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                DataColumn(
-                                                                  label: Expanded(
-                                                                    child: Text(
-                                                                      '',
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                              rows: const <DataRow>[
-                                                                DataRow(
-                                                                  cells: <DataCell>[
-                                                                    DataCell(Text('26-8-2022', style: TextStyle(fontSize: 10))),
-                                                                    DataCell(Text('นำเข้า', style: TextStyle(fontSize: 10))),
-                                                                    DataCell(Text('Stock A', style: TextStyle(fontSize: 10))),
-                                                                    DataCell(Text('Suchanun', style: TextStyle(fontSize: 10))),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            
+                                     const SizedBox(height: 5),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, right: 10, top: 0),
+                                    
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(' ประวัติรถยนต์',style: TextStyle(
+                                        fontFamily: ('Kanit'),
+                                        fontSize: 18,
+                                        color: Color(0xffD4D4D4)
+                                      ),)),
+                                    
+                                    ),
+                                     const SizedBox(height: 2),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, right: 10, top: 0),
+                                    child: SingleChildScrollView(
+                                      child: FutureBuilder <List<ReqAPI>>(
+                                        future: GetReqService().getreq(),
+                                        builder: (context, snapShot) {
+                                          if (snapShot.hasData) {
+                                            return SingleChildScrollView(
+                                            
+                                              child: Container(
+                                                
+                                                
+                                                height: 190,
+                                                width: double.infinity,
+                                                
+                                                child: Padding(
+                                                  padding: const EdgeInsets.only(left: 10, right: 10, top: 0),
+                                                  child: Container(
+                                                    padding: const EdgeInsets.only(left: 10, right: 10, top: 0),
+                                                    child: DataTable(
+                                                      headingRowHeight:2,
+                                                      horizontalMargin: 0,
+                                                      columnSpacing: 0,
+                                                      
+                                                      columns: const <DataColumn>[
+                                                        DataColumn(
+                                                            label: Expanded(
+                                                              child: Text('',
+                                                              
+                                                              
+                                                              ),
+                                                            ) 
                                                           ),
+                                                        DataColumn(
+                                                            label: Expanded(
+                                                              child: Text('',
+                                                              
+                                                              
+                                                              ),
+                                                            ) 
+                                                          ),
+                                                        DataColumn(
+                                                            label: Expanded(
+                                                              child: Text('',
+                                                              
+                                                              
+                                                              ),
+                                                            ) 
+                                                          ),
+                                                        DataColumn(
+                                                            label: Expanded(
+                                                              child: Text('',
+                                                              
+                                                              
+                                                              ),
+                                                            ) 
+                                                          ),
+                                                        
+                                                    
+                                                      ],
+                                                      rows: snapShot.data!.map<DataRow>((e) {
+                                                          return DataRow(
+                                                            cells: <DataCell>[
+                                                              DataCell(Text('${e.reqDate}',style: TextStyle(fontSize: 10,fontFamily: ('Bai Jamjuree')))),
+                                                              DataCell(Text('${e.carStatus.carStatus}',style: TextStyle(fontSize: 10,fontFamily: ('Bai Jamjuree')))),
+                                                              DataCell(Text('${e.carWhere.carWhere}',style: TextStyle(fontSize: 10,fontFamily: ('Bai Jamjuree')))),
+                                                              DataCell(Text('${e.fullname}',style: TextStyle(fontSize: 10,fontFamily: ('Bai Jamjuree')))),
+                                                              
+                                                            ],
+                                                          );
+                                                        }).toList(),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                    
+                                          }
+                                          else{
+                                           return Center(
+                                                child: CircularProgressIndicator(
+                                                  color: baseColor1,
+                                                ),
+                                              );
+                                          }
+                                        }
+          
+           
+    
+                                      ),
+                                    ),
+                                  ),
+                                    
 
-
-                                          ]),
-                                        ), */
-
-                                    const SizedBox(height: 290),
+                                    const SizedBox(height: 65),
                                     Padding(
                                         padding: EdgeInsets.symmetric(horizontal: 25.0),
                                         child: ElevatedButton(

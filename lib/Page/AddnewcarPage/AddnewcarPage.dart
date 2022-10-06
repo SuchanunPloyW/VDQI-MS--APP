@@ -5,14 +5,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:vdqims/Service/API/PositionAPI.dart';
+import 'package:vdqims/Service/API/PostCarApi.dart';
 import 'package:vdqims/Service/Model/PositionModel.dart';
-import 'package:vdqims/SplashScreen/AddnewSplash.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import 'package:http/http.dart' as http;
+import '../../SplashScreen/AddnewSplash.dart';
+import '../FindcarPage/Model/responsModel.dart';
 import '../MenuPage/MenuPage.dart';
 
 class AddnewcarPage extends StatefulWidget {
@@ -24,17 +27,57 @@ class AddnewcarPage extends StatefulWidget {
 
 class _AddnewcarPageState extends State<AddnewcarPage> {
   late Future<List<PositionAPI>> _future;
+  
+  // <------------------------ updateposition ------------------------>
+  dynamic urlup = 'http://206.189.92.79/api/';
+  Future<ResponseModel> PutPosition(
+    String position_status,
+  
+  ) async {
+    try {
+      Map<String, String> data = {
+        'position_status': position_status,
+        
+      };
+      var dataencode = jsonEncode(data);
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      var _authToken = localStorage.getString('token');
+      Map<String, String> headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $_authToken'
+      };
+      if (_authToken != null) {
+        urlup = Uri.parse("http://206.189.92.79/api/position/$selected");
+        await http.put(
+          urlup,
+          body: dataencode,
+          headers: headers,
+        );
+      }
+      return ResponseModel(success: true);
+    } catch (e) {
+      return ResponseModel(success: false, message: e.toString());
+    }
+  }
   // <------------------------ ตัวแปร ------------------------>
   String? selected = "";
   List? where_data;
   String? Whereid;
-  String? Groupvalue;
-  String? _radioValue = '';
   String qrCode = '';
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
+  var userData;
 
 // <------------------------ Service ------------------------>
+  void _getUserInfo() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var userJson = localStorage.getString('user');
+    var user = json.decode(userJson!);
+    setState(() {
+      userData = user;
+    });
+  }
+
   var url = Uri.encodeFull('http://206.189.92.79/api/where');
   Future<String> where() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -55,24 +98,19 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
 
   TextEditingController StationController = TextEditingController();
   TextEditingController ChassisController = TextEditingController();
-  TextEditingController GroupController = TextEditingController();
   TextEditingController WhereController = TextEditingController();
+  TextEditingController PositionController = TextEditingController();
   // <------------------------ Function ------------------------>
 
   @override
   void initState() {
     super.initState();
     this.where();
+     _getUserInfo();
     _future = PostionService().getpositionStockB();
   }
 
-  void _handleRadioValueChange(value) {
-    setState(() {
-      print(value);
-      _radioValue = value;
-      GroupController.text = _radioValue.toString();
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -332,19 +370,20 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                         value: item['where_id']
                                                                             .toString(),
                                                                         child: new Text(
-                                                                            item['car_where']),
+                                                                            item['car_where'],style: TextStyle(fontFamily: ('Bai Jamjuree'),),),
                                                                       );
                                                                     }).toList(),
-                                                                    onChanged:
-                                                                        (String?
-                                                                            newVal) {
-                                                                      setState(
-                                                                          () {
-                                                                        Whereid =
-                                                                            newVal;
+                                                                    onChanged:(String?newVal) {
+                                                                        
+                                                                            
+                                                                      setState(() {
+                                                                          
+                                                                        Whereid = newVal;
+                                                                        WhereController.text = Whereid.toString();
+                                                                            
 
-                                                                        print(
-                                                                            Whereid);
+                                                                        print(Whereid);
+                                                                            
                                                                       });
                                                                     },
                                                                     value:
@@ -409,7 +448,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                           alignment: Alignment.topCenter,
                                                                          ); */
                                                                             }
-                                                                            return const Center(child: Text('กรุณาเลือกสถานี'));
+                                                                            return const Center(child: Text('กรุณาเลือกสถานี',style: TextStyle(fontFamily: ('Bai Jamjuree'),),));
                                                                           }))
                                                                 ]),
                                                           ),
@@ -469,7 +508,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                               style: TextStyle(
                                                                                 fontSize: 14,
                                                                                 color: Color(0xffD4D4D4),
-                                                                                fontFamily: ('IBM Plex Sans Thai'),
+                                                                                fontFamily: ('Bai Jamjuree'),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -482,7 +521,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                               style: TextStyle(
                                                                                 fontSize: 25,
                                                                                 color: Color(0xff404040),
-                                                                                fontFamily: ('IBM Plex Sans Thai'),
+                                                                                fontFamily: ('Bai Jamjuree'),
                                                                                 fontWeight: FontWeight.bold,
                                                                               ),
                                                                             ),
@@ -515,7 +554,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                               style: TextStyle(
                                                                                 fontSize: 14,
                                                                                 color: Color(0xffD4D4D4),
-                                                                                fontFamily: ('IBM Plex Sans Thai'),
+                                                                                fontFamily: ('Bai Jamjuree'),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -528,7 +567,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                               style: const TextStyle(
                                                                                 fontSize: 25,
                                                                                 color: Color(0xff404040),
-                                                                                fontFamily: ('IBM Plex Sans Thai'),
+                                                                                fontFamily: ('Bai Jamjuree'),
                                                                                 fontWeight: FontWeight.bold,
                                                                               ),
                                                                             ),
@@ -564,15 +603,9 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                             10))),
                                                         onPressed: () =>
                                                             _AddCar(context),
-                                                        child: const Text(
+                                                        child:  Text(
                                                             'บันทึก',
-                                                            style: TextStyle(
-                                                              fontFamily:
-                                                                  ('IBM Plex Sans Thai'),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            )),
+                                                            style: TextStyleBtn.bodybtn),
                                                       ))
                                                 ])))))),
                             const SizedBox(height: 10),
@@ -619,12 +652,53 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       ),
       buttons: [
         DialogButton(
-          onPressed: () {
+          /* onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const AddnewSplash()));
-          },
+          }, */
           color: const Color(0xff44A73B),
           child: Text("ยืนยัน", style: TDialogButton.body14),
+          onPressed: () async{
+            ResponseModel respones = await PostCarAPI().PostCar(
+              ChassisController.text, 
+              "1", 
+              WhereController.text, 
+              PositionController.text, 
+              "${userData['fullname']}", 
+              "${userData['lastname']}", 
+              DateFormat("yyyy-MM-dd").format(DateTime.now()),
+              DateFormat("hh:mm:ss a").format(DateTime.now()), 
+              "car_line"
+              );
+            if (respones.success) {
+              
+              ResponseModel respones1 = await PutPosition(
+                "1",
+                );
+                if(respones1.success){
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => AddnewSplash()));
+                }
+              
+             /*  ResponseModel respones1 = await UpdatePosition().PutPosition(
+                "A", 
+                PositionController.text, 
+                "1", 
+                WhereController.text
+                );
+                if(respones1.success){
+                  print("finish");
+                 /*  Navigator.push(context, MaterialPageRoute(builder: (_) => AddnewSplash()));
+ */
+                }else{
+                  print('ไม่สำเร็จ');
+                } */
+              
+              /* Navigator.push(context, MaterialPageRoute(builder: (_) => AddnewSplash())); */
+            }else {
+              print("ไม่สำเร็จ");
+
+            }
+          },
         ),
         DialogButton(
           onPressed: () => Navigator.pop(context),
@@ -776,9 +850,9 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                     child: InkWell(
                                       onTap: () {
                                         setState(() {
-                                          selected = data[index]
-                                              .car_position
-                                              .toString();
+                                          selected = data[index].car_position.toString();
+                                  
+                                          PositionController.text  = selected.toString();
                                           print(data[index].car_position);
                                         });
                                       },
@@ -937,9 +1011,9 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                     child: InkWell(
                                       onTap: () {
                                         setState(() {
-                                          selected = data[index]
-                                              .car_position
-                                              .toString();
+                                          selected = data[index].car_position.toString();
+                                          PositionController.text  = selected.toString();
+                                           
                                           print(data[index].car_position);
                                         });
                                       },
@@ -968,4 +1042,38 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       ],
     );
   }
+  
 }
+
+/* class UpdatePosition {
+  dynamic url = 'http://206.189.92.79/api/';
+  Future<ResponseModel> PutPosition(
+    String position_status,
+  
+  ) async {
+    try {
+      Map<String, String> data = {
+        'position_status': position_status,
+        
+      };
+      var dataencode = jsonEncode(data);
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      var _authToken = localStorage.getString('token');
+      Map<String, String> headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $_authToken'
+      };
+      if (_authToken != null) {
+        url = Uri.parse("http://206.189.92.79/api/position/5");
+        await http.put(
+          url,
+          body: dataencode,
+          headers: headers,
+        );
+      }
+      return ResponseModel(success: true);
+    } catch (e) {
+      return ResponseModel(success: false, message: e.toString());
+    }
+  }
+} */

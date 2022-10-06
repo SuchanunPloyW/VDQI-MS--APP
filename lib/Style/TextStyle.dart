@@ -7,13 +7,13 @@ class TextStylelogin {
     fontSize: 14,
     fontWeight: FontWeight.w300,
     color: ColorTheme.black,
-    fontFamily: ('Kanit'),
+    fontFamily: ('Bai Jamjuree'),
   );
   static TextStyle body16 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w300,
     color: ColorTheme.black,
-    fontFamily: ('Kanit'),
+    fontFamily: ('Bai Jamjuree'),
   );
 
   static TextStyle body20 = TextStyle(
@@ -21,6 +21,23 @@ class TextStylelogin {
     fontWeight: FontWeight.w600,
     color: ColorTheme.black1,
     fontFamily: ('Kanit'),
+  );
+}
+
+// < ------------------      HomePage        ------------------>
+class TextStylePage {
+  static TextStyle bodyP10 = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+    color: ColorTheme.bold,
+    fontFamily: ('Bai Jamjuree'),
+  );
+
+   static TextStyle bodyP14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: ColorTheme.bold,
+    fontFamily: ('Bai Jamjuree'),
   );
 }
 
@@ -75,7 +92,7 @@ class TextStyleCheckin {
   static TextStyle bodyCheckin14 = TextStyle(
     fontSize: 14,
     color: ColorTheme.black1,
-    fontFamily: ('Kanit'),
+    fontFamily: ('Bai Jamjuree'),
   );
 }
 
@@ -85,7 +102,7 @@ class TextStyleAdd {
     fontSize: 14,
     fontWeight: FontWeight.w300,
     color: ColorTheme.black1,
-    fontFamily: ('Kanit'),
+    fontFamily: ('Bai Jamjuree'),
   );
 }
 
@@ -101,7 +118,7 @@ class TextStyleinfor {
     fontSize: 16,
     fontWeight: FontWeight.w300,
     color: ColorTheme.black1,
-    fontFamily: ('Kanit'),
+    fontFamily: ('Bai Jamjuree'),
   );
 }
 
@@ -121,7 +138,7 @@ class TextStyleDrawer {
   static TextStyle bodyName = const TextStyle(
     fontSize: 15,
     color: Color(0xff737373),
-    fontFamily: ('Kanit'),
+    fontFamily: ('Bai Jamjuree'),
     fontWeight: FontWeight.w400,
   );
 
@@ -144,13 +161,13 @@ class TextStyleMycar {
   static TextStyle subtitle = const TextStyle(
     fontSize: 16,
     color: Color(0xff929292),
-    fontFamily: ('Kanit'),
+     fontFamily: ('Bai Jamjuree'),
     fontWeight: FontWeight.w500,
   );
   static TextStyle scan = const TextStyle(
     fontSize: 14,
     color: Color(0xff929292),
-    fontFamily: ('Kanit'),
+     fontFamily: ('Bai Jamjuree'),
     fontWeight: FontWeight.w300,
   );
 
@@ -172,11 +189,18 @@ class TextStyleSplash {
   );
 }
 
+// < ------------------      Buuton        ------------------>
+class TextStyleBtn {
+  static TextStyle bodybtn = const TextStyle(
+    fontSize: 14,
+   fontFamily: ('Bai Jamjuree'),
+  );
+}
 // < ------------------      Foot        ------------------>
 class TextStyleFoot {
   static TextStyle bodyfoot = TextStyle(
     fontSize: 11,
     color: ColorTheme.foot,
-    fontFamily: ('Kanit'),
+    fontFamily: ('Bai Jamjuree'),
   );
 }

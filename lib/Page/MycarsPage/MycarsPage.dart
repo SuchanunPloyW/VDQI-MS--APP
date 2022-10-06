@@ -9,7 +9,7 @@ import 'package:vdqims/Page/MycarsdetailPage/MycarsdetailPage.dart';
 import 'package:vdqims/Service/Model/ReqModel.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import 'package:http/http.dart' as http;
-import '../FindcarPage/Model/FindcarModel.dart';
+
 
 class MycarsPage extends StatefulWidget {
   const MycarsPage({Key? key}) : super(key: key);
@@ -165,11 +165,12 @@ class _MycarsPageState extends State<MycarsPage> {
                     )));
       }, //<<<<<<<<<< push to new screen เช่น
       child: SizedBox(
-        height: 110,
+        height: 105,
         width: 55,
         child: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+          padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
           child: Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             semanticContainer: true,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             /* shape: RoundedRectangleBorder(

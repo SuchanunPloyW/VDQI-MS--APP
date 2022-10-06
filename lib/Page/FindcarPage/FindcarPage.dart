@@ -101,7 +101,7 @@ class _FindcarPageState extends State<FindcarPage> {
                                   hintText: "เลขตัวถัง",
                                   hintStyle: TextStyle(
                                     color: Colors.grey,
-                                    fontFamily: ('IBM Plex Sans Thai'),
+                                    fontFamily: ('Bai Jamjuree'),
                                   ),
                                   contentPadding: EdgeInsets.only(left: 15, right: 10),
                                   border: OutlineInputBorder(
@@ -168,6 +168,7 @@ class _FindcarPageState extends State<FindcarPage> {
                                 future: FindCarService().getcar(),
                                 builder: (BuildContext context, AsyncSnapshot<List<CarAPI>?> snapshot) {
                                   if (snapshot.hasData) {
+                                    
                                     List<CarAPI>? data = snapshot.data;
                                     return Align(
                                       alignment: Alignment.topCenter,
@@ -223,10 +224,11 @@ class _FindcarPageState extends State<FindcarPage> {
                     )));
       }, //<<<<<<<<<< push to new screen เช่น
       child: SizedBox(
-        height: 90,
+        height: 80,
         width: 55,
         child: Padding(
           padding: const EdgeInsets.only(
+            top: 0,
             left: 5,
             right: 5,
           ),
@@ -263,13 +265,14 @@ class _FindcarPageState extends State<FindcarPage> {
                       height: 28.0,
                       width: 25,
                     ),
-                    borderRadius: BorderRadius.circular(50.0),
+                    borderRadius: BorderRadius.circular(60.0),
                   ),
                   backgroundColor: Color(0xff89EB80)),
               title: Text(
                 model.carChassis,
                 style: TextStyle(
                   fontSize: 16,
+                  color: Color(0xff404040),
                   fontFamily: ('IBM Plex Sans Thai'),
                   fontWeight: FontWeight.w500,
                 ),
@@ -277,6 +280,7 @@ class _FindcarPageState extends State<FindcarPage> {
               subtitle: Text(
                 'Yaris Ativ 1.2 G',
                 style: TextStyle(
+                  color: Color(0xff404040),
                   fontSize: 16,
                   fontFamily: ('IBM Plex Sans Thai'),
                 ),

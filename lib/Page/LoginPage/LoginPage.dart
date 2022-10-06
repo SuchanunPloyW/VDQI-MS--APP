@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
                 SizedBox(
-                  height: 380,
+                  height: 350,
                   width: MediaQuery.of(context).size.width,
                   child: Card(
                       color: const Color.fromARGB(255, 255, 255, 255),
@@ -119,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 35),
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 25.0),
                             child: ElevatedButton(
@@ -128,11 +128,8 @@ class _LoginPageState extends State<LoginPage> {
                                   minimumSize: const Size.fromHeight(40),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                               onPressed: _login,
-                              child: const Text('เข้าสู่ระบบ',
-                                  style: TextStyle(
-                                    fontFamily: ('IBM Plex Sans Thai'),
-                                    fontWeight: FontWeight.w600,
-                                  )),
+                              child:  Text('เข้าสู่ระบบ',
+                                   style: TextStyleBtn.bodybtn),
                             )),
                       ])),
                 ),

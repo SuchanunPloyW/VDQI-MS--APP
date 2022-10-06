@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -29,7 +29,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -59,7 +58,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -69,6 +67,10 @@ flutter:
     - family: IBM Plex Sans Thai
       fonts:
         - asset: assets/fonts/SansThai/IBMPlexSansThai-Regular.ttf
+    - family: Bai Jamjuree
+      fonts:
+        - asset: assets/fonts/Jamjuree/BaiJamjuree-Light.ttf
+          weight: 300
     - family: Kanit
       fonts:
         - asset: assets/fonts/Kanit/Kanit-Regular.ttf
@@ -76,22 +78,22 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/images/car1.png
-     - assets/images/setting.png
-     - assets/images/logo.png
-     - assets/images/car2.png
-     - assets/images/plus.png
-     - assets/images/car3.png
-     - assets/images/car4.png
-     - assets/images/iconscan.png
-     - assets/images/iconscan2.png
-     - assets/images/iconMenu.png
-     - assets/images/Profile.png
-     - assets/images/iconalert.png
-     - assets/images/loadingcircles.json
-     - assets/images/correct.json
-     - assets/images/loading3.json
-     - assets/images/98432-loading.json
+    - assets/images/car1.png
+    - assets/images/setting.png
+    - assets/images/logo.png
+    - assets/images/car2.png
+    - assets/images/plus.png
+    - assets/images/car3.png
+    - assets/images/car4.png
+    - assets/images/iconscan.png
+    - assets/images/iconscan2.png
+    - assets/images/iconMenu.png
+    - assets/images/Profile.png
+    - assets/images/iconalert.png
+    - assets/images/loadingcircles.json
+    - assets/images/correct.json
+    - assets/images/loading3.json
+    - assets/images/98432-loading.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

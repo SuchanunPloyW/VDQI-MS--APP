@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:vdqims/Page/AddnewcarPage/AddnewcarPage.dart';
+import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
+import 'package:vdqims/Page/HomePage/HomePage.dart';
+import 'package:vdqims/Page/LoginPage/LoginPage.dart';
+import 'package:vdqims/Page/MenuPage/MenuPage.dart';
+import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
+import 'package:vdqims/Service/API/AuthAPI.dart';
+import 'package:vdqims/SplashScreen/MainSplash.dart';
+
+
 
 void main() => runApp(MyApp());
 

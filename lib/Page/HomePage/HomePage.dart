@@ -120,18 +120,11 @@ class _HomePageState extends State<HomePage> {
                                               const SizedBox(height: 15),
                                               Text(
                                                 'ระบบบริหารจัดการสต๊อครถยนต์',
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  fontFamily: ('IBM Plex Sans Thai'),
-                                                  fontWeight: FontWeight.w400,
-                                                ),
+                                                style: TextStylePage.bodyP10
                                               ),
                                               Text(
                                                 'VDQI Stock Management',
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  fontFamily: ('IBM Plex Sans Thai'),
-                                                ),
+                                                style: TextStylePage.bodyP10
                                               )
                                             ],
                                           )),
@@ -157,18 +150,11 @@ class _HomePageState extends State<HomePage> {
                                             ),
                                             Text(
                                               'ตั้งค่าการใช้งาน',
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontFamily: ('IBM Plex Sans Thai'),
-                                                fontWeight: FontWeight.w400,
-                                              ),
+                                              style: TextStylePage.bodyP10
                                             ),
                                             Text(
                                               'Setting',
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontFamily: ('IBM Plex Sans Thai'),
-                                              ),
+                                              style: TextStylePage.bodyP10
                                             )
                                           ],
                                         )),
