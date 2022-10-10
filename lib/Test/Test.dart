@@ -16,97 +16,52 @@ class Test extends StatefulWidget {
 
 class _TestState extends State<Test> {
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: 400,
-        
-         child: FutureBuilder <List<CarAPI>>(
-          future: FindCarService().getcar(),
-          builder: (context, snapShot) {
-            if (snapShot.hasData) {
-              return SingleChildScrollView(
-               
-                child: Container(
-                  color: Colors.amber,
-                  child: DataTable(
-                    columns: const <DataColumn>[
-                      DataColumn(
-                          label: Text(
-                            '',
-                            style: TextStyle(fontStyle: FontStyle.italic),
-                          ),
-                        ),
-                      DataColumn(
-                          label: Text(
-                            '',
-                            style: TextStyle(fontStyle: FontStyle.italic),
-                          ),
-                        ),
-                  
-                    ],
-                    rows: snapShot.data!.map<DataRow>((e) {
-                        return DataRow(
-                          cells: <DataCell>[
-                            DataCell(Text('${e.carChassis}')),
-                            DataCell(Text('${e.fullname}')),
-                            
-                          ],
-                        );
-                      }).toList(),
-                  ),
+    body: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Container(height: 40, width: 40,child: Text("")),
+                    Container(height: 40, width: 40,child: Text("1")),
+                    Container(height: 40, width: 40,child: Text("2")),
+                    Container(height: 40, width: 40,child: Text("3")),
+                    Container(height: 40, width: 40,child: Text("4")),
+                    Container(height: 40, width: 40,child: Text("5")),
+                  ]
                 ),
-              );
-    
-            }
-            else{
-              return CircularProgressIndicator();
-            }
-          }
-          
-           
-    
-         )
-        
-        
-        
-      ),
-    );
-  }
-  Widget table({required CarAPI model}){
-    return DataTable(
-              columns: const <DataColumn>[
-                DataColumn(
-                label: Expanded(
-                  child: Text(
-                    'car',
-                    style: TextStyle(fontStyle: FontStyle.italic),
-                  ),
-                ),
-              ),
-              DataColumn(
-                label: Expanded(
-                  child: Text(
-                    'Name',
-                    style: TextStyle(fontStyle: FontStyle.italic),
-                  ),
-                ),
-              ),
-
-              ],
-              rows: <DataRow> [
-                 DataRow(
-                  cells: <DataCell>[
-                    DataCell(
-                      Text(model.carChassis),),
-                    DataCell(
-                      Text(model.fullname),),
-                      
-                   
+                Row(
+                  children: <Widget>[
+                    Container(height: 40, width: 40,child: Text("A")),
+                   InkWell(
+                    
+                   )
                   ],
                 ),
-
+                Row(
+                  children: <Widget>[
+                    Container(height: 40, width: 40,child: Text("B")),
+                    InkWell(onTap: () {print("10");},child:Container(height: 40, width: 40,child: Text("10"))),
+                    InkWell(onTap: () {print("11");},child:Container(height: 40, width: 40,child: Text("11"))),
+                    InkWell(onTap: () {print("12");},child:Container(height: 40, width: 40,child: Text("12"))),
+                    InkWell(onTap: () {print("13");},child:Container(height: 40, width: 40,child: Text("13"))),
+                    InkWell(onTap: () {print("13");},child:Container(height: 40, width: 40,child: Text("13"))),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Container(height: 40, width: 40,child: Text("C")),
+                    InkWell(onTap: () {print("20");},child:Container(height: 40, width: 40,child: Text("20"))),
+                    InkWell(onTap: () {print("21");},child:Container(height: 40, width: 40,child: Text("21"))),
+                    InkWell(onTap: () {print("22");},child:Container(height: 40, width: 40,child: Text("22"))),
+                    InkWell(onTap: () {print("23");},child:Container(height: 40, width: 40,child: Text("23"))),
+                    InkWell(onTap: () {print("23");},child:Container(height: 40, width: 40,child: Text("23"))),
+                  ],
+                ),
               ],
-              );
-  }
-}
+            ),
+      )
+    );
+  }}

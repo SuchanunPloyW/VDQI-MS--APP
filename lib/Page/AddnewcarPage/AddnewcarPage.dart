@@ -14,6 +14,7 @@ import 'package:vdqims/Service/API/PostCarApi.dart';
 import 'package:vdqims/Service/Model/PositionModel.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import 'package:http/http.dart' as http;
+import '../../Service/Model/PositDBModel.dart';
 import '../../SplashScreen/AddnewSplash.dart';
 import '../FindcarPage/Model/responsModel.dart';
 import '../MenuPage/MenuPage.dart';
@@ -27,17 +28,15 @@ class AddnewcarPage extends StatefulWidget {
 
 class _AddnewcarPageState extends State<AddnewcarPage> {
   late Future<List<PositionAPI>> _future;
-  
+
   // <------------------------ updateposition ------------------------>
   dynamic urlup = 'http://206.189.92.79/api/';
   Future<ResponseModel> PutPosition(
     String position_status,
-  
   ) async {
     try {
       Map<String, String> data = {
         'position_status': position_status,
-        
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -59,8 +58,12 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       return ResponseModel(success: false, message: e.toString());
     }
   }
+
   // <------------------------ ตัวแปร ------------------------>
   String? selected = "";
+  String? line = "";
+  String? sort = "";
+ /*  String? line = ""; */
   List? where_data;
   String? Whereid;
   String qrCode = '';
@@ -99,18 +102,17 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   TextEditingController StationController = TextEditingController();
   TextEditingController ChassisController = TextEditingController();
   TextEditingController WhereController = TextEditingController();
-  TextEditingController PositionController = TextEditingController();
+  TextEditingController PositController = TextEditingController();
+  TextEditingController lineController = TextEditingController();
   // <------------------------ Function ------------------------>
 
   @override
   void initState() {
     super.initState();
     this.where();
-     _getUserInfo();
+    _getUserInfo();
     _future = PostionService().getpositionStockB();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -369,21 +371,30 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                       return DropdownMenuItem(
                                                                         value: item['where_id']
                                                                             .toString(),
-                                                                        child: new Text(
-                                                                            item['car_where'],style: TextStyle(fontFamily: ('Bai Jamjuree'),),),
+                                                                        child:
+                                                                            new Text(
+                                                                          item[
+                                                                              'car_where'],
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontFamily:
+                                                                                ('Bai Jamjuree'),
+                                                                          ),
+                                                                        ),
                                                                       );
                                                                     }).toList(),
-                                                                    onChanged:(String?newVal) {
-                                                                        
-                                                                            
-                                                                      setState(() {
-                                                                          
-                                                                        Whereid = newVal;
-                                                                        WhereController.text = Whereid.toString();
-                                                                            
+                                                                    onChanged:
+                                                                        (String?
+                                                                            newVal) {
+                                                                      setState(
+                                                                          () {
+                                                                        Whereid =
+                                                                            newVal;
+                                                                        WhereController.text =
+                                                                            Whereid.toString();
 
-                                                                        print(Whereid);
-                                                                            
+                                                                        print(
+                                                                            Whereid);
                                                                       });
                                                                     },
                                                                     value:
@@ -443,12 +454,22 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                                 return StockA();
                                                                               } else if (Whereid == '2') {
                                                                                 return StockB();
+                                                                              }else if (Whereid == '3'){
+                                                                                return StockC();
+                                                                              }else if(Whereid == '4'){
+                                                                                return StockD();
                                                                               }
                                                                               /*  return Align(
                                                                           alignment: Alignment.topCenter,
                                                                          ); */
                                                                             }
-                                                                            return const Center(child: Text('กรุณาเลือกสถานี',style: TextStyle(fontFamily: ('Bai Jamjuree'),),));
+                                                                            return const Center(
+                                                                                child: Text(
+                                                                              'กรุณาเลือกสถานี',
+                                                                              style: TextStyle(
+                                                                                fontFamily: ('Bai Jamjuree'),
+                                                                              ),
+                                                                            ));
                                                                           }))
                                                                 ]),
                                                           ),
@@ -497,7 +518,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                               BorderRadius.circular(5)),
                                                                       child:
                                                                           Column(
-                                                                        children: const <
+                                                                        children:  <
                                                                             Widget>[
                                                                           Padding(
                                                                             padding:
@@ -517,7 +538,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                                 EdgeInsets.only(top: 1),
                                                                             child:
                                                                                 Text(
-                                                                              'A',
+                                                                              line!,
                                                                               style: TextStyle(
                                                                                 fontSize: 25,
                                                                                 color: Color(0xff404040),
@@ -603,9 +624,9 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                             10))),
                                                         onPressed: () =>
                                                             _AddCar(context),
-                                                        child:  Text(
-                                                            'บันทึก',
-                                                            style: TextStyleBtn.bodybtn),
+                                                        child: Text('บันทึก',
+                                                            style: TextStyleBtn
+                                                                .bodybtn),
                                                       ))
                                                 ])))))),
                             const SizedBox(height: 10),
@@ -658,45 +679,27 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           }, */
           color: const Color(0xff44A73B),
           child: Text("ยืนยัน", style: TDialogButton.body14),
-          onPressed: () async{
+          onPressed: () async {
             ResponseModel respones = await PostCarAPI().PostCar(
-              ChassisController.text, 
-              "1", 
-              WhereController.text, 
-              PositionController.text, 
-              "${userData['fullname']}", 
-              "${userData['lastname']}", 
-              DateFormat("yyyy-MM-dd").format(DateTime.now()),
-              DateFormat("hh:mm:ss a").format(DateTime.now()), 
-              "car_line"
-              );
+                ChassisController.text,
+                "1",
+                WhereController.text,
+                PositController.text,
+                "${userData['fullname']}",
+                "${userData['lastname']}",
+                DateFormat("yyyy-MM-dd").format(DateTime.now()),
+                DateFormat("hh:mm:ss a").format(DateTime.now()),
+                lineController.text);
             if (respones.success) {
-              
               ResponseModel respones1 = await PutPosition(
                 "1",
-                );
-                if(respones1.success){
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => AddnewSplash()));
-                }
-              
-             /*  ResponseModel respones1 = await UpdatePosition().PutPosition(
-                "A", 
-                PositionController.text, 
-                "1", 
-                WhereController.text
-                );
-                if(respones1.success){
-                  print("finish");
-                 /*  Navigator.push(context, MaterialPageRoute(builder: (_) => AddnewSplash()));
- */
-                }else{
-                  print('ไม่สำเร็จ');
-                } */
-              
-              /* Navigator.push(context, MaterialPageRoute(builder: (_) => AddnewSplash())); */
-            }else {
+              );
+              if (respones1.success) {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => AddnewSplash()));
+              }
+            } else {
               print("ไม่สำเร็จ");
-
             }
           },
         ),
@@ -729,7 +732,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   }
 
   //////////////// Stock A //////////////////
-  Widget StockA() {
+   Widget StockA() {
     return Column(
       children: [
         Padding(
@@ -773,6 +776,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      
                     ],
                   ),
                 ),
@@ -780,7 +784,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
             ],
           ),
         ),
-        const SizedBox(
+        SizedBox(
           height: 10,
         ),
         Expanded(
@@ -814,11 +818,11 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
               Expanded(
                 child: Container(
                   child: FutureBuilder(
-                      future: PostionService().getpositionStockA(),
+                      future: PostionService().getWhere1(),
                       builder: (BuildContext context,
-                          AsyncSnapshot<List<PositionAPI>?> snapshot) {
+                          AsyncSnapshot<List<PositDBAPI>?> snapshot) {
                         if (snapshot.hasData) {
-                          List<PositionAPI>? data = snapshot.data;
+                          List<PositDBAPI>? data = snapshot.data;
                           return Container(
                             child: GridView.builder(
                                 padding: const EdgeInsets.all(10),
@@ -834,15 +838,13 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                     width: 20,
                                     height: 20,
                                     decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.black38,
-                                      ),
-                                      color: (data[index].position_status == '1'
+                                      
+                                      color: (data[index].status == 1
                                           ? Colors.red
-                                          : data[index].position_status == '2'
+                                          : data[index].status == 2
                                               ? Colors.grey
-                                              : selected ==
-                                                      data[index].car_position
+                                              : sort == data[index].sort.toString()
+                                              
                                                   ? Colors.red
                                                   : const Color(0xff89EB80)),
                                       borderRadius: BorderRadius.circular(10),
@@ -850,15 +852,23 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                     child: InkWell(
                                       onTap: () {
                                         setState(() {
-                                          selected = data[index].car_position.toString();
-                                  
-                                          PositionController.text  = selected.toString();
-                                          print(data[index].car_position);
+                                          selected = data[index].posit .toString();
+                                          line = data[index].line .toString();
+                                          sort = data[index].sort .toString();
+                                              
+                                          PositController.text = selected.toString();
+                                          lineController.text = line.toString();
+                                              
+
+                                          print(data[index].posit);
+                                          print(data[index].line);
                                         });
                                       },
+                                      
                                       child: Center(
                                         child: Text(
-                                          data[index].car_position,
+                                          
+                                          data[index].posit.toString(),
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ),
@@ -881,7 +891,6 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       ],
     );
   }
-  //////////////// Stock B //////////////////
 
   Widget StockB() {
     return Column(
@@ -934,6 +943,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      
                     ],
                   ),
                 ),
@@ -975,11 +985,11 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
               Expanded(
                 child: Container(
                   child: FutureBuilder(
-                      future: PostionService().getpositionStockB(),
+                      future: PostionService().getWhere2(),
                       builder: (BuildContext context,
-                          AsyncSnapshot<List<PositionAPI>?> snapshot) {
+                          AsyncSnapshot<List<PositDBAPI>?> snapshot) {
                         if (snapshot.hasData) {
-                          List<PositionAPI>? data = snapshot.data;
+                          List<PositDBAPI>? data = snapshot.data;
                           return Container(
                             child: GridView.builder(
                                 padding: const EdgeInsets.all(10),
@@ -995,15 +1005,13 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                     width: 20,
                                     height: 20,
                                     decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.black38,
-                                      ),
-                                      color: (data[index].position_status == '1'
+                                      
+                                      color: (data[index].status == 1
                                           ? Colors.red
-                                          : data[index].position_status == '2'
+                                          : data[index].status == 2
                                               ? Colors.grey
-                                              : selected ==
-                                                      data[index].car_position
+                                              : sort == data[index].sort.toString()
+                                              
                                                   ? Colors.red
                                                   : const Color(0xff89EB80)),
                                       borderRadius: BorderRadius.circular(10),
@@ -1011,15 +1019,23 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                     child: InkWell(
                                       onTap: () {
                                         setState(() {
-                                          selected = data[index].car_position.toString();
-                                          PositionController.text  = selected.toString();
-                                           
-                                          print(data[index].car_position);
+                                          selected = data[index].posit .toString();
+                                          line = data[index].line .toString();
+                                          sort = data[index].sort .toString();
+                                              
+                                          PositController.text = selected.toString();
+                                          lineController.text = line.toString();
+                                              
+
+                                          print(data[index].posit);
+                                          print(data[index].line);
                                         });
                                       },
+                                      
                                       child: Center(
                                         child: Text(
-                                          data[index].car_position,
+                                          
+                                          data[index].posit.toString(),
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ),
@@ -1042,8 +1058,347 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       ],
     );
   }
-  
+
+   Widget StockC() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Container(
+                  color: Colors.white,
+                  height: 30,
+                  width: 50,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 35),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text("A",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("B",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("C",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text(
+                        "D",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "E",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Expanded(
+            child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Row(
+            children: [
+              Container(
+                width: 50,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(children: [
+                    Container(
+                        height: 250,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black38,
+                          ),
+                          color: const Color.fromARGB(246, 231, 230, 236),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Center(
+                          child: Text('Lotus'),
+                        ))
+                  ]),
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Container(
+                  child: FutureBuilder(
+                      future: PostionService().getWhere3(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+                        if (snapshot.hasData) {
+                          List<PositDBAPI>? data = snapshot.data;
+                          return Container(
+                            child: GridView.builder(
+                                padding: const EdgeInsets.all(10),
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  mainAxisSpacing: 10,
+                                  crossAxisSpacing: 10,
+                                  crossAxisCount: 5,
+                                ),
+                                itemCount: data!.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      
+                                      color: (data[index].status == 1
+                                          ? Colors.red
+                                          : data[index].status == 2
+                                              ? Colors.grey
+                                              : sort == data[index].sort.toString()
+                                              
+                                                  ? Colors.red
+                                                  : const Color(0xff89EB80)),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          selected = data[index].posit .toString();
+                                          line = data[index].line .toString();
+                                          sort = data[index].sort .toString();
+                                              
+                                          PositController.text = selected.toString();
+                                          lineController.text = line.toString();
+                                              
+
+                                          print(data[index].posit);
+                                          print(data[index].line);
+                                        });
+                                      },
+                                      
+                                      child: Center(
+                                        child: Text(
+                                          
+                                          data[index].posit.toString(),
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          );
+                        }
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.red,
+                          ),
+                        );
+                      }),
+                ),
+              )
+            ],
+          ),
+        ))
+      ],
+    );
+  }
+
+Widget StockD() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Container(
+                  color: Colors.white,
+                  height: 30,
+                  width: 50,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 35),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text("A",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("B",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("C",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text(
+                        "D",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "E",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Expanded(
+            child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Row(
+            children: [
+              Container(
+                width: 50,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(children: [
+                    Container(
+                        height: 250,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black38,
+                          ),
+                          color: const Color.fromARGB(246, 231, 230, 236),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Center(
+                          child: Text('Lotus'),
+                        ))
+                  ]),
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Container(
+                  child: FutureBuilder(
+                      future: PostionService().getWhere4(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+                        if (snapshot.hasData) {
+                          List<PositDBAPI>? data = snapshot.data;
+                          return Container(
+                            child: GridView.builder(
+                                padding: const EdgeInsets.all(10),
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  mainAxisSpacing: 10,
+                                  crossAxisSpacing: 10,
+                                  crossAxisCount: 5,
+                                ),
+                                itemCount: data!.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    width: 20,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      
+                                      color: (data[index].status == 1
+                                          ? Colors.red
+                                          : data[index].status == 2
+                                              ? Colors.grey
+                                              : sort == data[index].sort.toString()
+                                              
+                                                  ? Colors.red
+                                                  : const Color(0xff89EB80)),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          selected = data[index].posit .toString();
+                                          line = data[index].line .toString();
+                                          sort = data[index].sort .toString();
+                                              
+                                          PositController.text = selected.toString();
+                                          lineController.text = line.toString();
+                                              
+
+                                          print(data[index].posit);
+                                          print(data[index].line);
+                                        });
+                                      },
+                                      
+                                      child: Center(
+                                        child: Text(
+                                          
+                                          data[index].posit.toString(),
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          );
+                        }
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.red,
+                          ),
+                        );
+                      }),
+                ),
+              )
+            ],
+          ),
+        ))
+      ],
+    );
+  }
 }
+  
+ 
+  //////////////// Stock B //////////////////
+  
+
+  
 
 /* class UpdatePosition {
   dynamic url = 'http://206.189.92.79/api/';

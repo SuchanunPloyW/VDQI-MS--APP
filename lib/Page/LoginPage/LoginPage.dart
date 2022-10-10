@@ -88,6 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: SizedBox(
                             height: 35.2,
                             child: TextField(
+                              style: TextStyle(fontFamily: ('Bai Jamjuree'), ),
                               controller: mailController,
                               keyboardType: TextInputType.text,
                               decoration: const InputDecoration(

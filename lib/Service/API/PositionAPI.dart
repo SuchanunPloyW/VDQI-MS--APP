@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import '../Model/PositDBModel.dart';
 import '../Model/PositionModel.dart';
 
 class PostionService {
@@ -32,5 +33,63 @@ class PostionService {
     // return value
     var position = Position.fromJson(jsonDecode(response.body));
     return position.data;
+  }
+
+
+
+  Future<List<PositDBAPI>> getWhere1() async {
+    //get token
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var _authToken = localStorage.getString('token');
+
+    // response uri
+    var response = await http.get(Uri.parse('http://206.189.92.79/api/posit/where/1'), headers: {
+      HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
+    });
+    // return value
+    var positDB = PositDB.fromJson(jsonDecode(response.body));
+    return positDB.data;
+  }
+
+  Future<List<PositDBAPI>> getWhere2() async {
+    //get token
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var _authToken = localStorage.getString('token');
+
+    // response uri
+    var response = await http.get(Uri.parse('http://206.189.92.79/api/posit/where/2'), headers: {
+      HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
+    });
+    // return value
+    var positDB = PositDB.fromJson(jsonDecode(response.body));
+    return positDB.data;
+  }
+
+  Future<List<PositDBAPI>> getWhere3() async {
+    //get token
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var _authToken = localStorage.getString('token');
+
+    // response uri
+    var response = await http.get(Uri.parse('http://206.189.92.79/api/posit/where/3'), headers: {
+      HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
+    });
+    // return value
+    var positDB = PositDB.fromJson(jsonDecode(response.body));
+    return positDB.data;
+  }
+
+  Future<List<PositDBAPI>> getWhere4() async {
+    //get token
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var _authToken = localStorage.getString('token');
+
+    // response uri
+    var response = await http.get(Uri.parse('http://206.189.92.79/api/posit/where/4'), headers: {
+      HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
+    });
+    // return value
+    var positDB = PositDB.fromJson(jsonDecode(response.body));
+    return positDB.data;
   }
 }

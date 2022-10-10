@@ -295,8 +295,9 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(' ประวัติรถยนต์',style: TextStyle(
-                                        fontFamily: ('Kanit'),
-                                        fontSize: 18,
+                                        fontFamily: ('Bai Jamjuree'),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
                                         color: Color(0xffD4D4D4)
                                       ),)),
                                     
@@ -414,11 +415,8 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                           )));
                                             });
                                           },
-                                          child: const Text('เช็คอินเข้าสถานี',
-                                              style: TextStyle(
-                                                fontFamily: ('IBM Plex Sans Thai'),
-                                                fontWeight: FontWeight.bold,
-                                              )),
+                                          child:  Text('เช็คอินเข้าสถานี',
+                                              style: TextStyleBtn.bodybtn),
                                         ))
                                   ]),
                                 ),

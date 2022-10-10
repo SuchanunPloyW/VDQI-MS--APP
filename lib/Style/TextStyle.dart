@@ -33,7 +33,7 @@ class TextStylePage {
     fontFamily: ('Bai Jamjuree'),
   );
 
-   static TextStyle bodyP14 = TextStyle(
+  static TextStyle bodyP14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
     color: ColorTheme.bold,
@@ -47,20 +47,20 @@ class TextStyleAlert {
     fontSize: 18,
     fontWeight: FontWeight.bold,
     color: ColorTheme.bold,
-    fontFamily: ('Kanit'),
+    fontFamily: ('Bai Jamjuree'),
   );
   static TextStyle body15normal = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.normal,
     color: ColorTheme.grey,
-    fontFamily: ('Kanit'),
+    fontFamily: ('Bai Jamjuree'),
   );
 
   static TextStyle body15bold = TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.bold,
     color: ColorTheme.grey,
-    fontFamily: ('Kanit'),
+    fontFamily: ('Bai Jamjuree'),
   );
 }
 
@@ -161,13 +161,13 @@ class TextStyleMycar {
   static TextStyle subtitle = const TextStyle(
     fontSize: 16,
     color: Color(0xff929292),
-     fontFamily: ('Bai Jamjuree'),
+    fontFamily: ('Bai Jamjuree'),
     fontWeight: FontWeight.w500,
   );
   static TextStyle scan = const TextStyle(
     fontSize: 14,
     color: Color(0xff929292),
-     fontFamily: ('Bai Jamjuree'),
+    fontFamily: ('Bai Jamjuree'),
     fontWeight: FontWeight.w300,
   );
 
@@ -192,10 +192,12 @@ class TextStyleSplash {
 // < ------------------      Buuton        ------------------>
 class TextStyleBtn {
   static TextStyle bodybtn = const TextStyle(
+    fontWeight: FontWeight.bold,
     fontSize: 14,
-   fontFamily: ('Bai Jamjuree'),
+    fontFamily: ('Bai Jamjuree'),
   );
 }
+
 // < ------------------      Foot        ------------------>
 class TextStyleFoot {
   static TextStyle bodyfoot = TextStyle(
