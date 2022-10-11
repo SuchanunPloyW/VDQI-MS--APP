@@ -56,7 +56,9 @@ class ReqAPI {
       required this.carPosition,
       required this.carWhere,
       required this.carStatus,
-      required this.carStation});
+      required this.carStation,
+      required this.carLine
+      });
   int reqId;
   String carChassis;
   String fullname;
@@ -64,6 +66,7 @@ class ReqAPI {
   String reqDate;
   String reqTime;
   String carPosition;
+  String carLine;
   CarWhere carWhere;
   CarStatus carStatus;
   CarStation carStation;
@@ -79,6 +82,7 @@ class ReqAPI {
         lastname: json["lastname"],
         reqDate: json["req_date"],
         reqTime: json["req_time"],
+        carLine: json["car_line"],
       );
 }
 

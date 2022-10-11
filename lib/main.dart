@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vdqims/Page/AddnewcarPage/AddnewcarPage.dart';
+import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/HomePage/HomePage.dart';
 import 'package:vdqims/Page/LoginPage/LoginPage.dart';
 import 'package:vdqims/SplashScreen/AddnewSplash.dart';
@@ -26,7 +27,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: const TextTheme(),
       ),
       debugShowCheckedModeBanner: false,
-      home: const AddnewcarPage(),
+      home: const FindcarPage(),
     );
   }
 }

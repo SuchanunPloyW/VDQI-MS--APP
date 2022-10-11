@@ -57,6 +57,7 @@ class CarAPI {
     required this.lastname,
     required this.date,
     required this.time,
+    required this.carLine,
   });
 
   int carId;
@@ -68,6 +69,7 @@ class CarAPI {
   String lastname;
   DateTime date;
   String time;
+  String carLine;
 
   factory CarAPI.fromJson(Map<String, dynamic> json) => CarAPI(
         carId: json["car_id"],
@@ -79,6 +81,7 @@ class CarAPI {
         lastname: json["lastname"],
         date: DateTime.parse(json["date"]),
         time: json["time"],
+        carLine: json["car_line"],
       );
 }
 
