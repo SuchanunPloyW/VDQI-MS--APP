@@ -22,7 +22,7 @@ class _MenuPageState extends State<MenuPage> {
         appBar: AppBar(
           actions: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(right: 10),
+              padding: const EdgeInsets.only(right: 15),
               child: CircleAvatar(
                 radius: 20.0,
                 child: ClipRRect(

@@ -10,7 +10,6 @@ import 'package:vdqims/Page/FindcarPage/Model/responsModel.dart';
 import 'package:vdqims/SplashScreen/ReqSplash.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import '../../Service/API/PostReqApi.dart';
-import '../../Service/API/ReqAPI.dart';
 import '../../Service/Model/ReqModel.dart';
 import '../FindcarPage/Model/FindcarModel.dart';
 import 'package:http/http.dart' as http;
@@ -44,22 +43,40 @@ class _CardetailPageState extends State<CardetailPage> {
   Color baseColor2 = const Color(0xffA10002);
 
   @override
-  Widget build(BuildContext context) {
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Widget build(BuildContext context) {
+    
     dynamic carreq = widget.model.carChassis;
     Future<List<ReqAPI>> getreq() async {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
 
       // response uri
-      var response = await http
-          .get(Uri.parse('http://206.189.92.79/api/req/search/$carreq'), headers: {
-        HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
-      });
+      var response = await http.get(
+          Uri.parse('http://206.189.92.79/api/req/search/$carreq'),
+          headers: {
+            HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
+          });
       // return value
       var req = Req.fromJson(jsonDecode(response.body));
       return req.data;
     }
+
+    
 
     return Scaffold(
         appBar: AppBar(
@@ -145,19 +162,6 @@ class _CardetailPageState extends State<CardetailPage> {
                                             left: 10, right: 10),
                                         child: Container(
                                           height: 90,
-                                          /* decoration: new BoxDecoration(
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            color: Color.fromARGB(255, 231, 224, 224),
-                                            blurRadius: 7.0, // soften the shadow
-                                            spreadRadius: 0.0, //extend the shadow
-                                            offset: Offset(
-                                              5.0, // Move to right 10  horizontally
-                                              5.0, // Move to bottom 10 Vertically
-                                            ),
-                                          )
-                                        ],
-                                      ), */
                                           child: Card(
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
@@ -186,8 +190,15 @@ class _CardetailPageState extends State<CardetailPage> {
                                                         width: 30,
                                                       ),
                                                       radius: 62.0,
-                                                      backgroundColor:
-                                                          Color(0xff89EB80),
+                                                      backgroundColor: (widget
+                                                                  .model
+                                                                  .carStatus
+                                                                  .carStatus ==
+                                                              "นำเข้า"
+                                                          ? const Color(
+                                                              0xff89EB80)
+                                                          : const Color(
+                                                              0xffEB8080)),
                                                     )),
                                               ),
                                               subtitle: Text(
@@ -583,21 +594,22 @@ class _CardetailPageState extends State<CardetailPage> {
             ),
           ),
           onPressed: () async {
-            String cdate = DateFormat("yyyy-MM-dd").format(DateTime.now());
-            print(cdate);
-
             ResponseModel response = await PostReqAPI().PostReq(
                 widget.model.carChassis,
                 "${userData['fullname']}",
                 "${userData['lastname']}",
-                "$cdate",
+                DateFormat("yyyy-MM-dd").format(DateTime.now()),
                 DateFormat("hh:mm:ss a").format(DateTime.now()),
-                "11",
-                "5",
-                "1",
-                "2");
+                widget.model.carPosition,
+                widget.model.carWhere.whereId.toString(),
+                "2",
+                "2",
+                widget.model.carLine);
 
             if (response.success) {
+               /* ResponseModel respones1 = await PutCar(
+                "1",
+              ); */
               Navigator.push(
                   context, MaterialPageRoute(builder: (_) => Reqsplash()));
             } else {

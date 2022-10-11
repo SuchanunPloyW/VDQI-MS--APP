@@ -267,7 +267,11 @@ class _FindcarPageState extends State<FindcarPage> {
                     ),
                     borderRadius: BorderRadius.circular(60.0),
                   ),
-                  backgroundColor: Color(0xff89EB80)),
+                  backgroundColor: (model.carStatus.carStatus == "นำเข้า"
+                                    ? const Color(0xff89EB80)
+                                    : const Color(0xffEB8080)
+                  )
+                  ),
               title: Text(
                 model.carChassis,
                 style: TextStyle(

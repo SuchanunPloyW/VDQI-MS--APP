@@ -15,7 +15,10 @@ class PostReqAPI {
       String car_position,
       String car_where,
       String car_status,
-      String car_station) async {
+      String car_station,
+      String car_line
+      
+      ) async {
     try {
       Map<String, String> data = {
         'car_chassis': car_chassis,
@@ -27,6 +30,7 @@ class PostReqAPI {
         'car_where': car_where,
         'car_status': car_status,
         'car_station': car_station,
+        'car_line': car_line,
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();

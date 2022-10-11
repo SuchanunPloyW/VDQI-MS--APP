@@ -34,7 +34,7 @@ class TextStylePage {
   );
 
   static TextStyle bodyP14 = TextStyle(
-    fontSize: 14,
+    
     fontWeight: FontWeight.w400,
     color: ColorTheme.bold,
     fontFamily: ('Bai Jamjuree'),

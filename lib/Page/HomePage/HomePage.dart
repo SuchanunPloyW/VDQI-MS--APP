@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           actions: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(right: 10),
+              padding: const EdgeInsets.only(right: 15),
               child: CircleAvatar(
                 radius: 20.0,
                 child: ClipRRect(
