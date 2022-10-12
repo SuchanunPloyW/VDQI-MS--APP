@@ -66,7 +66,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   /*  String? line = ""; */
   List? where_data;
   String? Whereid;
-  String qrCode = 'AB';
+  String qrCode = '';
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
   var userData;

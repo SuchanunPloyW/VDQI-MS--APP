@@ -56,8 +56,6 @@ class _CardetailPageState extends State<CardetailPage> {
 
 
 
-
-
   Widget build(BuildContext context) {
     
     dynamic carreq = widget.model.carChassis;
@@ -75,6 +73,8 @@ class _CardetailPageState extends State<CardetailPage> {
       var req = Req.fromJson(jsonDecode(response.body));
       return req.data;
     }
+
+    
 
     
 
@@ -607,11 +607,13 @@ class _CardetailPageState extends State<CardetailPage> {
                 widget.model.carLine);
 
             if (response.success) {
-               /* ResponseModel respones1 = await PutCar(
-                "1",
-              ); */
-              Navigator.push(
+               ResponseModel respones1 = await PutCar(
+                "2",
+              );
+               if (respones1.success) {
+               Navigator.push(
                   context, MaterialPageRoute(builder: (_) => Reqsplash()));
+              }
             } else {
               print("ไม่สำเร็จ");
             }
@@ -633,5 +635,38 @@ class _CardetailPageState extends State<CardetailPage> {
         )
       ],
     ).show();
+  
   }
+  // <------------------------ updateposition ------------------------>
+  dynamic urlup = 'http://206.189.92.79/api/';
+  Future<ResponseModel> PutCar(
+    dynamic car_status,
+  ) async {
+    try {
+      Map<String, String> data = {
+        'car_status': car_status,
+      };
+      var dataencode = jsonEncode(data);
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      var _authToken = localStorage.getString('token');
+      var ID = localStorage.getString('ID');
+      Map<String, String> headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $_authToken'
+      };
+      if (_authToken != null) {
+        urlup = Uri.parse("http://206.189.92.79/api/car/$ID");
+        await http.put(
+          urlup,
+          body: dataencode,
+          headers: headers,
+        );
+      }
+      return ResponseModel(success: true);
+    } catch (e) {
+      return ResponseModel(success: false, message: e.toString());
+    }
+  }
+
+
 }

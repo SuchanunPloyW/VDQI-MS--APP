@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
 
 import 'package:vdqims/Page/FindcarPage/Model/FindcarModel.dart';
@@ -214,8 +215,12 @@ class _FindcarPageState extends State<FindcarPage> {
   }
 
   Widget Listcar({required CarAPI model}) {
-    return InkWell(
-      onTap: () {
+    return InkWell (
+      onTap: ()async  {
+        dynamic Id = model.carId.toString();
+         SharedPreferences localStorage = await SharedPreferences.getInstance();
+         localStorage.setString('ID', Id);
+        // ignore: use_build_context_synchronously
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -239,25 +244,7 @@ class _FindcarPageState extends State<FindcarPage> {
               borderRadius: BorderRadius.circular(50.0),
             ), */
             child: ListTile(
-              /*  leading: Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                color: (model.carStatus == '1' 
-                ? Colors.red
-                : Colors.green            
-                 
-                ),
-                 borderRadius: BorderRadius.circular(100) 
-                 //more than 50% of width makes circle
-              ),
-                /* child: Image.asset(
-                      'assets/images/car4.png',
-                      height: 0.0,
-                      width: 0,
-                    ), */
-
-              ) */
+             
               leading: CircleAvatar(
                   child: ClipRRect(
                     child: Image.asset(
