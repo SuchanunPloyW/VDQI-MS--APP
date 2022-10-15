@@ -3,7 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/AddnewcarPage/AddnewcarPage.dart';
+import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 import 'package:vdqims/SplashScreen/MainSplash.dart';
+
+import 'SplashScreen/MainSplash1.dart';
+import 'Test/Test.dart';
 
 void main() => runApp(MyApp());
 
@@ -47,7 +51,7 @@ var userData;
       
       home: userData == null 
           ? const MainSplash() 
-          : const AddnewcarPage()
+          : const MainSplash1()
     );
   }
 }

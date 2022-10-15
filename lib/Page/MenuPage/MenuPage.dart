@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, deprecated_member_use
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:vdqims/Page/AddnewcarPage/AddnewcarPage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
@@ -74,7 +75,7 @@ class _MenuPageState extends State<MenuPage> {
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: const EdgeInsets.only(top: 40.0),
-                            child: Text('ระบบบริหารจัดการรถยนต์', style: TextStyleMenuName.bodyMenuThai),
+                            child: AutoSizeText('ระบบบริหารจัดการรถยนต์', style: TextStyleMenuName.bodyMenuThai, maxLines: 1,maxFontSize: 16,minFontSize: 14,),
                           ),
                         ),
                       ),
@@ -82,7 +83,7 @@ class _MenuPageState extends State<MenuPage> {
                         padding: EdgeInsets.symmetric(horizontal: 20.0),
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text('VDQI Stock Management', style: TextStyleMenuName.bodyMenuEng),
+                          child: AutoSizeText('VDQI Stock Management', style: TextStyleMenuName.bodyMenuEng,maxLines: 1,minFontSize: 12,maxFontSize: 14,),
                         ),
                       ),
                       SingleChildScrollView(
@@ -103,12 +104,13 @@ class _MenuPageState extends State<MenuPage> {
                                   children: <Widget>[
                                     //------------------------------- ค้นหา  -----------------------------------
                                     Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                                         child: ElevatedButton(
+                                          
                                           style: ElevatedButton.styleFrom(
                                               primary: Color(0xffFFFFFF), // background
                                               onPrimary: Color.fromARGB(255, 224, 197, 197),
-                                              padding: EdgeInsets.all(20),
+                                              padding: EdgeInsets.all(15),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.circular(10),
                                               )),
@@ -122,8 +124,8 @@ class _MenuPageState extends State<MenuPage> {
                                             ),
                                             SizedBox(width: 30),
                                             Expanded(
-                                                child: Text(' ค้นหารถยนต์ \n Find My Car',
-                                                     style: TextStylePage.bodyP14)),
+                                                child: AutoSizeText(' ค้นหารถยนต์ \n Find My Car', maxLines: 2,minFontSize: 11,maxFontSize: 12,
+                                                     style: TextStylePage.bodyP16)),
                                             Icon(
                                               Icons.arrow_forward_ios,
                                               color: Color(0xffDDDDDD),
@@ -140,12 +142,12 @@ class _MenuPageState extends State<MenuPage> {
                                     //------------------------------- ค้นหา  -----------------------------------
                                     //------------------------------- เพิ่มรถ  -----------------------------------
                                     Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                               primary: Color(0xffFFFFFF), // background
                                               onPrimary: Color.fromARGB(255, 224, 197, 197),
-                                              padding: EdgeInsets.all(20),
+                                              padding: EdgeInsets.all(15),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.circular(10),
                                               )),
@@ -159,8 +161,8 @@ class _MenuPageState extends State<MenuPage> {
                                             ),
                                             SizedBox(width: 30),
                                             Expanded(
-                                                child: Text(' เพิ่มรถยนต์ใหม่ \n Add New Car',
-                                                    style: TextStylePage.bodyP14)),
+                                                child: AutoSizeText(' เพิ่มรถยนต์ใหม่ \n Add New Car',
+                                                    style: TextStylePage.bodyP16,maxLines: 2,minFontSize: 11,maxFontSize: 12,)),
                                             Icon(
                                               Icons.arrow_forward_ios,
                                               color: Color(0xffDDDDDD),
@@ -177,13 +179,13 @@ class _MenuPageState extends State<MenuPage> {
                                     //------------------------------- เพิ่มรถ  -----------------------------------
                                     //------------------------------- รถยนต์ของฉัน  -----------------------------------
                                     Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                               // ignore: deprecated_member_use
                                               primary: Color(0xffFFFFFF), // background
                                               onPrimary: Color.fromARGB(255, 224, 197, 197), // foreground
-                                              padding: EdgeInsets.all(20),
+                                              padding: EdgeInsets.all(15),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.circular(10),
                                               )),
@@ -197,8 +199,8 @@ class _MenuPageState extends State<MenuPage> {
                                             ),
                                             SizedBox(width: 30),
                                             Expanded(
-                                                child: Text(' รถยนต์ของฉัน \n My Cars',
-                                                   style: TextStylePage.bodyP14)),
+                                                child: AutoSizeText(' รถยนต์ของฉัน \n My Cars',
+                                                   style: TextStylePage.bodyP16 ,maxLines: 2,minFontSize: 11,maxFontSize: 12,)),
                                             Icon(
                                               Icons.arrow_forward_ios,
                                               color: Color(0xffDDDDDD),
@@ -218,7 +220,7 @@ class _MenuPageState extends State<MenuPage> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot),
+                      Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot,textScaleFactor: 1,),
                     ])),
               ),
             )

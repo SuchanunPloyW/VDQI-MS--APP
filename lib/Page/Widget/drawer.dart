@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/ProfilePage/ProfilePage.dart';
@@ -53,15 +54,15 @@ class _SideMenuState extends State<SideMenu> {
                       const SizedBox(
                         height: 10.0,
                       ),
-                      Text("${userData['fullname']}" + " " + "${userData['lastname']}",
-                          style: TextStyleDrawer.bodyName),
+                      AutoSizeText("${userData['fullname']}" + " " + "${userData['lastname']}",
+                          style: TextStyleDrawer.bodyName, maxFontSize:16 ,minFontSize: 14,),
                       const SizedBox(
                         height: 15.0,
                       ),
                       ListTile(
                         title: Padding(
                           padding: EdgeInsets.only(left: 10),
-                          child: Text('ข้อมูลส่วนตัว', style: TextStyleDrawer.bodyMenu),
+                          child: AutoSizeText('ข้อมูลส่วนตัว', style: TextStyleDrawer.bodyMenu, maxFontSize:14 ,minFontSize: 12,),
                         ),
                         onTap: () {
                           Future.delayed(const Duration(milliseconds: 300), () {
@@ -72,7 +73,7 @@ class _SideMenuState extends State<SideMenu> {
                       ListTile(
                         title: Padding(
                           padding: const EdgeInsets.only(left: 10),
-                          child: Text('ออกจากระบบ', style: TextStyleDrawer.bodyMenu),
+                          child: AutoSizeText('ออกจากระบบ', style: TextStyleDrawer.bodyMenu, maxFontSize:14 ,minFontSize: 12,),
                         ),
                         onTap: () {
                           logout();

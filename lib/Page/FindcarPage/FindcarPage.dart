@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -31,19 +32,29 @@ class _FindcarPageState extends State<FindcarPage> {
      chassisController.text = '';
   } */
   Widget build(BuildContext context) {
+    final mqData = MediaQuery.of(context);
+    final mqDataNew = mqData.copyWith(
+        textScaleFactor:
+            mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
-              text: TextSpan(text: "ค้นหารถยนต์", style: TextStyleMenuName.bodyMenuThai, children: <TextSpan>[
-                TextSpan(text: '\nFind My Car', style: TextStyleMenuName.bodyMenuEng),
-              ])),
+              text: TextSpan(
+                  text: "ค้นหารถยนต์",
+                  style: TextStyleMenuName.bodyMenuThai,
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: '\nFind My Car',
+                        style: TextStyleMenuName.bodyMenuEng),
+                  ])),
           leading: IconButton(
             onPressed: () {
               Future.delayed(Duration(milliseconds: 200), () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => MenuPage()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => MenuPage()));
               });
             },
             icon: Icon(
@@ -87,9 +98,49 @@ class _FindcarPageState extends State<FindcarPage> {
                     child: Row(
                       children: [
                         Flexible(
+                          child: MediaQuery(
+                            data: mqDataNew,
+                            child: TextFormField(
+                              onChanged: (String? value) {
+                                print(value);
+                                setState(() {
+                                  qrCode = value.toString();
+                                });
+                              },
+                              controller: chassisController =
+                                  TextEditingController(text: "$qrCode"),
+                              decoration: InputDecoration(
+                                  fillColor: Color(0xff9F1E1E),
+                                  filled: true,
+                                  hintText: "เลขตัวถัง",
+                                  hintStyle: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.grey,
+                                    fontFamily: ('Bai Jamjuree'),
+                                  ),
+                                  contentPadding:
+                                      EdgeInsets.only(left: 15, right: 10),
+                                  border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(30)),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  suffixIcon: Icon(
+                                    Icons.search,
+                                    color: Colors.grey,
+                                  ),
+                                  suffixIconColor: Colors.grey),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  wordSpacing: 1),
+                            ),
+                          ),
+
                           /* width: 280,
                           height: 60, */
-                          child: TextField(
+                          /* child: TextField(
                               controller: chassisController = TextEditingController(text: "$qrCode"),
 
                               //controller: chassisController,
@@ -101,6 +152,7 @@ class _FindcarPageState extends State<FindcarPage> {
                                   filled: true,
                                   hintText: "เลขตัวถัง",
                                   hintStyle: TextStyle(
+                                    fontSize: 16,
                                     color: Colors.grey,
                                     fontFamily: ('Bai Jamjuree'),
                                   ),
@@ -121,18 +173,19 @@ class _FindcarPageState extends State<FindcarPage> {
                                 setState(() {
                                   qrCode = value.toString();
                                 });
-                              }),
+                              }), */
                         ),
                         SizedBox(width: 10),
                         InkWell(
+                          onTap: () => scanQRCode(),
                           child: SizedBox(
-                            height: 55,
-                            width: 55,
+                            height: 65,
+                            width: 65,
                             child: Card(
                                 semanticContainer: true,
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50.0),
+                                  borderRadius: BorderRadius.circular(60.0),
                                 ),
                                 color: Color(0xff9F1E1E),
                                 child: IconButton(
@@ -155,59 +208,72 @@ class _FindcarPageState extends State<FindcarPage> {
               padding: const EdgeInsets.only(top: 50),
               child: SingleChildScrollView(
                 child: Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10, top: 46),
-                    child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-                      SizedBox(
-                          height: 550,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Card(
-                              color: const Color.fromARGB(255, 255, 255, 255),
-                              margin: const EdgeInsets.only(left: 10, right: 10),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                              child: FutureBuilder(
-                                future: FindCarService().getcar(),
-                                builder: (BuildContext context, AsyncSnapshot<List<CarAPI>?> snapshot) {
-                                  if (snapshot.hasData) {
-                                    
-                                    List<CarAPI>? data = snapshot.data;
-                                    return Align(
-                                      alignment: Alignment.topCenter,
-                                      child: ListView.builder(
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: data!.length,
-                                          itemBuilder: (context, index) {
-                                            //String postion = snapshot.data[index]
-                                            if (chassisController.text.isEmpty) {
-                                              return Listcar(
-                                                model: data[index],
-                                              );
-                                            } else if (snapshot.data![index].carChassis
-                                                .contains(chassisController.text)) {
-                                              return Listcar(
-                                                model: data[index],
-                                              );
-                                            } else {
-                                              return Container();
-                                            }
-                                          }
-                                          /*  Listcar(model: data[index],),  */
-                                          ),
-                                    );
-                                  }
-                                  return Center(
-                                    child: CircularProgressIndicator(
-                                      color: baseColor1,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          )),
-                      const SizedBox(height: 10),
-                      Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot),
-                    ])),
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, top: 46),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                              height: 550,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Card(
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
+                                  margin: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: FutureBuilder(
+                                    future: FindCarService().getcar(),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<List<CarAPI>?> snapshot) {
+                                      if (snapshot.hasData) {
+                                        List<CarAPI>? data = snapshot.data;
+                                        return Align(
+                                          alignment: Alignment.topCenter,
+                                          child: ListView.builder(
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.vertical,
+                                              itemCount: data!.length,
+                                              itemBuilder: (context, index) {
+                                                //String postion = snapshot.data[index]
+                                                if (chassisController
+                                                    .text.isEmpty) {
+                                                  return Listcar(
+                                                    model: data[index],
+                                                  );
+                                                } else if (snapshot
+                                                    .data![index].carChassis
+                                                    .contains(chassisController
+                                                        .text)) {
+                                                  return Listcar(
+                                                    model: data[index],
+                                                  );
+                                                } else {
+                                                  return Container();
+                                                }
+                                              }
+                                              /*  Listcar(model: data[index],),  */
+                                              ),
+                                        );
+                                      }
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          color: baseColor1,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              )),
+                          const SizedBox(height: 10),
+                          Text(
+                            'Powered by Weise Technika',
+                            style: TextStyleFoot.bodyfoot,
+                            textScaleFactor: 1,
+                          ),
+                        ])),
               ),
             )
           ]),
@@ -215,11 +281,11 @@ class _FindcarPageState extends State<FindcarPage> {
   }
 
   Widget Listcar({required CarAPI model}) {
-    return InkWell (
-      onTap: ()async  {
+    return InkWell(
+      onTap: () async {
         dynamic Id = model.carId.toString();
-         SharedPreferences localStorage = await SharedPreferences.getInstance();
-         localStorage.setString('ID', Id);
+        SharedPreferences localStorage = await SharedPreferences.getInstance();
+        localStorage.setString('ID', Id);
         // ignore: use_build_context_synchronously
         Navigator.push(
             context,
@@ -229,7 +295,7 @@ class _FindcarPageState extends State<FindcarPage> {
                     )));
       }, //<<<<<<<<<< push to new screen เช่น
       child: SizedBox(
-        height: 80,
+        height: 83,
         width: 55,
         child: Padding(
           padding: const EdgeInsets.only(
@@ -244,8 +310,23 @@ class _FindcarPageState extends State<FindcarPage> {
               borderRadius: BorderRadius.circular(50.0),
             ), */
             child: ListTile(
-             
-              leading: CircleAvatar(
+              leading: AspectRatio(
+                aspectRatio: 1,
+                child: ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(1.0)),
+                    child: CircleAvatar(
+                      child: Image.asset(
+                        'assets/images/car4.png',
+                        height: 28.0,
+                        width: 30,
+                      ),
+                      radius: 62.0,
+                      backgroundColor: (model.carStatus.carStatus == "นำเข้า"
+                          ? const Color(0xff89EB80)
+                          : const Color(0xffEB8080)),
+                    )),
+              ),
+              /* leading: CircleAvatar(
                   child: ClipRRect(
                     child: Image.asset(
                       'assets/images/car4.png',
@@ -255,26 +336,30 @@ class _FindcarPageState extends State<FindcarPage> {
                     borderRadius: BorderRadius.circular(60.0),
                   ),
                   backgroundColor: (model.carStatus.carStatus == "นำเข้า"
-                                    ? const Color(0xff89EB80)
-                                    : const Color(0xffEB8080)
-                  )
-                  ),
-              title: Text(
+                      ? const Color(0xff89EB80)
+                      : const Color(0xffEB8080))), */
+              title: AutoSizeText(
                 model.carChassis,
                 style: TextStyle(
                   fontSize: 16,
                   color: Color(0xff404040),
                   fontFamily: ('IBM Plex Sans Thai'),
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                 ),
+                maxFontSize: 10,
+                minFontSize: 8,
+                maxLines: 1,
               ),
-              subtitle: Text(
+              subtitle: AutoSizeText(
                 'Yaris Ativ 1.2 G',
                 style: TextStyle(
                   color: Color(0xff404040),
-                  fontSize: 16,
+                  fontSize: 14,
                   fontFamily: ('IBM Plex Sans Thai'),
                 ),
+                maxFontSize: 11,
+                minFontSize: 9,
+                maxLines: 1,
               ),
             ),
             /*  child:

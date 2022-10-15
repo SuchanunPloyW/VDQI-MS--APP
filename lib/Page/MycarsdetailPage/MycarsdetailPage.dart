@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,14 +31,16 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
       var _authToken = localStorage.getString('token');
 
       // response uri
-      var response = await http
-          .get(Uri.parse('http://206.189.92.79/api/req/search/$carreq'), headers: {
-        HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
-      });
+      var response = await http.get(
+          Uri.parse('http://206.189.92.79/api/req/search/$carreq'),
+          headers: {
+            HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
+          });
       // return value
       var req = Req.fromJson(jsonDecode(response.body));
       return req.data;
     }
+
     // --------------------------------- Scaffold -------------------------------------------------
     return Scaffold(
         appBar: AppBar(
@@ -143,9 +146,11 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                           10)),
                                               child: ListTile(
                                                 title: Text(
-                                                    widget.model.carChassis,
-                                                    style:
-                                                        TextStyleMycar.title),
+                                                  widget.model.carChassis,
+                                                  style: TextStyleMycar.title,
+                                                  maxLines: 1,
+                                                  textScaleFactor: 1,
+                                                ),
                                                 leading: AspectRatio(
                                                   aspectRatio: 1,
                                                   child: ClipRRect(
@@ -160,10 +165,13 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                     ),
                                                   ),
                                                 ),
-                                                subtitle: Text(
-                                                    'Yaris Ativ 1.2 G ',
-                                                    style: TextStyleMycar
-                                                        .subtitle),
+                                                subtitle: AutoSizeText(
+                                                  'Yaris Ativ 1.2 G ',
+                                                  maxLines: 1,
+                                                  style:
+                                                      TextStyleMycar.subtitle,
+                                                  textScaleFactor: 1,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -213,10 +221,13 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                               onPressed: () {},
                                                             ),
                                                           ),
-                                                          Text("แสกน",
-                                                              style:
-                                                                  TextStyleMycar
-                                                                      .scan),
+                                                          Text(
+                                                            "แสกน",
+                                                            style:
+                                                                TextStyleMycar
+                                                                    .scan,
+                                                            textScaleFactor: 1,
+                                                          ),
                                                         ],
                                                       ),
                                                     ),
@@ -235,17 +246,20 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                         child: Stack(
                                                           children: <Widget>[
                                                             Align(
-                                                                alignment:
-                                                                    const AlignmentDirectional(
-                                                                        -0.05,
-                                                                        0.25),
-                                                                child: Text(
-                                                                    widget
-                                                                        .model
-                                                                        .carWhere
-                                                                        .carWhere,
-                                                                    style: TextStyleMycar
-                                                                        .station)),
+                                                              alignment:
+                                                                  const AlignmentDirectional(
+                                                                      -0.05,
+                                                                      0.25),
+                                                              child: Text(
+                                                                  widget
+                                                                      .model
+                                                                      .carWhere
+                                                                      .carWhere,
+                                                                  style: TextStyleMycar
+                                                                      .station,
+                                                                  textScaleFactor:
+                                                                      1.0),
+                                                            ),
                                                             const Align(
                                                                 alignment:
                                                                     AlignmentDirectional(
@@ -262,6 +276,8 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                     fontFamily:
                                                                         ('Bai Jamjuree'),
                                                                   ),
+                                                                  textScaleFactor:
+                                                                      1,
                                                                 )),
                                                           ],
                                                         ),
@@ -303,40 +319,44 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                       .circular(
                                                                           5)),
                                                       child: Column(
-                                                        children:  <
-                                                            Widget>[
-                                                          Padding(
+                                                        children: <Widget>[
+                                                          const Padding(
                                                             padding:
                                                                 EdgeInsets.only(
                                                                     top: 1),
-                                                            child: Text(
-                                                              'แถว',
-                                                              style: TextStyle(
-                                                                fontSize: 14,
-                                                                color: Color(
-                                                                    0xffD4D4D4),
-                                                                fontFamily:
-                                                                    ('Bai Jamjuree'),
-                                                              ),
-                                                            ),
+                                                            child: AutoSizeText(
+                                                                'แถว',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 14,
+                                                                  color: Color(
+                                                                      0xffD4D4D4),
+                                                                  fontFamily:
+                                                                      ('Bai Jamjuree'),
+                                                                ),
+                                                                textScaleFactor:
+                                                                    1.0),
                                                           ),
                                                           Padding(
                                                             padding:
                                                                 EdgeInsets.only(
-                                                                    top: 1),
-                                                            child: Text(
-                                                              widget.model.carLine,
-                                                              style: TextStyle(
-                                                                fontSize: 25,
-                                                                color: Color(
-                                                                    0xff404040),
-                                                                fontFamily:
-                                                                    ('Kanit'),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                            ),
+                                                                    top: 0),
+                                                            child: AutoSizeText(
+                                                                widget.model
+                                                                    .carLine,
+                                                                style:
+                                                                    const TextStyle(
+                                                                  fontSize: 36,
+                                                                  color: Color(
+                                                                      0xff404040),
+                                                                  fontFamily:
+                                                                      ('Kanit'),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                                textScaleFactor:
+                                                                    1.0),
                                                           ),
                                                         ],
                                                       ),
@@ -360,16 +380,17 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                             padding:
                                                                 EdgeInsets.only(
                                                                     top: 1),
-                                                            child: Text(
-                                                              'ลำดับ',
-                                                              style: TextStyle(
-                                                                fontSize: 14,
-                                                                color: Color(
-                                                                    0xffD4D4D4),
-                                                                fontFamily:
-                                                                    ('Bai Jamjuree'),
-                                                              ),
-                                                            ),
+                                                            child: Text('ลำดับ',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 14,
+                                                                  color: Color(
+                                                                      0xffD4D4D4),
+                                                                  fontFamily:
+                                                                      ('Bai Jamjuree'),
+                                                                ),
+                                                                textScaleFactor:
+                                                                    1.0),
                                                           ),
                                                           Padding(
                                                             padding:
@@ -377,20 +398,21 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                         .only(
                                                                     top: 1),
                                                             child: Text(
-                                                              widget.model
-                                                                  .carPosition,
-                                                              style:
-                                                                  const TextStyle(
-                                                                fontSize: 25,
-                                                                color: Color(
-                                                                    0xff404040),
-                                                                fontFamily:
-                                                                    ('Kanit'),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                            ),
+                                                                widget.model
+                                                                    .carPosition,
+                                                                style:
+                                                                    const TextStyle(
+                                                                  fontSize: 36,
+                                                                  color: Color(
+                                                                      0xff404040),
+                                                                  fontFamily:
+                                                                      ('Kanit'),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                                textScaleFactor:
+                                                                    1.0),
                                                           ),
                                                         ],
                                                       ),
@@ -415,6 +437,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 16,
                                                     color: Color(0xffD4D4D4)),
+                                                textScaleFactor: 1,
                                               )),
                                         ),
                                         const SizedBox(height: 2),
@@ -444,81 +467,99 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                     left: 10,
                                                                     right: 10,
                                                                     top: 0),
-                                                            child: DataTable(
-                                                              headingRowHeight:
-                                                                  2,
-                                                              horizontalMargin:
-                                                                  0,
-                                                              columnSpacing: 0,
-                                                              columns: const <
-                                                                  DataColumn>[
-                                                                DataColumn(
-                                                                    label:
-                                                                        Expanded(
-                                                                  child: Text(
-                                                                    '',
-                                                                  ),
-                                                                )),
-                                                                DataColumn(
-                                                                    label:
-                                                                        Expanded(
-                                                                  child: Text(
-                                                                    '',
-                                                                  ),
-                                                                )),
-                                                                DataColumn(
-                                                                    label:
-                                                                        Expanded(
-                                                                  child: Text(
-                                                                    '',
-                                                                  ),
-                                                                )),
-                                                                DataColumn(
-                                                                    label:
-                                                                        Expanded(
-                                                                  child: Text(
-                                                                    '',
-                                                                  ),
-                                                                )),
-                                                              ],
-                                                              rows: snapShot
-                                                                  .data!
-                                                                  .map<DataRow>(
-                                                                      (e) {
-                                                                return DataRow(
-                                                                  cells: <
-                                                                      DataCell>[
-                                                                    DataCell(Text(
+                                                            child: SingleChildScrollView(
+                                                              child: DataTable(
+                                                                headingRowHeight:
+                                                                    2,
+                                                                horizontalMargin:
+                                                                    0,
+                                                                columnSpacing: 0,
+                                                                columns: const <
+                                                                    DataColumn>[
+                                                                  DataColumn(
+                                                                      label:
+                                                                          Expanded(
+                                                                    child: Text(
+                                                                      '',
+                                                                    ),
+                                                                  )),
+                                                                  DataColumn(
+                                                                      label:
+                                                                          Expanded(
+                                                                    child: Text(
+                                                                      '',
+                                                                    ),
+                                                                  )),
+                                                                  DataColumn(
+                                                                      label:
+                                                                          Expanded(
+                                                                    child: Text(
+                                                                      '',
+                                                                    ),
+                                                                  )),
+                                                                  DataColumn(
+                                                                      label:
+                                                                          Expanded(
+                                                                    child: Text(
+                                                                      '',
+                                                                    ),
+                                                                  )),
+                                                                ],
+                                                                rows: snapShot
+                                                                    .data!
+                                                                    .map<DataRow>(
+                                                                        (e) {
+                                                                  return DataRow(
+                                                                    cells: <
+                                                                        DataCell>[
+                                                                      DataCell(
+                                                                          Text(
                                                                         '${e.reqDate}',
                                                                         style: const TextStyle(
                                                                             fontSize:
-                                                                                10,
+                                                                                14,
                                                                             fontFamily:
-                                                                                ('Bai Jamjuree')))),
-                                                                    DataCell(Text(
+                                                                                ('Bai Jamjuree')),
+                                                                        textScaleFactor:
+                                                                            1,
+                                                                      )),
+                                                                      DataCell(
+                                                                          Text(
                                                                         '${e.carStatus.carStatus}',
                                                                         style: const TextStyle(
                                                                             fontSize:
-                                                                                10,
+                                                                                14,
                                                                             fontFamily:
-                                                                                ('Bai Jamjuree')))),
-                                                                    DataCell(Text(
+                                                                                ('Bai Jamjuree')),
+                                                                        textScaleFactor:
+                                                                            1,
+                                                                      )),
+                                                                      DataCell(
+                                                                          Text(
                                                                         '${e.carWhere.carWhere}',
                                                                         style: const TextStyle(
                                                                             fontSize:
-                                                                                10,
+                                                                                14,
                                                                             fontFamily:
-                                                                                ('Bai Jamjuree')))),
-                                                                    DataCell(Text(
+                                                                                ('Bai Jamjuree')),
+                                                                        textScaleFactor:
+                                                                            1,
+                                                                      )),
+                                                                      DataCell(
+                                                                          Text(
                                                                         '${e.fullname}',
                                                                         style: const TextStyle(
                                                                             fontSize:
-                                                                                10,
+                                                                                14,
                                                                             fontFamily:
-                                                                                ('Bai Jamjuree')))),
-                                                                  ],
-                                                                );
-                                                              }).toList(),
+                                                                                ('Bai Jamjuree')),
+                                                                        textScaleFactor:
+                                                                            1,
+                                                                      )),
+                                                                    ],
+                                                                  );
+                                                                }).toList(),
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
@@ -532,8 +573,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                       ),
                                                     );
                                                   }
-                                                }
-                                                ),
+                                                }),
                                           ),
                                         ),
 
@@ -567,8 +607,12 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                               )));
                                                 });
                                               },
-                                              child: Text('เช็คอินเข้าสถานี',
-                                                  style: TextStyleBtn.bodybtn),
+                                              child: AutoSizeText(
+                                                'เช็คอินเข้าสถานี',
+                                                style: TextStyleBtn.bodybtn,
+                                                maxFontSize: 12,
+                                                minFontSize: 11,
+                                              ),
                                             ))
                                       ]),
                                     ),

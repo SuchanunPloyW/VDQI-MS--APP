@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vdqims/Style/ColorTheme.dart';
 
 // < ------------------      login        ------------------>
-class TextStylelogin {
+class TextStylelogin  {
   static TextStyle body14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w300,
@@ -12,6 +12,12 @@ class TextStylelogin {
   static TextStyle body16 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w300,
+    color: ColorTheme.black,
+    fontFamily: ('Bai Jamjuree'),
+  );
+  static TextStyle body16b = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
     color: ColorTheme.black,
     fontFamily: ('Bai Jamjuree'),
   );
@@ -31,10 +37,11 @@ class TextStylePage {
     fontWeight: FontWeight.w400,
     color: ColorTheme.bold,
     fontFamily: ('Bai Jamjuree'),
+    
   );
 
-  static TextStyle bodyP14 = TextStyle(
-    
+  static TextStyle bodyP16 = TextStyle(
+    fontSize: 16,
     fontWeight: FontWeight.w400,
     color: ColorTheme.bold,
     fontFamily: ('Bai Jamjuree'),
@@ -50,14 +57,14 @@ class TextStyleAlert {
     fontFamily: ('Bai Jamjuree'),
   );
   static TextStyle body15normal = TextStyle(
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: FontWeight.normal,
     color: ColorTheme.grey,
     fontFamily: ('Bai Jamjuree'),
   );
 
   static TextStyle body15bold = TextStyle(
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: FontWeight.bold,
     color: ColorTheme.grey,
     fontFamily: ('Bai Jamjuree'),
@@ -89,8 +96,8 @@ class TextStyleCheckin {
     color: ColorTheme.black1,
     fontFamily: ('Kanit'),
   );
-  static TextStyle bodyCheckin14 = TextStyle(
-    fontSize: 14,
+  static TextStyle bodyCheckin16 = TextStyle(
+    fontSize: 16,
     color: ColorTheme.black1,
     fontFamily: ('Bai Jamjuree'),
   );
@@ -108,14 +115,14 @@ class TextStyleAdd {
 
 // < ------------------      Information        ------------------>
 class TextStyleinfor {
-  static TextStyle bodyinfor16 = TextStyle(
-    fontSize: 16,
+  static TextStyle bodyinfor18 = TextStyle(
+    fontSize: 18,
     fontWeight: FontWeight.bold,
     color: ColorTheme.black1,
     fontFamily: ('Kanit'),
   );
-  static TextStyle bodyinfor16light = TextStyle(
-    fontSize: 16,
+  static TextStyle bodyinfor18light = TextStyle(
+    fontSize: 18,
     fontWeight: FontWeight.w300,
     color: ColorTheme.black1,
     fontFamily: ('Bai Jamjuree'),
@@ -136,7 +143,7 @@ class TDialogButton {
 // < ------------------      Drawer        ------------------>
 class TextStyleDrawer {
   static TextStyle bodyName = const TextStyle(
-    fontSize: 15,
+    fontSize: 16,
     color: Color(0xff737373),
     fontFamily: ('Bai Jamjuree'),
     fontWeight: FontWeight.w400,
@@ -153,7 +160,7 @@ class TextStyleDrawer {
 //<--------------------- MyCar Page ----------------->
 class TextStyleMycar {
   static TextStyle title = const TextStyle(
-    fontSize: 16,
+    fontSize: 18,
     color: Color(0xff404040),
     fontFamily: ('Kanit'),
     fontWeight: FontWeight.bold,
@@ -172,7 +179,7 @@ class TextStyleMycar {
   );
 
   static TextStyle station = const TextStyle(
-    fontSize: 30,
+    fontSize: 35,
     color: Color(0xff404040),
     fontFamily: ('Kanit'),
     fontWeight: FontWeight.bold,
@@ -200,6 +207,7 @@ class TextStyleBtn {
 
 // < ------------------      Foot        ------------------>
 class TextStyleFoot {
+  
   static TextStyle bodyfoot = TextStyle(
     fontSize: 11,
     color: ColorTheme.foot,

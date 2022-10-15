@@ -2,12 +2,14 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 import 'package:vdqims/Service/API/PositionAPI.dart';
 import 'package:vdqims/Service/API/PostCarApi.dart';
@@ -41,12 +43,13 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
+      var IDposit = localStorage.getString('ID');
       Map<String, String> headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        urlup = Uri.parse("http://206.189.92.79/api/posit/$selected");
+        urlup = Uri.parse("http://206.189.92.79/api/posit/$IDposit");
         await http.put(
           urlup,
           body: dataencode,
@@ -116,7 +119,11 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
 
   @override
   Widget build(BuildContext context) {
-    final mqHeight = MediaQuery.of(context).size.height;
+    final mqData = MediaQuery.of(context);
+    final mqDataNew = mqData.copyWith(
+        textScaleFactor:
+            mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
+
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: 70,
@@ -210,6 +217,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                             alignment: Alignment
                                                                 .centerLeft,
                                                             child: Text(
+                                                                textScaleFactor:
+                                                                    1,
                                                                 'เลขตัวถัง',
                                                                 style: TextStyleAdd
                                                                     .bodyAdd14),
@@ -229,40 +238,41 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                 child: SizedBox(
                                                                   height: 35.2,
                                                                   child:
-                                                                      TextField(
-                                                                    controller: ChassisController =
-                                                                        TextEditingController(
-                                                                            text:
-                                                                                "$qrCode"),
-                                                                    style: TextStyleAlert
-                                                                        .body15bold,
-                                                                    readOnly:
-                                                                        true,
-                                                                    decoration:
-                                                                        InputDecoration(
-                                                                      contentPadding: const EdgeInsets
-                                                                              .symmetric(
-                                                                          vertical:
-                                                                              25.0,
-                                                                          horizontal:
-                                                                              10),
-                                                                      focusedBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(5.5),
-                                                                      ),
-                                                                      enabledBorder:
-                                                                          const OutlineInputBorder(
-                                                                        borderSide: const BorderSide(
-                                                                            color:
-                                                                                const Color(0xffE2E8F0),
-                                                                            width: 1),
-                                                                      ),
-                                                                      filled:
+                                                                      MediaQuery(
+                                                                    data:
+                                                                        mqDataNew,
+                                                                    child:
+                                                                        TextFormField(
+                                                                      controller:
+                                                                          ChassisController =
+                                                                              TextEditingController(text: "$qrCode"),
+                                                                      style: TextStyleAlert
+                                                                          .body15bold,
+                                                                      readOnly:
                                                                           true,
-                                                                      fillColor:
-                                                                          Colors
-                                                                              .white,
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        contentPadding: const EdgeInsets.symmetric(
+                                                                            vertical:
+                                                                                25.0,
+                                                                            horizontal:
+                                                                                10),
+                                                                        focusedBorder:
+                                                                            OutlineInputBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(5.5),
+                                                                        ),
+                                                                        enabledBorder:
+                                                                            const OutlineInputBorder(
+                                                                          borderSide: const BorderSide(
+                                                                              color: const Color(0xffE2E8F0),
+                                                                              width: 1),
+                                                                        ),
+                                                                        filled:
+                                                                            true,
+                                                                        fillColor:
+                                                                            Colors.white,
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
@@ -316,9 +326,13 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                           child: Align(
                                                             alignment: Alignment
                                                                 .centerLeft,
-                                                            child: Text('สถานี',
-                                                                style: TextStyleAdd
-                                                                    .bodyAdd14),
+                                                            child: Text(
+                                                              'สถานี',
+                                                              style: TextStyleAdd
+                                                                  .bodyAdd14,
+                                                              textScaleFactor:
+                                                                  1,
+                                                            ),
                                                           ),
                                                         ),
                                                         Padding(
@@ -349,8 +363,12 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                           10),
                                                                   child:
                                                                       DropdownButton(
-                                                                    hint: const Text(
-                                                                        'VDQI station'),
+                                                                    hint:
+                                                                        const Text(
+                                                                      'VDQI station',
+                                                                      textScaleFactor:
+                                                                          1,
+                                                                    ),
                                                                     elevation:
                                                                         10,
                                                                     icon: const Icon(
@@ -380,6 +398,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                             fontFamily:
                                                                                 ('Bai Jamjuree'),
                                                                           ),
+                                                                          textScaleFactor:
+                                                                              1,
                                                                         ),
                                                                       );
                                                                     }).toList(),
@@ -417,9 +437,12 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                             alignment: Alignment
                                                                 .centerLeft,
                                                             child: Text(
-                                                                'ตำแหน่ง',
-                                                                style: TextStyleAdd
-                                                                    .bodyAdd14),
+                                                              'ตำแหน่ง',
+                                                              style: TextStyleAdd
+                                                                  .bodyAdd14,
+                                                              textScaleFactor:
+                                                                  1,
+                                                            ),
                                                           ),
                                                         ),
                                                         Padding(
@@ -469,6 +492,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                               style: TextStyle(
                                                                                 fontFamily: ('Bai Jamjuree'),
                                                                               ),
+                                                                              textScaleFactor: 1,
                                                                             ));
                                                                           }))
                                                                 ]),
@@ -509,13 +533,9 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                 Expanded(
                                                                   child:
                                                                       SizedBox(
-                                                                    height: 87,
                                                                     width: double
                                                                         .infinity,
                                                                     child: Card(
-                                                                      shape: RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(5)),
                                                                       child:
                                                                           Column(
                                                                         children: <
@@ -527,25 +547,24 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                                 Text(
                                                                               'แถว',
                                                                               style: TextStyle(
-                                                                                fontSize: 14,
+                                                                                fontSize: 12,
                                                                                 color: Color(0xffD4D4D4),
                                                                                 fontFamily: ('Bai Jamjuree'),
                                                                               ),
+                                                                              textScaleFactor: 1,
                                                                             ),
                                                                           ),
-                                                                          Padding(
-                                                                            padding:
-                                                                                EdgeInsets.only(top: 5),
-                                                                            child:
-                                                                                Text(
-                                                                              line!,
-                                                                              style: const TextStyle(
-                                                                                fontSize: 25,
-                                                                                color: Color(0xff404040),
-                                                                                fontFamily: ('Kanit'),
-                                                                                fontWeight: FontWeight.bold,
-                                                                              ),
+                                                                          Text(
+                                                                            line!,
+                                                                            style:
+                                                                                const TextStyle(
+                                                                              color: Color(0xff404040),
+                                                                              fontFamily: ('Kanit'),
+                                                                              fontSize: 36,
+                                                                              fontWeight: FontWeight.bold,
                                                                             ),
+                                                                            textScaleFactor:
+                                                                                1,
                                                                           ),
                                                                         ],
                                                                       ),
@@ -554,46 +573,46 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                 ),
                                                                 Expanded(
                                                                   child:
-                                                                      SizedBox(
-                                                                    height: 87,
-                                                                    width: double
-                                                                        .infinity,
-                                                                    child: Card(
-                                                                      shape: RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(5)),
+                                                                      SingleChildScrollView(
+                                                                    child:
+                                                                        SizedBox(
+                                                                      height:
+                                                                          87,
+                                                                      width: double
+                                                                          .infinity,
                                                                       child:
-                                                                          Column(
-                                                                        children: <
-                                                                            Widget>[
-                                                                          const Padding(
-                                                                            padding:
-                                                                                EdgeInsets.only(top: 2),
-                                                                            child:
-                                                                                Text(
-                                                                              'ลำดับ',
-                                                                              style: TextStyle(
-                                                                                fontSize: 14,
-                                                                                color: Color(0xffD4D4D4),
-                                                                                fontFamily: ('Bai Jamjuree'),
+                                                                          Card(
+                                                                        shape: RoundedRectangleBorder(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(5)),
+                                                                        child:
+                                                                            Column(
+                                                                          children: <
+                                                                              Widget>[
+                                                                            const Padding(
+                                                                              padding: EdgeInsets.only(top: 2),
+                                                                              child: Text(
+                                                                                'ลำดับ',
+                                                                                style: TextStyle(
+                                                                                  fontSize: 14,
+                                                                                  color: Color(0xffD4D4D4),
+                                                                                  fontFamily: ('Bai Jamjuree'),
+                                                                                ),
+                                                                                textScaleFactor: 1,
                                                                               ),
                                                                             ),
-                                                                          ),
-                                                                          Padding(
-                                                                            padding:
-                                                                                const EdgeInsets.only(top: 5),
-                                                                            child:
-                                                                                Text(
+                                                                            Text(
                                                                               selected!,
                                                                               style: const TextStyle(
-                                                                                fontSize: 25,
+                                                                                fontSize: 36,
                                                                                 color: Color(0xff404040),
                                                                                 fontFamily: ('Kanit'),
                                                                                 fontWeight: FontWeight.bold,
                                                                               ),
+                                                                              textScaleFactor: 1,
                                                                             ),
-                                                                          ),
-                                                                        ],
+                                                                          ],
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -624,14 +643,19 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                             10))),
                                                         onPressed: () =>
                                                             _AddCar(context),
-                                                        child: Text('บันทึก',
-                                                            style: TextStyleBtn
-                                                                .bodybtn),
+                                                        child: AutoSizeText(
+                                                          'บันทึก',
+                                                          style: TextStyleBtn
+                                                              .bodybtn,
+                                                          maxFontSize: 12,
+                                                          minFontSize: 11,
+                                                        ),
                                                       ))
                                                 ])))))),
                             const SizedBox(height: 10),
                             Text('Powered by Weise Technika',
-                                style: TextStyleFoot.bodyfoot),
+                                style: TextStyleFoot.bodyfoot,
+                                textScaleFactor: 1.0),
                           ])))),
         ])));
   }
@@ -657,16 +681,31 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       content: Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("ต้องการทำรายการ ?", style: TextStyleAlert.body18bold),
+          Text(
+            "ต้องการทำรายการ ?",
+            style: TextStyleAlert.body18bold,
+            textScaleFactor: 1,
+          ),
           const SizedBox(height: 5),
-          Text("คุณต้องการทำรายการเพิ่มรถยนต์",
-              style: TextStyleAlert.body15normal),
+          Text(
+            "คุณต้องการทำรายการเพิ่มรถยนต์",
+            style: TextStyleAlert.body15normal,
+            textScaleFactor: 1,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(ChassisController.text, style: TextStyleAlert.body15bold),
+              Text(
+                ChassisController.text,
+                style: TextStyleAlert.body15bold,
+                textScaleFactor: 1,
+              ),
               const SizedBox(width: 5),
-              Text("ใช่หรือไม่", style: TextStyleAlert.body15normal)
+              Text(
+                "ใช่หรือไม่",
+                style: TextStyleAlert.body15normal,
+                textScaleFactor: 1,
+              )
             ],
           ),
         ]),
@@ -736,7 +775,6 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20),
       child: Container(
-        
         child: Column(
           children: [
             Padding(
@@ -747,7 +785,6 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Container(
-                      color: Colors.white,
                       height: 30,
                       width: 50,
                     ),
@@ -759,24 +796,28 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
                           Text("A",
+                              textScaleFactor: 1,
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               )),
                           Text("B",
+                              textScaleFactor: 1,
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               )),
                           Text("C",
+                              textScaleFactor: 1,
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               )),
                           Text(
+                            textScaleFactor: 1,
                             "D",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -810,7 +851,10 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: const Center(
-                              child: Text('Lotus'),
+                              child: Text(
+                                'Lotus',
+                                textScaleFactor: 1,
+                              ),
                             ))
                       ]),
                     ),
@@ -828,7 +872,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                               List<PositDBAPI>? data = snapshot.data;
                               return Container(
                                 child: GridView.builder(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(2),
                                     gridDelegate:
                                         const SliverGridDelegateWithFixedCrossAxisCount(
                                       mainAxisSpacing: 10,
@@ -850,20 +894,33 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                               .sort
                                                               .toString()
                                                       ? Colors.red
-                                                      : const Color(0xff89EB80)),
-                                          borderRadius: BorderRadius.circular(7),
+                                                      : const Color(
+                                                          0xff89EB80)),
+                                          borderRadius:
+                                              BorderRadius.circular(7),
                                         ),
                                         child: InkWell(
-                                          onTap: () {
+                                          onTap: () async {
+                                            dynamic Idposit =
+                                                data[index].posit_id.toString();
+                                            SharedPreferences localStorage =
+                                                await SharedPreferences
+                                                    .getInstance();
+                                            localStorage.setString(
+                                                'ID', Idposit);
+
                                             setState(() {
                                               selected =
                                                   data[index].posit.toString();
-                                              line = data[index].line.toString();
-                                              sort = data[index].sort.toString();
+                                              line =
+                                                  data[index].line.toString();
+                                              sort =
+                                                  data[index].sort.toString();
 
                                               PositController.text =
                                                   selected.toString();
-                                              lineController.text = line.toString();
+                                              lineController.text =
+                                                  line.toString();
 
                                               print(data[index].posit);
                                               print(data[index].line);
@@ -871,8 +928,10 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                           },
                                           child: Center(
                                             child: Text(
+                                              textScaleFactor: 1,
                                               data[index].posit.toString(),
-                                              style: TextStyle(color: Colors.white),
+                                              style: TextStyle(
+                                                  color: Colors.white),
                                             ),
                                           ),
                                         ),
@@ -898,168 +957,204 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   }
 
   Widget StockB() {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Container(
-                  color: Colors.white,
-                  height: 30,
-                  width: 50,
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 35),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("A",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          )),
-                      Text("B",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          )),
-                      Text("C",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          )),
-                      Text(
-                        "D",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "E",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 1, right: 1),
+      child: Container(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Container(
+                      color: Colors.white,
+                      height: 30,
+                      width: 50,
+                    ),
                   ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Expanded(
-            child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Row(
-            children: [
-              Container(
-                width: 50,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(children: [
-                    Container(
-                        height: 250,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black38,
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 35),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            "A",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
                           ),
-                          color: const Color.fromARGB(246, 231, 230, 236),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Center(
-                          child: Text('Lotus'),
-                        ))
-                  ]),
-                ),
+                          Text(
+                            "B",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
+                          ),
+                          Text(
+                            "C",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
+                          ),
+                          Text(
+                            "D",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
+                          ),
+                          Text(
+                            "E",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Container(
-                  child: FutureBuilder(
-                      future: PostionService().getWhere2(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<List<PositDBAPI>?> snapshot) {
-                        if (snapshot.hasData) {
-                          List<PositDBAPI>? data = snapshot.data;
-                          return Container(
-                            child: GridView.builder(
-                                padding: const EdgeInsets.all(10),
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  mainAxisSpacing: 10,
-                                  crossAxisSpacing: 10,
-                                  crossAxisCount: 5,
-                                ),
-                                itemCount: data!.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    width: 20,
-                                    height: 20,
-                                    decoration: BoxDecoration(
-                                      color: (data[index].status == 1
-                                          ? Colors.red
-                                          : data[index].status == 2
-                                              ? Colors.grey
-                                              : sort ==
-                                                      data[index]
-                                                          .sort
-                                                          .toString()
-                                                  ? Colors.red
-                                                  : const Color(0xff89EB80)),
-                                      borderRadius: BorderRadius.circular(10),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                children: [
+                  Container(
+                    width: 50,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(children: [
+                        Container(
+                            height: 250,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.black38,
+                              ),
+                              color: const Color.fromARGB(246, 231, 230, 236),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                'Lotus',
+                                textScaleFactor: 1,
+                              ),
+                            ))
+                      ]),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: FutureBuilder(
+                          future: PostionService().getWhere2(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+                            if (snapshot.hasData) {
+                              List<PositDBAPI>? data = snapshot.data;
+                              return Container(
+                                child: GridView.builder(
+                                    padding: const EdgeInsets.all(10),
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      mainAxisSpacing: 10,
+                                      crossAxisSpacing: 10,
+                                      crossAxisCount: 5,
                                     ),
-                                    child: InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          selected =
-                                              data[index].posit.toString();
-                                          line = data[index].line.toString();
-                                          sort = data[index].sort.toString();
-
-                                          PositController.text =
-                                              selected.toString();
-                                          lineController.text = line.toString();
-
-                                          print(data[index].posit);
-                                          print(data[index].line);
-                                        });
-                                      },
-                                      child: Center(
-                                        child: Text(
-                                          data[index].posit.toString(),
-                                          style: TextStyle(color: Colors.white),
+                                    itemCount: data!.length,
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        width: 20,
+                                        height: 20,
+                                        decoration: BoxDecoration(
+                                          color: (data[index].status == 1
+                                              ? Colors.red
+                                              : data[index].status == 2
+                                                  ? Colors.grey
+                                                  : sort ==
+                                                          data[index]
+                                                              .sort
+                                                              .toString()
+                                                      ? Colors.red
+                                                      : const Color(
+                                                          0xff89EB80)),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                         ),
-                                      ),
-                                    ),
-                                  );
-                                }),
-                          );
-                        }
-                        return const Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.red,
-                          ),
-                        );
-                      }),
-                ),
-              )
-            ],
-          ),
-        ))
-      ],
+                                        child: InkWell(
+                                          onTap: () async {
+                                            dynamic Idposit =
+                                                data[index].posit_id.toString();
+                                            SharedPreferences localStorage =
+                                                await SharedPreferences
+                                                    .getInstance();
+                                            localStorage.setString(
+                                                'ID', Idposit);
+
+                                            setState(() {
+                                              selected =
+                                                  data[index].posit.toString();
+
+                                              line =
+                                                  data[index].line.toString();
+                                              sort =
+                                                  data[index].sort.toString();
+
+                                              PositController.text =
+                                                  selected.toString();
+                                              lineController.text =
+                                                  line.toString();
+
+                                              print(data[index].posit);
+                                              print(data[index].line);
+                                            });
+                                          },
+                                          child: Center(
+                                            child: Text(
+                                              data[index].posit.toString(),
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                              textScaleFactor: 1,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                              );
+                            }
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.red,
+                              ),
+                            );
+                          }),
+                    ),
+                  )
+                ],
+              ),
+            ))
+          ],
+        ),
+      ),
     );
   }
 
@@ -1085,27 +1180,37 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      Text("A",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          )),
-                      Text("B",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          )),
-                      Text("C",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          )),
+                      Text(
+                        "A",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textScaleFactor: 1,
+                      ),
+                      Text(
+                        "B",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textScaleFactor: 1,
+                      ),
+                      Text(
+                        "C",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textScaleFactor: 1,
+                      ),
                       Text(
                         "D",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
+                        textScaleFactor: 1,
                       ),
                       Text(
                         "E",
@@ -1113,6 +1218,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
+                        textScaleFactor: 1,
                       ),
                     ],
                   ),
@@ -1144,7 +1250,10 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: const Center(
-                          child: Text('Lotus'),
+                          child: Text(
+                            'Lotus',
+                            textScaleFactor: 1,
+                          ),
                         ))
                   ]),
                 ),
@@ -1185,10 +1294,17 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                           .toString()
                                                   ? Colors.red
                                                   : const Color(0xff89EB80)),
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: InkWell(
-                                      onTap: () {
+                                      onTap: () async {
+                                        dynamic Idposit =
+                                            data[index].posit_id.toString();
+                                        SharedPreferences localStorage =
+                                            await SharedPreferences
+                                                .getInstance();
+                                        localStorage.setString('ID', Idposit);
+
                                         setState(() {
                                           selected =
                                               data[index].posit.toString();
@@ -1207,6 +1323,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                         child: Text(
                                           data[index].posit.toString(),
                                           style: TextStyle(color: Colors.white),
+                                          textScaleFactor: 1,
                                         ),
                                       ),
                                     ),
@@ -1251,27 +1368,37 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
-                      Text("A",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          )),
-                      Text("B",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          )),
-                      Text("C",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          )),
+                      Text(
+                        "A",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textScaleFactor: 1,
+                      ),
+                      Text(
+                        "B",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textScaleFactor: 1,
+                      ),
+                      Text(
+                        "C",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textScaleFactor: 1,
+                      ),
                       Text(
                         "D",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
+                        textScaleFactor: 1,
                       ),
                       Text(
                         "E",
@@ -1279,6 +1406,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
+                        textScaleFactor: 1,
                       ),
                     ],
                   ),
@@ -1310,7 +1438,10 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: const Center(
-                          child: Text('Lotus'),
+                          child: Text(
+                            'Lotus',
+                            textScaleFactor: 1,
+                          ),
                         ))
                   ]),
                 ),
@@ -1351,10 +1482,17 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                           .toString()
                                                   ? Colors.red
                                                   : const Color(0xff89EB80)),
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: InkWell(
-                                      onTap: () {
+                                      onTap: () async {
+                                        dynamic Idposit =
+                                            data[index].posit_id.toString();
+                                        SharedPreferences localStorage =
+                                            await SharedPreferences
+                                                .getInstance();
+                                        localStorage.setString('ID', Idposit);
+
                                         setState(() {
                                           selected =
                                               data[index].posit.toString();
@@ -1373,6 +1511,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                         child: Text(
                                           data[index].posit.toString(),
                                           style: TextStyle(color: Colors.white),
+                                          textScaleFactor: 1,
                                         ),
                                       ),
                                     ),

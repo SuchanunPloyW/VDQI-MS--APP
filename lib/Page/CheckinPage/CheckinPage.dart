@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -60,13 +61,19 @@ class _CheckinPageState extends State<CheckinPage> {
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
-              text: TextSpan(text: "เช็คอินเข้าสถานี", style: TextStyleMenuName.bodyMenuThai, children: <TextSpan>[
-                TextSpan(text: '\nCheck in', style: TextStyleMenuName.bodyMenuEng),
-              ])),
+              text: TextSpan(
+                  text: "เช็คอินเข้าสถานี",
+                  style: TextStyleMenuName.bodyMenuThai,
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: '\nCheck in',
+                        style: TextStyleMenuName.bodyMenuEng),
+                  ])),
           leading: IconButton(
             onPressed: () {
               Future.delayed(const Duration(milliseconds: 200), () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => const MycarsPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const MycarsPage()));
               });
             },
             icon: const Icon(
@@ -110,137 +117,240 @@ class _CheckinPageState extends State<CheckinPage> {
               padding: const EdgeInsets.only(top: 5),
               child: SingleChildScrollView(
                   child: Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
-                      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-                        SizedBox(
-                            height: 650,
-                            child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                    color: const Color.fromARGB(255, 255, 255, 255),
-                                    margin: const EdgeInsets.only(left: 10, right: 10),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                    child: Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: SingleChildScrollView(
-                                          child: Column(children: <Widget>[
-                                            //<--------------------   Container Card Chassis -------------------->
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 10, right: 10),
-                                              child: Container(
-                                                decoration: const BoxDecoration(
-                                                  boxShadow: <BoxShadow>[
-                                                    BoxShadow(
-                                                      color: Color(0xffF6F6F6),
-                                                      blurRadius: 20,
-                                                      offset: Offset(5, 5),
+                      padding:
+                          const EdgeInsets.only(left: 10, right: 10, top: 5),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            SizedBox(
+                                height: 550,
+                                child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Card(
+                                        color: const Color.fromARGB(
+                                            255, 255, 255, 255),
+                                        margin: const EdgeInsets.only(
+                                            left: 10, right: 10),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 10),
+                                            child: SingleChildScrollView(
+                                              child: Column(children: <Widget>[
+                                                //<--------------------   Container Card Chassis -------------------->
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, right: 10),
+                                                  child: Container(
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      boxShadow: <BoxShadow>[
+                                                        BoxShadow(
+                                                          color:
+                                                              Color(0xffF6F6F6),
+                                                          blurRadius: 20,
+                                                          offset: Offset(5, 5),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
-                                                height: 85.0,
-                                                child: Card(
-                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                                                  child: ListTile(
-                                                    title: Text(widget.model, style: TextStyleinfor.bodyinfor16),
-                                                    leading: AspectRatio(
-                                                      aspectRatio: 1,
-                                                      child: ClipRRect(
-                                                        borderRadius: const BorderRadius.all(Radius.circular(1.0)),
-                                                        child: Image.asset(
-                                                          'assets/images/car3.png',
-                                                          height: 70.0,
-                                                          width: 70,
+                                                    height: 85.0,
+                                                    child: Card(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5)),
+                                                      child: ListTile(
+                                                        title: Text(
+                                                          widget.model,
+                                                          style: TextStyleinfor
+                                                              .bodyinfor18,
+                                                          textScaleFactor: 1,
+                                                        ),
+                                                        leading: AspectRatio(
+                                                          aspectRatio: 1,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                        .all(
+                                                                    Radius.circular(
+                                                                        1.0)),
+                                                            child: Image.asset(
+                                                              'assets/images/car3.png',
+                                                              height: 70.0,
+                                                              width: 70,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        subtitle: Text(
+                                                          'Yaris Ativ 1.2 G ',
+                                                          style: TextStyleinfor
+                                                              .bodyinfor18light,
+                                                          textScaleFactor: 1,
                                                         ),
                                                       ),
                                                     ),
-                                                    subtitle: Text('Yaris Ativ 1.2 G ',
-                                                        style: TextStyleinfor.bodyinfor16light),
                                                   ),
                                                 ),
-                                              ),
-                                            ),
-                                            //<--------------------   CheckIn -------------------->
-                                            const SizedBox(height: 25),
-                                            Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                              child: Align(
-                                                  alignment: Alignment.centerLeft,
-                                                  child: Text(
-                                                    'ข้อมูลการเช็คอิน',
-                                                    style: TextStyleCheckin.bodyCheckin20,
-                                                  )),
-                                            ),
-                                            //<--------------------   Station -------------------->
-                                            const SizedBox(height: 8),
-                                            Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                              child: Align(
-                                                  alignment: Alignment.centerLeft,
-                                                  child: Text(
-                                                    'สถานี',
-                                                    style: TextStyleCheckin.bodyCheckin14,
-                                                  )),
-                                            ),
-                                            //<--------------------   DropDown -------------------->
-                                            Padding(
-                                                padding: const EdgeInsets.only(left: 15, right: 15),
-                                                child: DecoratedBox(
-                                                    decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                          color: const Color(0xffE2E8F0),
-                                                        ),
-                                                        borderRadius: BorderRadius.circular(5.5)),
-                                                    child: Container(
-                                                      height: 35.2,
-                                                      child: Padding(
-                                                          padding: const EdgeInsets.only(left: 10, right: 10),
-                                                          child: DropdownButton(
-                                                            hint:  Text('VDQI station',style: TextStyleCheckin.bodyCheckin14,),
-                                                            elevation: 10,
-                                                            icon: const Icon(Icons.arrow_drop_down),
-                                                            iconSize: 13.0,
-                                                            isExpanded: true,
-                                                            style: const TextStyle(
-                                                                color: Color(0xff757575), fontSize: 14.0),
-                                                            items: station_data?.map((item) {
-                                                              return DropdownMenuItem(
-                                                                value: item['car_station'].toString(),
-                                                                child: new Text(item['car_station'],style: TextStyle(fontFamily: ('Bai Jamjuree'),),),
-                                                              );
-                                                            }).toList(),
-                                                            onChanged: (String? newVal) {
-                                                              setState(() {
-                                                                Staid = newVal;
-                                                                StationController.text = Staid.toString();
+                                                //<--------------------   CheckIn -------------------->
+                                                const SizedBox(height: 25),
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 20.0),
+                                                  child: Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Text(
+                                                        'ข้อมูลการเช็คอิน',
+                                                        style: TextStyleCheckin
+                                                            .bodyCheckin20,
+                                                        textScaleFactor: 1,
+                                                      )),
+                                                ),
+                                                //<--------------------   Station -------------------->
+                                                const SizedBox(height: 8),
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 20.0),
+                                                  child: Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Text(
+                                                        'สถานี',
+                                                        style: TextStyleCheckin
+                                                            .bodyCheckin16,
+                                                        textScaleFactor: 1,
+                                                      )),
+                                                ),
+                                                //<--------------------   DropDown -------------------->
+                                                Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 15,
+                                                            right: 15),
+                                                    child: DecoratedBox(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                border:
+                                                                    Border.all(
+                                                                  color: const Color(
+                                                                      0xffE2E8F0),
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5.5)),
+                                                        child: Container(
+                                                          height: 35.2,
+                                                          child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 10,
+                                                                      right:
+                                                                          10),
+                                                              child:
+                                                                  DropdownButton(
+                                                                hint: Text(
+                                                                  'VDQI station',
+                                                                  style: TextStyleCheckin
+                                                                      .bodyCheckin16,
+                                                                  textScaleFactor:
+                                                                      1,
+                                                                ),
+                                                                elevation: 10,
+                                                                icon: const Icon(
+                                                                    Icons
+                                                                        .arrow_drop_down),
+                                                                iconSize: 13.0,
+                                                                isExpanded:
+                                                                    true,
+                                                                style: const TextStyle(
+                                                                    color: Color(
+                                                                        0xff757575),
+                                                                    fontSize:
+                                                                        14.0),
+                                                                items: station_data
+                                                                    ?.map(
+                                                                        (item) {
+                                                                  return DropdownMenuItem(
+                                                                    value: item[
+                                                                            'car_station']
+                                                                        .toString(),
+                                                                    child:
+                                                                        new Text(
+                                                                      item[
+                                                                          'car_station'],
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            ('Bai Jamjuree'),
+                                                                      ),
+                                                                      textScaleFactor:
+                                                                          1,
+                                                                    ),
+                                                                  );
+                                                                }).toList(),
+                                                                onChanged:
+                                                                    (String?
+                                                                        newVal) {
+                                                                  setState(() {
+                                                                    Staid =
+                                                                        newVal;
+                                                                    StationController
+                                                                            .text =
+                                                                        Staid
+                                                                            .toString();
 
-                                                                print(Staid.toString());
-                                                              });
-                                                            },
-                                                            value: Staid,
-                                                          )),
-                                                    ))),
+                                                                    print(Staid
+                                                                        .toString());
+                                                                  });
+                                                                },
+                                                                value: Staid,
+                                                              )),
+                                                        ))),
 
-                                            //<--------------------   Button -------------------->
-                                            const SizedBox(height: 350),
-                                            Padding(
-                                                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                                                child: ElevatedButton(
-                                                  style: ElevatedButton.styleFrom(
-                                                      primary: const Color(0xffE52628),
-                                                      minimumSize: const Size.fromHeight(40),
-                                                      shape: RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(10))),
-                                                  onPressed: () => _CheckIn(context),
-                                                  child:  Text('เช็คอินเข้าสถานี',
-                                                      style: TextStyleBtn.bodybtn),
-                                                ))
-                                          ]),
-                                        ))))),
+                                                //<--------------------   Button -------------------->
+                                                const SizedBox(height: 250),
+                                                Padding(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 25.0),
+                                                    child: ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                          primary: const Color(
+                                                              0xffE52628),
+                                                          minimumSize: const Size
+                                                              .fromHeight(40),
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10))),
+                                                      onPressed: () =>
+                                                          _CheckIn(context),
+                                                      child: AutoSizeText(
+                                                        'เช็คอินเข้าสถานี',
+                                                        style: TextStyleBtn
+                                                            .bodybtn,
+                                                        maxFontSize: 12,
+                                                        minFontSize: 11,
+                                                      ),
+                                                    ))
+                                              ]),
+                                            ))))),
 
-                        //<--------------------   Foot -------------------->
-                        const SizedBox(height: 10),
-                        Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot),
-                      ]))))
+                            //<--------------------   Foot -------------------->
+                            const SizedBox(height: 10),
+                            Text('Powered by Weise Technika',
+                                style: TextStyleFoot.bodyfoot),
+                          ]))))
         ])));
   }
 
@@ -267,15 +377,15 @@ class _CheckinPageState extends State<CheckinPage> {
       content: Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("ต้องการทำรายการ ?", style: TextStyleAlert.body18bold),
+          Text("ต้องการทำรายการ ?", style: TextStyleAlert.body18bold,textScaleFactor: 1,),
           const SizedBox(height: 5),
-          Text("คุณต้องการทำรายการเช็คอิน", style: TextStyleAlert.body15normal),
+          Text("คุณต้องการทำรายการเช็คอิน", style: TextStyleAlert.body15normal,textScaleFactor: 1,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(widget.model, style: TextStyleAlert.body15bold),
+              Text(widget.model, style: TextStyleAlert.body15bold,textScaleFactor: 1,),
               const SizedBox(width: 5),
-              Text("เข้าสถานี", style: TextStyleAlert.body15normal)
+              Text("เข้าสถานี", style: TextStyleAlert.body15normal,textScaleFactor: 1,)
             ],
           ),
           Column(
@@ -283,9 +393,10 @@ class _CheckinPageState extends State<CheckinPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(StationController.text, style: TextStyleAlert.body15bold),
+                  Text(StationController.text,
+                      style: TextStyleAlert.body15bold,textScaleFactor: 1,),
                   const SizedBox(width: 5),
-                  Text("ใช่หรือไม่", style: TextStyleAlert.body15normal)
+                  Text("ใช่หรือไม่", style: TextStyleAlert.body15normal,textScaleFactor: 1,)
                 ],
               )
             ],
@@ -295,7 +406,8 @@ class _CheckinPageState extends State<CheckinPage> {
       buttons: [
         DialogButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) => const CheckinSpach()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const CheckinSpach()));
           },
           color: const Color(0xff44A73B),
           child: Text("ยืนยัน", style: TDialogButton.body14),

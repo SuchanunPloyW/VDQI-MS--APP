@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, unnecessary_new
 import 'dart:convert';
 import 'dart:io';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter/material.dart';
@@ -43,21 +44,7 @@ class _CardetailPageState extends State<CardetailPage> {
   Color baseColor2 = const Color(0xffA10002);
 
   @override
-
-
-
-
-
-
-
-
-
-
-
-
-
   Widget build(BuildContext context) {
-    
     dynamic carreq = widget.model.carChassis;
     Future<List<ReqAPI>> getreq() async {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -73,10 +60,6 @@ class _CardetailPageState extends State<CardetailPage> {
       var req = Req.fromJson(jsonDecode(response.body));
       return req.data;
     }
-
-    
-
-    
 
     return Scaffold(
         appBar: AppBar(
@@ -161,7 +144,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                         padding: const EdgeInsets.only(
                                             left: 10, right: 10),
                                         child: Container(
-                                          height: 90,
+                                          height: 85,
                                           child: Card(
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
@@ -175,6 +158,8 @@ class _CardetailPageState extends State<CardetailPage> {
                                                       ('IBM Plex Sans Thai'),
                                                   fontWeight: FontWeight.bold,
                                                 ),
+                                                maxLines: 1,
+                                                textScaleFactor: 1,
                                               ),
                                               leading: AspectRatio(
                                                 aspectRatio: 1,
@@ -212,6 +197,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                   fontFamily: ('Bai Jamjuree'),
                                                   fontWeight: FontWeight.w300,
                                                 ),
+                                                textScaleFactor: 1,
                                               ),
                                             ),
                                           ),
@@ -263,16 +249,19 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                             -0.9,
                                                                             -0.9),
                                                                     child: Text(
-                                                                        'สถานที่',
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color:
-                                                                              Color(0xffD4D4D4),
-                                                                          fontSize:
-                                                                              16,
-                                                                          fontFamily:
-                                                                              ('Bai Jamjuree'),
-                                                                        )),
+                                                                      'สถานที่',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Color(
+                                                                            0xffD4D4D4),
+                                                                        fontSize:
+                                                                            16,
+                                                                        fontFamily:
+                                                                            ('Bai Jamjuree'),
+                                                                      ),
+                                                                      textScaleFactor:
+                                                                          1,
+                                                                    ),
                                                                   ),
                                                                   Align(
                                                                     alignment:
@@ -289,12 +278,14 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                           color:
                                                                               Color(0xff404040),
                                                                           fontSize:
-                                                                              40,
+                                                                              36,
                                                                           fontFamily:
                                                                               ('Kanit'),
                                                                           fontWeight:
                                                                               FontWeight.w900,
-                                                                        )),
+                                                                        ),
+                                                                        textScaleFactor:
+                                                                            1.0),
                                                                   ),
                                                                   Align(
                                                                     alignment:
@@ -302,16 +293,19 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                             -0.9,
                                                                             0.1),
                                                                     child: Text(
-                                                                        'แถว',
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color:
-                                                                              Color(0xffD4D4D4),
-                                                                          fontSize:
-                                                                              16,
-                                                                          fontFamily:
-                                                                              ('Bai Jamjuree'),
-                                                                        )),
+                                                                      'แถว',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Color(
+                                                                            0xffD4D4D4),
+                                                                        fontSize:
+                                                                            16,
+                                                                        fontFamily:
+                                                                            ('Bai Jamjuree'),
+                                                                      ),
+                                                                      textScaleFactor:
+                                                                          1,
+                                                                    ),
                                                                   ),
                                                                   Align(
                                                                     alignment:
@@ -319,20 +313,23 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                             -0.56,
                                                                             0.7),
                                                                     child: Text(
-                                                                        widget
-                                                                            .model
-                                                                            .carLine,
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color:
-                                                                              Color(0xff404040),
-                                                                          fontSize:
-                                                                              30,
-                                                                          fontFamily:
-                                                                              ('Kanit'),
-                                                                          fontWeight:
-                                                                              FontWeight.w900,
-                                                                        )),
+                                                                      widget
+                                                                          .model
+                                                                          .carLine,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Color(
+                                                                            0xff404040),
+                                                                        fontSize:
+                                                                            36,
+                                                                        fontFamily:
+                                                                            ('Kanit'),
+                                                                        fontWeight:
+                                                                            FontWeight.w900,
+                                                                      ),
+                                                                      textScaleFactor:
+                                                                          1,
+                                                                    ),
                                                                   ),
                                                                   Align(
                                                                     alignment:
@@ -340,16 +337,19 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                             0.1,
                                                                             0.1),
                                                                     child: Text(
-                                                                        'ลำดับ',
-                                                                        style:
-                                                                            TextStyle(
-                                                                          fontSize:
-                                                                              16,
-                                                                          fontFamily:
-                                                                              ('Bai Jamjuree'),
-                                                                          color:
-                                                                              Color(0xffD4D4D4),
-                                                                        )),
+                                                                      'ลำดับ',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontSize:
+                                                                            16,
+                                                                        fontFamily:
+                                                                            ('Bai Jamjuree'),
+                                                                        color: Color(
+                                                                            0xffD4D4D4),
+                                                                      ),
+                                                                      textScaleFactor:
+                                                                          1,
+                                                                    ),
                                                                   ),
                                                                   Align(
                                                                     alignment:
@@ -357,18 +357,21 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                             0.56,
                                                                             0.7),
                                                                     child: Text(
-                                                                        widget
-                                                                            .model
-                                                                            .carPosition,
-                                                                        style:
-                                                                            TextStyle(
-                                                                          fontSize:
-                                                                              30,
-                                                                          fontWeight:
-                                                                              FontWeight.w900,
-                                                                          fontFamily:
-                                                                              ('Kanit'),
-                                                                        )),
+                                                                      widget
+                                                                          .model
+                                                                          .carPosition,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontSize:
+                                                                            40,
+                                                                        fontWeight:
+                                                                            FontWeight.w900,
+                                                                        fontFamily:
+                                                                            ('Kanit'),
+                                                                      ),
+                                                                      textScaleFactor:
+                                                                          1,
+                                                                    ),
                                                                   ),
                                                                 ])),
                                                       )))),
@@ -384,9 +387,11 @@ class _CardetailPageState extends State<CardetailPage> {
                                             child: Text(
                                               ' ประวัติรถยนต์',
                                               style: TextStyle(
-                                                  fontFamily: ('Kanit'),
-                                                  fontSize: 18,
-                                                  color: Color(0xffD4D4D4)),
+                                                fontFamily: ('Kanit'),
+                                                fontSize: 18,
+                                                color: Color(0xffD4D4D4),
+                                              ),
+                                              textScaleFactor: 1,
                                             )),
                                       ),
                                       const SizedBox(height: 2),
@@ -400,6 +405,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                 if (snapShot.hasData) {
                                                   return SingleChildScrollView(
                                                     child: Container(
+                                                     
                                                       height: 190,
                                                       width: double.infinity,
                                                       child: Padding(
@@ -410,92 +416,107 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                 right: 10,
                                                                 top: 0),
                                                         child: Container(
+                                                         
                                                           padding:
                                                               const EdgeInsets
                                                                       .only(
                                                                   left: 10,
                                                                   right: 10,
                                                                   top: 0),
-                                                          child: DataTable(
-                                                            headingRowHeight: 0,
-                                                            horizontalMargin: 0,
-                                                            columnSpacing: 0,
-                                                            columns: const <
-                                                                DataColumn>[
-                                                              DataColumn(
-                                                                  label:
-                                                                      Expanded(
-                                                                child: Text(
-                                                                  '',
-                                                                ),
-                                                              )),
-                                                              DataColumn(
-                                                                  label:
-                                                                      Expanded(
-                                                                child: Text(
-                                                                  '',
-                                                                ),
-                                                              )),
-                                                              DataColumn(
-                                                                  label:
-                                                                      Expanded(
-                                                                child: Text(
-                                                                  '',
-                                                                ),
-                                                              )),
-                                                              DataColumn(
-                                                                  label:
-                                                                      Expanded(
-                                                                child: Text(
-                                                                  '',
-                                                                ),
-                                                              )),
-                                                            ],
-                                                            rows: snapShot.data!
-                                                                .map<DataRow>(
-                                                                    (e) {
-                                                              return DataRow(
-                                                                cells: <
-                                                                    DataCell>[
-                                                                  DataCell(Text(
+                                                          child: SingleChildScrollView(
+                                                            child: DataTable(
+                                                              headingRowHeight: 0,
+                                                              horizontalMargin: 0,
+                                                              columnSpacing: 0,
+                                                              columns: const <
+                                                                  DataColumn>[
+                                                                DataColumn(
+                                                                    label:
+                                                                        Expanded(
+                                                                  child: Text(
+                                                                    '',
+                                                                  ),
+                                                                )),
+                                                                DataColumn(
+                                                                    label:
+                                                                        Expanded(
+                                                                  child: Text(
+                                                                    '',
+                                                                  ),
+                                                                )),
+                                                                DataColumn(
+                                                                    label:
+                                                                        Expanded(
+                                                                  child: Text(
+                                                                    '',
+                                                                  ),
+                                                                )),
+                                                                DataColumn(
+                                                                    label:
+                                                                        Expanded(
+                                                                  child: Text(
+                                                                    '',
+                                                                  ),
+                                                                )),
+                                                              ],
+                                                              rows: snapShot.data!
+                                                                  .map<DataRow>(
+                                                                      (e) {
+                                                                return DataRow(
+                                                                  cells: <
+                                                                      DataCell>[
+                                                                    DataCell(Text(
                                                                       '${e.reqDate}',
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:
-                                                                            10,
+                                                                            14,
                                                                         fontFamily:
                                                                             ('Bai Jamjuree'),
-                                                                      ))),
-                                                                  DataCell(Text(
+                                                                      ),
+                                                                      textScaleFactor:
+                                                                          1,
+                                                                    )),
+                                                                    DataCell(Text(
                                                                       '${e.carStatus.carStatus}',
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:
-                                                                            10,
+                                                                            14,
                                                                         fontFamily:
                                                                             ('Bai Jamjuree'),
-                                                                      ))),
-                                                                  DataCell(Text(
+                                                                      ),
+                                                                      textScaleFactor:
+                                                                          1,
+                                                                    )),
+                                                                    DataCell(Text(
                                                                       '${e.carWhere.carWhere}',
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:
-                                                                            10,
+                                                                            14,
                                                                         fontFamily:
                                                                             ('Bai Jamjuree'),
-                                                                      ))),
-                                                                  DataCell(Text(
+                                                                      ),
+                                                                      textScaleFactor:
+                                                                          1,
+                                                                    )),
+                                                                    DataCell(Text(
                                                                       '${e.fullname}',
                                                                       style:
                                                                           TextStyle(
                                                                         fontSize:
-                                                                            10,
+                                                                            14,
                                                                         fontFamily:
                                                                             ('Bai Jamjuree'),
-                                                                      ))),
-                                                                ],
-                                                              );
-                                                            }).toList(),
+                                                                      ),
+                                                                      textScaleFactor:
+                                                                          1,
+                                                                    )),
+                                                                  ],
+                                                                );
+                                                              }).toList(),
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -503,11 +524,9 @@ class _CardetailPageState extends State<CardetailPage> {
                                                   );
                                                 } else {
                                                   return Center(
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      color: baseColor1,
-                                                    ),
-                                                  );
+                                                      child: Container(
+                                                    height: 150,
+                                                  ));
                                                 }
                                               }),
                                         ),
@@ -528,8 +547,12 @@ class _CardetailPageState extends State<CardetailPage> {
                                                         BorderRadius.circular(
                                                             10))),
                                             onPressed: () => _request(context),
-                                            child: Text('เบิกรถยนต์',
-                                                style: TextStyleBtn.bodybtn),
+                                            child: AutoSizeText(
+                                              'เบิกรถยนต์',
+                                              style: TextStyleBtn.bodybtn,
+                                              maxFontSize: 12,
+                                              minFontSize: 11,
+                                            ),
                                           )),
                                     ]),
                                   ),
@@ -538,7 +561,8 @@ class _CardetailPageState extends State<CardetailPage> {
 
                           const SizedBox(height: 10),
                           Text('Powered by Weise Technika',
-                              style: TextStyleFoot.bodyfoot),
+                              style: TextStyleFoot.bodyfoot,
+                              textScaleFactor: 1.0),
                         ])),
               ),
             )
@@ -568,16 +592,31 @@ class _CardetailPageState extends State<CardetailPage> {
       content: Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("ต้องการทำรายการ ?", style: TextStyleAlert.body18bold),
+          Text(
+            "ต้องการทำรายการ ?",
+            style: TextStyleAlert.body18bold,
+            textScaleFactor: 1,
+          ),
           SizedBox(height: 5),
-          Text("คุณต้องการทำรายการเบิกรถยนต์",
-              style: TextStyleAlert.body15normal),
+          Text(
+            "คุณต้องการทำรายการเบิกรถยนต์",
+            style: TextStyleAlert.body15normal,
+            textScaleFactor: 1,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(widget.model.carChassis, style: TextStyleAlert.body15bold),
+              Text(
+                widget.model.carChassis,
+                style: TextStyleAlert.body15bold,
+                textScaleFactor: 1,
+              ),
               SizedBox(width: 5),
-              Text("ใช่หรือไม่", style: TextStyleAlert.body15normal)
+              Text(
+                "ใช่หรือไม่",
+                style: TextStyleAlert.body15normal,
+                textScaleFactor: 1,
+              )
             ],
           )
         ]),
@@ -607,12 +646,12 @@ class _CardetailPageState extends State<CardetailPage> {
                 widget.model.carLine);
 
             if (response.success) {
-               ResponseModel respones1 = await PutCar(
+              ResponseModel respones1 = await PutCar(
                 "2",
               );
-               if (respones1.success) {
-               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => Reqsplash()));
+              if (respones1.success) {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Reqsplash()));
               }
             } else {
               print("ไม่สำเร็จ");
@@ -635,8 +674,8 @@ class _CardetailPageState extends State<CardetailPage> {
         )
       ],
     ).show();
-  
   }
+
   // <------------------------ updateposition ------------------------>
   dynamic urlup = 'http://206.189.92.79/api/';
   Future<ResponseModel> PutCar(
@@ -667,6 +706,4 @@ class _CardetailPageState extends State<CardetailPage> {
       return ResponseModel(success: false, message: e.toString());
     }
   }
-
-
 }

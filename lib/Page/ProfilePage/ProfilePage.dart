@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../Style/TextStyle.dart';
@@ -38,19 +39,29 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final mqData = MediaQuery.of(context);
+    final mqDataNew = mqData.copyWith(
+        textScaleFactor:
+            mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
-              text: TextSpan(text: "ข้อมูลส่วนตัว", style: TextStyleMenuName.bodyMenuThai, children: <TextSpan>[
-                TextSpan(text: '\nProfile', style: TextStyleMenuName.bodyMenuEng),
-              ])),
+              text: TextSpan(
+                  text: "ข้อมูลส่วนตัว",
+                  style: TextStyleMenuName.bodyMenuThai,
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: '\nProfile',
+                        style: TextStyleMenuName.bodyMenuEng),
+                  ])),
           leading: IconButton(
             onPressed: () {
               Future.delayed(const Duration(milliseconds: 200), () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => const MenuPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const MenuPage()));
               });
             },
             icon: const Icon(
@@ -111,82 +122,145 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: Padding(
                     padding: EdgeInsets.only(top: 20),
                     child: SizedBox(
-                        height: 500,
+                        height: 400,
                         child: Card(
                           color: const Color.fromARGB(255, 255, 255, 255),
                           margin: const EdgeInsets.only(left: 10, right: 10),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
                           child: Column(
                             children: [
                               const SizedBox(height: 20),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0),
                                 child: Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Text(" ชื่อ", style: TextStylelogin.body14),
+                                  child: Text(
+                                    " ชื่อ",
+                                    style: TextStylelogin.body16,
+                                    maxLines: 1,
+                                   textScaleFactor: 1.0
+                                  ),
                                 ),
                               ),
                               Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                  child: Center(
+                                    child: SizedBox(
+                                      height: 40,
+                                      child: MediaQuery(
+                                        data: mqDataNew,
+                                        child: TextFormField(
+                                          readOnly: true,
+                                           controller: TextEditingController(
+                                            text: "${userData['fullname']}"),
+                                           keyboardType: TextInputType.text,
+                                           decoration: InputDecoration(
+                                            /* contentPadding:EdgeInsets.fromLTRB(left, top, right, bottom) */
+                                            contentPadding:EdgeInsets.fromLTRB(10, 10, 5, 0),
+                                            /* contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), */
+                                             border: OutlineInputBorder(borderRadius:BorderRadius.circular(5.0) )
+                                           ),
+                                           style: TextStylelogin.body16b,
+                                           
+                                        ),
+                                      ),
+                                    ),
+
+                                  ),
+                                ),
+
+                            
+                              const SizedBox(height: 10),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    " นามสกุล",
+                                    style: TextStylelogin.body16,
+                                    maxLines: 1,
+                                    textScaleFactor: 1.0
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                  child: Center(
+                                    child: SizedBox(
+                                      height: 40,
+                                      child: MediaQuery(
+                                        data: mqDataNew,
+                                        child: TextFormField(
+                                          readOnly: true,
+                                           controller: TextEditingController(
+                                            
+                                            text: "${userData['lastname']}"),
+                                           keyboardType: TextInputType.text,
+                                           decoration: InputDecoration(
+                                            /* contentPadding:EdgeInsets.fromLTRB(left, top, right, bottom) */
+                                            contentPadding:EdgeInsets.fromLTRB(10, 10, 5, 0),
+                                            /* contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), */
+                                             border: OutlineInputBorder(borderRadius:BorderRadius.circular(5.0) )
+                                           ),
+                                           style: TextStylelogin.body16b,
+                                           
+                                        ),
+                                      ),
+                                    ),
+
+                                  ),
+                                ),
+                              /* Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                                 child: SizedBox(
                                   height: 35.2,
                                   child: TextField(
                                     style: TextStylelogin.body16,
                                     readOnly: true,
-                                    controller: TextEditingController(text: "${userData['fullname']}"),
+                                    controller: TextEditingController(
+                                        text: "${userData['lastname']}"),
                                     keyboardType: TextInputType.text,
                                     decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 25.0),
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 25.0),
                                       border: OutlineInputBorder(),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 10),
+                              ), */
+                              const SizedBox(height: 150),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(" นามสกุล", style: TextStylelogin.body16),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                                child: SizedBox(
-                                  height: 35.2,
-                                  child: TextField(
-                                    style: TextStylelogin.body14,
-                                    readOnly: true,
-                                    controller: TextEditingController(text: "${userData['lastname']}"),
-                                    keyboardType: TextInputType.text,
-                                    decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 25.0),
-                                      border: OutlineInputBorder(),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 300),
-                              Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25.0),
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         primary: const Color(0xffE52628),
                                         minimumSize: const Size.fromHeight(40),
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10))),
                                     onPressed: (() {}),
-                                    child: const Text('แก้ไข',
-                                        style: TextStyle(
-                                          fontFamily: ('IBM Plex Sans Thai'),
-                                          fontWeight: FontWeight.w600,
-                                        )),
+                                    child: const AutoSizeText(
+                                      'แก้ไข',
+                                      style: TextStyle(
+                                        fontFamily: ('IBM Plex Sans Thai'),
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      maxLines: 1,
+                                      maxFontSize: 12,
+                                        minFontSize: 11,
+                                    ),
                                   )),
                             ],
                           ),
                         )),
                   )),
                   const SizedBox(height: 10),
-                  Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot),
+                  Text('Powered by Weise Technika',
+                      style: TextStyleFoot.bodyfoot,textScaleFactor: 1.0),
                 ],
               ))),
         ])));
