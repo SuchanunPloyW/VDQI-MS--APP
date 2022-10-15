@@ -177,486 +177,484 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
               )),
             ),
           ),
-          Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: SingleChildScrollView(
-                  child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10, right: 10, top: 5),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(
-                                height: 700,
-                                child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Card(
-                                        color: const Color.fromARGB(
-                                            255, 255, 255, 255),
-                                        margin: const EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 10),
-                                            child: SingleChildScrollView(
+          SingleChildScrollView(
+              child: Padding(
+                  padding:
+                      const EdgeInsets.only( top: 5),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                            height: 700,
+                            child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Card(
+                                    color: const Color.fromARGB(255, 255, 255, 255),
+                                    margin: const EdgeInsets.only(
+                                        left: 10, right: 10),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 10),
+                                        child: SingleChildScrollView(
+                                            child: Column(
+                                                children: <Widget>[
+                                              Container(
                                                 child: Column(
-                                                    children: <Widget>[
-                                                  Container(
-                                                    child: Column(
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      10.0),
-                                                          child: Align(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            child: Text(
-                                                                textScaleFactor:
-                                                                    1,
-                                                                'เลขตัวถัง',
-                                                                style: TextStyleAdd
-                                                                    .bodyAdd14),
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets
+                                                                  .symmetric(
+                                                              horizontal:
+                                                                  10.0),
+                                                      child: Align(
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: Text(
+                                                            textScaleFactor:
+                                                                1,
+                                                            'เลขตัวถัง',
+                                                            style: TextStyleAdd
+                                                                .bodyAdd14),
+                                                      ),
+                                                    ),
+                                                    // <----------------- เลขตัวถัง ----------------->
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets
+                                                              .only(
+                                                        left: 10,
+                                                        right: 10,
+                                                      ),
+                                                      child: Row(
+                                                        children: [
+                                                          Flexible(
+                                                            child: SizedBox(
+                                                              height: 35.2,
+                                                              child:
+                                                                  MediaQuery(
+                                                                data:
+                                                                    mqDataNew,
+                                                                child:
+                                                                    TextFormField(
+                                                                  controller:
+                                                                      ChassisController =
+                                                                          TextEditingController(text: "$qrCode"),
+                                                                  style: TextStyleAlert
+                                                                      .body15bold,
+                                                                  readOnly:
+                                                                      true,
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                    contentPadding: const EdgeInsets.symmetric(
+                                                                        vertical:
+                                                                            25.0,
+                                                                        horizontal:
+                                                                            10),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(5.5),
+                                                                    ),
+                                                                    enabledBorder:
+                                                                        const OutlineInputBorder(
+                                                                      borderSide: const BorderSide(
+                                                                          color: const Color(0xffE2E8F0),
+                                                                          width: 1),
+                                                                    ),
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor:
+                                                                        Colors.white,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                        // <----------------- เลขตัวถัง ----------------->
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                            left: 10,
-                                                            right: 10,
-                                                          ),
-                                                          child: Row(
-                                                            children: [
-                                                              Flexible(
-                                                                child: SizedBox(
-                                                                  height: 35.2,
-                                                                  child:
-                                                                      MediaQuery(
-                                                                    data:
-                                                                        mqDataNew,
-                                                                    child:
-                                                                        TextFormField(
-                                                                      controller:
-                                                                          ChassisController =
-                                                                              TextEditingController(text: "$qrCode"),
-                                                                      style: TextStyleAlert
-                                                                          .body15bold,
-                                                                      readOnly:
-                                                                          true,
-                                                                      decoration:
-                                                                          InputDecoration(
-                                                                        contentPadding: const EdgeInsets.symmetric(
-                                                                            vertical:
-                                                                                25.0,
-                                                                            horizontal:
-                                                                                10),
-                                                                        focusedBorder:
-                                                                            OutlineInputBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(5.5),
-                                                                        ),
-                                                                        enabledBorder:
-                                                                            const OutlineInputBorder(
-                                                                          borderSide: const BorderSide(
-                                                                              color: const Color(0xffE2E8F0),
-                                                                              width: 1),
-                                                                        ),
-                                                                        filled:
-                                                                            true,
-                                                                        fillColor:
-                                                                            Colors.white,
+                                                          const SizedBox(
+                                                              width: 5),
+                                                          InkWell(
+                                                              child: SizedBox(
+                                                                  height: 40,
+                                                                  width: 40,
+                                                                  child: Card(
+                                                                    semanticContainer:
+                                                                        true,
+                                                                    shape:
+                                                                        const BeveledRectangleBorder(
+                                                                      side:
+                                                                          BorderSide(
+                                                                        color:
+                                                                            Color(0xffE2E8F0),
+                                                                        width:
+                                                                            0.1,
                                                                       ),
+                                                                    ),
+                                                                    child:
+                                                                        IconButton(
+                                                                      icon:
+                                                                          Image.asset(
+                                                                        'assets/images/iconscan.png',
+                                                                        height:
+                                                                            18.94,
+                                                                        width:
+                                                                            18.94,
+                                                                      ),
+                                                                      onPressed: () =>
+                                                                          scanQRCode(),
+                                                                    ),
+                                                                  )))
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    // <----------------- สถานี ----------------->
+                                                    const SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets
+                                                                  .symmetric(
+                                                              horizontal:
+                                                                  10.0),
+                                                      child: Align(
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: Text(
+                                                          'สถานี',
+                                                          style: TextStyleAdd
+                                                              .bodyAdd14,
+                                                          textScaleFactor:
+                                                              1,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets
+                                                                  .only(
+                                                              left: 10,
+                                                              right: 10),
+                                                      child: DecoratedBox(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                border:
+                                                                    new Border
+                                                                        .all(
+                                                                  color: const Color(
+                                                                      0xffE2E8F0),
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius.circular(
+                                                                        5.5)),
+                                                        child: Container(
+                                                          height: 35.2,
+                                                          child: Padding(
+                                                              padding: const EdgeInsets
+                                                                      .only(
+                                                                  left: 10,
+                                                                  right:
+                                                                      10),
+                                                              child:
+                                                                  DropdownButton(
+                                                                hint:
+                                                                    const Text(
+                                                                  'VDQI station',
+                                                                  textScaleFactor:
+                                                                      1,
+                                                                ),
+                                                                elevation:
+                                                                    10,
+                                                                icon: const Icon(
+                                                                    Icons
+                                                                        .arrow_drop_down),
+                                                                iconSize:
+                                                                    13.0,
+                                                                isExpanded:
+                                                                    true,
+                                                                style: const TextStyle(
+                                                                    color: Color(
+                                                                        0xff757575),
+                                                                    fontSize:
+                                                                        14.0),
+                                                                items: where_data
+                                                                    ?.map(
+                                                                        (item) {
+                                                                  return DropdownMenuItem(
+                                                                    value: item['where_id']
+                                                                        .toString(),
+                                                                    child:
+                                                                        new Text(
+                                                                      item[
+                                                                          'car_where'],
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            ('Bai Jamjuree'),
+                                                                      ),
+                                                                      textScaleFactor:
+                                                                          1,
+                                                                    ),
+                                                                  );
+                                                                }).toList(),
+                                                                onChanged:
+                                                                    (String?
+                                                                        newVal) {
+                                                                  setState(
+                                                                      () {
+                                                                    Whereid =newVal;
+                                                                        
+                                                                    WhereController.text =
+                                                                        Whereid.toString();
+
+                                                                    print(
+                                                                        Whereid);
+                                                                  });
+                                                                },
+                                                                value:
+                                                                    Whereid,
+                                                              )
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    // <----------------- ตำแหน่ง ----------------->
+                                                    const SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets
+                                                                  .symmetric(
+                                                              horizontal:
+                                                                  10.0),
+                                                      child: Align(
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: Text(
+                                                          'ตำแหน่ง',
+                                                          style: TextStyleAdd
+                                                              .bodyAdd14,
+                                                          textScaleFactor:
+                                                              1,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets
+                                                                  .only(
+                                                              left: 10,
+                                                              right: 10),
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            border: Border.all(
+                                                                color: const Color(
+                                                                    0xffE2E8F0))),
+                                                        height: 350,
+                                                        child: Column(
+                                                            children: [
+                                                              const SizedBox(
+                                                                height: 20,
+                                                              ),
+                                                              const Padding(
+                                                                padding: EdgeInsets.symmetric(
+                                                                    horizontal:
+                                                                        25),
+                                                              ),
+                                                              Expanded(
+                                                                  child: FutureBuilder(
+                                                                      future: _future,
+                                                                      builder: (BuildContext context, AsyncSnapshot<List<PositionAPI>?> snapshot) {
+                                                                        if (snapshot.hasData) {
+                                                                          List<PositionAPI>? data = snapshot.data;
+                                                                          if (Whereid == '1') {
+                                                                            return StockA();
+                                                                          } else if (Whereid == '2') {
+                                                                            return StockB();
+                                                                          } else if (Whereid == '3') {
+                                                                            return StockC();
+                                                                          } else if (Whereid == '4') {
+                                                                            return StockD();
+                                                                          }
+                                                                          /*  return Align(
+                                                                      alignment: Alignment.topCenter,
+                                                                     ); */
+                                                                        }
+                                                                        return const Center(
+                                                                            child: Text(
+                                                                          'กรุณาเลือกสถานี',
+                                                                          style: TextStyle(
+                                                                            fontFamily: ('Bai Jamjuree'),
+                                                                          ),
+                                                                          textScaleFactor: 1,
+                                                                        ));
+                                                                      }))
+                                                            ]),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 10,
+                                                    ),
+
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets
+                                                                  .only(
+                                                              left: 10,
+                                                              right: 10),
+                                                      child: Container(
+                                                        decoration:
+                                                            const BoxDecoration(
+                                                          boxShadow: <
+                                                              BoxShadow>[
+                                                            BoxShadow(
+                                                              color: Color(
+                                                                  0xffF6F6F6),
+                                                              blurRadius:
+                                                                  20,
+                                                              offset:
+                                                                  Offset(
+                                                                      5, 5),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        height: 87.0,
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Expanded(
+                                                              child:
+                                                                  SizedBox(
+                                                                width: double
+                                                                    .infinity,
+                                                                child: Card(
+                                                                  child:
+                                                                      Column(
+                                                                    children: <
+                                                                        Widget>[
+                                                                      const Padding(
+                                                                        padding:
+                                                                            EdgeInsets.only(top: 2),
+                                                                        child:
+                                                                            Text(
+                                                                          'แถว',
+                                                                          style: TextStyle(
+                                                                            fontSize: 12,
+                                                                            color: Color(0xffD4D4D4),
+                                                                            fontFamily: ('Bai Jamjuree'),
+                                                                          ),
+                                                                          textScaleFactor: 1,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        line!,
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          color: Color(0xff404040),
+                                                                          fontFamily: ('Kanit'),
+                                                                          fontSize: 36,
+                                                                          fontWeight: FontWeight.bold,
+                                                                        ),
+                                                                        textScaleFactor:
+                                                                            1,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Expanded(
+                                                              child:
+                                                                  SingleChildScrollView(
+                                                                child:
+                                                                    SizedBox(
+                                                                  height:
+                                                                      87,
+                                                                  width: double
+                                                                      .infinity,
+                                                                  child:
+                                                                      Card(
+                                                                    shape: RoundedRectangleBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(5)),
+                                                                    child:
+                                                                        Column(
+                                                                      children: <
+                                                                          Widget>[
+                                                                        const Padding(
+                                                                          padding: EdgeInsets.only(top: 2),
+                                                                          child: Text(
+                                                                            'ลำดับ',
+                                                                            style: TextStyle(
+                                                                              fontSize: 14,
+                                                                              color: Color(0xffD4D4D4),
+                                                                              fontFamily: ('Bai Jamjuree'),
+                                                                            ),
+                                                                            textScaleFactor: 1,
+                                                                          ),
+                                                                        ),
+                                                                        Text(
+                                                                          selected!,
+                                                                          style: const TextStyle(
+                                                                            fontSize: 36,
+                                                                            color: Color(0xff404040),
+                                                                            fontFamily: ('Kanit'),
+                                                                            fontWeight: FontWeight.bold,
+                                                                          ),
+                                                                          textScaleFactor: 1,
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                              const SizedBox(
-                                                                  width: 5),
-                                                              InkWell(
-                                                                  child: SizedBox(
-                                                                      height: 40,
-                                                                      width: 40,
-                                                                      child: Card(
-                                                                        semanticContainer:
-                                                                            true,
-                                                                        shape:
-                                                                            const BeveledRectangleBorder(
-                                                                          side:
-                                                                              BorderSide(
-                                                                            color:
-                                                                                Color(0xffE2E8F0),
-                                                                            width:
-                                                                                0.1,
-                                                                          ),
-                                                                        ),
-                                                                        child:
-                                                                            IconButton(
-                                                                          icon:
-                                                                              Image.asset(
-                                                                            'assets/images/iconscan.png',
-                                                                            height:
-                                                                                18.94,
-                                                                            width:
-                                                                                18.94,
-                                                                          ),
-                                                                          onPressed: () =>
-                                                                              scanQRCode(),
-                                                                        ),
-                                                                      )))
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        // <----------------- สถานี ----------------->
-                                                        const SizedBox(
-                                                          height: 5,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      10.0),
-                                                          child: Align(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            child: Text(
-                                                              'สถานี',
-                                                              style: TextStyleAdd
-                                                                  .bodyAdd14,
-                                                              textScaleFactor:
-                                                                  1,
                                                             ),
-                                                          ),
+                                                          ],
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 10,
-                                                                  right: 10),
-                                                          child: DecoratedBox(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                                    border:
-                                                                        new Border
-                                                                            .all(
-                                                                      color: const Color(
-                                                                          0xffE2E8F0),
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            5.5)),
-                                                            child: Container(
-                                                              height: 35.2,
-                                                              child: Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .only(
-                                                                      left: 10,
-                                                                      right:
-                                                                          10),
-                                                                  child:
-                                                                      DropdownButton(
-                                                                    hint:
-                                                                        const Text(
-                                                                      'VDQI station',
-                                                                      textScaleFactor:
-                                                                          1,
-                                                                    ),
-                                                                    elevation:
-                                                                        10,
-                                                                    icon: const Icon(
-                                                                        Icons
-                                                                            .arrow_drop_down),
-                                                                    iconSize:
-                                                                        13.0,
-                                                                    isExpanded:
-                                                                        true,
-                                                                    style: const TextStyle(
-                                                                        color: Color(
-                                                                            0xff757575),
-                                                                        fontSize:
-                                                                            14.0),
-                                                                    items: where_data
-                                                                        ?.map(
-                                                                            (item) {
-                                                                      return DropdownMenuItem(
-                                                                        value: item['where_id']
-                                                                            .toString(),
-                                                                        child:
-                                                                            new Text(
-                                                                          item[
-                                                                              'car_where'],
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontFamily:
-                                                                                ('Bai Jamjuree'),
-                                                                          ),
-                                                                          textScaleFactor:
-                                                                              1,
-                                                                        ),
-                                                                      );
-                                                                    }).toList(),
-                                                                    onChanged:
-                                                                        (String?
-                                                                            newVal) {
-                                                                      setState(
-                                                                          () {
-                                                                        Whereid =
-                                                                            newVal;
-                                                                        WhereController.text =
-                                                                            Whereid.toString();
-
-                                                                        print(
-                                                                            Whereid);
-                                                                      });
-                                                                    },
-                                                                    value:
-                                                                        Whereid,
-                                                                  )),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        // <----------------- ตำแหน่ง ----------------->
-                                                        const SizedBox(
-                                                          height: 5,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      10.0),
-                                                          child: Align(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            child: Text(
-                                                              'ตำแหน่ง',
-                                                              style: TextStyleAdd
-                                                                  .bodyAdd14,
-                                                              textScaleFactor:
-                                                                  1,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 10,
-                                                                  right: 10),
-                                                          child: Container(
-                                                            decoration: BoxDecoration(
-                                                                border: Border.all(
-                                                                    color: const Color(
-                                                                        0xffE2E8F0))),
-                                                            height: 350,
-                                                            child: Column(
-                                                                children: [
-                                                                  const SizedBox(
-                                                                    height: 20,
-                                                                  ),
-                                                                  const Padding(
-                                                                    padding: EdgeInsets.symmetric(
-                                                                        horizontal:
-                                                                            25),
-                                                                  ),
-                                                                  Expanded(
-                                                                      child: FutureBuilder(
-                                                                          future: _future,
-                                                                          builder: (BuildContext context, AsyncSnapshot<List<PositionAPI>?> snapshot) {
-                                                                            if (snapshot.hasData) {
-                                                                              List<PositionAPI>? data = snapshot.data;
-                                                                              if (Whereid == '1') {
-                                                                                return StockA();
-                                                                              } else if (Whereid == '2') {
-                                                                                return StockB();
-                                                                              } else if (Whereid == '3') {
-                                                                                return StockC();
-                                                                              } else if (Whereid == '4') {
-                                                                                return StockD();
-                                                                              }
-                                                                              /*  return Align(
-                                                                          alignment: Alignment.topCenter,
-                                                                         ); */
-                                                                            }
-                                                                            return const Center(
-                                                                                child: Text(
-                                                                              'กรุณาเลือกสถานี',
-                                                                              style: TextStyle(
-                                                                                fontFamily: ('Bai Jamjuree'),
-                                                                              ),
-                                                                              textScaleFactor: 1,
-                                                                            ));
-                                                                          }))
-                                                                ]),
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                          height: 10,
-                                                        ),
-
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 10,
-                                                                  right: 10),
-                                                          child: Container(
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              boxShadow: <
-                                                                  BoxShadow>[
-                                                                BoxShadow(
-                                                                  color: Color(
-                                                                      0xffF6F6F6),
-                                                                  blurRadius:
-                                                                      20,
-                                                                  offset:
-                                                                      Offset(
-                                                                          5, 5),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            height: 87.0,
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: [
-                                                                Expanded(
-                                                                  child:
-                                                                      SizedBox(
-                                                                    width: double
-                                                                        .infinity,
-                                                                    child: Card(
-                                                                      child:
-                                                                          Column(
-                                                                        children: <
-                                                                            Widget>[
-                                                                          const Padding(
-                                                                            padding:
-                                                                                EdgeInsets.only(top: 2),
-                                                                            child:
-                                                                                Text(
-                                                                              'แถว',
-                                                                              style: TextStyle(
-                                                                                fontSize: 12,
-                                                                                color: Color(0xffD4D4D4),
-                                                                                fontFamily: ('Bai Jamjuree'),
-                                                                              ),
-                                                                              textScaleFactor: 1,
-                                                                            ),
-                                                                          ),
-                                                                          Text(
-                                                                            line!,
-                                                                            style:
-                                                                                const TextStyle(
-                                                                              color: Color(0xff404040),
-                                                                              fontFamily: ('Kanit'),
-                                                                              fontSize: 36,
-                                                                              fontWeight: FontWeight.bold,
-                                                                            ),
-                                                                            textScaleFactor:
-                                                                                1,
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Expanded(
-                                                                  child:
-                                                                      SingleChildScrollView(
-                                                                    child:
-                                                                        SizedBox(
-                                                                      height:
-                                                                          87,
-                                                                      width: double
-                                                                          .infinity,
-                                                                      child:
-                                                                          Card(
-                                                                        shape: RoundedRectangleBorder(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(5)),
-                                                                        child:
-                                                                            Column(
-                                                                          children: <
-                                                                              Widget>[
-                                                                            const Padding(
-                                                                              padding: EdgeInsets.only(top: 2),
-                                                                              child: Text(
-                                                                                'ลำดับ',
-                                                                                style: TextStyle(
-                                                                                  fontSize: 14,
-                                                                                  color: Color(0xffD4D4D4),
-                                                                                  fontFamily: ('Bai Jamjuree'),
-                                                                                ),
-                                                                                textScaleFactor: 1,
-                                                                              ),
-                                                                            ),
-                                                                            Text(
-                                                                              selected!,
-                                                                              style: const TextStyle(
-                                                                                fontSize: 36,
-                                                                                color: Color(0xff404040),
-                                                                                fontFamily: ('Kanit'),
-                                                                                fontWeight: FontWeight.bold,
-                                                                              ),
-                                                                              textScaleFactor: 1,
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                  const SizedBox(height: 20),
-                                                  Padding(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 25.0),
-                                                      child: ElevatedButton(
-                                                        style: ElevatedButton.styleFrom(
-                                                            primary:
-                                                                const Color(
-                                                                    0xffE52628),
-                                                            minimumSize: const Size
-                                                                .fromHeight(40),
-                                                            shape: RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10))),
-                                                        onPressed: () =>
-                                                            _AddCar(context),
-                                                        child: AutoSizeText(
-                                                          'บันทึก',
-                                                          style: TextStyleBtn
-                                                              .bodybtn,
-                                                          maxFontSize: 12,
-                                                          minFontSize: 11,
-                                                        ),
-                                                      ))
-                                                ])))))),
-                            const SizedBox(height: 10),
-                            Text('Powered by Weise Technika',
-                                style: TextStyleFoot.bodyfoot,
-                                textScaleFactor: 1.0),
-                          ])))),
+                                                  ],
+                                                ),
+                                              ),
+                                              const SizedBox(height: 20),
+                                              Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 25.0),
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                        primary:
+                                                            const Color(
+                                                                0xffE52628),
+                                                        minimumSize: const Size
+                                                            .fromHeight(40),
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10))),
+                                                    onPressed: () =>
+                                                        _AddCar(context),
+                                                    child: AutoSizeText(
+                                                      'บันทึก',
+                                                      style: TextStyleBtn
+                                                          .bodybtn,
+                                                      maxFontSize: 12,
+                                                      minFontSize: 11,
+                                                    ),
+                                                  ))
+                                            ])))))),
+                        const SizedBox(height: 10),
+                        Text('Powered by Weise Technika',
+                            style: TextStyleFoot.bodyfoot,
+                            textScaleFactor: 1.0),
+                      ]))),
         ])));
   }
 

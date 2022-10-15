@@ -117,7 +117,7 @@ class _MycarsPageState extends State<MycarsPage> {
               padding: const EdgeInsets.only(top: 5),
               child: SingleChildScrollView(
                 child: Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
+                    padding: const EdgeInsets.only( top: 5),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -152,7 +152,7 @@ class _MycarsPageState extends State<MycarsPage> {
                                           ),
                                         );
                                       }
-                                      return Center(
+                                      return const Center(
                                         child: Text(
                                           'ไม่พบรถยนต์ในรายการของฉัน',
                                           style: TextStyle(

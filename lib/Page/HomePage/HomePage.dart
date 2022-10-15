@@ -75,8 +75,12 @@ class _HomePageState extends State<HomePage> {
                               alignment: Alignment.centerLeft,
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 40),
-                                child: AutoSizeText('หน้าหลัก',
-                                    style: TextStyleMenuName.bodyMenuThai,maxFontSize: 18,minFontSize: 16,),
+                                child: AutoSizeText(
+                                  'หน้าหลัก',
+                                  style: TextStyleMenuName.bodyMenuThai,
+                                  maxFontSize: 18,
+                                  minFontSize: 16,
+                                ),
                               ),
                             ),
                           ),
@@ -84,8 +88,13 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.symmetric(horizontal: 20.0),
                             child: Align(
                               alignment: Alignment.centerLeft,
-                              child: AutoSizeText('Home Page',
-                                  style: TextStyleMenuName.bodyMenuEng,maxLines: 1,minFontSize: 14,maxFontSize: 16,),
+                              child: AutoSizeText(
+                                'Home Page',
+                                style: TextStyleMenuName.bodyMenuEng,
+                                maxLines: 1,
+                                minFontSize: 14,
+                                maxFontSize: 16,
+                              ),
                             ),
                           ),
                           SingleChildScrollView(
@@ -93,107 +102,242 @@ class _HomePageState extends State<HomePage> {
                               padding: const EdgeInsets.only(top: 20),
                               child: SizedBox(
                                   height: 450,
-                                  child: Card(
-                                    color: const Color.fromARGB(
-                                        255, 255, 255, 255),
-                                    margin: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: GridView.count(
-                                      padding: EdgeInsets.all(5.0),
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 4.0,
-                                      mainAxisSpacing: 8.0,
-                                      children: <Widget>[
-                                        Container(
-                                          child: Card(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 5, right: 5),
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(12),
+                                              topRight: Radius.circular(12),
+                                              bottomLeft: Radius.circular(12),
+                                              bottomRight: Radius.circular(12)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Color.fromRGBO(0, 0, 0, 0.05),
+                                              blurRadius: 12,
+                                              /*   offset: Offset(0, 3), */
+                                            ),
+                                          ]),
+                                      child: GridView.count(
+                                        padding: EdgeInsets.all(5.0),
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: 4.0,
+                                        mainAxisSpacing: 8.0,
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 5,
+                                                left: 5,
+                                                right: 5,
+                                                bottom: 5),
+                                            child: Container(
+                                              child: Container(
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    12),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    12),
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    12),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    12)),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Color.fromRGBO(
+                                                            0, 0, 0, 0.1),
+                                                        blurRadius: 12,
+                                                        /*   offset: Offset(0, 3), */
+                                                      ),
+                                                    ]),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Future.delayed(
+                                                        Duration(
+                                                            milliseconds: 300),
+                                                        () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (_) =>
+                                                                  MenuPage()));
+                                                    });
+                                                  },
+                                                  splashColor: Colors.red,
+                                                  child: Center(
+                                                      child: Column(
+                                                    children: <Widget>[
+                                                      const SizedBox(
+                                                          height: 15),
+                                                      Image.asset(
+                                                        'assets/images/car1.png',
+                                                        height: 80.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 15),
+                                                      Text(
+                                                        'ระบบบริหารจัดการสต๊อครถยนต์',
+                                                        style: TextStylePage
+                                                            .bodyP10,
+                                                        maxLines: 1,
+                                                        textScaleFactor: 1,
+                                                      ),
+                                                      Text(
+                                                        'VDQI Stock Management',
+                                                        style: TextStylePage
+                                                            .bodyP10,
+                                                        maxLines: 1,
+                                                        textScaleFactor: 1,
+                                                      )
+                                                    ],
+                                                  )),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 5,
+                                                left: 5,
+                                                right: 5,
+                                                bottom: 5),
+                                         
+                                              child: Container(
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    12),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    12),
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    12),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    12)),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Color.fromRGBO(
+                                                            0, 0, 0, 0.1),
+                                                        blurRadius: 12,
+                                                        /*   offset: Offset(0, 3), */
+                                                      ),
+                                                    ]),
+                                                child: InkWell(
+                                                  onTap: () {},
+                                                  splashColor: Colors.red,
+                                                  child: Center(
+                                                      child: Column(
+                                                    children: <Widget>[
+                                                      const SizedBox(
+                                                          height: 15),
+                                                      Image.asset(
+                                                        'assets/images/setting.png',
+                                                        height: 80.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                      SizedBox(
+                                                        height: 15,
+                                                      ),
+                                                      Text(
+                                                        'ตั้งค่าการใช้งาน',
+                                                        style: TextStylePage
+                                                            .bodyP10,
+                                                        maxLines: 1,
+                                                        textScaleFactor: 1,
+                                                      ),
+                                                      Text(
+                                                        'Setting',
+                                                        style: TextStylePage
+                                                            .bodyP10,
+                                                        maxLines: 1,
+                                                        textScaleFactor: 1,
+                                                      )
+                                                    ],
+                                                  )),
+                                                ),
+                                              ),
+                                            ),
+                                        
+
+                                          /* Container(
+                                            decoration:  const BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(12),
+                                                    topRight: Radius.circular(12),
+                                                    bottomLeft: Radius.circular(12),
+                                                    bottomRight: Radius.circular(12)
+                                                    ),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Color.fromRGBO(0, 0, 0, 0.1),
+                                                        blurRadius: 12,
+                                                        /*   offset: Offset(0, 3), */
+                                                      ),
+                                                    ]
+                                                    
+                                              ),
                                             margin: EdgeInsets.all(8.0),
                                             child: InkWell(
-                                              onTap: () {
-                                                Future.delayed(
-                                                    Duration(milliseconds: 300),
-                                                    () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (_) =>
-                                                              MenuPage()));
-                                                });
-                                              },
+                                              onTap: () {},
                                               splashColor: Colors.red,
                                               child: Center(
                                                   child: Column(
                                                 children: <Widget>[
                                                   const SizedBox(height: 15),
                                                   Image.asset(
-                                                    'assets/images/car1.png',
+                                                    'assets/images/setting.png',
                                                     height: 80.0,
                                                     fit: BoxFit.cover,
                                                   ),
-                                                  const SizedBox(height: 15),
+                                                  SizedBox(
+                                                    height: 15,
+                                                  ),
                                                   Text(
-                                                    'ระบบบริหารจัดการสต๊อครถยนต์',
+                                                    'ตั้งค่าการใช้งาน',
                                                     style:
                                                         TextStylePage.bodyP10,
                                                     maxLines: 1,
                                                     textScaleFactor: 1,
                                                   ),
                                                   Text(
-                                                    'VDQI Stock Management',
+                                                    'Setting',
                                                     style:
                                                         TextStylePage.bodyP10,
                                                     maxLines: 1,
-                                                   textScaleFactor: 1,
+                                                    textScaleFactor: 1,
                                                   )
                                                 ],
                                               )),
                                             ),
-                                          ),
-                                        ),
-                                        Card(
-                                          margin: EdgeInsets.all(8.0),
-                                          child: InkWell(
-                                            onTap: () {},
-                                            splashColor: Colors.red,
-                                            child: Center(
-                                                child: Column(
-                                              children: <Widget>[
-                                                const SizedBox(height: 15),
-                                                Image.asset(
-                                                  'assets/images/setting.png',
-                                                  height: 80.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                                SizedBox(
-                                                  height: 15,
-                                                ),
-                                                Text(
-                                                  'ตั้งค่าการใช้งาน',
-                                                  style: TextStylePage.bodyP10,
-                                                  maxLines: 1,
-                                                  textScaleFactor: 1,
-                                                ),
-                                                Text(
-                                                  'Setting',
-                                                  style: TextStylePage.bodyP10,
-                                                  maxLines: 1,
-                                                  textScaleFactor: 1,
-                                                  
-                                                )
-                                              ],
-                                            )),
-                                          ),
-                                        ),
-                                      ],
+                                          ), */
+                                        ],
+                                      ),
                                     ),
                                   )),
                             ),
                           ),
                           const SizedBox(height: 10),
-                          Text('Powered by Weise Technika',
-                              style: TextStyleFoot.bodyfoot,textScaleFactor: 1,),
+                          Text(
+                            'Powered by Weise Technika',
+                            style: TextStyleFoot.bodyfoot,
+                            textScaleFactor: 1,
+                          ),
                         ])),
               ),
             )

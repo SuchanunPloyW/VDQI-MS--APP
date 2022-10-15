@@ -31,6 +31,7 @@ class _LoginPageState extends State<LoginPage> {
         textScaleFactor:
             mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
     return Scaffold(
+      backgroundColor: Color(0xffF9F9F9),
         body: Stack(children: <Widget>[
       Align(
         alignment: Alignment.topCenter,
@@ -63,60 +64,120 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 350,
                       width: MediaQuery.of(context).size.width,
-                      child: Card(
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                          margin: const EdgeInsets.only(left: 20, right: 20),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const SizedBox(height: 25),
-                                Padding(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: Container(
+                            decoration:  const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(12),
+                                  topRight: Radius.circular(12),
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12)
+                                  ),
+                                   boxShadow: [
+                                    BoxShadow(
+                                       color: Color.fromRGBO(0, 0, 0, 0.05),
+                                       blurRadius: 12,
+                                      /*   offset: Offset(0, 3), */
+                                      
+                                    ),
+                                   ]
+                                  
+                            ),
+                            
+
+                            /* color: const Color.fromARGB(255, 255, 255, 255),
+                            margin: const EdgeInsets.only(left: 20, right: 20), */
+
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const SizedBox(height: 25),
+                                  Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 25.0),
+                                      child: Container(
+                                        child: Text(
+                                          "ระบบบริหารจัดการสต๊อครถยนต์",
+                                          style: TextStylelogin.body16,
+                                          textScaleFactor: 1.0,
+                                          maxLines: 1,
+                                        ),
+                                      )),
+                                  const SizedBox(height: 15),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(" ลงชื่อเข้าใช้งาน ",
+                                          style: TextStylelogin.body20,
+                                          textScaleFactor: 1.0),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(" ชื่อผู้ใช้งาน",
+                                          style: TextStylelogin.body16,
+                                          textScaleFactor: 1.0),
+                                    ),
+                                  ),
+                                  Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 25.0),
-                                    child: Container(
-                                      child: Text(
-                                        "ระบบบริหารจัดการสต๊อครถยนต์",
-                                        style: TextStylelogin.body16,
-                                        textScaleFactor: 1.0,
-                                        maxLines: 1,
+                                        horizontal: 20.0),
+                                    child: Center(
+                                      child: SizedBox(
+                                        height: 40,
+                                        child: MediaQuery(
+                                          data: mqDataNew,
+                                          child: TextFormField(
+                                            controller: mailController,
+                                            keyboardType: TextInputType.text,
+                                            decoration: InputDecoration(
+                                                /* contentPadding:EdgeInsets.fromLTRB(left, top, right, bottom) */
+                                                contentPadding:
+                                                    EdgeInsets.fromLTRB(
+                                                        10, 10, 10, 0),
+                                                /* contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), */
+                                                border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5.0))),
+                                            style: TextStylelogin.body16b,
+                                          ),
+                                        ),
                                       ),
-                                    )),
-                                const SizedBox(height: 15),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(" ลงชื่อเข้าใช้งาน ",
-                                        style: TextStylelogin.body20,
-                                        textScaleFactor: 1.0),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: 5),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(" ชื่อผู้ใช้งาน",
-                                        style: TextStylelogin.body16,
-                                        textScaleFactor: 1.0),
+                                  const SizedBox(height: 5),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(" พาสเวิร์ด",
+                                          style: TextStylelogin.body16,
+                                          textScaleFactor: 1.0),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20.0),
-                                  child: Center(
-                                    child: SizedBox(
-                                      height: 40,
-                                      child: MediaQuery(
-                                        data: mqDataNew,
-                                        child: TextFormField(
-                                          controller: mailController,
-                                          keyboardType: TextInputType.text,
-                                          decoration: InputDecoration(
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20.0),
+                                    child: Center(
+                                      child: SizedBox(
+                                        height: 40,
+                                        child: MediaQuery(
+                                          data: mqDataNew,
+                                          child: TextFormField(
+                                            controller: passwordController,
+                                            obscureText: true,
+                                            keyboardType: TextInputType.text,
+                                            decoration: InputDecoration(
                                               /* contentPadding:EdgeInsets.fromLTRB(left, top, right, bottom) */
                                               contentPadding:
                                                   EdgeInsets.fromLTRB(
@@ -125,118 +186,82 @@ class _LoginPageState extends State<LoginPage> {
                                               border: OutlineInputBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          5.0))),
-                                         style: TextStylelogin.body16b,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(" พาสเวิร์ด",
-                                        style: TextStylelogin.body16,
-                                        textScaleFactor: 1.0),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20.0),
-                                  child: Center(
-                                    child: SizedBox(
-                                      height: 40,
-                                      child: MediaQuery(
-                                        data: mqDataNew,
-                                        child: TextFormField(
-                                          controller: passwordController,
-                                          obscureText: true,
-                                          keyboardType: TextInputType.text,
-                                          decoration: InputDecoration(
-                                            /* contentPadding:EdgeInsets.fromLTRB(left, top, right, bottom) */
-                                            contentPadding: EdgeInsets.fromLTRB(
-                                                10, 10, 10, 0),
-                                            /* contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), */
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(5.0)),
+                                                          5.0)),
+                                            ),
+                                            style: TextStylelogin.body16b,
                                           ),
-                                          style: TextStylelogin.body16b,
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
 
-                                /*  Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(" ชื่อผู้ใช้งาน",
-                                        style: TextStylelogin.body14,
-                                        textScaleFactor: 1.0),
-                                  ),
-                                ),
-                                 Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: TextFormField(
-                                    
-
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text("พาสเวิร์ด",
-                                        style: TextStylelogin.body14,
-                                        textScaleFactor: 1.0),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: SizedBox(
-                                    height: 35.2,
-                                    child: TextField(
-                                      controller: passwordController,
-                                      obscureText: true,
-                                      keyboardType: TextInputType.text,
-                                      decoration: const InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 25.0),
-                                        border: OutlineInputBorder(),
-                                      ),
+                                  /*  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(" ชื่อผู้ใช้งาน",
+                                          style: TextStylelogin.body14,
+                                          textScaleFactor: 1.0),
                                     ),
                                   ),
-                                ), */
-                                const SizedBox(height: 35),
-                                Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 25.0),
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: const Color(0xffE52628),
-                                          minimumSize:
-                                              const Size.fromHeight(40),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10))),
-                                      onPressed: _login,
-                                      child: AutoSizeText(
-                                        'เข้าสู่ระบบ',
-                                        style: TextStyleBtn.bodybtn,
-                                        maxFontSize: 12,
-                                        minFontSize: 11,
+                                   Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: TextFormField(
+                                      
+
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text("พาสเวิร์ด",
+                                          style: TextStylelogin.body14,
+                                          textScaleFactor: 1.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: SizedBox(
+                                      height: 35.2,
+                                      child: TextField(
+                                        controller: passwordController,
+                                        obscureText: true,
+                                        keyboardType: TextInputType.text,
+                                        decoration: const InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(
+                                              horizontal: 10, vertical: 25.0),
+                                          border: OutlineInputBorder(),
+                                        ),
                                       ),
-                                    )),
-                              ])),
+                                    ),
+                                  ), */
+                                  const SizedBox(height: 35),
+                                  Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 25.0),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: const Color(0xffE52628),
+                                            minimumSize:
+                                                const Size.fromHeight(40),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10))),
+                                        onPressed: _login,
+                                        child: AutoSizeText(
+                                          'เข้าสู่ระบบ',
+                                          style: TextStyleBtn.bodybtn,
+                                          maxFontSize: 12,
+                                          minFontSize: 11,
+                                        ),
+                                      )),
+                                ])),
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Text('Powered by Weise Technika',
@@ -296,15 +321,26 @@ _ErrorLogin(context) {
     content: Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text("แจ้งเตือน ", style: TextStyleAlert.body18bold,textScaleFactor: 1,),
+        Text(
+          "แจ้งเตือน ",
+          style: TextStyleAlert.body18bold,
+          textScaleFactor: 1,
+        ),
         const SizedBox(height: 5),
-        Text("ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง",
-            style: TextStyleAlert.body15normal,textScaleFactor: 1,),
+        Text(
+          "ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง",
+          style: TextStyleAlert.body15normal,
+          textScaleFactor: 1,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(width: 5),
-            Text("กรุณาลองใหม่อีกครั้ง", style: TextStyleAlert.body15normal,textScaleFactor: 1,)
+            Text(
+              "กรุณาลองใหม่อีกครั้ง",
+              style: TextStyleAlert.body15normal,
+              textScaleFactor: 1,
+            )
           ],
         ),
       ]),

@@ -128,14 +128,28 @@ class _CardetailPageState extends State<CardetailPage> {
                           SizedBox(
                               height: 650,
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  margin: const EdgeInsets.only(
-                                      left: 10, right: 10),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
+                                padding: const EdgeInsets.only(left: 5, right: 5),
+                                child: Container(
+                                  decoration:  const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(12),
+                                  topRight: Radius.circular(12),
+                                  bottomLeft: Radius.circular(12),
+                                  bottomRight: Radius.circular(12)
+                                  ),
+                                   boxShadow: [
+                                    BoxShadow(
+                                       color: Color.fromRGBO(0, 0, 0, 0.05),
+                                       blurRadius: 12,
+                                      /*   offset: Offset(0, 3), */
+                                      
+                                    ),
+                                   ]
+                                  
+                            ),
+                                  
+                                  
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: Column(children: <Widget>[

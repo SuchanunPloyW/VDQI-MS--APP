@@ -88,13 +88,27 @@ class _MenuPageState extends State<MenuPage> {
                       ),
                       SingleChildScrollView(
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.only(top: 20, left: 5 ,right: 5),
                           child: SizedBox(
                               height: 450,
-                              child: Card(
-                                color: const Color.fromARGB(255, 255, 255, 255),
-                                margin: const EdgeInsets.only(left: 10, right: 10),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(12),
+                                              topRight: Radius.circular(12),
+                                              bottomLeft: Radius.circular(12),
+                                              bottomRight: Radius.circular(12)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Color.fromRGBO(0, 0, 0, 0.05),
+                                              blurRadius: 12,
+                                              /*   offset: Offset(0, 3), */
+                                            ),
+                                          ]),
+
+                               
                                 child: GridView.count(
                                   padding: EdgeInsets.all(5.0),
                                   crossAxisCount: 1,
@@ -104,45 +118,45 @@ class _MenuPageState extends State<MenuPage> {
                                   children: <Widget>[
                                     //------------------------------- ค้นหา  -----------------------------------
                                     Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-                                        child: ElevatedButton(
-                                          
-                                          style: ElevatedButton.styleFrom(
-                                              primary: Color(0xffFFFFFF), // background
-                                              onPrimary: Color.fromARGB(255, 224, 197, 197),
-                                              padding: EdgeInsets.all(15),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10),
-                                              )),
-                                          child: Row(children: [
-                                            Container(
-                                              child: Image.asset(
-                                                'assets/images/car2.png',
-                                                height: 45.0,
-                                                width: 45,
-                                              ),
+                                      padding: const EdgeInsets.only(top: 5 ,left: 5, right: 5),
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Color(0xffFFFFFF), // background
+                                            onPrimary: Color.fromARGB(255, 224, 197, 197),
+                                            padding: EdgeInsets.all(15),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10),
+                                            )),
+                                        child: Row(children: [
+                                          Container(
+                                            child: Image.asset(
+                                              'assets/images/car2.png',
+                                              height: 45.0,
+                                              width: 45,
                                             ),
-                                            SizedBox(width: 30),
-                                            Expanded(
-                                                child: AutoSizeText(' ค้นหารถยนต์ \n Find My Car', maxLines: 2,minFontSize: 11,maxFontSize: 12,
-                                                     style: TextStylePage.bodyP16)),
-                                            Icon(
-                                              Icons.arrow_forward_ios,
-                                              color: Color(0xffDDDDDD),
-                                            )
-                                          ]),
-                                          onPressed: () {
-                                            Future.delayed(Duration(milliseconds: 500), (() {
-                                              Navigator.push(
-                                                  context, MaterialPageRoute(builder: (context) => FindcarPage()));
-                                            }));
-                                          },
-                                        )),
+                                          ),
+                                          SizedBox(width: 30),
+                                          Expanded(
+                                              child: AutoSizeText(' ค้นหารถยนต์ \n Find My Car', maxLines: 2,minFontSize: 11,maxFontSize: 12,
+                                                   style: TextStylePage.bodyP16)),
+                                          Icon(
+                                            Icons.arrow_forward_ios,
+                                            color: Color(0xffDDDDDD),
+                                          )
+                                        ]),
+                                        onPressed: () {
+                                          Future.delayed(Duration(milliseconds: 500), (() {
+                                            Navigator.push(
+                                                context, MaterialPageRoute(builder: (context) => FindcarPage()));
+                                          }));
+                                        },
+                                      ),
+                                    ),
 
                                     //------------------------------- ค้นหา  -----------------------------------
                                     //------------------------------- เพิ่มรถ  -----------------------------------
                                     Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                                        padding: const EdgeInsets.only(top: 5 ,left: 5, right: 5),
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                               primary: Color(0xffFFFFFF), // background
@@ -179,7 +193,7 @@ class _MenuPageState extends State<MenuPage> {
                                     //------------------------------- เพิ่มรถ  -----------------------------------
                                     //------------------------------- รถยนต์ของฉัน  -----------------------------------
                                     Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                                       padding: const EdgeInsets.only(top: 5 ,left: 5, right: 5),
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                               // ignore: deprecated_member_use

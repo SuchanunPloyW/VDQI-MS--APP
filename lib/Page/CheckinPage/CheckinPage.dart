@@ -2,18 +2,21 @@ import 'dart:convert';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 import 'package:http/http.dart' as http;
 import 'package:vdqims/SplashScreen/CheckinSplash.dart';
+import '../../Service/API/PostReqApi.dart';
+import '../../Service/Model/ReqModel.dart';
 import '../../Style/TextStyle.dart';
+import '../FindcarPage/Model/responsModel.dart';
 
 class CheckinPage extends StatefulWidget {
   const CheckinPage({Key? key, required this.model}) : super(key: key);
-  final String model;
+  final ReqAPI model;
 
   @override
   State<CheckinPage> createState() => _CheckinPageState();
@@ -23,6 +26,8 @@ class _CheckinPageState extends State<CheckinPage> {
   //<--------------------   get Dropdown Station -------------------->
   List? station_data;
   String? Staid;
+  var userData;
+
   var url = Uri.encodeFull('http://206.189.92.79/api/station');
   Future<String> station() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -50,6 +55,16 @@ class _CheckinPageState extends State<CheckinPage> {
   void initState() {
     super.initState();
     this.station();
+    _getUserInfo();
+  }
+
+  void _getUserInfo() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var userJson = localStorage.getString('user');
+    var user = json.decode(userJson!);
+    setState(() {
+      userData = user;
+    });
   }
 
   @override
@@ -117,8 +132,7 @@ class _CheckinPageState extends State<CheckinPage> {
               padding: const EdgeInsets.only(top: 5),
               child: SingleChildScrollView(
                   child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10, right: 10, top: 5),
+                      padding: const EdgeInsets.only(top: 5),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -145,59 +159,69 @@ class _CheckinPageState extends State<CheckinPage> {
                                                       const EdgeInsets.only(
                                                           left: 10, right: 10),
                                                   child: Container(
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      boxShadow: <BoxShadow>[
-                                                        BoxShadow(
-                                                          color:
-                                                              Color(0xffF6F6F6),
-                                                          blurRadius: 20,
-                                                          offset: Offset(5, 5),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    height: 85.0,
-                                                    child: Card(
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
+                                                    height: 80,
+                                                    decoration: const BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        12),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        12),
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        12),
+                                                                bottomRight: Radius
+                                                                    .circular(
+                                                                        12)),
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    0,
+                                                                    0,
+                                                                    0,
+                                                                    0.1),
+                                                            blurRadius: 10,
+                                                            /*   offset: Offset(0, 3), */
+                                                          ),
+                                                        ]),
+                                                    child: ListTile(
+                                                      title: Text(
+                                                        widget.model.carChassis,
+                                                        style: TextStyleinfor
+                                                            .bodyinfor18,
+                                                        textScaleFactor: 1,
+                                                      ),
+                                                      leading: AspectRatio(
+                                                        aspectRatio: 1,
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              const BorderRadius
+                                                                      .all(
+                                                                  Radius
                                                                       .circular(
-                                                                          5)),
-                                                      child: ListTile(
-                                                        title: Text(
-                                                          widget.model,
-                                                          style: TextStyleinfor
-                                                              .bodyinfor18,
-                                                          textScaleFactor: 1,
-                                                        ),
-                                                        leading: AspectRatio(
-                                                          aspectRatio: 1,
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                const BorderRadius
-                                                                        .all(
-                                                                    Radius.circular(
-                                                                        1.0)),
-                                                            child: Image.asset(
-                                                              'assets/images/car3.png',
-                                                              height: 70.0,
-                                                              width: 70,
-                                                            ),
+                                                                          1.0)),
+                                                          child: Image.asset(
+                                                            'assets/images/car3.png',
+                                                            height: 70.0,
+                                                            width: 70,
                                                           ),
                                                         ),
-                                                        subtitle: Text(
-                                                          'Yaris Ativ 1.2 G ',
-                                                          style: TextStyleinfor
-                                                              .bodyinfor18light,
-                                                          textScaleFactor: 1,
-                                                        ),
+                                                      ),
+                                                      subtitle: Text(
+                                                        'Yaris Ativ 1.2 G ',
+                                                        style: TextStyleinfor
+                                                            .bodyinfor18light,
+                                                        textScaleFactor: 1,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                                 //<--------------------   CheckIn -------------------->
-                                                const SizedBox(height: 25),
+                                                const SizedBox(height: 20),
                                                 Padding(
                                                   padding: const EdgeInsets
                                                           .symmetric(
@@ -288,7 +312,7 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                       item[
                                                                           'car_station'],
                                                                       style:
-                                                                          TextStyle(
+                                                                          const TextStyle(
                                                                         fontFamily:
                                                                             ('Bai Jamjuree'),
                                                                       ),
@@ -303,6 +327,7 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                   setState(() {
                                                                     Staid =
                                                                         newVal;
+
                                                                     StationController
                                                                             .text =
                                                                         Staid
@@ -377,15 +402,31 @@ class _CheckinPageState extends State<CheckinPage> {
       content: Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("ต้องการทำรายการ ?", style: TextStyleAlert.body18bold,textScaleFactor: 1,),
+          Text(
+            "ต้องการทำรายการ ?",
+            style: TextStyleAlert.body18bold,
+            textScaleFactor: 1,
+          ),
           const SizedBox(height: 5),
-          Text("คุณต้องการทำรายการเช็คอิน", style: TextStyleAlert.body15normal,textScaleFactor: 1,),
+          Text(
+            "คุณต้องการทำรายการเช็คอิน",
+            style: TextStyleAlert.body15normal,
+            textScaleFactor: 1,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(widget.model, style: TextStyleAlert.body15bold,textScaleFactor: 1,),
+              Text(
+                widget.model.carChassis,
+                style: TextStyleAlert.body15bold,
+                textScaleFactor: 1,
+              ),
               const SizedBox(width: 5),
-              Text("เข้าสถานี", style: TextStyleAlert.body15normal,textScaleFactor: 1,)
+              Text(
+                "เข้าสถานี",
+                style: TextStyleAlert.body15normal,
+                textScaleFactor: 1,
+              )
             ],
           ),
           Column(
@@ -393,10 +434,17 @@ class _CheckinPageState extends State<CheckinPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(StationController.text,
-                      style: TextStyleAlert.body15bold,textScaleFactor: 1,),
+                  Text(
+                    StationController.text,
+                    style: TextStyleAlert.body15bold,
+                    textScaleFactor: 1,
+                  ),
                   const SizedBox(width: 5),
-                  Text("ใช่หรือไม่", style: TextStyleAlert.body15normal,textScaleFactor: 1,)
+                  Text(
+                    "ใช่หรือไม่",
+                    style: TextStyleAlert.body15normal,
+                    textScaleFactor: 1,
+                  )
                 ],
               )
             ],
@@ -405,10 +453,24 @@ class _CheckinPageState extends State<CheckinPage> {
       ),
       buttons: [
         DialogButton(
-          onPressed: () {
+          onPressed: () async {
+            ResponseModel response = await PostReqAPI().PostReq(
+                widget.model.carChassis,
+                "${userData['fullname']}",
+                "${userData['lastname']}",
+                DateFormat("yyyy-MM-dd").format(DateTime.now()),
+                DateFormat("hh:mm:ss a").format(DateTime.now()),
+                widget.model.carPosition,
+                widget.model.carWhere.whereId.toString(),
+                "1",
+                StationController.text,
+                widget.model.carLine);
+          },
+
+          /*  onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const CheckinSpach()));
-          },
+          }, */
           color: const Color(0xff44A73B),
           child: Text("ยืนยัน", style: TDialogButton.body14),
         ),
