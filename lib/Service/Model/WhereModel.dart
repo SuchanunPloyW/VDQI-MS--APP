@@ -49,14 +49,17 @@ class WhereAPI {
   WhereAPI({
     required this.where_id,
     required this.car_where,
+    required this.status,
   });
 
   int where_id;
   String car_where;
+  String status;
 
   factory WhereAPI.fromJson(Map<String, dynamic> json) => WhereAPI(
         where_id: json["where_id"],
         car_where: json["car_where"],
+        status: json["status"],
       );
 }
 

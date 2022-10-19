@@ -67,7 +67,7 @@ class ReqAPI {
   String reqTime;
   String carPosition;
   String carLine;
-  CarWhere carWhere;
+  String carWhere;
   CarStatus carStatus;
   CarStation carStation;
 
@@ -75,7 +75,8 @@ class ReqAPI {
         reqId: json["req_id"],
         carChassis: json["car_chassis"],
         carStatus: CarStatus.fromJson(json["car_status"]),
-        carWhere: CarWhere.fromJson(json["car_where"]),
+       
+         carWhere: json["car_where"],
         carStation: CarStation.fromJson(json["car_station"]),
         carPosition: json["car_position"],
         fullname: json["fullname"],
@@ -101,7 +102,7 @@ class CarStatus {
       );
 }
 
-class CarWhere {
+/* class CarWhere {
   CarWhere({
     required this.whereId,
     required this.carWhere,
@@ -115,7 +116,7 @@ class CarWhere {
         carWhere: json["car_where"],
       );
 }
-
+ */
 class CarStation {
   CarStation({
     required this.stationId,

@@ -133,7 +133,71 @@ class _HomePageState extends State<HomePage> {
                                                 left: 5,
                                                 right: 5,
                                                 bottom: 5),
-                                            child: Container(
+                                                child: ElevatedButton(
+                                                  onPressed: () {
+                                                     Future.delayed(
+                                                        Duration(
+                                                            milliseconds: 300),
+                                                        () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (_) =>
+                                                                  MenuPage()));
+                                                    });
+                                                    
+                                                  },
+                                                  style: ElevatedButton.styleFrom(
+                                                  primary: Colors.white,
+                                                   shadowColor: Colors.grey,
+                                                  // background
+                                                  onPrimary: Color.fromARGB(
+                                                      255, 224, 197, 197),
+                                                  padding: EdgeInsets.all(15),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    12),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    12),
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    12),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    12)),
+                                                  )),
+                                                  child: Column(children: [
+                                                    const SizedBox(
+                                                          height: 10),
+                                                      Image.asset(
+                                                        'assets/images/car1.png',
+                                                        height: 70.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 12),
+                                                      Text(
+                                                        'ระบบบริหารจัดการสต๊อครถยนต์',
+                                                        style: TextStylePage
+                                                            .bodyP10,
+                                                        maxLines: 1,
+                                                        textScaleFactor: 1,
+                                                      ),
+                                                      Text(
+                                                        'VDQI Stock Management',
+                                                        style: TextStylePage
+                                                            .bodyP10,
+                                                        maxLines: 1,
+                                                        textScaleFactor: 1,
+                                                      )
+
+                                                  ]),
+                                                ),
+                                           /*  child: Container(
                                               child: Container(
                                                 decoration: const BoxDecoration(
                                                     color: Colors.white,
@@ -203,7 +267,7 @@ class _HomePageState extends State<HomePage> {
                                                   )),
                                                 ),
                                               ),
-                                            ),
+                                            ), */
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -211,10 +275,16 @@ class _HomePageState extends State<HomePage> {
                                                 left: 5,
                                                 right: 5,
                                                 bottom: 5),
-                                         
-                                              child: Container(
-                                                decoration: const BoxDecoration(
-                                                    color: Colors.white,
+                                            child: ElevatedButton(
+                                              onPressed: () {},
+                                              style: ElevatedButton.styleFrom(
+                                                shadowColor: Colors.grey,
+                                                  primary: Colors.white,
+                                                  // background
+                                                  onPrimary: Color.fromARGB(
+                                                      255, 224, 197, 197),
+                                                  padding: EdgeInsets.all(15),
+                                                  shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.only(
                                                             topLeft:
@@ -229,103 +299,41 @@ class _HomePageState extends State<HomePage> {
                                                             bottomRight:
                                                                 Radius.circular(
                                                                     12)),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Color.fromRGBO(
-                                                            0, 0, 0, 0.1),
-                                                        blurRadius: 12,
-                                                        /*   offset: Offset(0, 3), */
-                                                      ),
-                                                    ]),
-                                                child: InkWell(
-                                                  onTap: () {},
-                                                  splashColor: Colors.red,
-                                                  child: Center(
-                                                      child: Column(
-                                                    children: <Widget>[
-                                                      const SizedBox(
-                                                          height: 15),
-                                                      Image.asset(
-                                                        'assets/images/setting.png',
-                                                        height: 80.0,
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                      SizedBox(
-                                                        height: 15,
-                                                      ),
-                                                      Text(
-                                                        'ตั้งค่าการใช้งาน',
-                                                        style: TextStylePage
-                                                            .bodyP10,
-                                                        maxLines: 1,
-                                                        textScaleFactor: 1,
-                                                      ),
-                                                      Text(
-                                                        'Setting',
-                                                        style: TextStylePage
-                                                            .bodyP10,
-                                                        maxLines: 1,
-                                                        textScaleFactor: 1,
-                                                      )
-                                                    ],
                                                   )),
+                                              child: InkWell(
+                                                child: Center(
+                                                  child: Column(children: [
+                                                    const SizedBox(height: 10),
+                                                    Image.asset(
+                                                      'assets/images/setting.png',
+                                                      height: 70.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 12,
+                                                    ),
+                                                    Text(
+                                                      'ตั้งค่าการใช้งาน',
+                                                      style:
+                                                          TextStylePage.bodyP10,
+                                                      maxLines: 1,
+                                                      textScaleFactor: 1,
+                                                    ),
+                                                    Text(
+                                                      'Setting',
+                                                      style:
+                                                          TextStylePage.bodyP10,
+                                                      maxLines: 1,
+                                                      textScaleFactor: 1,
+                                                    )
+                                                  ]),
                                                 ),
                                               ),
                                             ),
                                         
+                                          ),
 
-                                          /* Container(
-                                            decoration:  const BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(12),
-                                                    topRight: Radius.circular(12),
-                                                    bottomLeft: Radius.circular(12),
-                                                    bottomRight: Radius.circular(12)
-                                                    ),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Color.fromRGBO(0, 0, 0, 0.1),
-                                                        blurRadius: 12,
-                                                        /*   offset: Offset(0, 3), */
-                                                      ),
-                                                    ]
-                                                    
-                                              ),
-                                            margin: EdgeInsets.all(8.0),
-                                            child: InkWell(
-                                              onTap: () {},
-                                              splashColor: Colors.red,
-                                              child: Center(
-                                                  child: Column(
-                                                children: <Widget>[
-                                                  const SizedBox(height: 15),
-                                                  Image.asset(
-                                                    'assets/images/setting.png',
-                                                    height: 80.0,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 15,
-                                                  ),
-                                                  Text(
-                                                    'ตั้งค่าการใช้งาน',
-                                                    style:
-                                                        TextStylePage.bodyP10,
-                                                    maxLines: 1,
-                                                    textScaleFactor: 1,
-                                                  ),
-                                                  Text(
-                                                    'Setting',
-                                                    style:
-                                                        TextStylePage.bodyP10,
-                                                    maxLines: 1,
-                                                    textScaleFactor: 1,
-                                                  )
-                                                ],
-                                              )),
-                                            ),
-                                          ), */
+                                          
                                         ],
                                       ),
                                     ),

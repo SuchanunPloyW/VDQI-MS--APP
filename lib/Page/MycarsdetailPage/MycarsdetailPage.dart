@@ -13,9 +13,11 @@ import 'package:vdqims/Service/Model/ReqModel.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import 'package:http/http.dart' as http;
 
+import '../../Service/Model/ReqDBModel.dart';
+
 class MycarsdetailPage extends StatefulWidget {
   const MycarsdetailPage({Key? key, required this.model}) : super(key: key);
-  final ReqAPI model;
+  final ReqDBAPI model;
   @override
   State<MycarsdetailPage> createState() => _MycarsdetailPageState();
 }
@@ -25,19 +27,20 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
   Color baseColor2 = const Color(0xffA10002);
   @override
   Widget build(BuildContext context) {
-    dynamic carreq = widget.model.carChassis;
-    Future<List<ReqAPI>> getreq() async {
+
+    dynamic carreq = widget.model.carid.car_id;
+    Future<List<ReqDBAPI>> getreq() async {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
 
       // response uri
       var response = await http.get(
-          Uri.parse('http://206.189.92.79/api/req/search/$carreq'),
+          Uri.parse('http://206.189.92.79/api/reqDB/search/$carreq'),
           headers: {
             HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
           });
       // return value
-      var req = Req.fromJson(jsonDecode(response.body));
+      var req = ReqDB.fromJson(jsonDecode(response.body));
       return req.data;
     }
 
@@ -157,7 +160,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                           height: 75.0,
                                           child: ListTile(
                                             title: Text(
-                                              widget.model.carChassis,
+                                              widget.model.carid.car_chassis,
                                               style: TextStyleMycar.title,
                                               maxLines: 1,
                                               textScaleFactor: 1,
@@ -276,15 +279,16 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                       ]),
                                                   child: Stack(
                                                     children: <Widget>[
+                                                     
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 -0.05, 0.25),
                                                         child: Text(
-                                                            widget
-                                                                .model
-                                                                .carWhere
-                                                                .carWhere,
+                                                            widget.model.carid.carWhere.carWhere
+                                                                
+                                                                
+                                                                ,
                                                             style:
                                                                 TextStyleMycar
                                                                     .station,
@@ -372,7 +376,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                 top: 0),
                                                         child: AutoSizeText(
                                                             widget
-                                                                .model.carLine,
+                                                                .model.carid.car_line,
                                                             style:
                                                                 const TextStyle(
                                                               fontSize: 36,
@@ -451,7 +455,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                   .only(top: 1),
                                                           child: Text(
                                                               widget.model
-                                                                  .carPosition,
+                                                                  .carid.car_position,
                                                               style:
                                                                   const TextStyle(
                                                                 fontSize: 36,
@@ -496,7 +500,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                         padding: const EdgeInsets.only(
                                             left: 10, right: 10, top: 0),
                                         child: SingleChildScrollView(
-                                          child: FutureBuilder<List<ReqAPI>>(
+                                          child: FutureBuilder<List<ReqDBAPI>>(
                                               future: getreq(),
                                               builder: (context, snapShot) {
                                                 if (snapShot.hasData) {
@@ -566,7 +570,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                       DataCell>[
                                                                     DataCell(
                                                                         Text(
-                                                                      '${e.reqDate}',
+                                                                      '${e.req_date}',
                                                                       style: const TextStyle(
                                                                           fontSize:
                                                                               14,
@@ -577,7 +581,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                     )),
                                                                     DataCell(
                                                                         Text(
-                                                                      '${e.carStatus.carStatus}',
+                                                                      '${e.carid.carStatus.car_status}',
                                                                       style: const TextStyle(
                                                                           fontSize:
                                                                               14,
@@ -588,7 +592,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                     )),
                                                                     DataCell(
                                                                         Text(
-                                                                      '${e.carWhere.carWhere}',
+                                                                      '${e.carid.carWhere.carWhere}',
                                                                       style: const TextStyle(
                                                                           fontSize:
                                                                               14,
@@ -599,7 +603,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                     )),
                                                                     DataCell(
                                                                         Text(
-                                                                      '${e.fullname}',
+                                                                      '${e.req_fullname}',
                                                                       style: const TextStyle(
                                                                           fontSize:
                                                                               14,
@@ -666,7 +670,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
         ));
   }
 
-  void _CheckIn({required ReqAPI model}) {
+  void _CheckIn({required ReqDBAPI model}) {
     Future.delayed(const Duration(milliseconds: 1000), () {
       Navigator.push(
           context,

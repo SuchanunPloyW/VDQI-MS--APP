@@ -11,6 +11,7 @@ import 'package:vdqims/Page/FindcarPage/Model/responsModel.dart';
 import 'package:vdqims/SplashScreen/ReqSplash.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import '../../Service/API/PostReqApi.dart';
+import '../../Service/Model/ReqDBModel.dart';
 import '../../Service/Model/ReqModel.dart';
 import '../FindcarPage/Model/FindcarModel.dart';
 import 'package:http/http.dart' as http;
@@ -45,19 +46,19 @@ class _CardetailPageState extends State<CardetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    dynamic carreq = widget.model.carChassis;
-    Future<List<ReqAPI>> getreq() async {
+    dynamic carreq = widget.model.carId;
+    Future<List<ReqDBAPI>> getreq() async {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
 
       // response uri
       var response = await http.get(
-          Uri.parse('http://206.189.92.79/api/req/search/$carreq'),
+          Uri.parse('http://206.189.92.79/api/reqDB/search/$carreq'),
           headers: {
             HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
           });
       // return value
-      var req = Req.fromJson(jsonDecode(response.body));
+      var req = ReqDB.fromJson(jsonDecode(response.body));
       return req.data;
     }
 
@@ -413,13 +414,12 @@ class _CardetailPageState extends State<CardetailPage> {
                                         padding: const EdgeInsets.only(
                                             left: 10, right: 10, top: 0),
                                         child: SingleChildScrollView(
-                                          child: FutureBuilder<List<ReqAPI>>(
+                                         child: FutureBuilder<List<ReqDBAPI>>(
                                               future: getreq(),
                                               builder: (context, snapShot) {
                                                 if (snapShot.hasData) {
                                                   return SingleChildScrollView(
                                                     child: Container(
-                                                     
                                                       height: 190,
                                                       width: double.infinity,
                                                       child: Padding(
@@ -430,17 +430,19 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                 right: 10,
                                                                 top: 0),
                                                         child: Container(
-                                                         
                                                           padding:
                                                               const EdgeInsets
                                                                       .only(
                                                                   left: 10,
                                                                   right: 10,
                                                                   top: 0),
-                                                          child: SingleChildScrollView(
+                                                          child:
+                                                              SingleChildScrollView(
                                                             child: DataTable(
-                                                              headingRowHeight: 0,
-                                                              horizontalMargin: 0,
+                                                              headingRowHeight:
+                                                                  2,
+                                                              horizontalMargin:
+                                                                  0,
                                                               columnSpacing: 0,
                                                               columns: const <
                                                                   DataColumn>[
@@ -473,57 +475,54 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                   ),
                                                                 )),
                                                               ],
-                                                              rows: snapShot.data!
+                                                              rows: snapShot
+                                                                  .data!
                                                                   .map<DataRow>(
                                                                       (e) {
                                                                 return DataRow(
                                                                   cells: <
                                                                       DataCell>[
-                                                                    DataCell(Text(
-                                                                      '${e.reqDate}',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        fontFamily:
-                                                                            ('Bai Jamjuree'),
-                                                                      ),
+                                                                    DataCell(
+                                                                        Text(
+                                                                      '${e.req_date}',
+                                                                      style: const TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontFamily:
+                                                                              ('Bai Jamjuree')),
                                                                       textScaleFactor:
                                                                           1,
                                                                     )),
-                                                                    DataCell(Text(
-                                                                      '${e.carStatus.carStatus}',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        fontFamily:
-                                                                            ('Bai Jamjuree'),
-                                                                      ),
+                                                                    DataCell(
+                                                                        Text(
+                                                                      '${e.carid.carStatus.car_status}',
+                                                                      style: const TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontFamily:
+                                                                              ('Bai Jamjuree')),
                                                                       textScaleFactor:
                                                                           1,
                                                                     )),
-                                                                    DataCell(Text(
-                                                                      '${e.carWhere.carWhere}',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        fontFamily:
-                                                                            ('Bai Jamjuree'),
-                                                                      ),
+                                                                    DataCell(
+                                                                        Text(
+                                                                      '${e.carid.carWhere.carWhere}',
+                                                                      style: const TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontFamily:
+                                                                              ('Bai Jamjuree')),
                                                                       textScaleFactor:
                                                                           1,
                                                                     )),
-                                                                    DataCell(Text(
-                                                                      '${e.fullname}',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        fontFamily:
-                                                                            ('Bai Jamjuree'),
-                                                                      ),
+                                                                    DataCell(
+                                                                        Text(
+                                                                      '${e.req_fullname}',
+                                                                      style: const TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontFamily:
+                                                                              ('Bai Jamjuree')),
                                                                       textScaleFactor:
                                                                           1,
                                                                     )),
@@ -538,9 +537,11 @@ class _CardetailPageState extends State<CardetailPage> {
                                                   );
                                                 } else {
                                                   return Center(
-                                                      child: Container(
-                                                    height: 150,
-                                                  ));
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      color: baseColor1,
+                                                    ),
+                                                  );
                                                 }
                                               }),
                                         ),
@@ -647,29 +648,36 @@ class _CardetailPageState extends State<CardetailPage> {
             ),
           ),
           onPressed: () async {
-            ResponseModel response = await PostReqAPI().PostReq(
+            
+            ResponseModel response = await ReqAPIDB().PostReq(
+              widget.model.carId, 
+              DateFormat("yyyy-MM-dd").format(DateTime.now()), 
+              DateFormat("hh:mm:ss a").format(DateTime.now()), 
+              "${userData['fullname']}", 
+              "${userData['lastname']}",);
+             
+             
+          /*   ResponseModel response = await PostReqAPI().PostReq(
                 widget.model.carChassis,
                 "${userData['fullname']}",
                 "${userData['lastname']}",
                 DateFormat("yyyy-MM-dd").format(DateTime.now()),
                 DateFormat("hh:mm:ss a").format(DateTime.now()),
                 widget.model.carPosition,
-                widget.model.carWhere.whereId.toString(),
+                widget.model.carWhere.carWhere,
                 "2",
                 "2",
-                widget.model.carLine);
+                widget.model.carLine); */
 
-            if (response.success) {
-              ResponseModel respones1 = await PutCar(
-                "2",
-              );
-              if (respones1.success) {
+             if (response.success) {
+                  ResponseModel respones1 = await PutCar("2", widget.model.carPosition ,widget.model.carWhere.whereId.toString(),  widget.model.carLine );
+               if (respones1.success) {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => Reqsplash()));
               }
             } else {
-              print("ไม่สำเร็จ");
-            }
+              print("ไม่สำเร็จ"); 
+            } 
           },
           color: Color(0xff44A73B),
         ),
@@ -690,14 +698,21 @@ class _CardetailPageState extends State<CardetailPage> {
     ).show();
   }
 
-  // <------------------------ updateposition ------------------------>
+   // <------------------------ updateposition ------------------------>
   dynamic urlup = 'http://206.189.92.79/api/';
   Future<ResponseModel> PutCar(
     dynamic car_status,
+    dynamic car_position,
+    dynamic car_where,
+    dynamic car_line,
   ) async {
     try {
       Map<String, String> data = {
         'car_status': car_status,
+        'car_position': car_position,
+        'car_where': car_where,
+        'car_line': car_line,
+      
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();

@@ -10,25 +10,64 @@ import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 import 'package:http/http.dart' as http;
 import 'package:vdqims/SplashScreen/CheckinSplash.dart';
 import '../../Service/API/PostReqApi.dart';
+import '../../Service/Model/ReqDBModel.dart';
 import '../../Service/Model/ReqModel.dart';
 import '../../Style/TextStyle.dart';
 import '../FindcarPage/Model/responsModel.dart';
 
 class CheckinPage extends StatefulWidget {
   const CheckinPage({Key? key, required this.model}) : super(key: key);
-  final ReqAPI model;
+  final ReqDBAPI model;
 
   @override
   State<CheckinPage> createState() => _CheckinPageState();
 }
 
 class _CheckinPageState extends State<CheckinPage> {
+   // <------------------------ updatereq ------------------------>
+    dynamic urlup = 'http://206.189.92.79/api/';
+    Future<ResponseModel> Putreq(
+    dynamic car_position,
+    dynamic car_where,
+    dynamic car_line,
+    dynamic car_status,
+  ) async {
+    try {
+      Map<String, String> data = {
+        'car_position': car_position,
+        'car_where': car_where,
+        'car_line': car_line,
+        'car_status': car_status,
+      };
+      var dataencode = jsonEncode(data);
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      var _authToken = localStorage.getString('token');
+      var carID = localStorage.getString('carID');
+      Map<String, String> headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $_authToken'
+      };
+      if (_authToken != null) {
+        urlup = Uri.parse("http://206.189.92.79/api/car/$carID");
+        await http.put(
+          urlup,
+          body: dataencode,
+          headers: headers,
+        );
+      }
+      return ResponseModel(success: true);
+    } catch (e) {
+      return ResponseModel(success: false, message: e.toString());
+    }
+  }
+ 
+
   //<--------------------   get Dropdown Station -------------------->
   List? station_data;
   String? Staid;
   var userData;
 
-  var url = Uri.encodeFull('http://206.189.92.79/api/station');
+  var url = Uri.encodeFull('http://206.189.92.79/api/where/s/1');
   Future<String> station() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var _authToken = localStorage.getString('token');
@@ -190,7 +229,7 @@ class _CheckinPageState extends State<CheckinPage> {
                                                         ]),
                                                     child: ListTile(
                                                       title: Text(
-                                                        widget.model.carChassis,
+                                                        widget.model.carid.car_chassis,
                                                         style: TextStyleinfor
                                                             .bodyinfor18,
                                                         textScaleFactor: 1,
@@ -282,7 +321,7 @@ class _CheckinPageState extends State<CheckinPage> {
                                                               child:
                                                                   DropdownButton(
                                                                 hint: Text(
-                                                                  'VDQI station',
+                                                                  'กรุณาเลือกสถานี',
                                                                   style: TextStyleCheckin
                                                                       .bodyCheckin16,
                                                                   textScaleFactor:
@@ -305,12 +344,12 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                         (item) {
                                                                   return DropdownMenuItem(
                                                                     value: item[
-                                                                            'car_station']
+                                                                            'where_id']
                                                                         .toString(),
                                                                     child:
                                                                         new Text(
                                                                       item[
-                                                                          'car_station'],
+                                                                          'car_where'],
                                                                       style:
                                                                           const TextStyle(
                                                                         fontFamily:
@@ -322,8 +361,8 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                   );
                                                                 }).toList(),
                                                                 onChanged:
-                                                                    (String?
-                                                                        newVal) {
+                                                                    (String?newVal) {
+                                                                        
                                                                   setState(() {
                                                                     Staid =
                                                                         newVal;
@@ -333,8 +372,8 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                         Staid
                                                                             .toString();
 
-                                                                    print(Staid
-                                                                        .toString());
+                                                                    print(Staid.toString());
+                                                                        
                                                                   });
                                                                 },
                                                                 value: Staid,
@@ -417,7 +456,7 @@ class _CheckinPageState extends State<CheckinPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                widget.model.carChassis,
+                widget.model.carid.car_chassis,
                 style: TextStyleAlert.body15bold,
                 textScaleFactor: 1,
               ),
@@ -454,7 +493,12 @@ class _CheckinPageState extends State<CheckinPage> {
       buttons: [
         DialogButton(
           onPressed: () async {
-            ResponseModel response = await PostReqAPI().PostReq(
+            ResponseModel response = await Putreq(
+              "-", 
+              StationController.text, 
+              "-", 
+              "2");
+           /*  ResponseModel response = await PostReqAPI().PostReq(
                 widget.model.carChassis,
                 "${userData['fullname']}",
                 "${userData['lastname']}",
@@ -464,7 +508,11 @@ class _CheckinPageState extends State<CheckinPage> {
                 widget.model.carWhere.whereId.toString(),
                 "1",
                 StationController.text,
-                widget.model.carLine);
+                widget.model.carLine); */
+            if (response.success) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const CheckinSpach()));
+            }
           },
 
           /*  onPressed: () {
