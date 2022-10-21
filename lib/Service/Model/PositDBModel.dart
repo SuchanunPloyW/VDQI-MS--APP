@@ -1,4 +1,4 @@
-class PositDB{
+class PositDB {
   PositDB({
     required this.currentPage,
     required this.data,
@@ -13,7 +13,6 @@ class PositDB{
     required this.prevPageUrl,
     required this.to,
     required this.total,
-
   });
   int currentPage;
   late List<PositDBAPI> data;
@@ -31,7 +30,8 @@ class PositDB{
 
   factory PositDB.fromJson(Map<String, dynamic> json) => PositDB(
         currentPage: json["current_page"],
-        data: List<PositDBAPI>.from(json["data"].map((e) => PositDBAPI.fromJson(e))),
+        data: List<PositDBAPI>.from(
+            json["data"].map((e) => PositDBAPI.fromJson(e))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
@@ -44,34 +44,54 @@ class PositDB{
         to: json["to"],
         total: json["total"],
       );
-
-
 }
-class PositDBAPI{
+
+class PositDBAPI {
   PositDBAPI({
     required this.posit_id,
     required this.line,
     required this.posit,
     required this.sort,
     required this.carWhere,
-    required this.status,
+    required this.car_status,
+    required this.carid,
   });
-   int posit_id;
-   String line;
-   int posit;
-   int sort;
-   CarWhere carWhere;
-   int status;
+  int posit_id;
+  String line;
+  int posit;
+  int sort;
+  CarWhere carWhere;
+  int car_status;
+  Carid carid;
 
-   factory PositDBAPI.fromJson(Map<String, dynamic> json) => PositDBAPI(
+  factory PositDBAPI.fromJson(Map<String, dynamic> json) => PositDBAPI(
         posit_id: json["posit_id"],
         line: json["line"],
         posit: json["posit"],
         sort: json["sort"],
         carWhere: CarWhere.fromJson(json["car_where"]),
-        status: json["status"],
+        car_status: json["car_status"],
+       carid: Carid.fromJson(json["car_id"]),
       );
 }
+class Carid {
+  Carid({
+    required this.car_id,
+    required this.car_chassis,
+    
+  });
+  int car_id;
+  String car_chassis;
+ 
+
+  factory Carid.fromJson(Map<String, dynamic> json) => Carid(
+        car_id: json["car_id"],
+        car_chassis: json["car_chassis"],
+       
+       
+      );
+}
+
 class CarWhere {
   CarWhere({
     required this.whereId,

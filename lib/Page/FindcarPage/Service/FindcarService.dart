@@ -13,7 +13,7 @@ class FindCarService {
     var _authToken = localStorage.getString('token');
 
     // response uri
-    var response = await http.get(Uri.parse('http://206.189.92.79/api/car'), headers: {
+    var response = await http.get(Uri.parse('http://206.189.92.79/api/car/status/1'), headers: {
       HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
     });
     // return value

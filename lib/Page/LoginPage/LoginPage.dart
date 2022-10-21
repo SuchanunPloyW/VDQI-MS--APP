@@ -283,6 +283,7 @@ class _LoginPageState extends State<LoginPage> {
     var res = await LoginAPI().postData(data, 'login');
     var body = json.decode(res.body);
     if (res.statusCode == 201) {
+      
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       localStorage.setString('token', body['token']);
       localStorage.setString('user', json.encode(body['user']));

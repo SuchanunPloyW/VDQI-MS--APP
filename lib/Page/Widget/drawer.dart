@@ -95,6 +95,8 @@ void logout() async {
   SharedPreferences localStorage = await SharedPreferences.getInstance();
   localStorage.remove('token');
   localStorage.remove('user');
+  localStorage.remove('ID');
+  localStorage.remove('carID');
   // localStorage.remove('user');
 
   /*  } */

@@ -140,6 +140,7 @@ class _MycarsPageState extends State<MycarsPage> {
                                         AsyncSnapshot<List<ReqDBAPI>?> snapshot) {
                                       if (snapshot.hasData) {
                                         List<ReqDBAPI>? data = snapshot.data;
+                                       
                                         return Align(
                                           alignment: Alignment.topCenter,
                                           child: ListView.builder(
@@ -155,7 +156,7 @@ class _MycarsPageState extends State<MycarsPage> {
                                         );
                                       }
                                       return const Center(
-                                        child:CircularProgressIndicator()
+                                       /*  child:CircularProgressIndicator() */
                                          /* Text(
                                           'ไม่พบรถยนต์ในรายการของฉัน',
                                           style: TextStyle(
