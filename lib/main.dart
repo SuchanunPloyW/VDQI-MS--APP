@@ -54,7 +54,7 @@ var userData;
       
       home: userData == null 
           ? const MainSplash() 
-          : const FindcarPage()
+          : const MainSplash1()
     );
   }
 }

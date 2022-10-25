@@ -65,6 +65,7 @@ class _CheckinPageState extends State<CheckinPage> {
   //<--------------------   get Dropdown Station -------------------->
   List? station_data;
   String? Staid;
+  String? itesmvalue;
   var userData;
 
   var url = Uri.encodeFull('http://206.189.92.79/api/where/s/1');
@@ -343,13 +344,13 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                     ?.map(
                                                                         (item) {
                                                                   return DropdownMenuItem(
-                                                                    value: item[
-                                                                            'where_id']
-                                                                        .toString(),
+                                                                    value: item[ 'where_id'].toString(),
+                                                                           
+                                                                        
                                                                     child:
-                                                                        new Text(
-                                                                      item[
-                                                                          'car_where'],
+                                                                         Text(
+                                                                      item['car_where'],
+                                                                          
                                                                       style:
                                                                           const TextStyle(
                                                                         fontFamily:
@@ -364,13 +365,16 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                     (String?newVal) {
                                                                         
                                                                   setState(() {
-                                                                    Staid =
-                                                                        newVal;
+                                                                    Staid = newVal;
+                                                                    
+                                                                   
+                                                                          
+                                                                        
 
-                                                                    StationController
-                                                                            .text =
-                                                                        Staid
-                                                                            .toString();
+                                                                    StationController.text =Staid.toString();
+                                                                            
+                                                                        
+                                                                            
 
                                                                     print(Staid.toString());
                                                                         
@@ -461,11 +465,7 @@ class _CheckinPageState extends State<CheckinPage> {
                 textScaleFactor: 1,
               ),
               const SizedBox(width: 5),
-              Text(
-                "เข้าสถานี",
-                style: TextStyleAlert.body15normal,
-                textScaleFactor: 1,
-              )
+              
             ],
           ),
           Column(
@@ -473,11 +473,11 @@ class _CheckinPageState extends State<CheckinPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    StationController.text,
-                    style: TextStyleAlert.body15bold,
-                    textScaleFactor: 1,
-                  ),
+                 Text(
+                "เข้าสถานี",
+                style: TextStyleAlert.body15normal,
+                textScaleFactor: 1,
+              ),
                   const SizedBox(width: 5),
                   Text(
                     "ใช่หรือไม่",

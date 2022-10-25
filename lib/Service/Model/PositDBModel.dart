@@ -71,7 +71,7 @@ class PositDBAPI {
         sort: json["sort"],
         carWhere: CarWhere.fromJson(json["car_where"]),
         car_status: json["car_status"],
-       carid: Carid.fromJson(json["car_id"]),
+        carid: Carid.fromJson(json["car_id"]),
       );
 }
 class Carid {

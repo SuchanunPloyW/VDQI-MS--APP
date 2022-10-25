@@ -137,43 +137,6 @@ class _FindcarPageState extends State<FindcarPage> {
                                   wordSpacing: 1),
                             ),
                           ),
-
-                          /* width: 280,
-                          height: 60, */
-                          /* child: TextField(
-                              controller: chassisController = TextEditingController(text: "$qrCode"),
-
-                              //controller: chassisController,
-                              /*  controller: chassisController =
-                                  TextEditingController(text: "$qrCode"), */
-                              /* (text: "$qrCode") */
-                              decoration: InputDecoration(
-                                  fillColor: Color(0xff9F1E1E),
-                                  filled: true,
-                                  hintText: "เลขตัวถัง",
-                                  hintStyle: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey,
-                                    fontFamily: ('Bai Jamjuree'),
-                                  ),
-                                  contentPadding: EdgeInsets.only(left: 15, right: 10),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  suffixIcon: Icon(
-                                    Icons.search,
-                                    color: Colors.grey,
-                                  ),
-                                  suffixIconColor: Colors.grey),
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 15, fontWeight: FontWeight.w400, wordSpacing: 1),
-                              onChanged: (String? value) {
-                                print(value);
-                                setState(() {
-                                  qrCode = value.toString();
-                                });
-                              }), */
                         ),
                         SizedBox(width: 10),
                         InkWell(
@@ -205,11 +168,14 @@ class _FindcarPageState extends State<FindcarPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 50,left: 5, right: 5,),
+              padding: const EdgeInsets.only(
+                top: 50,
+                left: 5,
+                right: 5,
+              ),
               child: SingleChildScrollView(
                 child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 5, right: 5, top: 46),
+                    padding: const EdgeInsets.only(left: 5, right: 5, top: 46),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -218,14 +184,12 @@ class _FindcarPageState extends State<FindcarPage> {
                               child: Card(
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(12),
-                                  topRight: Radius.circular(12),
-                                  bottomLeft: Radius.circular(12),
-                                  bottomRight: Radius.circular(12)
-                                  ),
-                                  
-                                  ),
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(12),
+                                      topRight: Radius.circular(12),
+                                      bottomLeft: Radius.circular(12),
+                                      bottomRight: Radius.circular(12)),
+                                ),
                                 child: FutureBuilder(
                                   future: FindCarService().getcar(),
                                   builder: (BuildContext context,
@@ -247,8 +211,8 @@ class _FindcarPageState extends State<FindcarPage> {
                                                 );
                                               } else if (snapshot
                                                   .data![index].carChassis
-                                                  .contains(chassisController
-                                                      .text)) {
+                                                  .contains(
+                                                      chassisController.text)) {
                                                 return Listcar(
                                                   model: data[index],
                                                 );
@@ -282,92 +246,87 @@ class _FindcarPageState extends State<FindcarPage> {
   }
 
   Widget Listcar({required CarAPI model}) {
-    return InkWell(
-      onTap: () async {
-        dynamic Id = model.carId.toString();
-        SharedPreferences localStorage = await SharedPreferences.getInstance();
-        localStorage.setString('ID', Id);
-        // ignore: use_build_context_synchronously
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (_) => CardetailPage(
-                      model: model,
-                    )));
-      }, //<<<<<<<<<< push to new screen เช่น
-      child: SizedBox(
-        height: 83,
-        width: 55,
-        child: Padding(
+    return Column(
+      children: [
+        Padding(
           padding: const EdgeInsets.only(
             top: 0,
             left: 5,
             right: 5,
           ),
-          child: Card(
-            semanticContainer: true,
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            /* shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50.0),
-            ), */
-            child: ListTile(
-              leading: AspectRatio(
-                aspectRatio: 1,
-                child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(1.0)),
-                    child: CircleAvatar(
-                      child: Image.asset(
-                        'assets/images/car4.png',
-                        height: 28.0,
-                        width: 30,
-                      ),
-                      radius: 62.0,
-                      backgroundColor: (model.carStatus.carStatus == "นำเข้า"
-                          ? const Color(0xff89EB80)
-                          : const Color(0xffEB8080)),
-                    )),
-              ),
-              /* leading: CircleAvatar(
-                  child: ClipRRect(
+          child: ListTile(
+            onTap: () async {
+              
+              dynamic Id = model.carId.toString();
+              SharedPreferences localStorage =
+                  await SharedPreferences.getInstance();
+              localStorage.setString('ID', Id);
+              // ignore: use_build_context_synchronously
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => CardetailPage(
+                            model: model,
+                          )));
+            },
+            leading: AspectRatio(
+              aspectRatio: 1,
+              child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(1.0)),
+                  child: CircleAvatar(
                     child: Image.asset(
                       'assets/images/car4.png',
                       height: 28.0,
-                      width: 25,
+                      width: 30,
                     ),
-                    borderRadius: BorderRadius.circular(60.0),
-                  ),
-                  backgroundColor: (model.carStatus.carStatus == "นำเข้า"
-                      ? const Color(0xff89EB80)
-                      : const Color(0xffEB8080))), */
-              title: AutoSizeText(
-                model.carChassis,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xff404040),
-                  fontFamily: ('IBM Plex Sans Thai'),
-                  fontWeight: FontWeight.bold,
-                ),
-                maxFontSize: 10,
-                minFontSize: 8,
-                maxLines: 1,
-              ),
-              subtitle: AutoSizeText(
-                'Yaris Ativ 1.2 G',
-                style: TextStyle(
-                  color: Color(0xff404040),
-                  fontSize: 14,
-                  fontFamily: ('IBM Plex Sans Thai'),
-                ),
-                maxFontSize: 11,
-                minFontSize: 9,
-                maxLines: 1,
-              ),
+                    radius: 62.0,
+                    backgroundColor: (model.carStatus.statusId == 1
+                        ? const Color(0xff89EB80)
+                        : const Color(0xffEB8080)),
+                  )),
             ),
-            /*  child:
-                Column(children: [Text(model.carChassis)]), */
+            /* leading: CircleAvatar(
+                child: ClipRRect(
+                  child: Image.asset(
+                    'assets/images/car4.png',
+                    height: 28.0,
+                    width: 25,
+                  ),
+                  borderRadius: BorderRadius.circular(60.0),
+                ),
+                backgroundColor: (model.carStatus.carStatus == "นำเข้า"
+                    ? const Color(0xff89EB80)
+                    : const Color(0xffEB8080))), */
+            title: AutoSizeText(
+              model.carChassis,
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xff404040),
+                fontFamily: ('IBM Plex Sans Thai'),
+                fontWeight: FontWeight.bold,
+              ),
+              maxFontSize: 10,
+              minFontSize: 8,
+              maxLines: 1,
+            ),
+            subtitle: AutoSizeText(
+              'Yaris Ativ 1.2 G',
+              style: TextStyle(
+                color: Color(0xff404040),
+                fontSize: 14,
+                fontFamily: ('IBM Plex Sans Thai'),
+              ),
+              maxFontSize: 11,
+              minFontSize: 9,
+              maxLines: 1,
+            ),
           ),
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.only(left: 25, right: 25),
+          child: Divider(height: 1, color: Color(0xffEBEBEB)),
+        )
+      ],
     );
   }
 

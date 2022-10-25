@@ -121,6 +121,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   TextEditingController WhereController = TextEditingController();
   TextEditingController PositController = TextEditingController();
   TextEditingController lineController = TextEditingController();
+  
   // <------------------------ Function ------------------------>
 
   @override
@@ -742,7 +743,9 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                 "${userData['lastname']}",
                 DateFormat("yyyy-MM-dd").format(DateTime.now()),
                 DateFormat("hh:mm:ss a").format(DateTime.now()),
-                lineController.text);
+                lineController.text,
+                1.toString(),
+                );
 
             if (respones.success) {
               getcar();

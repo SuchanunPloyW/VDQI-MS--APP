@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vdqims/Page/CardetailPage/AroudcarPage.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
 import 'package:vdqims/Page/FindcarPage/Model/responsModel.dart';
 import 'package:vdqims/SplashScreen/ReqSplash.dart';
@@ -15,7 +15,6 @@ import '../../Service/API/PositionAPI.dart';
 import '../../Service/API/PostReqApi.dart';
 import '../../Service/Model/PositDBModel.dart';
 import '../../Service/Model/ReqDBModel.dart';
-import '../../Service/Model/ReqModel.dart';
 import '../FindcarPage/Model/FindcarModel.dart';
 import 'package:http/http.dart' as http;
 
@@ -160,237 +159,252 @@ class _CardetailPageState extends State<CardetailPage> {
                                         padding: const EdgeInsets.only(
                                             left: 10, right: 10),
                                         child: Container(
+                                          decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(10),
+                                                    topRight:
+                                                        Radius.circular(10),
+                                                    bottomLeft:
+                                                        Radius.circular(10),
+                                                    bottomRight:
+                                                        Radius.circular(10)),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Color.fromRGBO(
+                                                        0, 0, 0, 0.1),
+                                                    blurRadius: 12,
+                                                    /*   offset: Offset(0, 3), */
+                                                  ),
+                                                ]),
                                           height: 85,
-                                          child: Card(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            child: ListTile(
-                                              title: Text(
-                                                widget.model.carChassis,
-                                                style: const TextStyle(
-                                                  color: Color(0xff404040),
-                                                  fontFamily:
-                                                      ('IBM Plex Sans Thai'),
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                maxLines: 1,
-                                                textScaleFactor: 1,
+                                          child: ListTile(
+                                            title: Text(
+                                              widget.model.carChassis,
+                                              style: const TextStyle(
+                                                color: Color(0xff404040),
+                                                fontFamily:
+                                                    ('IBM Plex Sans Thai'),
+                                                fontWeight: FontWeight.bold,
                                               ),
-                                              leading: AspectRatio(
-                                                aspectRatio: 1,
-                                                child: ClipRRect(
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                            Radius.circular(
-                                                                1.0)),
-                                                    child: CircleAvatar(
-                                                      child: Image.asset(
-                                                        'assets/images/car4.png',
-                                                        height: 28.0,
-                                                        width: 30,
-                                                      ),
-                                                      radius: 62.0,
-                                                      backgroundColor: (widget
-                                                                  .model
-                                                                  .carStatus
-                                                                  .carStatus ==
-                                                              "นำเข้า"
-                                                          ? const Color(
-                                                              0xff89EB80)
-                                                          : const Color(
-                                                              0xffEB8080)),
-                                                    )),
+                                              maxLines: 1,
+                                              textScaleFactor: 1,
+                                            ),
+                                            leading: AspectRatio(
+                                              aspectRatio: 1,
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(
+                                                              1.0)),
+                                                  child: CircleAvatar(
+                                                    child: Image.asset(
+                                                      'assets/images/car4.png',
+                                                      height: 28.0,
+                                                      width: 30,
+                                                    ),
+                                                    radius: 62.0,
+                                                    backgroundColor: (widget
+                                                                .model
+                                                                .carStatus
+                                                                .statusId ==
+                                                            1
+                                                        ? const Color(
+                                                            0xff89EB80)
+                                                        : const Color(
+                                                            0xffEB8080)),
+                                                  )),
+                                            ),
+                                            subtitle: Text(
+                                              'Yaris Ativ 1.2 G \n' +
+                                                  'สถานะ :' +
+                                                  ' ' +
+                                                  widget.model.carStatus
+                                                      .carStatus,
+                                              style: TextStyle(
+                                                color: Color(0xff404040),
+                                                fontFamily: ('Bai Jamjuree'),
+                                                fontWeight: FontWeight.w300,
                                               ),
-                                              subtitle: Text(
-                                                'Yaris Ativ 1.2 G \n' +
-                                                    'สถานะ :' +
-                                                    ' ' +
-                                                    widget.model.carStatus
-                                                        .carStatus,
-                                                style: TextStyle(
-                                                  color: Color(0xff404040),
-                                                  fontFamily: ('Bai Jamjuree'),
-                                                  fontWeight: FontWeight.w300,
-                                                ),
-                                                textScaleFactor: 1,
-                                              ),
+                                              textScaleFactor: 1,
                                             ),
                                           ),
                                         ),
                                       ),
+                                      SizedBox(height: 10,),
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             left: 10, right: 10),
-                                        child: Container(
-                                          /* decoration: new BoxDecoration(
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            color: Color.fromARGB(255, 231, 224, 224),
-                                            blurRadius: 7.0, // soften the shadow
-                                            spreadRadius: 0.0, //extend the shadow
-                                            offset: Offset(
-                                              5.0, // Move to right 10  horizontally
-                                              5.0, // Move to bottom 10 Vertically
-                                            ),
-                                          )
-                                        ],
-                                      ), */
-                                          child: Card(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)),
-                                              child: GestureDetector(
-                                                  onTap: () =>
-                                                      FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0, -0.1),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 10,
-                                                                right: 10),
-                                                        child: Container(
-                                                            height: 159,
-                                                            child: Stack(
-                                                                children: [
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -0.9,
-                                                                            -0.9),
-                                                                    child: Text(
-                                                                      'สถานที่',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Color(
-                                                                            0xffD4D4D4),
-                                                                        fontSize:
-                                                                            16,
-                                                                        fontFamily:
-                                                                            ('Bai Jamjuree'),
-                                                                      ),
-                                                                      textScaleFactor:
-                                                                          1,
-                                                                    ),
+                                        child: SizedBox(
+                                          height: 160,
+                                          width: double.infinity,
+                                          child: Container(
+                                            decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(10),
+                                                    topRight:
+                                                        Radius.circular(10),
+                                                    bottomLeft:
+                                                        Radius.circular(10),
+                                                    bottomRight:
+                                                        Radius.circular(10)),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Color.fromRGBO(
+                                                        0, 0, 0, 0.1),
+                                                    blurRadius: 12,
+                                                    /*   offset: Offset(0, 3), */
+                                                  ),
+                                                ]),
+                                            child: GestureDetector(
+                                                onTap: () =>
+                                                    FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0, -0.1),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10,
+                                                              right: 10),
+                                                      child: Container(
+                                                          height: 160,
+                                                          child:
+                                                              Stack(children: [
+                                                            Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      -0.9,
+                                                                      -0.9),
+                                                              child: Text(
+                                                                'สถานที่',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Color(
+                                                                      0xffD4D4D4),
+                                                                  fontSize: 16,
+                                                                  fontFamily:
+                                                                      ('Bai Jamjuree'),
+                                                                ),
+                                                                textScaleFactor:
+                                                                    1,
+                                                              ),
+                                                            ),
+                                                            Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      -0.05,
+                                                                      -0.59),
+                                                              child: Text(
+                                                                  widget
+                                                                      .model
+                                                                      .carWhere
+                                                                      .carWhere,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Color(
+                                                                        0xff404040),
+                                                                    fontSize:
+                                                                        36,
+                                                                    fontFamily:
+                                                                        ('Kanit'),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w900,
                                                                   ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -0.05,
-                                                                            -0.59),
-                                                                    child: Text(
-                                                                        widget
-                                                                            .model
-                                                                            .carWhere
-                                                                            .carWhere,
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color:
-                                                                              Color(0xff404040),
-                                                                          fontSize:
-                                                                              36,
-                                                                          fontFamily:
-                                                                              ('Kanit'),
-                                                                          fontWeight:
-                                                                              FontWeight.w900,
-                                                                        ),
-                                                                        textScaleFactor:
-                                                                            1.0),
-                                                                  ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -0.9,
-                                                                            0.1),
-                                                                    child: Text(
-                                                                      'แถว',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Color(
-                                                                            0xffD4D4D4),
-                                                                        fontSize:
-                                                                            16,
-                                                                        fontFamily:
-                                                                            ('Bai Jamjuree'),
-                                                                      ),
-                                                                      textScaleFactor:
-                                                                          1,
-                                                                    ),
-                                                                  ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -0.56,
-                                                                            0.7),
-                                                                    child: Text(
-                                                                      widget
-                                                                          .model
-                                                                          .carLine,
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Color(
-                                                                            0xff404040),
-                                                                        fontSize:
-                                                                            36,
-                                                                        fontFamily:
-                                                                            ('Kanit'),
-                                                                        fontWeight:
-                                                                            FontWeight.w900,
-                                                                      ),
-                                                                      textScaleFactor:
-                                                                          1,
-                                                                    ),
-                                                                  ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            0.1,
-                                                                            0.1),
-                                                                    child: Text(
-                                                                      'ลำดับ',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            16,
-                                                                        fontFamily:
-                                                                            ('Bai Jamjuree'),
-                                                                        color: Color(
-                                                                            0xffD4D4D4),
-                                                                      ),
-                                                                      textScaleFactor:
-                                                                          1,
-                                                                    ),
-                                                                  ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            0.56,
-                                                                            0.7),
-                                                                    child: Text(
-                                                                      widget
-                                                                          .model
-                                                                          .carPosition,
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            40,
-                                                                        fontWeight:
-                                                                            FontWeight.w900,
-                                                                        fontFamily:
-                                                                            ('Kanit'),
-                                                                      ),
-                                                                      textScaleFactor:
-                                                                          1,
-                                                                    ),
-                                                                  ),
-                                                                ])),
-                                                      )))),
+                                                                  textScaleFactor:
+                                                                      1.0),
+                                                            ),
+                                                            
+                                                            Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      -0.9,
+                                                                      0.1),
+                                                              child: Text(
+                                                                'แถว',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Color(
+                                                                      0xffD4D4D4),
+                                                                  fontSize: 16,
+                                                                  fontFamily:
+                                                                      ('Bai Jamjuree'),
+                                                                ),
+                                                                textScaleFactor:
+                                                                    1,
+                                                              ),
+                                                            ),
+                                                            Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      -0.56,
+                                                                      0.7),
+                                                              child: Text(
+                                                                widget.model
+                                                                    .carLine,
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Color(
+                                                                      0xff404040),
+                                                                  fontSize: 36,
+                                                                  fontFamily:
+                                                                      ('Kanit'),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w900,
+                                                                ),
+                                                                textScaleFactor:
+                                                                    1,
+                                                              ),
+                                                            ),
+                                                            Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      0.1, 0.1),
+                                                              child: Text(
+                                                                'ลำดับ',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 16,
+                                                                  fontFamily:
+                                                                      ('Bai Jamjuree'),
+                                                                  color: Color(
+                                                                      0xffD4D4D4),
+                                                                ),
+                                                                textScaleFactor:
+                                                                    1,
+                                                              ),
+                                                            ),
+                                                            Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      0.56,
+                                                                      0.7),
+                                                              child: Text(
+                                                                widget.model
+                                                                    .carPosition,
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 40,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w900,
+                                                                  fontFamily:
+                                                                      ('Kanit'),
+                                                                ),
+                                                                textScaleFactor:
+                                                                    1,
+                                                              ),
+                                                            ),
+                                                          ])),
+                                                    ))),
+                                          ),
                                         ),
                                       ),
 
@@ -590,9 +604,98 @@ class _CardetailPageState extends State<CardetailPage> {
                                                           context) =>
                                                       _DialogStockA(context),
                                                 );
+                                              } else if (widget
+                                                      .model.carWhere.whereId ==
+                                                  2) {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext
+                                                          context) =>
+                                                      _DialogStockB(context),
+                                                );
+                                              } else if (widget
+                                                      .model.carWhere.whereId ==
+                                                  3) {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext
+                                                          context) =>
+                                                      _DialogStockC(context),
+                                                );
+                                              } else if (widget
+                                                      .model.carWhere.whereId ==
+                                                  4) {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext
+                                                          context) =>
+                                                      _DialogStockD(context),
+                                                );
                                               } else {
-                                                print(
-                                                    'Stockkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
+                                                showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        content: new Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: <Widget>[
+                                                            SingleChildScrollView(
+                                                              child: Column(
+                                                                children: [
+                                                                  Lottie.asset(
+                                                                      'assets/images/map.json',
+                                                                      height:
+                                                                          150,
+                                                                      width:
+                                                                          150),
+                                                                  Center(
+                                                                      child: Text(
+                                                                          'รถกำลังดำเนินการที่',
+                                                                          style:
+                                                                              TextStyleAlert.body16bold)),
+                                                                  Center(
+                                                                      child: Text(
+                                                                          widget
+                                                                              .model
+                                                                              .carWhere
+                                                                              .carWhere,
+                                                                          style:
+                                                                              TextStyleAlert.body18bold)),
+                                                                ],
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        actions: <Widget>[
+                                                          new ElevatedButton(
+                                                            onPressed: () {
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                            style: ElevatedButton.styleFrom(
+                                                                primary:
+                                                                    const Color(
+                                                                        0xffE52628),
+                                                                minimumSize:
+                                                                    const Size
+                                                                            .fromHeight(
+                                                                        40),
+                                                                shape: RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10))),
+                                                            child: const Text(
+                                                                'ตกลง'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    });
                                               }
                                             },
                                             child: AutoSizeText(
@@ -618,6 +721,7 @@ class _CardetailPageState extends State<CardetailPage> {
         ));
   }
 
+// <------------------------- Dialog Stock  -------------------------->
   Widget _DialogStockA(BuildContext context) {
     return new AlertDialog(
       content: new Column(
@@ -627,7 +731,9 @@ class _CardetailPageState extends State<CardetailPage> {
           SingleChildScrollView(
             child: Column(
               children: [
-                Center(child: Text('แผนผังแสดงลานจอด')),
+                Center(
+                    child: Text('แผนผังแสดงลานจอด Stock A',
+                        style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockA(),
                 )
@@ -651,6 +757,115 @@ class _CardetailPageState extends State<CardetailPage> {
       ],
     );
   }
+
+  Widget _DialogStockB(BuildContext context) {
+    return new AlertDialog(
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Center(
+                    child: Text('แผนผังแสดงลานจอด Stock B',
+                        style: TextStyleAlert.body16bold)),
+                Center(
+                  child: _buildStockB(),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          style: ElevatedButton.styleFrom(
+              primary: const Color(0xffE52628),
+              minimumSize: const Size.fromHeight(40),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10))),
+          child: const Text('ตกลง'),
+        ),
+      ],
+    );
+  }
+
+  Widget _DialogStockC(BuildContext context) {
+    return new AlertDialog(
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Center(
+                    child: Text('แผนผังแสดงลานจอด Stock C',
+                        style: TextStyleAlert.body16bold)),
+                Center(
+                  child: _buildStockC(),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          style: ElevatedButton.styleFrom(
+              primary: const Color(0xffE52628),
+              minimumSize: const Size.fromHeight(40),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10))),
+          child: const Text('ตกลง'),
+        ),
+      ],
+    );
+  }
+
+  Widget _DialogStockD(BuildContext context) {
+    return new AlertDialog(
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Center(
+                    child: Text('แผนผังแสดงลานจอด Stock D',
+                        style: TextStyleAlert.body16bold)),
+                Center(
+                  child: _buildStockD(),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          style: ElevatedButton.styleFrom(
+              primary: const Color(0xffE52628),
+              minimumSize: const Size.fromHeight(40),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10))),
+          child: const Text('ตกลง'),
+        ),
+      ],
+    );
+  }
+// <------------------------- Stock  -------------------------->
 
   Widget _buildStockA() {
     return Container(
@@ -809,22 +1024,305 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                         .min,
                                                                 crossAxisAlignment:
                                                                     CrossAxisAlignment
-                                                                        .start,
+                                                                        .center,
                                                                 children: <
                                                                     Widget>[
                                                                   SingleChildScrollView(
-                                                                    child: Row(
+                                                                      child:
+                                                                          Column(
+                                                                    children: [
+                                                                      Lottie.asset(
+                                                                          'assets/images/map.json',
+                                                                          height:
+                                                                              150,
+                                                                          width:
+                                                                              150),
+                                                                      Column(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Text(
+                                                                              "เลขตัวถัง : ${data[index].carid.car_chassis}",
+                                                                              textScaleFactor: 1,
+                                                                              style: TextStyleAlert.body16bold),
+                                                                          Text(
+                                                                              "รุ่น : Yaris Ativ 1.2 G ",
+                                                                              textScaleFactor: 1,
+                                                                              style: TextStyleAlert.body16bold),
+                                                                          Text(
+                                                                              "สี : แดง ",
+                                                                              textScaleFactor: 1,
+                                                                              style: TextStyleAlert.body16bold),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("ตำแหน่ง :  ${data[index].line}", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                            ],
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ],
+                                                                  ))
+                                                                ],
+                                                              ),
+                                                              actions: <Widget>[
+                                                                new ElevatedButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .pop();
+                                                                  },
+                                                                  style: ElevatedButton.styleFrom(
+                                                                      primary:
+                                                                          const Color(
+                                                                              0xffE52628),
+                                                                      minimumSize:
+                                                                          const Size.fromHeight(
+                                                                              40),
+                                                                      shape: RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(10))),
+                                                                  child:
+                                                                      const Text(
+                                                                          'ตกลง'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          });
+                                                    },
+                                                    child: Center(
+                                                      child: Text(
+                                                        textScaleFactor: 1,
+                                                        data[index]
+                                                            .posit
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }));
+                                    }
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        color: Colors.red,
+                                      ),
+                                    );
+                                  })),
+                        )
+                      ],
+                    )),
+              )
+            ],
+          ),
+        ))
+      ]),
+    );
+  }
+
+  Widget _buildStockB() {
+    return Container(
+      height: 400,
+      decoration:
+          BoxDecoration(border: Border.all(color: const Color(0xffE2E8F0))),
+      child: Column(children: [
+        SizedBox(
+          height: 20,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25),
+        ),
+        Expanded(
+            child: Container(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 30,
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 35),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("A",
+                                textScaleFactor: 1,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text("B",
+                                textScaleFactor: 1,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text("C",
+                                textScaleFactor: 1,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text(
+                              textScaleFactor: 1,
+                              "D",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              textScaleFactor: 1,
+                              "E",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 10,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Column(children: [
+                              Container(
+                                  height: 300,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.black38,
+                                    ),
+                                    color: const Color.fromARGB(
+                                        246, 231, 230, 236),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      '',
+                                      textScaleFactor: 1,
+                                    ),
+                                  ))
+                            ]),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                              height: 350,
+                              child: FutureBuilder(
+                                  future: PostionService().getWhere2(),
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<List<PositDBAPI>?>
+                                          snapshot) {
+                                    if (snapshot.hasData) {
+                                      List<PositDBAPI>? data = snapshot.data;
+                                      return Container(
+                                          width: 20,
+                                          height: 20,
+                                          child: GridView.builder(
+                                              padding: const EdgeInsets.all(10),
+                                              gridDelegate:
+                                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                                mainAxisSpacing: 10,
+                                                crossAxisSpacing: 10,
+                                                crossAxisCount: 5,
+                                              ),
+                                              itemCount: data!.length,
+                                              itemBuilder: (context, index) {
+                                                return Container(
+                                                  width: 20,
+                                                  height: 20,
+                                                  decoration: BoxDecoration(
+                                                    color: (data[index]
+                                                                    .carid
+                                                                    .car_id ==
+                                                                widget.model
+                                                                    .carId &&
+                                                            data[index]
+                                                                    .car_status ==
+                                                                1
+                                                        ? Colors.blue
+                                                        : data[index]
+                                                                    .car_status ==
+                                                                1
+                                                            ? Colors.red
+                                                            : data[index]
+                                                                        .car_status ==
+                                                                    2
+                                                                ? Colors.grey
+                                                                : const Color(
+                                                                    0xff89EB80)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (BuildContext
+                                                              context) {
+                                                            return new AlertDialog(
+                                                              content:
+                                                                  new Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                children: <
+                                                                    Widget>[
+                                                                  SingleChildScrollView(
+                                                                    child:
+                                                                        Column(
                                                                       children: [
+                                                                        Lottie.asset(
+                                                                            'assets/images/map.json',
+                                                                            height:
+                                                                                150,
+                                                                            width:
+                                                                                150),
                                                                         Text(
-                                                                          'เลขตัวถัง',
+                                                                          'Chassis No',
                                                                           style:
-                                                                              TextStyle(fontWeight: FontWeight.bold),
+                                                                              TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            fontFamily:
+                                                                                ('Kanit'),
+                                                                          ),
                                                                         ),
                                                                         Text(
-                                                                            ' : '),
-                                                                        Text(data[index]
-                                                                            .carid
-                                                                            .car_chassis)
+                                                                          data[index]
+                                                                              .carid
+                                                                              .car_chassis,
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                16,
+                                                                            fontFamily:
+                                                                                ('Kanit'),
+                                                                          ),
+                                                                        )
                                                                       ],
                                                                     ),
                                                                   )
@@ -863,8 +1361,532 @@ class _CardetailPageState extends State<CardetailPage> {
                                                             .posit
                                                             .toString(),
                                                         style: TextStyle(
-                                                            fontFamily:
-                                                                ('Kanit'),
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }));
+                                    }
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        color: Colors.red,
+                                      ),
+                                    );
+                                  })),
+                        )
+                      ],
+                    )),
+              )
+            ],
+          ),
+        ))
+      ]),
+    );
+  }
+
+  Widget _buildStockC() {
+    return Container(
+      height: 400,
+      decoration:
+          BoxDecoration(border: Border.all(color: const Color(0xffE2E8F0))),
+      child: Column(children: [
+        SizedBox(
+          height: 20,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25),
+        ),
+        Expanded(
+            child: Container(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 30,
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 35),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("A",
+                                textScaleFactor: 1,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text("B",
+                                textScaleFactor: 1,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text("C",
+                                textScaleFactor: 1,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text(
+                              textScaleFactor: 1,
+                              "D",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              textScaleFactor: 1,
+                              "E",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 10,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Column(children: [
+                              Container(
+                                  height: 300,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.black38,
+                                    ),
+                                    color: const Color.fromARGB(
+                                        246, 231, 230, 236),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      '',
+                                      textScaleFactor: 1,
+                                    ),
+                                  ))
+                            ]),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                              height: 350,
+                              child: FutureBuilder(
+                                  future: PostionService().getWhere3(),
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<List<PositDBAPI>?>
+                                          snapshot) {
+                                    if (snapshot.hasData) {
+                                      List<PositDBAPI>? data = snapshot.data;
+                                      return Container(
+                                          width: 20,
+                                          height: 20,
+                                          child: GridView.builder(
+                                              padding: const EdgeInsets.all(10),
+                                              gridDelegate:
+                                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                                mainAxisSpacing: 10,
+                                                crossAxisSpacing: 10,
+                                                crossAxisCount: 5,
+                                              ),
+                                              itemCount: data!.length,
+                                              itemBuilder: (context, index) {
+                                                return Container(
+                                                  width: 20,
+                                                  height: 20,
+                                                  decoration: BoxDecoration(
+                                                    color: (data[index]
+                                                                    .carid
+                                                                    .car_id ==
+                                                                widget.model
+                                                                    .carId &&
+                                                            data[index]
+                                                                    .car_status ==
+                                                                1
+                                                        ? Colors.blue
+                                                        : data[index]
+                                                                    .car_status ==
+                                                                1
+                                                            ? Colors.red
+                                                            : data[index]
+                                                                        .car_status ==
+                                                                    2
+                                                                ? Colors.grey
+                                                                : const Color(
+                                                                    0xff89EB80)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (BuildContext
+                                                              context) {
+                                                            return new AlertDialog(
+                                                              content:
+                                                                  new Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                children: <
+                                                                    Widget>[
+                                                                  SingleChildScrollView(
+                                                                    child:
+                                                                        Column(
+                                                                      children: [
+                                                                        Lottie.asset(
+                                                                            'assets/images/map.json',
+                                                                            height:
+                                                                                150,
+                                                                            width:
+                                                                                150),
+                                                                        Text(
+                                                                          'Chassis No',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            fontFamily:
+                                                                                ('Kanit'),
+                                                                          ),
+                                                                        ),
+                                                                        Text(
+                                                                          data[index]
+                                                                              .carid
+                                                                              .car_chassis,
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                16,
+                                                                            fontFamily:
+                                                                                ('Kanit'),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              actions: <Widget>[
+                                                                new ElevatedButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .pop();
+                                                                  },
+                                                                  style: ElevatedButton.styleFrom(
+                                                                      primary:
+                                                                          const Color(
+                                                                              0xffE52628),
+                                                                      minimumSize:
+                                                                          const Size.fromHeight(
+                                                                              40),
+                                                                      shape: RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(10))),
+                                                                  child:
+                                                                      const Text(
+                                                                          'ตกลง'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          });
+                                                    },
+                                                    child: Center(
+                                                      child: Text(
+                                                        textScaleFactor: 1,
+                                                        data[index]
+                                                            .posit
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }));
+                                    }
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                        color: Colors.red,
+                                      ),
+                                    );
+                                  })),
+                        )
+                      ],
+                    )),
+              )
+            ],
+          ),
+        ))
+      ]),
+    );
+  }
+
+  Widget _buildStockD() {
+    return Container(
+      height: 400,
+      decoration:
+          BoxDecoration(border: Border.all(color: const Color(0xffE2E8F0))),
+      child: Column(children: [
+        SizedBox(
+          height: 20,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25),
+        ),
+        Expanded(
+            child: Container(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 30,
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 35),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("A",
+                                textScaleFactor: 1,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text("B",
+                                textScaleFactor: 1,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text("C",
+                                textScaleFactor: 1,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text(
+                              textScaleFactor: 1,
+                              "D",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              textScaleFactor: 1,
+                              "E",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 10,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Column(children: [
+                              Container(
+                                  height: 300,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.black38,
+                                    ),
+                                    color: const Color.fromARGB(
+                                        246, 231, 230, 236),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      '',
+                                      textScaleFactor: 1,
+                                    ),
+                                  ))
+                            ]),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                              height: 350,
+                              child: FutureBuilder(
+                                  future: PostionService().getWhere4(),
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<List<PositDBAPI>?>
+                                          snapshot) {
+                                    if (snapshot.hasData) {
+                                      List<PositDBAPI>? data = snapshot.data;
+                                      return Container(
+                                          width: 20,
+                                          height: 20,
+                                          child: GridView.builder(
+                                              padding: const EdgeInsets.all(10),
+                                              gridDelegate:
+                                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                                mainAxisSpacing: 10,
+                                                crossAxisSpacing: 10,
+                                                crossAxisCount: 5,
+                                              ),
+                                              itemCount: data!.length,
+                                              itemBuilder: (context, index) {
+                                                return Container(
+                                                  width: 20,
+                                                  height: 20,
+                                                  decoration: BoxDecoration(
+                                                    color: (data[index]
+                                                                    .carid
+                                                                    .car_id ==
+                                                                widget.model
+                                                                    .carId &&
+                                                            data[index]
+                                                                    .car_status ==
+                                                                1
+                                                        ? Colors.blue
+                                                        : data[index]
+                                                                    .car_status ==
+                                                                1
+                                                            ? Colors.red
+                                                            : data[index]
+                                                                        .car_status ==
+                                                                    2
+                                                                ? Colors.grey
+                                                                : const Color(
+                                                                    0xff89EB80)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (BuildContext
+                                                              context) {
+                                                            return new AlertDialog(
+                                                              content:
+                                                                  new Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                children: <
+                                                                    Widget>[
+                                                                  SingleChildScrollView(
+                                                                    child:
+                                                                        Column(
+                                                                      children: [
+                                                                        Lottie.asset(
+                                                                            'assets/images/map.json',
+                                                                            height:
+                                                                                150,
+                                                                            width:
+                                                                                150),
+                                                                        Text(
+                                                                          'Chassis No',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            fontFamily:
+                                                                                ('Kanit'),
+                                                                          ),
+                                                                        ),
+                                                                        Text(
+                                                                          data[index]
+                                                                              .carid
+                                                                              .car_chassis,
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                16,
+                                                                            fontFamily:
+                                                                                ('Kanit'),
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              actions: <Widget>[
+                                                                new ElevatedButton(
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator.of(
+                                                                            context)
+                                                                        .pop();
+                                                                  },
+                                                                  style: ElevatedButton.styleFrom(
+                                                                      primary:
+                                                                          const Color(
+                                                                              0xffE52628),
+                                                                      minimumSize:
+                                                                          const Size.fromHeight(
+                                                                              40),
+                                                                      shape: RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(10))),
+                                                                  child:
+                                                                      const Text(
+                                                                          'ตกลง'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          });
+                                                    },
+                                                    child: Center(
+                                                      child: Text(
+                                                        textScaleFactor: 1,
+                                                        data[index]
+                                                            .posit
+                                                            .toString(),
+                                                        style: TextStyle(
                                                             color:
                                                                 Colors.white),
                                                       ),

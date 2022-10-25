@@ -96,6 +96,7 @@ flutter:
     - assets/images/loadingcircles.json
     - assets/images/correct.json
     - assets/images/loading3.json
+    - assets/images/map.json
     - assets/images/98432-loading.json
   #   - images/a_dot_ham.jpeg
 

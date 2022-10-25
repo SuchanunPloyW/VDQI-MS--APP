@@ -17,6 +17,7 @@ class PostCarAPI {
     String date,
     String time,
     String car_line,
+    String sort,
   ) async {
     try {
       Map<String, String> data = {
@@ -29,6 +30,7 @@ class PostCarAPI {
         'date': date,
         'time': time,
         'car_line': car_line,
+        'sort': sort,
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
