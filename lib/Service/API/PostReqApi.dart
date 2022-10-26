@@ -93,3 +93,47 @@ class ReqAPIDB {
     }
   }
 }
+
+class HistoryPost {
+  dynamic url = 'http://206.189.92.79/api/';
+  Future<ResponseModel> PostHis(
+   
+    String car_chassis,
+    int car_status,
+    String car_where,
+    String fullname,
+    String lastname,
+    String date,
+    String time,
+  ) async {
+    try {
+      Map<String, String> data = {
+        'car_chassis': car_chassis,
+        'car_status': car_status.toString(),
+        'car_where': car_where.toString(),
+        'fullname': fullname,
+        'lastname': lastname,
+        'date': date,
+        'time': time,
+      };
+      var dataencode = jsonEncode(data);
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      var _authToken = localStorage.getString('token');
+      Map<String, String> headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $_authToken'
+      };
+      if (_authToken != null) {
+        url = Uri.parse("http://206.189.92.79/api/history");
+        await http.post(
+          url,
+          body: dataencode,
+          headers: headers,
+        );
+      }
+      return ResponseModel(success: true);
+    } catch (e) {
+      return ResponseModel(success: false, message: e.toString());
+    }
+  }
+}

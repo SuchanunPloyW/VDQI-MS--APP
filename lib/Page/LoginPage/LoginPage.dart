@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
             ))),
       ),
       Positioned(
-          top: 20,
+          top: 60,
           bottom: 0,
           left: 0,
           right: 0,
@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                      height: 350,
+                      height: 295,
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  const SizedBox(height: 25),
+                                  const SizedBox(height: 20),
                                   Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 25.0),
@@ -240,7 +240,7 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                     ),
                                   ), */
-                                  const SizedBox(height: 35),
+                                  const SizedBox(height: 20),
                                   Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 25.0),

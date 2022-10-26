@@ -1,5 +1,5 @@
-class ReqDB {
-  ReqDB({
+class HistoryDB {
+  HistoryDB({
     required this.currentPage,
     required this.data,
     required this.firstPageUrl,
@@ -15,7 +15,7 @@ class ReqDB {
     required this.total,
   });
   int currentPage;
-  late List<ReqDBAPI> data;
+  late List<HistoryDBAPI> data;
   String firstPageUrl;
   int from;
   int lastPage;
@@ -28,10 +28,10 @@ class ReqDB {
   int to;
   int total;
 
-  factory ReqDB.fromJson(Map<String, dynamic> json) => ReqDB(
+  factory HistoryDB.fromJson(Map<String, dynamic> json) => HistoryDB(
         currentPage: json["current_page"],
         data:
-            List<ReqDBAPI>.from(json["data"].map((e) => ReqDBAPI.fromJson(e))),
+            List<HistoryDBAPI>.from(json["data"].map((e) => HistoryDBAPI.fromJson(e))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
@@ -46,70 +46,41 @@ class ReqDB {
       );
 }
 
-class ReqDBAPI {
-  ReqDBAPI({
-    required this.req_id,
-    required this.carid,
-    required this.req_date,
-    required this.req_time,
-    required this.req_fullname,
-    required this.req_lastname,
-  });
-
-  int req_id;
-  Carid carid;
-  String req_date;
-  String req_time;
-  String req_fullname;
-  String req_lastname;
-
-  factory ReqDBAPI.fromJson(Map<String, dynamic> json) => ReqDBAPI(
-        req_id: json["req_id"],
-        carid: Carid.fromJson(json["car_id"]),
-        req_date: json["req_date"],
-        req_time: json["req_time"],
-        req_fullname: json["req_fullname"],
-        req_lastname: json["req_lastname"],
-      );
-}
-
-class Carid {
-  Carid({
-    required this.car_id,
+class HistoryDBAPI {
+  HistoryDBAPI({
+    required this.his_id,
     required this.car_chassis,
-    required this.carStatus,
-    required this.carWhere,
-    required this.car_position,
     required this.fullname,
     required this.lastname,
+
     required this.date,
     required this.time,
-    required this.car_line,
+    required this.carStatus,
+    required this.carWhere,
   });
-  int car_id;
+
+  int his_id;
   String car_chassis;
-  CarStatus carStatus;
-  CarWhere carWhere;
-  String car_position;
   String fullname;
   String lastname;
   String date;
   String time;
-  String car_line;
+  CarStatus carStatus;
+  CarWhere carWhere;
 
-  factory Carid.fromJson(Map<String, dynamic> json) => Carid(
-        car_id: json["car_id"],
+  factory HistoryDBAPI.fromJson(Map<String, dynamic> json) => HistoryDBAPI(
+        his_id: json["his_id"],
         car_chassis: json["car_chassis"],
-        carWhere: CarWhere.fromJson(json["car_where"]),
-        carStatus: CarStatus.fromJson(json["car_status"]),
-        car_position: json["car_position"],
         fullname: json["fullname"],
         lastname: json["lastname"],
         date: json["date"],
         time: json["time"],
-        car_line: json["car_line"],
+        carWhere: CarWhere.fromJson(json["car_where"]),
+        carStatus: CarStatus.fromJson(json["car_status"]),
       );
 }
+
+
 
 class CarWhere {
   CarWhere({

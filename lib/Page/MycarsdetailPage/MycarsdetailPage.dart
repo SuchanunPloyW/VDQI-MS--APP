@@ -5,17 +5,20 @@ import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:vdqims/Page/CheckinPage/CheckinPage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
-import 'package:vdqims/Service/Model/ReqModel.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import 'package:http/http.dart' as http;
 
+import '../../Service/Model/HistoryModel.dart';
 import '../../Service/Model/ReqDBModel.dart';
 
 class MycarsdetailPage extends StatefulWidget {
+  
   const MycarsdetailPage({Key? key, required this.model}) : super(key: key);
   final ReqDBAPI model;
   @override
@@ -23,27 +26,29 @@ class MycarsdetailPage extends StatefulWidget {
 }
 
 class _MycarsdetailPageState extends State<MycarsdetailPage> {
+  String qrCode = '';
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
   @override
   Widget build(BuildContext context) {
-
-    dynamic carreq = widget.model.carid.car_id;
-    Future<List<ReqDBAPI>> getreq() async {
+    dynamic carreq = widget.model.carid.car_chassis;
+    Future<List<HistoryDBAPI>> getreq() async {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
 
       // response uri
       var response = await http.get(
-          Uri.parse('http://206.189.92.79/api/reqDB/search/$carreq'),
+          Uri.parse('http://206.189.92.79/api/history/search/$carreq'),
           headers: {
             HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
           });
       // return value
-      var req = ReqDB.fromJson(jsonDecode(response.body));
+      var req = HistoryDB.fromJson(jsonDecode(response.body));
       return req.data;
     }
 
+    //<--------------------   QR  -------------------->
+    String qrCode = '';
     // --------------------------------- Scaffold -------------------------------------------------
     return Scaffold(
         appBar: AppBar(
@@ -202,51 +207,48 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                               child: Padding(
                                                 padding: const EdgeInsets.only(
                                                     right: 5),
-                                                child: Container(
-                                                  decoration: const BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                              topLeft: Radius
-                                                                  .circular(12),
-                                                              topRight: Radius
-                                                                  .circular(12),
-                                                              bottomLeft: Radius
-                                                                  .circular(12),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          12)),
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          color: Color.fromRGBO(
-                                                              0, 0, 0, 0.1),
-                                                          blurRadius: 10,
-                                                          /*   offset: Offset(0, 3), */
-                                                        ),
-                                                      ]),
+                                                child: ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          primary: Colors.white,
+                                                         
+                                                          onPrimary:
+                                                              const Color.fromARGB(255,224,197,197),
+                                                                  
+                                                          shape:
+                                                              const RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.only(
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        10),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        10),
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        10),
+                                                                bottomRight: Radius
+                                                                    .circular(
+                                                                        10)),
+                                                          )),
                                                   child: Column(
-                                                    children: <Widget>[
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(top: 5),
-                                                        child: IconButton(
-                                                          icon: Image.asset(
-                                                              'assets/images/iconscan.png'),
-                                                          iconSize: 35,
-                                                          onPressed: () {},
-                                                        ),
-                                                      ),
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Image.asset(
+                                                          'assets/images/iconscan.png'),
                                                       Text(
-                                                        "แสกน",
+                                                        'สแกน',
                                                         style:
                                                             TextStyleMycar.scan,
                                                         textScaleFactor: 1,
                                                       ),
                                                     ],
                                                   ),
+                                                  onPressed: () => scanQRCode(),
                                                 ),
+                                                
                                               ),
                                             ),
                                             Expanded(
@@ -279,16 +281,16 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                       ]),
                                                   child: Stack(
                                                     children: <Widget>[
-                                                     
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 -0.05, 0.25),
                                                         child: Text(
-                                                            widget.model.carid.carWhere.carWhere
-                                                                
-                                                                
-                                                                ,
+                                                            widget
+                                                                .model
+                                                                .carid
+                                                                .carWhere
+                                                                .carWhere,
                                                             style:
                                                                 TextStyleMycar
                                                                     .station,
@@ -375,8 +377,8 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                             EdgeInsets.only(
                                                                 top: 0),
                                                         child: AutoSizeText(
-                                                            widget
-                                                                .model.carid.car_line,
+                                                            widget.model.carid
+                                                                .car_line,
                                                             style:
                                                                 const TextStyle(
                                                               fontSize: 36,
@@ -454,8 +456,8 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                               const EdgeInsets
                                                                   .only(top: 1),
                                                           child: Text(
-                                                              widget.model
-                                                                  .carid.car_position,
+                                                              widget.model.carid
+                                                                  .car_position,
                                                               style:
                                                                   const TextStyle(
                                                                 fontSize: 36,
@@ -500,136 +502,136 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                         padding: const EdgeInsets.only(
                                             left: 10, right: 10, top: 0),
                                         child: SingleChildScrollView(
-                                          child: FutureBuilder<List<ReqDBAPI>>(
-                                              future: getreq(),
-                                              builder: (context, snapShot) {
-                                                if (snapShot.hasData) {
-                                                  return SingleChildScrollView(
-                                                    child: Container(
-                                                      height: 190,
-                                                      width: double.infinity,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 10,
-                                                                right: 10,
-                                                                top: 0),
+                                          child:
+                                              FutureBuilder<List<HistoryDBAPI>>(
+                                                  future: getreq(),
+                                                  builder: (context, snapShot) {
+                                                    if (snapShot.hasData) {
+                                                      return SingleChildScrollView(
                                                         child: Container(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 10,
-                                                                  right: 10,
-                                                                  top: 0),
-                                                          child:
-                                                              SingleChildScrollView(
-                                                            child: DataTable(
-                                                              headingRowHeight:
-                                                                  2,
-                                                              horizontalMargin:
-                                                                  0,
-                                                              columnSpacing: 0,
-                                                              columns: const <
-                                                                  DataColumn>[
-                                                                DataColumn(
-                                                                    label:
-                                                                        Expanded(
-                                                                  child: Text(
-                                                                    '',
-                                                                  ),
-                                                                )),
-                                                                DataColumn(
-                                                                    label:
-                                                                        Expanded(
-                                                                  child: Text(
-                                                                    '',
-                                                                  ),
-                                                                )),
-                                                                DataColumn(
-                                                                    label:
-                                                                        Expanded(
-                                                                  child: Text(
-                                                                    '',
-                                                                  ),
-                                                                )),
-                                                                DataColumn(
-                                                                    label:
-                                                                        Expanded(
-                                                                  child: Text(
-                                                                    '',
-                                                                  ),
-                                                                )),
-                                                              ],
-                                                              rows: snapShot
-                                                                  .data!
-                                                                  .map<DataRow>(
-                                                                      (e) {
-                                                                return DataRow(
-                                                                  cells: <
-                                                                      DataCell>[
-                                                                    DataCell(
-                                                                        Text(
-                                                                      '${e.req_date}',
-                                                                      style: const TextStyle(
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontFamily:
-                                                                              ('Bai Jamjuree')),
-                                                                      textScaleFactor:
-                                                                          1,
+                                                          height: 190,
+                                                          width:
+                                                              double.infinity,
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 10,
+                                                                    right: 10,
+                                                                    top: 0),
+                                                            child: Container(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 10,
+                                                                      right: 10,
+                                                                      top: 0),
+                                                              child:
+                                                                  SingleChildScrollView(
+                                                                child:
+                                                                    DataTable(
+                                                                  headingRowHeight:
+                                                                      2,
+                                                                  horizontalMargin:
+                                                                      0,
+                                                                  columnSpacing:
+                                                                      0,
+                                                                  columns: const <
+                                                                      DataColumn>[
+                                                                    DataColumn(
+                                                                        label:
+                                                                            Expanded(
+                                                                      child:
+                                                                          Text(
+                                                                        '',
+                                                                      ),
                                                                     )),
-                                                                    DataCell(
-                                                                        Text(
-                                                                      '${e.carid.carStatus.car_status}',
-                                                                      style: const TextStyle(
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontFamily:
-                                                                              ('Bai Jamjuree')),
-                                                                      textScaleFactor:
-                                                                          1,
+                                                                    DataColumn(
+                                                                        label:
+                                                                            Expanded(
+                                                                      child:
+                                                                          Text(
+                                                                        '',
+                                                                      ),
                                                                     )),
-                                                                    DataCell(
-                                                                        Text(
-                                                                      '${e.carid.carWhere.carWhere}',
-                                                                      style: const TextStyle(
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontFamily:
-                                                                              ('Bai Jamjuree')),
-                                                                      textScaleFactor:
-                                                                          1,
+                                                                    DataColumn(
+                                                                        label:
+                                                                            Expanded(
+                                                                      child:
+                                                                          Text(
+                                                                        '',
+                                                                      ),
                                                                     )),
-                                                                    DataCell(
-                                                                        Text(
-                                                                      '${e.req_fullname}',
-                                                                      style: const TextStyle(
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontFamily:
-                                                                              ('Bai Jamjuree')),
-                                                                      textScaleFactor:
-                                                                          1,
+                                                                    DataColumn(
+                                                                        label:
+                                                                            Expanded(
+                                                                      child:
+                                                                          Text(
+                                                                        '',
+                                                                      ),
                                                                     )),
                                                                   ],
-                                                                );
-                                                              }).toList(),
+                                                                  rows: snapShot
+                                                                      .data!
+                                                                      .map<DataRow>(
+                                                                          (e) {
+                                                                    return DataRow(
+                                                                      cells: <
+                                                                          DataCell>[
+                                                                        DataCell(
+                                                                            Text(
+                                                                          '${e.date}',
+                                                                          style: const TextStyle(
+                                                                              fontSize: 14,
+                                                                              fontFamily: ('Bai Jamjuree')),
+                                                                          textScaleFactor:
+                                                                              1,
+                                                                        )),
+                                                                        DataCell(
+                                                                            Text(
+                                                                          '${e.carStatus.car_status}',
+                                                                          style: const TextStyle(
+                                                                              fontSize: 14,
+                                                                              fontFamily: ('Bai Jamjuree')),
+                                                                          textScaleFactor:
+                                                                              1,
+                                                                        )),
+                                                                        DataCell(
+                                                                            Text(
+                                                                          '${e.carWhere.carWhere}',
+                                                                          style: const TextStyle(
+                                                                              fontSize: 14,
+                                                                              fontFamily: ('Bai Jamjuree')),
+                                                                          textScaleFactor:
+                                                                              1,
+                                                                        )),
+                                                                        DataCell(
+                                                                            Text(
+                                                                          '${e.fullname}',
+                                                                          style: const TextStyle(
+                                                                              fontSize: 14,
+                                                                              fontFamily: ('Bai Jamjuree')),
+                                                                          textScaleFactor:
+                                                                              1,
+                                                                        )),
+                                                                      ],
+                                                                    );
+                                                                  }).toList(),
+                                                                ),
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                } else {
-                                                  return Center(
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      color: baseColor1,
-                                                    ),
-                                                  );
-                                                }
-                                              }),
+                                                      );
+                                                    } else {
+                                                      return Center(
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          color: baseColor1,
+                                                        ),
+                                                      );
+                                                    }
+                                                  }),
                                         ),
                                       ),
 
@@ -647,7 +649,8 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10))),
-                                            onPressed: () => _CheckIn(model: widget.model),
+                                            onPressed: () =>
+                                                _CheckIn(model: widget.model),
                                             child: AutoSizeText(
                                               'เช็คอินเข้าสถานี',
                                               style: TextStyleBtn.bodybtn,
@@ -672,12 +675,29 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
 
   void _CheckIn({required ReqDBAPI model}) {
     Future.delayed(const Duration(milliseconds: 1000), () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (_) => CheckinPage(
-                    model: widget.model
-                  )));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (_) => CheckinPage(model: widget.model ,QR : qrCode)));
     });
+  }
+  Future<void> scanQRCode() async {
+    try {
+      final qrCode = await FlutterBarcodeScanner.scanBarcode(
+        '#ff6666',
+        'Cancel',
+        true,
+        ScanMode.QR,
+      );
+
+      if (!mounted) return;
+
+      setState(() {
+        this.qrCode = qrCode;
+         Navigator.push(context,
+          MaterialPageRoute(builder: (_) => CheckinPage(model: widget.model , QR : qrCode)));
+
+      });
+    } on PlatformException {
+      qrCode = 'Failed to get platform version.';
+    }
   }
 }

@@ -13,6 +13,7 @@ import 'package:vdqims/SplashScreen/ReqSplash.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import '../../Service/API/PositionAPI.dart';
 import '../../Service/API/PostReqApi.dart';
+import '../../Service/Model/HistoryModel.dart';
 import '../../Service/Model/PositDBModel.dart';
 import '../../Service/Model/ReqDBModel.dart';
 import '../FindcarPage/Model/FindcarModel.dart';
@@ -51,19 +52,19 @@ class _CardetailPageState extends State<CardetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    dynamic carreq = widget.model.carId;
-    Future<List<ReqDBAPI>> getreq() async {
+    dynamic carreq = widget.model.carChassis;
+    Future<List<HistoryDBAPI>> getreq() async {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
 
       // response uri
       var response = await http.get(
-          Uri.parse('http://206.189.92.79/api/reqDB/search/$carreq'),
+          Uri.parse('http://206.189.92.79/api/history/search/$carreq'),
           headers: {
             HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
           });
       // return value
-      var req = ReqDB.fromJson(jsonDecode(response.body));
+      var req = HistoryDB.fromJson(jsonDecode(response.body));
       return req.data;
     }
 
@@ -160,24 +161,22 @@ class _CardetailPageState extends State<CardetailPage> {
                                             left: 10, right: 10),
                                         child: Container(
                                           decoration: const BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(10),
-                                                    topRight:
-                                                        Radius.circular(10),
-                                                    bottomLeft:
-                                                        Radius.circular(10),
-                                                    bottomRight:
-                                                        Radius.circular(10)),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Color.fromRGBO(
-                                                        0, 0, 0, 0.1),
-                                                    blurRadius: 12,
-                                                    /*   offset: Offset(0, 3), */
-                                                  ),
-                                                ]),
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(10),
+                                                  topRight: Radius.circular(10),
+                                                  bottomLeft:
+                                                      Radius.circular(10),
+                                                  bottomRight:
+                                                      Radius.circular(10)),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Color.fromRGBO(
+                                                      0, 0, 0, 0.1),
+                                                  blurRadius: 12,
+                                                  /*   offset: Offset(0, 3), */
+                                                ),
+                                              ]),
                                           height: 85,
                                           child: ListTile(
                                             title: Text(
@@ -196,8 +195,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                               child: ClipRRect(
                                                   borderRadius:
                                                       const BorderRadius.all(
-                                                          Radius.circular(
-                                                              1.0)),
+                                                          Radius.circular(1.0)),
                                                   child: CircleAvatar(
                                                     child: Image.asset(
                                                       'assets/images/car4.png',
@@ -232,7 +230,9 @@ class _CardetailPageState extends State<CardetailPage> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(height: 10,),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             left: 10, right: 10),
@@ -320,7 +320,6 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                   textScaleFactor:
                                                                       1.0),
                                                             ),
-                                                            
                                                             Align(
                                                               alignment:
                                                                   AlignmentDirectional(
@@ -429,133 +428,133 @@ class _CardetailPageState extends State<CardetailPage> {
                                         padding: const EdgeInsets.only(
                                             left: 10, right: 10, top: 0),
                                         child: SingleChildScrollView(
-                                          child: FutureBuilder<List<ReqDBAPI>>(
-                                              future: getreq(),
-                                              builder: (context, snapShot) {
-                                                if (snapShot.hasData) {
-                                                  return SingleChildScrollView(
-                                                    child: Container(
-                                                      height: 190,
-                                                      width: double.infinity,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 10,
-                                                                right: 10,
-                                                                top: 0),
+                                          child:
+                                              FutureBuilder<List<HistoryDBAPI>>(
+                                                  future: getreq(),
+                                                  builder: (context, snapShot) {
+                                                    if (snapShot.hasData) {
+                                                      return SingleChildScrollView(
                                                         child: Container(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 10,
-                                                                  right: 10,
-                                                                  top: 0),
-                                                          child:
-                                                              SingleChildScrollView(
-                                                            child: DataTable(
-                                                              headingRowHeight:
-                                                                  2,
-                                                              horizontalMargin:
-                                                                  0,
-                                                              columnSpacing: 0,
-                                                              columns: const <
-                                                                  DataColumn>[
-                                                                DataColumn(
-                                                                    label:
-                                                                        Expanded(
-                                                                  child: Text(
-                                                                    '',
-                                                                  ),
-                                                                )),
-                                                                DataColumn(
-                                                                    label:
-                                                                        Expanded(
-                                                                  child: Text(
-                                                                    '',
-                                                                  ),
-                                                                )),
-                                                                DataColumn(
-                                                                    label:
-                                                                        Expanded(
-                                                                  child: Text(
-                                                                    '',
-                                                                  ),
-                                                                )),
-                                                                DataColumn(
-                                                                    label:
-                                                                        Expanded(
-                                                                  child: Text(
-                                                                    '',
-                                                                  ),
-                                                                )),
-                                                              ],
-                                                              rows: snapShot
-                                                                  .data!
-                                                                  .map<DataRow>(
-                                                                      (e) {
-                                                                return DataRow(
-                                                                  cells: <
-                                                                      DataCell>[
-                                                                    DataCell(
-                                                                        Text(
-                                                                      '${e.req_date}',
-                                                                      style: const TextStyle(
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontFamily:
-                                                                              ('Bai Jamjuree')),
-                                                                      textScaleFactor:
-                                                                          1,
+                                                          height: 190,
+                                                          width:
+                                                              double.infinity,
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 10,
+                                                                    right: 10,
+                                                                    top: 0),
+                                                            child: Container(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 10,
+                                                                      right: 10,
+                                                                      top: 0),
+                                                              child:
+                                                                  SingleChildScrollView(
+                                                                child:
+                                                                    DataTable(
+                                                                  headingRowHeight:
+                                                                      2,
+                                                                  horizontalMargin:
+                                                                      0,
+                                                                  columnSpacing:
+                                                                      0,
+                                                                  columns: const <
+                                                                      DataColumn>[
+                                                                    DataColumn(
+                                                                        label:
+                                                                            Expanded(
+                                                                      child:
+                                                                          Text(
+                                                                        '',
+                                                                      ),
                                                                     )),
-                                                                    DataCell(
-                                                                        Text(
-                                                                      '${e.carid.carStatus.car_status}',
-                                                                      style: const TextStyle(
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontFamily:
-                                                                              ('Bai Jamjuree')),
-                                                                      textScaleFactor:
-                                                                          1,
+                                                                    DataColumn(
+                                                                        label:
+                                                                            Expanded(
+                                                                      child:
+                                                                          Text(
+                                                                        '',
+                                                                      ),
                                                                     )),
-                                                                    DataCell(
-                                                                        Text(
-                                                                      '${e.carid.carWhere.carWhere}',
-                                                                      style: const TextStyle(
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontFamily:
-                                                                              ('Bai Jamjuree')),
-                                                                      textScaleFactor:
-                                                                          1,
+                                                                    DataColumn(
+                                                                        label:
+                                                                            Expanded(
+                                                                      child:
+                                                                          Text(
+                                                                        '',
+                                                                      ),
                                                                     )),
-                                                                    DataCell(
-                                                                        Text(
-                                                                      '${e.req_fullname}',
-                                                                      style: const TextStyle(
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontFamily:
-                                                                              ('Bai Jamjuree')),
-                                                                      textScaleFactor:
-                                                                          1,
+                                                                    DataColumn(
+                                                                        label:
+                                                                            Expanded(
+                                                                      child:
+                                                                          Text(
+                                                                        '',
+                                                                      ),
                                                                     )),
                                                                   ],
-                                                                );
-                                                              }).toList(),
+                                                                  rows: snapShot
+                                                                      .data!
+                                                                      .map<DataRow>(
+                                                                          (e) {
+                                                                    return DataRow(
+                                                                      cells: <
+                                                                          DataCell>[
+                                                                        DataCell(
+                                                                            Text(
+                                                                          '${e.date}',
+                                                                          style: const TextStyle(
+                                                                              fontSize: 14,
+                                                                              fontFamily: ('Bai Jamjuree')),
+                                                                          textScaleFactor:
+                                                                              1,
+                                                                        )),
+                                                                        DataCell(
+                                                                            Text(
+                                                                          '${e.carStatus.car_status}',
+                                                                          style: const TextStyle(
+                                                                              fontSize: 14,
+                                                                              fontFamily: ('Bai Jamjuree')),
+                                                                          textScaleFactor:
+                                                                              1,
+                                                                        )),
+                                                                        DataCell(
+                                                                            Text(
+                                                                          '${e.carWhere.carWhere}',
+                                                                          style: const TextStyle(
+                                                                              fontSize: 14,
+                                                                              fontFamily: ('Bai Jamjuree')),
+                                                                          textScaleFactor:
+                                                                              1,
+                                                                        )),
+                                                                        DataCell(
+                                                                            Text(
+                                                                          '${e.fullname}',
+                                                                          style: const TextStyle(
+                                                                              fontSize: 14,
+                                                                              fontFamily: ('Bai Jamjuree')),
+                                                                          textScaleFactor:
+                                                                              1,
+                                                                        )),
+                                                                      ],
+                                                                    );
+                                                                  }).toList(),
+                                                                ),
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                } else {
-                                                  return Container(
-                                                    height: 190,
-                                                  );
-                                                }
-                                              }),
+                                                      );
+                                                    } else {
+                                                      return Container(
+                                                        height: 190,
+                                                      );
+                                                    }
+                                                  }),
                                         ),
                                       ),
 
@@ -665,7 +664,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                               .carWhere
                                                                               .carWhere,
                                                                           style:
-                                                                              TextStyleAlert.body18bold)),
+                                                                              TextStyleAlert.body16bold)),
                                                                 ],
                                                               ),
                                                             )
@@ -724,6 +723,7 @@ class _CardetailPageState extends State<CardetailPage> {
 // <------------------------- Dialog Stock  -------------------------->
   Widget _DialogStockA(BuildContext context) {
     return new AlertDialog(
+      insetPadding: EdgeInsets.zero,
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -731,8 +731,9 @@ class _CardetailPageState extends State<CardetailPage> {
           SingleChildScrollView(
             child: Column(
               children: [
+              
                 Center(
-                    child: Text('แผนผังแสดงลานจอด Stock A',
+                    child: Text('แผนผังแสดงลานจอด Stock A ',
                         style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockA(),
@@ -865,75 +866,74 @@ class _CardetailPageState extends State<CardetailPage> {
       ],
     );
   }
-// <------------------------- Stock  -------------------------->
 
+// <------------------------- Stock  -------------------------->
   Widget _buildStockA() {
     return Container(
-      height: 400,
+      height: 395,
       decoration:
           BoxDecoration(border: Border.all(color: const Color(0xffE2E8F0))),
       child: Column(children: [
         SizedBox(
-          height: 20,
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25),
+          height: 5,
         ),
         Expanded(
             child: Container(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      height: 30,
+                      height: 40,
                       width: 10,
                     ),
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 35),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text("A",
-                                textScaleFactor: 1,
+                          height: 40,
+                          width: 20,
+                          child: GridView.count(
+                            physics: NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.all(10),
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            crossAxisCount: 4,
+                            children: const [
+                              Center(
+                                  child: Text(
+                                'A',
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Text("B",
-                                textScaleFactor: 1,
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                              )),
+                              Center(
+                                  child: Text(
+                                'B',
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Text("C",
-                                textScaleFactor: 1,
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                              )),
+                              Center(
+                                  child: Text(
+                                'C',
                                 style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Text(
-                              textScaleFactor: 1,
-                              "D",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                              )),
+                              Center(
+                                  child: Text(
+                                'D',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                              )),
+                            ],
+                          )),
                     ),
                   ],
                 ),
               ),
               Expanded(
                 child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       children: [
                         Container(
@@ -1125,22 +1125,20 @@ class _CardetailPageState extends State<CardetailPage> {
 
   Widget _buildStockB() {
     return Container(
-      height: 400,
+      height: 395,
       decoration:
           BoxDecoration(border: Border.all(color: const Color(0xffE2E8F0))),
       child: Column(children: [
         SizedBox(
           height: 20,
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25),
-        ),
+      
         Expanded(
             child: Container(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -1150,54 +1148,49 @@ class _CardetailPageState extends State<CardetailPage> {
                     ),
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 35),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text("A",
-                                textScaleFactor: 1,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Text("B",
-                                textScaleFactor: 1,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Text("C",
-                                textScaleFactor: 1,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Text(
-                              textScaleFactor: 1,
-                              "D",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              textScaleFactor: 1,
-                              "E",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                          height: 30,
+                          width: 20,
+                          child: GridView.count(
+                            physics: NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.all(10),
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            crossAxisCount: 5,
+                            children: const [
+                              Center(
+                                  child: Text(
+                                'A',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                              Center(
+                                  child: Text(
+                                'B',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                              Center(
+                                  child: Text(
+                                'C',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                              Center(
+                                  child: Text(
+                                'D',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                              Center(
+                                  child: Text(
+                                'E',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                            ],
+                          )),
                     ),
                   ],
                 ),
               ),
               Expanded(
                 child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       children: [
                         Container(
@@ -1226,7 +1219,9 @@ class _CardetailPageState extends State<CardetailPage> {
                         ),
                         Expanded(
                           child: Container(
+                            
                               height: 350,
+                             
                               child: FutureBuilder(
                                   future: PostionService().getWhere2(),
                                   builder: (BuildContext context,
@@ -1292,40 +1287,41 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                 children: <
                                                                     Widget>[
                                                                   SingleChildScrollView(
-                                                                    child:
-                                                                        Column(
-                                                                      children: [
-                                                                        Lottie.asset(
-                                                                            'assets/images/map.json',
-                                                                            height:
-                                                                                150,
-                                                                            width:
-                                                                                150),
-                                                                        Text(
-                                                                          'Chassis No',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                            fontFamily:
-                                                                                ('Kanit'),
+                                                                      child:
+                                                                          Column(
+                                                                    children: [
+                                                                      Lottie.asset(
+                                                                          'assets/images/map.json',
+                                                                          height:
+                                                                              150,
+                                                                          width:
+                                                                              150),
+                                                                      Column(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Text(
+                                                                              "เลขตัวถัง : ${data[index].carid.car_chassis}",
+                                                                              textScaleFactor: 1,
+                                                                              style: TextStyleAlert.body16bold),
+                                                                          Text(
+                                                                              "รุ่น : Yaris Ativ 1.2 G ",
+                                                                              textScaleFactor: 1,
+                                                                              style: TextStyleAlert.body16bold),
+                                                                          Text(
+                                                                              "สี : แดง ",
+                                                                              textScaleFactor: 1,
+                                                                              style: TextStyleAlert.body16bold),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("ตำแหน่ง :  ${data[index].line}", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                            ],
                                                                           ),
-                                                                        ),
-                                                                        Text(
-                                                                          data[index]
-                                                                              .carid
-                                                                              .car_chassis,
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontSize:
-                                                                                16,
-                                                                            fontFamily:
-                                                                                ('Kanit'),
-                                                                          ),
-                                                                        )
-                                                                      ],
-                                                                    ),
-                                                                  )
+                                                                        ],
+                                                                      ),
+                                                                    ],
+                                                                  ))
                                                                 ],
                                                               ),
                                                               actions: <Widget>[
@@ -1388,22 +1384,20 @@ class _CardetailPageState extends State<CardetailPage> {
 
   Widget _buildStockC() {
     return Container(
-      height: 400,
+      height: 395,
       decoration:
           BoxDecoration(border: Border.all(color: const Color(0xffE2E8F0))),
       child: Column(children: [
         SizedBox(
           height: 20,
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25),
-        ),
+        
         Expanded(
             child: Container(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -1413,54 +1407,49 @@ class _CardetailPageState extends State<CardetailPage> {
                     ),
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 35),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text("A",
-                                textScaleFactor: 1,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Text("B",
-                                textScaleFactor: 1,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Text("C",
-                                textScaleFactor: 1,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Text(
-                              textScaleFactor: 1,
-                              "D",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              textScaleFactor: 1,
-                              "E",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                          height: 30,
+                          width: 20,
+                          child: GridView.count(
+                            physics: NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.all(10),
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            crossAxisCount: 5,
+                            children: const [
+                              Center(
+                                  child: Text(
+                                'A',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                              Center(
+                                  child: Text(
+                                'B',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                              Center(
+                                  child: Text(
+                                'C',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                              Center(
+                                  child: Text(
+                                'D',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                              Center(
+                                  child: Text(
+                                'E',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                            ],
+                          )),
                     ),
                   ],
                 ),
               ),
               Expanded(
                 child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       children: [
                         Container(
@@ -1555,40 +1544,41 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                 children: <
                                                                     Widget>[
                                                                   SingleChildScrollView(
-                                                                    child:
-                                                                        Column(
-                                                                      children: [
-                                                                        Lottie.asset(
-                                                                            'assets/images/map.json',
-                                                                            height:
-                                                                                150,
-                                                                            width:
-                                                                                150),
-                                                                        Text(
-                                                                          'Chassis No',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                            fontFamily:
-                                                                                ('Kanit'),
+                                                                      child:
+                                                                          Column(
+                                                                    children: [
+                                                                      Lottie.asset(
+                                                                          'assets/images/map.json',
+                                                                          height:
+                                                                              150,
+                                                                          width:
+                                                                              150),
+                                                                      Column(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Text(
+                                                                              "เลขตัวถัง : ${data[index].carid.car_chassis}",
+                                                                              textScaleFactor: 1,
+                                                                              style: TextStyleAlert.body16bold),
+                                                                          Text(
+                                                                              "รุ่น : Yaris Ativ 1.2 G ",
+                                                                              textScaleFactor: 1,
+                                                                              style: TextStyleAlert.body16bold),
+                                                                          Text(
+                                                                              "สี : แดง ",
+                                                                              textScaleFactor: 1,
+                                                                              style: TextStyleAlert.body16bold),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("ตำแหน่ง :  ${data[index].line}", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                            ],
                                                                           ),
-                                                                        ),
-                                                                        Text(
-                                                                          data[index]
-                                                                              .carid
-                                                                              .car_chassis,
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontSize:
-                                                                                16,
-                                                                            fontFamily:
-                                                                                ('Kanit'),
-                                                                          ),
-                                                                        )
-                                                                      ],
-                                                                    ),
-                                                                  )
+                                                                        ],
+                                                                      ),
+                                                                    ],
+                                                                  ))
                                                                 ],
                                                               ),
                                                               actions: <Widget>[
@@ -1651,22 +1641,20 @@ class _CardetailPageState extends State<CardetailPage> {
 
   Widget _buildStockD() {
     return Container(
-      height: 400,
+      height: 395,
       decoration:
           BoxDecoration(border: Border.all(color: const Color(0xffE2E8F0))),
       child: Column(children: [
         SizedBox(
           height: 20,
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25),
-        ),
+        
         Expanded(
             child: Container(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -1676,54 +1664,49 @@ class _CardetailPageState extends State<CardetailPage> {
                     ),
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 35),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text("A",
-                                textScaleFactor: 1,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Text("B",
-                                textScaleFactor: 1,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Text("C",
-                                textScaleFactor: 1,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Text(
-                              textScaleFactor: 1,
-                              "D",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              textScaleFactor: 1,
-                              "E",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                          height: 30,
+                          width: 20,
+                          child: GridView.count(
+                            physics: NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.all(10),
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            crossAxisCount: 5,
+                            children: const [
+                              Center(
+                                  child: Text(
+                                'A',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                              Center(
+                                  child: Text(
+                                'B',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                              Center(
+                                  child: Text(
+                                'C',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                              Center(
+                                  child: Text(
+                                'D',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                              Center(
+                                  child: Text(
+                                'E',
+                                style: TextStyle(fontSize: 16),
+                              )),
+                            ],
+                          )),
                     ),
                   ],
                 ),
               ),
               Expanded(
                 child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       children: [
                         Container(
@@ -1818,40 +1801,41 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                 children: <
                                                                     Widget>[
                                                                   SingleChildScrollView(
-                                                                    child:
-                                                                        Column(
-                                                                      children: [
-                                                                        Lottie.asset(
-                                                                            'assets/images/map.json',
-                                                                            height:
-                                                                                150,
-                                                                            width:
-                                                                                150),
-                                                                        Text(
-                                                                          'Chassis No',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                            fontFamily:
-                                                                                ('Kanit'),
+                                                                      child:
+                                                                          Column(
+                                                                    children: [
+                                                                      Lottie.asset(
+                                                                          'assets/images/map.json',
+                                                                          height:
+                                                                              150,
+                                                                          width:
+                                                                              150),
+                                                                      Column(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Text(
+                                                                              "เลขตัวถัง : ${data[index].carid.car_chassis}",
+                                                                              textScaleFactor: 1,
+                                                                              style: TextStyleAlert.body16bold),
+                                                                          Text(
+                                                                              "รุ่น : Yaris Ativ 1.2 G ",
+                                                                              textScaleFactor: 1,
+                                                                              style: TextStyleAlert.body16bold),
+                                                                          Text(
+                                                                              "สี : แดง ",
+                                                                              textScaleFactor: 1,
+                                                                              style: TextStyleAlert.body16bold),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("ตำแหน่ง :  ${data[index].line}", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                            ],
                                                                           ),
-                                                                        ),
-                                                                        Text(
-                                                                          data[index]
-                                                                              .carid
-                                                                              .car_chassis,
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontSize:
-                                                                                16,
-                                                                            fontFamily:
-                                                                                ('Kanit'),
-                                                                          ),
-                                                                        )
-                                                                      ],
-                                                                    ),
-                                                                  )
+                                                                        ],
+                                                                      ),
+                                                                    ],
+                                                                  ))
                                                                 ],
                                                               ),
                                                               actions: <Widget>[
@@ -1983,27 +1967,30 @@ class _CardetailPageState extends State<CardetailPage> {
               "${userData['lastname']}",
             );
 
-            /*   ResponseModel response = await PostReqAPI().PostReq(
-                widget.model.carChassis,
-                "${userData['fullname']}",
-                "${userData['lastname']}",
-                DateFormat("yyyy-MM-dd").format(DateTime.now()),
-                DateFormat("hh:mm:ss a").format(DateTime.now()),
-                widget.model.carPosition,
-                widget.model.carWhere.carWhere,
-                "2",
-                "2",
-                widget.model.carLine); */
-
             if (response.success) {
               ResponseModel respones1 = await PutCar(
                   "2",
                   widget.model.carPosition,
                   widget.model.carWhere.whereId.toString(),
                   widget.model.carLine);
+
               if (respones1.success) {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => Reqsplash()));
+                ResponseModel response2 = await HistoryPost().PostHis(
+                  widget.model.carChassis,
+                  2,
+                  widget.model.carWhere.whereId.toString(),
+                  "${userData['fullname']}",
+                  "${userData['lastname']}",
+                  DateFormat("yyyy-MM-dd").format(DateTime.now()),
+                  DateFormat("hh:mm:ss a").format(DateTime.now()),
+                );
+
+                if (response2.success) {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => Reqsplash()));
+                }
+                /* Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => Reqsplash())); */
               }
             } else {
               print("ไม่สำเร็จ");

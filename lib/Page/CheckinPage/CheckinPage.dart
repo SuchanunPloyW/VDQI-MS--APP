@@ -3,27 +3,37 @@ import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 import 'package:http/http.dart' as http;
 import 'package:vdqims/SplashScreen/CheckinSplash.dart';
+
 import '../../Service/API/PostReqApi.dart';
 import '../../Service/Model/ReqDBModel.dart';
-import '../../Service/Model/ReqModel.dart';
+
 import '../../Style/TextStyle.dart';
 import '../FindcarPage/Model/responsModel.dart';
 
 class CheckinPage extends StatefulWidget {
-  const CheckinPage({Key? key, required this.model}) : super(key: key);
+  final dynamic QR;
   final ReqDBAPI model;
+
+  const CheckinPage({Key? key, required this.model,  required this.QR,}) : super(key: key);
+
+ 
 
   @override
   State<CheckinPage> createState() => _CheckinPageState();
 }
 
 class _CheckinPageState extends State<CheckinPage> {
+  
+  
+
+/*   String qrCode = ''; */
    // <------------------------ updatereq ------------------------>
     dynamic urlup = 'http://206.189.92.79/api/';
     Future<ResponseModel> Putreq(
@@ -106,6 +116,8 @@ class _CheckinPageState extends State<CheckinPage> {
       userData = user;
     });
   }
+
+   
 
   @override
   Widget build(BuildContext context) {
@@ -348,8 +360,8 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                            
                                                                         
                                                                     child:
-                                                                         Text(
-                                                                      item['car_where'],
+                                                                         Text(item['car_where'],
+                                                                      
                                                                           
                                                                       style:
                                                                           const TextStyle(
@@ -366,23 +378,20 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                         
                                                                   setState(() {
                                                                     Staid = newVal;
-                                                                    
-                                                                   
-                                                                          
-                                                                        
-
                                                                     StationController.text =Staid.toString();
-                                                                            
-                                                                        
-                                                                            
-
                                                                     print(Staid.toString());
                                                                         
                                                                   });
                                                                 },
                                                                 value: Staid,
-                                                              )),
+                                                              )
+                                                              ),
+                                                              
                                                         ))),
+                                                       /*  Container(
+                                                          child: Text(widget.QR),
+
+                                                        ), */
 
                                                 //<--------------------   Button -------------------->
                                                 const SizedBox(height: 250),
@@ -412,7 +421,11 @@ class _CheckinPageState extends State<CheckinPage> {
                                                       ),
                                                     ))
                                               ]),
-                                            ))))),
+                                            )
+                                            )
+                                            )
+                                            )
+                                            ),
 
                             //<--------------------   Foot -------------------->
                             const SizedBox(height: 10),
@@ -498,27 +511,26 @@ class _CheckinPageState extends State<CheckinPage> {
               StationController.text, 
               "-", 
               "2");
-           /*  ResponseModel response = await PostReqAPI().PostReq(
-                widget.model.carChassis,
-                "${userData['fullname']}",
-                "${userData['lastname']}",
-                DateFormat("yyyy-MM-dd").format(DateTime.now()),
-                DateFormat("hh:mm:ss a").format(DateTime.now()),
-                widget.model.carPosition,
-                widget.model.carWhere.whereId.toString(),
-                "1",
-                StationController.text,
-                widget.model.carLine); */
+         
             if (response.success) {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => const CheckinSpach()));
+               ResponseModel response2 = await HistoryPost().PostHis(
+                  widget.model.carid.car_chassis,
+                  1,
+                  StationController.text,
+                  "${userData['fullname']}",
+                  "${userData['lastname']}",
+                  DateFormat("yyyy-MM-dd").format(DateTime.now()),
+                  DateFormat("hh:mm:ss a").format(DateTime.now()),
+                );
+                if (response2.success) {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => CheckinSpach()));
+                }
+
             }
           },
 
-          /*  onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const CheckinSpach()));
-          }, */
+          
           color: const Color(0xff44A73B),
           child: Text("ยืนยัน", style: TDialogButton.body14),
         ),

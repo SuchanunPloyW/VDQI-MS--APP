@@ -54,7 +54,7 @@ var userData;
       
       home: userData == null 
           ? const MainSplash() 
-          : const MainSplash1()
+          : const MenuPage()
     );
   }
 }
