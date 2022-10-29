@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import '../../Page/FindcarPage/Model/responsModel.dart';
+import '../Model/responsModel.dart';
 
 /* class PostReqAPI {
   dynamic url = 'http://206.189.92.79/api/';
@@ -98,23 +98,19 @@ class HistoryPost {
   dynamic url = 'http://206.189.92.79/api/';
   Future<ResponseModel> PostHis(
    
-    String car_chassis,
-    int car_status,
-    String car_where,
-    String fullname,
-    String lastname,
+    int car_id,
     String date,
-    String time,
+    String car_where,
+    String car_status
+
   ) async {
     try {
       Map<String, String> data = {
-        'car_chassis': car_chassis,
-        'car_status': car_status.toString(),
-        'car_where': car_where.toString(),
-        'fullname': fullname,
-        'lastname': lastname,
+        'car_id': car_id.toString(),
         'date': date,
-        'time': time,
+        'car_where': car_where,
+        'car_status': car_status,
+        
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -137,3 +133,5 @@ class HistoryPost {
     }
   }
 }
+
+

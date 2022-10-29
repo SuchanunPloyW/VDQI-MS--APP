@@ -13,14 +13,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Service/API/PositionAPI.dart';
 import 'package:vdqims/Service/API/PostCarApi.dart';
 import 'package:vdqims/Service/Model/PositionModel.dart';
-import 'package:vdqims/Service/Model/ReqDBModel.dart';
-import 'package:vdqims/SplashScreen/MainSplash1.dart';
+
 import 'package:vdqims/Style/TextStyle.dart';
 import 'package:http/http.dart' as http;
+import '../../Service/API/PostCarDB.dart';
 import '../../Service/Model/PositDBModel.dart';
 import '../../SplashScreen/AddnewSplash.dart';
-import '../FindcarPage/Model/FindcarModel.dart';
-import '../FindcarPage/Model/responsModel.dart';
+import '../../Service/Model/responsModel.dart';
 import '../MenuPage/MenuPage.dart';
 
 class AddnewcarPage extends StatefulWidget {
@@ -141,6 +140,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
             mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
 
     return Scaffold(
+       backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
@@ -734,58 +734,24 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           color: const Color(0xff44A73B),
           child: Text("ยืนยัน", style: TDialogButton.body14),
           onPressed: () async {
-            ResponseModel respones = await PostCarAPI().PostCar(
-                ChassisController.text,
-                "1",
-                WhereController.text,
-                PositController.text,
-                "${userData['fullname']}",
-                "${userData['lastname']}",
-                DateFormat("yyyy-MM-dd").format(DateTime.now()),
-                DateFormat("hh:mm:ss a").format(DateTime.now()),
-                lineController.text,
-                1.toString(),
-                );
+            ResponseModel respones = await PostcarDB().CarDB(
+              ChassisController.text, 
+              PositController.text,
+              "1", 
+              "${userData['fullname']}", 
+              "${userData['lastname']}",
+              DateFormat("yyyy-MM-dd").format(DateTime.now()), 
+              DateFormat("hh:mm:ss a").format(DateTime.now()), 
+              1.toString(),
+              WhereController.text,
+
+              );
+            
 
             if (respones.success) {
               getcar();
 
-              /* 
-                FutureBuilder(
-                  future: getcar(),
-                  builder: (BuildContext context,AsyncSnapshot<List<CarAPI>?> snapshot){
-                    
-                      List<CarAPI>? data = snapshot.data;
-                      print(snapshot.data);
-                      print(data);
-                      print('data');
-                      
-                     
-                     
-                    
-                    return Text('Error');
-                  }
-                  
-                  
-
-                  
-                  
-                 );
-              */
-
-              /* String Car = respones as String ;
-               SharedPreferences localStorage =await SharedPreferences.getInstance();
-               localStorage.setString('Car', Car);   */
-
-              /* ResponseModel responesPut = await PutPosition(
-                "1",
-                "",
-
-              ); */
-              /*  if (responesPut.success) {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => AddnewSplash()));
-              } */
+              
             } else {
               _ErrorAddcar(context);
             }
@@ -804,7 +770,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var _authToken = localStorage.getString('token');
     var response = await http.get(
-        Uri.parse('http://206.189.92.79/api/car/id/${ChassisController.text}'),
+        Uri.parse('http://206.189.92.79/api/cardb/id/${ChassisController.text}'),
         headers: {
           HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
         });
@@ -822,7 +788,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       IdData = cars;
     });
 
-    var AA = (IdData[0]['car_id']);
+     var AA = (IdData[0]['car_id']);
     print(AA);
     ResponseModel responesPut = await PutPosition(
       "1",
@@ -831,68 +797,9 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     if (responesPut.success){
       Navigator.push(context, MaterialPageRoute(builder: (_) => AddnewSplash()));
                    
-
     }
-
-    /*  var carData;
-        var carJson = localStorage.getString('car');
-        var car1 = json.decode(carJson!);
-        setState(() {
-        carData = car1;
-      }); */
-
-    /*  print(car); */
-
-    /* ResponseModel responesPut = await PutPosition(
-                    "${carData['car_line']}", /* "${carData['car_line']}" */);  */
-
-    /* print('${carData['car_id']}'); */
   }
-  /*  Future<List<CarAPI>> getcar() async{
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var _authToken = localStorage.getString('token');
-    var response = await http.get(
-        Uri.parse(
-            'http://206.189.92.79/api/car/search/${ChassisController.text}'),
-        headers: {
-          HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
-        });
-        
-        if(response.car_statusCode == 200){
-          var car = Car.fromJson(jsonDecode(response.body));
-          return car.data;
-          print(response.body);
-
-        }else{
-          print('error');
-        }
-
-  } */
-
-  /* Future<List<CarAPI>> getcar() async {
-    //get token
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var _authToken = localStorage.getString('token');
-
-    // response uri
-    var response = await http.get(
-        Uri.parse(
-            'http://206.189.92.79/api/car/search/${ChassisController.text}'),
-        headers: {
-          HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
-        });
-    // return value
-    dynamic car = Car.fromJson(jsonDecode(response.body));
-
-    SharedPreferences localStorage1 = await SharedPreferences.getInstance();
-    localStorage.setString('car', car);
-
-    return car.data;
-    
-    
-     //localStorage.setString('car', car); 
-    
-  } */
+  
 
   Future<void> scanQRCode() async {
     try {
@@ -1102,8 +1009,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                         ),
                                         child: InkWell(
                                           onTap: () async {
-                                            dynamic Idposit =
-                                                data[index].posit_id.toString();
+                                            dynamic Idposit =data[index].posit_id.toString();
+                                                
 
                                             SharedPreferences localStorage =
                                                 await SharedPreferences
@@ -1130,8 +1037,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                 sort =
                                                     data[index].sort.toString();
 
-                                                PositController.text =
-                                                    selected.toString();
+                                                PositController.text = Idposit.toString();
+                                                   
                                                 lineController.text =
                                                     line.toString();
 
@@ -1351,7 +1258,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                     data[index].sort.toString();
 
                                                 PositController.text =
-                                                    selected.toString();
+                                                    Idposit.toString();
                                                 lineController.text =
                                                     line.toString();
 
@@ -1561,7 +1468,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                             sort = data[index].sort.toString();
 
                                             PositController.text =
-                                                selected.toString();
+                                                Idposit.toString();
                                             lineController.text =
                                                 line.toString();
 
@@ -1768,7 +1675,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                             sort = data[index].sort.toString();
 
                                             PositController.text =
-                                                selected.toString();
+                                                Idposit.toString();
                                             lineController.text =
                                                 line.toString();
 

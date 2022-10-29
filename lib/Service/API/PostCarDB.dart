@@ -1,36 +1,33 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../Model/responsModel.dart';
 
-class PostCarAPI {
+class PostcarDB{
   dynamic url = 'http://206.189.92.79/api/';
-  Future<ResponseModel> PostCar(
+  Future<ResponseModel> CarDB(
     String car_chassis,
+    String posit_id,
     String car_status,
-    String car_where,
-    String car_position,
     String fullname,
     String lastname,
     String date,
     String time,
-    String car_line,
     String sort,
+    String car_where,
   ) async {
     try {
       Map<String, String> data = {
         'car_chassis': car_chassis,
+        'posit_id': posit_id,
         'car_status': car_status,
-        'car_where': car_where,
-        'car_position': car_position,
         'fullname': fullname,
         'lastname': lastname,
         'date': date,
         'time': time,
-        'car_line': car_line,
         'sort': sort,
+        'car_where': car_where,
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -40,7 +37,7 @@ class PostCarAPI {
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        url = Uri.parse("http://206.189.92.79/api/car");
+        url = Uri.parse("http://206.189.92.79/api/cardb");
         await http.post(
           url,
           body: dataencode,

@@ -1,5 +1,5 @@
-class HistoryDB {
-  HistoryDB({
+class CarDB{
+  CarDB({
     required this.currentPage,
     required this.data,
     required this.firstPageUrl,
@@ -13,9 +13,10 @@ class HistoryDB {
     required this.prevPageUrl,
     required this.to,
     required this.total,
+
   });
   int currentPage;
-  late List<HistoryDBAPI> data;
+  late List<CarDBAPI> data;
   String firstPageUrl;
   int from;
   int lastPage;
@@ -28,10 +29,9 @@ class HistoryDB {
   int to;
   int total;
 
-  factory HistoryDB.fromJson(Map<String, dynamic> json) => HistoryDB(
+  factory CarDB.fromJson(Map<String, dynamic> json) => CarDB(
         currentPage: json["current_page"],
-        data: List<HistoryDBAPI>.from(
-            json["data"].map((e) => HistoryDBAPI.fromJson(e))),
+        data: List<CarDBAPI>.from(json["data"].map((e) => CarDBAPI.fromJson(e))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
@@ -46,80 +46,75 @@ class HistoryDB {
       );
 }
 
-class HistoryDBAPI {
-  HistoryDBAPI({
-    required this.his_id,
-    required this.carid,
-    required this.date,
-    required this.carWhere,
-    required this.carStatus,
-  });
-
-  int his_id;
-  Carid carid;
-  String date;
-  CarWhere carWhere;
-  CarStatus carStatus;
-
-  factory HistoryDBAPI.fromJson(Map<String, dynamic> json) => HistoryDBAPI(
-        his_id: json["his_id"],
-        carid: Carid.fromJson(json["car_id"]),
-        date: json["date"],
-        carWhere: CarWhere.fromJson(json["car_where"]),
-        carStatus: CarStatus.fromJson(json["car_status"]),
-      );
-}
-
-class Carid {
-  Carid({
-    required this.car_id,
-    required this.car_chassis,
-  
+class CarDBAPI{
+  CarDBAPI({
+    required this.carId,
+    required this.carChassis,
     required this.positId,
+    required this.carStatus,
     required this.fullname,
     required this.lastname,
+    required this.date,
+    required this.time,
+    required this.sort, 
+    required this.carWhere,
+
   });
-  int car_id;
-  String car_chassis;
-  
+  int carId;
+  String carChassis;
   PositId positId;
+  CarStatus carStatus;
   String fullname;
   String lastname;
+  String date;
+  String time;
+  String sort;
+  CarWhere carWhere;
 
-  factory Carid.fromJson(Map<String, dynamic> json) => Carid(
-        car_id: json["car_id"],
-        car_chassis: json["car_chassis"],
-       
+  factory CarDBAPI.fromJson(Map<String, dynamic> json) => CarDBAPI(
+        carId: json["car_id"],
+        carChassis: json["car_chassis"],
+        carStatus: CarStatus.fromJson(json["car_status"]),
         positId: PositId.fromJson(json["posit_id"]),
         fullname: json["fullname"],
         lastname: json["lastname"],
+        date: json["date"],
+        time: json["time"],
+        sort: json["sort"],
+        carWhere: CarWhere.fromJson(json["car_where"]),
       );
+
 }
 
 class PositId {
   PositId({
     required this.positId,
     required this.line,
+    required this.car_status,
     required this.posit,
     required this.sort,
-  
+    required this.carWhere,
+ 
   });
 
   int positId;
   String line;
+  int car_status;
   int posit;
   int sort;
- 
-
+  CarWhere carWhere;
+  
   factory PositId.fromJson(Map<String, dynamic> json) => PositId(
         positId: json["posit_id"],
         line: json["line"],
+        car_status: json["car_status"],
         posit: json["posit"],
         sort: json["sort"],
-        
+        carWhere: CarWhere.fromJson(json["car_where"]),
+       
+      
       );
 }
-
 class CarWhere {
   CarWhere({
     required this.whereId,
@@ -135,18 +130,19 @@ class CarWhere {
       );
 }
 
+
 class CarStatus {
   CarStatus({
-    required this.status_id,
-    required this.car_status,
+    required this.statusId,
+    required this.carStatus,
   });
 
-  int status_id;
-  String car_status;
+  int statusId;
+  String carStatus;
 
   factory CarStatus.fromJson(Map<String, dynamic> json) => CarStatus(
-        status_id: json["status_id"],
-        car_status: json["car_status"],
+        statusId: json["status_id"],
+        carStatus: json["car_status"],
       );
 }
 

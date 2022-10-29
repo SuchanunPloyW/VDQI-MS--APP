@@ -9,6 +9,7 @@ import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
 
 import 'package:vdqims/Page/FindcarPage/Model/FindcarModel.dart';
 import 'package:vdqims/Style/TextStyle.dart';
+import '../../Service/Model/CarDBModel.dart';
 import '../MenuPage/MenuPage.dart';
 import 'Service/FindcarService.dart';
 
@@ -37,6 +38,7 @@ class _FindcarPageState extends State<FindcarPage> {
         textScaleFactor:
             mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
     return Scaffold(
+        backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
@@ -193,9 +195,9 @@ class _FindcarPageState extends State<FindcarPage> {
                                 child: FutureBuilder(
                                   future: FindCarService().getcar(),
                                   builder: (BuildContext context,
-                                      AsyncSnapshot<List<CarAPI>?> snapshot) {
+                                      AsyncSnapshot<List<CarDBAPI>?> snapshot) {
                                     if (snapshot.hasData) {
-                                      List<CarAPI>? data = snapshot.data;
+                                      List<CarDBAPI>? data = snapshot.data;
                                       return Align(
                                         alignment: Alignment.topCenter,
                                         child: ListView.builder(
@@ -245,7 +247,7 @@ class _FindcarPageState extends State<FindcarPage> {
         ));
   }
 
-  Widget Listcar({required CarAPI model}) {
+  Widget Listcar({required CarDBAPI model}) {
     return Column(
       children: [
         Padding(

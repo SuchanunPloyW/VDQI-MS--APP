@@ -44,6 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
         textScaleFactor:
             mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
     return Scaffold(
+      backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,

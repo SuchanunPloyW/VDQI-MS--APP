@@ -8,20 +8,20 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/FindcarPage/FindcarPage.dart';
-import 'package:vdqims/Page/FindcarPage/Model/responsModel.dart';
+import 'package:vdqims/Service/Model/responsModel.dart';
 import 'package:vdqims/SplashScreen/ReqSplash.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import '../../Service/API/PositionAPI.dart';
 import '../../Service/API/PostReqApi.dart';
+import '../../Service/Model/CarDBModel.dart';
 import '../../Service/Model/HistoryModel.dart';
 import '../../Service/Model/PositDBModel.dart';
-import '../../Service/Model/ReqDBModel.dart';
 import '../FindcarPage/Model/FindcarModel.dart';
 import 'package:http/http.dart' as http;
 
 class CardetailPage extends StatefulWidget {
   const CardetailPage({Key? key, required this.model}) : super(key: key);
-  final CarAPI model;
+  final CarDBAPI model;
 
   State<CardetailPage> createState() => _CardetailPageState();
 }
@@ -52,7 +52,7 @@ class _CardetailPageState extends State<CardetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    dynamic carreq = widget.model.carChassis;
+    dynamic carreq = widget.model.carId;
     Future<List<HistoryDBAPI>> getreq() async {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
@@ -69,6 +69,7 @@ class _CardetailPageState extends State<CardetailPage> {
     }
 
     return Scaffold(
+       backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
@@ -160,21 +161,15 @@ class _CardetailPageState extends State<CardetailPage> {
                                         padding: const EdgeInsets.only(
                                             left: 10, right: 10),
                                         child: Container(
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                               color: Colors.white,
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(10),
-                                                  topRight: Radius.circular(10),
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
                                               boxShadow: [
                                                 BoxShadow(
                                                   color: Color.fromRGBO(
                                                       0, 0, 0, 0.1),
-                                                  blurRadius: 12,
-                                                  /*   offset: Offset(0, 3), */
+                                                  blurRadius: 10,
                                                 ),
                                               ]),
                                           height: 85,
@@ -302,9 +297,9 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                       -0.59),
                                                               child: Text(
                                                                   widget
-                                                                      .model
-                                                                      .carWhere
-                                                                      .carWhere,
+                                                                      .model.carWhere.carWhere
+                                                                      
+                                                                      ,
                                                                   style:
                                                                       TextStyle(
                                                                     color: Color(
@@ -345,8 +340,10 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                       -0.56,
                                                                       0.7),
                                                               child: Text(
-                                                                widget.model
-                                                                    .carLine,
+                                                                widget.model.positId.car_status == 0
+                                                                ? "-"
+                                                                : widget.model.positId.line,
+                                                                    
                                                                 style:
                                                                     TextStyle(
                                                                   color: Color(
@@ -386,8 +383,10 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                       0.56,
                                                                       0.7),
                                                               child: Text(
-                                                                widget.model
-                                                                    .carPosition,
+                                                                widget.model.positId.car_status == 0
+                                                                ? "-"
+                                                                : widget.model.positId.posit.toString(),
+                                                                    
                                                                 style:
                                                                     TextStyle(
                                                                   fontSize: 40,
@@ -533,7 +532,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                         )),
                                                                         DataCell(
                                                                             Text(
-                                                                          '${e.fullname}',
+                                                                          '${e.carid.fullname}',
                                                                           style: const TextStyle(
                                                                               fontSize: 14,
                                                                               fontFamily: ('Bai Jamjuree')),
@@ -661,8 +660,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                       child: Text(
                                                                           widget
                                                                               .model
-                                                                              .carWhere
-                                                                              .carWhere,
+                                                                              .carWhere.carWhere,
                                                                           style:
                                                                               TextStyleAlert.body16bold)),
                                                                 ],
@@ -731,7 +729,6 @@ class _CardetailPageState extends State<CardetailPage> {
           SingleChildScrollView(
             child: Column(
               children: [
-              
                 Center(
                     child: Text('แผนผังแสดงลานจอด Stock A ',
                         style: TextStyleAlert.body16bold)),
@@ -1041,22 +1038,28 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                         crossAxisAlignment:
                                                                             CrossAxisAlignment.start,
                                                                         children: [
-                                                                          Text(
-                                                                              "เลขตัวถัง : ${data[index].carid.car_chassis}",
-                                                                              textScaleFactor: 1,
-                                                                              style: TextStyleAlert.body16bold),
-                                                                          Text(
-                                                                              "รุ่น : Yaris Ativ 1.2 G ",
-                                                                              textScaleFactor: 1,
-                                                                              style: TextStyleAlert.body16bold),
-                                                                          Text(
-                                                                              "สี : แดง ",
-                                                                              textScaleFactor: 1,
-                                                                              style: TextStyleAlert.body16bold),
                                                                           Row(
                                                                             children: [
-                                                                              Text("ตำแหน่ง :  ${data[index].line}", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("เลขตัวถัง : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("รุ่น : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("สี : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                             ],
                                                                           ),
                                                                         ],
@@ -1132,7 +1135,6 @@ class _CardetailPageState extends State<CardetailPage> {
         SizedBox(
           height: 20,
         ),
-      
         Expanded(
             child: Container(
           child: Column(
@@ -1219,9 +1221,7 @@ class _CardetailPageState extends State<CardetailPage> {
                         ),
                         Expanded(
                           child: Container(
-                            
                               height: 350,
-                             
                               child: FutureBuilder(
                                   future: PostionService().getWhere2(),
                                   builder: (BuildContext context,
@@ -1300,22 +1300,28 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                         crossAxisAlignment:
                                                                             CrossAxisAlignment.start,
                                                                         children: [
-                                                                          Text(
-                                                                              "เลขตัวถัง : ${data[index].carid.car_chassis}",
-                                                                              textScaleFactor: 1,
-                                                                              style: TextStyleAlert.body16bold),
-                                                                          Text(
-                                                                              "รุ่น : Yaris Ativ 1.2 G ",
-                                                                              textScaleFactor: 1,
-                                                                              style: TextStyleAlert.body16bold),
-                                                                          Text(
-                                                                              "สี : แดง ",
-                                                                              textScaleFactor: 1,
-                                                                              style: TextStyleAlert.body16bold),
                                                                           Row(
                                                                             children: [
-                                                                              Text("ตำแหน่ง :  ${data[index].line}", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("เลขตัวถัง : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("รุ่น : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("สี : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                             ],
                                                                           ),
                                                                         ],
@@ -1391,7 +1397,6 @@ class _CardetailPageState extends State<CardetailPage> {
         SizedBox(
           height: 20,
         ),
-        
         Expanded(
             child: Container(
           child: Column(
@@ -1557,22 +1562,28 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                         crossAxisAlignment:
                                                                             CrossAxisAlignment.start,
                                                                         children: [
-                                                                          Text(
-                                                                              "เลขตัวถัง : ${data[index].carid.car_chassis}",
-                                                                              textScaleFactor: 1,
-                                                                              style: TextStyleAlert.body16bold),
-                                                                          Text(
-                                                                              "รุ่น : Yaris Ativ 1.2 G ",
-                                                                              textScaleFactor: 1,
-                                                                              style: TextStyleAlert.body16bold),
-                                                                          Text(
-                                                                              "สี : แดง ",
-                                                                              textScaleFactor: 1,
-                                                                              style: TextStyleAlert.body16bold),
                                                                           Row(
                                                                             children: [
-                                                                              Text("ตำแหน่ง :  ${data[index].line}", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("เลขตัวถัง : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("รุ่น : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("สี : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                             ],
                                                                           ),
                                                                         ],
@@ -1648,7 +1659,6 @@ class _CardetailPageState extends State<CardetailPage> {
         SizedBox(
           height: 20,
         ),
-        
         Expanded(
             child: Container(
           child: Column(
@@ -1814,22 +1824,28 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                         crossAxisAlignment:
                                                                             CrossAxisAlignment.start,
                                                                         children: [
-                                                                          Text(
-                                                                              "เลขตัวถัง : ${data[index].carid.car_chassis}",
-                                                                              textScaleFactor: 1,
-                                                                              style: TextStyleAlert.body16bold),
-                                                                          Text(
-                                                                              "รุ่น : Yaris Ativ 1.2 G ",
-                                                                              textScaleFactor: 1,
-                                                                              style: TextStyleAlert.body16bold),
-                                                                          Text(
-                                                                              "สี : แดง ",
-                                                                              textScaleFactor: 1,
-                                                                              style: TextStyleAlert.body16bold),
                                                                           Row(
                                                                             children: [
-                                                                              Text("ตำแหน่ง :  ${data[index].line}", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("เลขตัวถัง : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("รุ่น : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("สี : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            children: [
+                                                                              Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                              Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                             ],
                                                                           ),
                                                                         ],
@@ -1964,25 +1980,23 @@ class _CardetailPageState extends State<CardetailPage> {
               DateFormat("yyyy-MM-dd").format(DateTime.now()),
               DateFormat("hh:mm:ss a").format(DateTime.now()),
               "${userData['fullname']}",
-              "${userData['lastname']}",
-            );
-
+              "${userData['lastname']}", );
+           
             if (response.success) {
               ResponseModel respones1 = await PutCar(
-                  "2",
-                  widget.model.carPosition,
-                  widget.model.carWhere.whereId.toString(),
-                  widget.model.carLine);
+                "2",
+                widget.model.carWhere.whereId.toString(),
+                                                               
+                 );
+                
 
               if (respones1.success) {
                 ResponseModel response2 = await HistoryPost().PostHis(
-                  widget.model.carChassis,
-                  2,
-                  widget.model.carWhere.whereId.toString(),
-                  "${userData['fullname']}",
-                  "${userData['lastname']}",
+                  widget.model.carId,  
                   DateFormat("yyyy-MM-dd").format(DateTime.now()),
-                  DateFormat("hh:mm:ss a").format(DateTime.now()),
+                  widget.model.carWhere.whereId.toString(),
+                  "2",
+                 
                 );
 
                 if (response2.success) {
@@ -2019,27 +2033,27 @@ class _CardetailPageState extends State<CardetailPage> {
   dynamic urlup = 'http://206.189.92.79/api/';
   Future<ResponseModel> PutCar(
     dynamic car_status,
-    dynamic car_position,
     dynamic car_where,
-    dynamic car_line,
+  
   ) async {
     try {
       Map<String, String> data = {
         'car_status': car_status,
-        'car_position': car_position,
         'car_where': car_where,
-        'car_line': car_line,
+       
+        
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
-      var ID = localStorage.getString('ID');
+     /*  var ID = localStorage.getString('ID'); */
+      var IDCAR = widget.model.carId;
       Map<String, String> headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        urlup = Uri.parse("http://206.189.92.79/api/car/$ID");
+        urlup = Uri.parse("http://206.189.92.79/api/cardb/$IDCAR");
         await http.put(
           urlup,
           body: dataencode,

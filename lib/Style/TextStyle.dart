@@ -62,6 +62,12 @@ class TextStyleAlert {
     color: ColorTheme.bold,
     fontFamily: ('Bai Jamjuree'),
   );
+  static TextStyle body16 = TextStyle(
+    fontSize: 16,
+   
+    color: ColorTheme.bold,
+    fontFamily: ('Bai Jamjuree'),
+  );
   static TextStyle body15normal = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,

@@ -20,6 +20,7 @@ class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           actions: <Widget>[
             Padding(

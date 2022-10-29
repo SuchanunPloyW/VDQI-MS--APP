@@ -78,36 +78,56 @@ class Carid {
     required this.car_id,
     required this.car_chassis,
     required this.carStatus,
-    required this.carWhere,
-    required this.car_position,
-    required this.fullname,
-    required this.lastname,
-    required this.date,
-    required this.time,
-    required this.car_line,
+    required this.positId,
+     required this.carWhere,
+ 
+
+
   });
   int car_id;
   String car_chassis;
   CarStatus carStatus;
+  PositId positId;
   CarWhere carWhere;
-  String car_position;
-  String fullname;
-  String lastname;
-  String date;
-  String time;
-  String car_line;
+
+
 
   factory Carid.fromJson(Map<String, dynamic> json) => Carid(
         car_id: json["car_id"],
         car_chassis: json["car_chassis"],
-        carWhere: CarWhere.fromJson(json["car_where"]),
         carStatus: CarStatus.fromJson(json["car_status"]),
-        car_position: json["car_position"],
-        fullname: json["fullname"],
-        lastname: json["lastname"],
-        date: json["date"],
-        time: json["time"],
-        car_line: json["car_line"],
+        positId: PositId.fromJson(json["posit_id"]),
+        carWhere: CarWhere.fromJson(json["car_where"]),
+      
+      );
+}
+class PositId {
+  PositId({
+    required this.positId,
+    required this.line,
+    required this.posit,
+    required this.sort,
+    required this.carWhere,
+    required this.car_status,
+    
+  });
+
+  int positId;
+  String line;
+  int posit;
+  int sort;
+  CarWhere carWhere;
+  int car_status;
+  
+  factory PositId.fromJson(Map<String, dynamic> json) => PositId(
+        positId: json["posit_id"],
+        line: json["line"],
+        posit: json["posit"],
+        sort: json["sort"],
+        carWhere: CarWhere.fromJson(json["car_where"]),
+        car_status: json["car_status"],
+        
+      
       );
 }
 

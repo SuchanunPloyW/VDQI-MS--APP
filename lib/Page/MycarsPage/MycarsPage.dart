@@ -60,6 +60,7 @@ class _MycarsPageState extends State<MycarsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,

@@ -31,7 +31,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
   Color baseColor2 = const Color(0xffA10002);
   @override
   Widget build(BuildContext context) {
-    dynamic carreq = widget.model.carid.car_chassis;
+    dynamic carreq = widget.model.carid.car_id;
     Future<List<HistoryDBAPI>> getreq() async {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
@@ -51,6 +51,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
     String qrCode = '';
     // --------------------------------- Scaffold -------------------------------------------------
     return Scaffold(
+      backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
@@ -289,8 +290,8 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                             widget
                                                                 .model
                                                                 .carid
-                                                                .carWhere
-                                                                .carWhere,
+                                                                .carWhere.carWhere
+                                                                ,
                                                             style:
                                                                 TextStyleMycar
                                                                     .station,
@@ -377,8 +378,10 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                             EdgeInsets.only(
                                                                 top: 0),
                                                         child: AutoSizeText(
-                                                            widget.model.carid
-                                                                .car_line,
+                                                            widget.model.carid.positId.car_status == 0
+                                                            ? "-"
+                                                            : widget.model.carid.positId.line.toString(),
+                                                                
                                                             style:
                                                                 const TextStyle(
                                                               fontSize: 36,
@@ -456,8 +459,13 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                               const EdgeInsets
                                                                   .only(top: 1),
                                                           child: Text(
-                                                              widget.model.carid
-                                                                  .car_position,
+                                                            widget.model.carid.positId.car_status == 0
+                                                            ? '-'
+                                                            : widget.model.carid.positId.posit.toString(),
+                                                                 
+                                                              
+                                                             /*  widget.model.carid
+                                                                  .positId.posit.toString(), */
                                                               style:
                                                                   const TextStyle(
                                                                 fontSize: 36,
@@ -607,7 +615,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                         )),
                                                                         DataCell(
                                                                             Text(
-                                                                          '${e.fullname}',
+                                                                          '${e.carid.fullname}',
                                                                           style: const TextStyle(
                                                                               fontSize: 14,
                                                                               fontFamily: ('Bai Jamjuree')),
@@ -624,11 +632,8 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                         ),
                                                       );
                                                     } else {
-                                                      return Center(
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          color: baseColor1,
-                                                        ),
+                                                      return Container(
+                                                        height: 190,
                                                       );
                                                     }
                                                   }),

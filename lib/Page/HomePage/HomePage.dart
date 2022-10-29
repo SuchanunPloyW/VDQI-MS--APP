@@ -18,7 +18,9 @@ class _HomePageState extends State<HomePage> {
   Color baseColor2 = const Color(0xffA10002);
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
+       backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           actions: <Widget>[
             Padding(
@@ -170,7 +172,9 @@ class _HomePageState extends State<HomePage> {
                                                                 Radius.circular(
                                                                     12)),
                                                   )),
-                                                  child: Column(children: [
+                                                  child: Column(
+                                                   
+                                                    children: [
                                                     const SizedBox(
                                                           height: 10),
                                                       Image.asset(
@@ -181,7 +185,7 @@ class _HomePageState extends State<HomePage> {
                                                       const SizedBox(
                                                           height: 12),
                                                       Text(
-                                                        'ระบบบริหารจัดการสต๊อครถยนต์',
+                                                        '   ระบบบริหารจัดการสต๊อครถยนต์',
                                                         style: TextStylePage
                                                             .bodyP10,
                                                         maxLines: 1,

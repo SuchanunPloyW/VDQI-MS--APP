@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -15,7 +16,7 @@ import '../../Service/API/PostReqApi.dart';
 import '../../Service/Model/ReqDBModel.dart';
 
 import '../../Style/TextStyle.dart';
-import '../FindcarPage/Model/responsModel.dart';
+import '../../Service/Model/responsModel.dart';
 
 class CheckinPage extends StatefulWidget {
   final dynamic QR;
@@ -37,17 +38,15 @@ class _CheckinPageState extends State<CheckinPage> {
    // <------------------------ updatereq ------------------------>
     dynamic urlup = 'http://206.189.92.79/api/';
     Future<ResponseModel> Putreq(
-    dynamic car_position,
+ 
     dynamic car_where,
-    dynamic car_line,
     dynamic car_status,
   ) async {
     try {
       Map<String, String> data = {
-        'car_position': car_position,
-        'car_where': car_where,
-        'car_line': car_line,
         'car_status': car_status,
+        'car_where': car_where,
+      
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -58,7 +57,7 @@ class _CheckinPageState extends State<CheckinPage> {
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        urlup = Uri.parse("http://206.189.92.79/api/car/$carID");
+        urlup = Uri.parse("http://206.189.92.79/api/cardb/$carID");
         await http.put(
           urlup,
           body: dataencode,
@@ -70,6 +69,46 @@ class _CheckinPageState extends State<CheckinPage> {
       return ResponseModel(success: false, message: e.toString());
     }
   }
+
+
+
+  dynamic urlup1 = 'http://206.189.92.79/api/';
+    Future<ResponseModel> PutPosit(
+ 
+    dynamic car_status,
+    dynamic car_id,
+  ) async {
+    try {
+      Map<String, String> data = {
+        'car_status': car_status,
+        'car_id': car_id,
+      
+      };
+      var dataencode = jsonEncode(data);
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      var _authToken = localStorage.getString('token');
+      var carID = widget.model.carid.positId.positId;
+      Map<String, String> headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $_authToken'
+      };
+      if (_authToken != null) {
+        urlup1 = Uri.parse("http://206.189.92.79/api/posit/$carID");
+        await http.put(
+          urlup1,
+          body: dataencode,
+          headers: headers,
+        );
+      }
+      return ResponseModel(success: true);
+    } catch (e) {
+      return ResponseModel(success: false, message: e.toString());
+    }
+  }
+
+
+
+
  
 
   //<--------------------   get Dropdown Station -------------------->
@@ -121,7 +160,18 @@ class _CheckinPageState extends State<CheckinPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    
+
+
+
+
+
+
+
+
     return Scaffold(
+       backgroundColor: const Color(0xfff5f5f5),
         //<--------------------   App Bar  -------------------->
         appBar: AppBar(
           toolbarHeight: 70,
@@ -507,24 +557,33 @@ class _CheckinPageState extends State<CheckinPage> {
         DialogButton(
           onPressed: () async {
             ResponseModel response = await Putreq(
-              "-", 
               StationController.text, 
-              "-", 
-              "2");
+              "2", 
+             );
          
             if (response.success) {
                ResponseModel response2 = await HistoryPost().PostHis(
-                  widget.model.carid.car_chassis,
-                  1,
-                  StationController.text,
-                  "${userData['fullname']}",
-                  "${userData['lastname']}",
+                  widget.model.carid.car_id,
                   DateFormat("yyyy-MM-dd").format(DateTime.now()),
-                  DateFormat("hh:mm:ss a").format(DateTime.now()),
+                  StationController.text,
+                  '1'
                 );
                 if (response2.success) {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => CheckinSpach()));
+                  ResponseModel response3 = await PutPosit(
+                    "0", 
+                    "1");
+                    
+                    if(response3.success){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CheckinSpach()),
+                      );
+                    }
+
+                  
+                 /*  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => CheckinSpach())); */
                 }
 
             }
