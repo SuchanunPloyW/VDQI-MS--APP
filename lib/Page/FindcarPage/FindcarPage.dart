@@ -7,7 +7,6 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
 
-import 'package:vdqims/Page/FindcarPage/Model/FindcarModel.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import '../../Service/Model/CarDBModel.dart';
 import '../MenuPage/MenuPage.dart';
@@ -66,17 +65,7 @@ class _FindcarPageState extends State<FindcarPage> {
           ),
           backgroundColor: baseColor1,
           elevation: 0,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.more_vert,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                // do something
-              },
-            )
-          ],
+          
         ),
         body: SingleChildScrollView(
           child: Stack(children: <Widget>[
@@ -186,11 +175,7 @@ class _FindcarPageState extends State<FindcarPage> {
                               child: Card(
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(12),
-                                      topRight: Radius.circular(12),
-                                      bottomLeft: Radius.circular(12),
-                                      bottomRight: Radius.circular(12)),
+                                  borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: FutureBuilder(
                                   future: FindCarService().getcar(),
@@ -252,7 +237,7 @@ class _FindcarPageState extends State<FindcarPage> {
       children: [
         Padding(
           padding: const EdgeInsets.only(
-            top: 0,
+            top: 3,
             left: 5,
             right: 5,
           ),

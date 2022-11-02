@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_const
+
 import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +31,8 @@ class _ProfilePageState extends State<ProfilePage> {
       userData = user;
     });
   }
+
+  
   //<--------------------- Controller ----------------->
 
   TextEditingController _namecontroller = new TextEditingController();
@@ -44,7 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
         textScaleFactor:
             mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
     return Scaffold(
-      backgroundColor: const Color(0xfff5f5f5),
+        backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
@@ -72,17 +76,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           backgroundColor: baseColor1,
           elevation: 0,
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(
-                Icons.more_vert,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                // do something
-              },
-            )
-          ],
+          
         ),
         body: SingleChildScrollView(
             child: Stack(children: <Widget>[
@@ -121,33 +115,27 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   SingleChildScrollView(
                       child: Padding(
-                    padding: EdgeInsets.only(top: 20, ),
+                    padding: EdgeInsets.only(
+                      top: 20,
+                    ),
                     child: SizedBox(
                         height: 400,
                         child: Padding(
-                           padding: const EdgeInsets.only(left: 15, right: 15),
+                          padding: const EdgeInsets.only(left: 15, right: 15),
                           child: Container(
-                            decoration:  const BoxDecoration(
+                            decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(12),
-                                    topRight: Radius.circular(12),
-                                    bottomLeft: Radius.circular(12),
-                                    bottomRight: Radius.circular(12)
-                                    ),
-                                     boxShadow: [
-                                      BoxShadow(
-                                         color: Color.fromRGBO(0, 0, 0, 0.05),
-                                         blurRadius: 12,
-                                        /*   offset: Offset(0, 3), */
-                                        
+                                borderRadius: BorderRadius.circular(12),
+                                // ignore: prefer_const_literals_to_create_immutables
+                                boxShadow: [
+                                  const BoxShadow(
+                                      color: Color.fromRGBO(0, 0, 0, 0.05),
+                                      blurRadius: 12,
+                                      spreadRadius: 5
+                                      /*   offset: Offset(0, 3), */
+
                                       ),
-                                     ]
-                                    
-                              ),
-                              
-                            
-                            
+                                ]),
                             child: Column(
                               children: [
                                 const SizedBox(height: 20),
@@ -175,19 +163,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                           controller: TextEditingController(
                                               text: "${userData['fullname']}"),
                                           keyboardType: TextInputType.text,
-                                          decoration: const InputDecoration(
-                                              /* contentPadding:EdgeInsets.fromLTRB(left, top, right, bottom) */
-                                              contentPadding: EdgeInsets.fromLTRB(
-                                                  10, 10, 5, 0),
-                                              /* contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), */
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
-                                                    color:
-                                                        const Color(0xffE2E8F0),
-                                                    width:
-                                                        1), /* borderRadius:BorderRadius.circular(5.0)  */
-                                              )),
-                                          style: TextStylelogin.body16b,
+                                          decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.fromLTRB(
+                                                      10, 10, 10, 0),
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          5.5))),
+                                          style: TextStyleProfile.body15,
                                         ),
                                       ),
                                     ),
@@ -219,51 +203,33 @@ class _ProfilePageState extends State<ProfilePage> {
                                               text: "${userData['lastname']}"),
                                           keyboardType: TextInputType.text,
                                           decoration: InputDecoration(
-                                              /* contentPadding:EdgeInsets.fromLTRB(left, top, right, bottom) */
-                                              contentPadding: EdgeInsets.fromLTRB(
-                                                  10, 10, 5, 0),
-                                              /* contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), */
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
-                                                    color:
-                                                        const Color(0xffE2E8F0),
-                                                    width: 1),
-                                              )),
-                                          style: TextStylelogin.body16b,
+                                              contentPadding:
+                                                  EdgeInsets.fromLTRB(
+                                                      10, 10, 10, 0),
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          5.5 ))),
+                                           style: TextStyleProfile.body15,
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                                /* Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      
+                                const SizedBox(height: 195),
+                                Center(
                                   child: SizedBox(
-                                    height: 35.2,
-                                    child: TextField(
-                                      style: TextStylelogin.body16,
-                                      readOnly: true,
-                                      controller: TextEditingController(
-                                          text: "${userData['lastname']}"),
-                                      keyboardType: TextInputType.text,
-                                      decoration: const InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 25.0),
-                                        border: OutlineInputBorder(),
-                                      ),
-                                    ),
-                                  ),
-                                ), */
-                                const SizedBox(height: 150),
-                                Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 25.0),
+                                    height: 36.55,
+                                    width: 280,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           primary: const Color(0xffE52628),
-                                          minimumSize: const Size.fromHeight(40),
+                                          minimumSize:
+                                              const Size.fromHeight(40),
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(10))),
+                                                  BorderRadius.circular(12))),
                                       onPressed: (() {}),
                                       child: const AutoSizeText(
                                         'แก้ไข',
@@ -275,7 +241,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                         maxFontSize: 12,
                                         minFontSize: 11,
                                       ),
-                                    )),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),

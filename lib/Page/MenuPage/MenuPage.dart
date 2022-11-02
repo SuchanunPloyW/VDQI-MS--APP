@@ -93,18 +93,15 @@ class _MenuPageState extends State<MenuPage> {
                           child: SizedBox(
                               height: 450,
                               child: Container(
-                                decoration: const BoxDecoration(
+                                decoration:  BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(12),
-                                              topRight: Radius.circular(12),
-                                              bottomLeft: Radius.circular(12),
-                                              bottomRight: Radius.circular(12)),
-                                          boxShadow: [
+                                          borderRadius: BorderRadius.circular(12),
+                                          boxShadow: const [
                                             BoxShadow(
                                               color:
                                                   Color.fromRGBO(0, 0, 0, 0.05),
                                               blurRadius: 12,
+                                              spreadRadius: 5
                                               /*   offset: Offset(0, 3), */
                                             ),
                                           ]),
@@ -119,24 +116,24 @@ class _MenuPageState extends State<MenuPage> {
                                   children: <Widget>[
                                     //------------------------------- ค้นหา  -----------------------------------
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 5 ,left: 5, right: 5),
+                                      padding: const EdgeInsets.only(top: 10 ,left: 8, right: 8 ),
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
-                                            primary: Color(0xffFFFFFF), // background
+                                            primary: Color(0xfffafafa), // background
                                             onPrimary: Color.fromARGB(255, 224, 197, 197),
                                             padding: EdgeInsets.all(15),
                                             shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10),
+                                              borderRadius: BorderRadius.circular(12),
                                             )),
                                         child: Row(children: [
-                                          Container(
+                                          Center(
                                             child: Image.asset(
-                                              'assets/images/car2.png',
-                                              height: 45.0,
-                                              width: 45,
+                                              'assets/images/findcar.png',
+                                              height: 50.0,
+                                              width: 55,
                                             ),
                                           ),
-                                          SizedBox(width: 30),
+                                          SizedBox(width: 40),
                                           Expanded(
                                               child: AutoSizeText(' ค้นหารถยนต์ \n Find My Car', maxLines: 2,minFontSize: 11,maxFontSize: 12,
                                                    style: TextStylePage.bodyP16)),
@@ -157,24 +154,24 @@ class _MenuPageState extends State<MenuPage> {
                                     //------------------------------- ค้นหา  -----------------------------------
                                     //------------------------------- เพิ่มรถ  -----------------------------------
                                     Padding(
-                                        padding: const EdgeInsets.only(top: 5 ,left: 5, right: 5),
+                                        padding: const EdgeInsets.only(top: 8 ,left: 8, right: 10),
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                              primary: Color(0xffFFFFFF), // background
+                                               primary: Color(0xfffafafa), // background
                                               onPrimary: Color.fromARGB(255, 224, 197, 197),
                                               padding: EdgeInsets.all(15),
                                               shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10),
+                                                borderRadius: BorderRadius.circular(12),
                                               )),
                                           child: Row(children: [
                                             Container(
                                               child: Image.asset(
                                                 'assets/images/plus.png',
-                                                height: 45.0,
-                                                width: 45,
+                                                height: 50.0,
+                                                width: 50,
                                               ),
                                             ),
-                                            SizedBox(width: 30),
+                                            SizedBox(width: 45),
                                             Expanded(
                                                 child: AutoSizeText(' เพิ่มรถยนต์ใหม่ \n Add New Car',
                                                     style: TextStylePage.bodyP16,maxLines: 2,minFontSize: 11,maxFontSize: 12,)),
@@ -194,25 +191,25 @@ class _MenuPageState extends State<MenuPage> {
                                     //------------------------------- เพิ่มรถ  -----------------------------------
                                     //------------------------------- รถยนต์ของฉัน  -----------------------------------
                                     Padding(
-                                       padding: const EdgeInsets.only(top: 5 ,left: 5, right: 5),
+                                       padding: const EdgeInsets.only(top: 10 ,left: 8, right: 8),
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                               // ignore: deprecated_member_use
-                                              primary: Color(0xffFFFFFF), // background
+                                               primary: Color(0xfffafafa), // background
                                               onPrimary: Color.fromARGB(255, 224, 197, 197), // foreground
                                               padding: EdgeInsets.all(15),
                                               shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10),
+                                                borderRadius: BorderRadius.circular(12),
                                               )),
                                           child: Row(children: [
                                             Container(
                                               child: Image.asset(
                                                 'assets/images/car3.png',
-                                                height: 45.0,
-                                                width: 45,
+                                                height: 50.0,
+                                                width: 50,
                                               ),
                                             ),
-                                            SizedBox(width: 30),
+                                            SizedBox(width: 45),
                                             Expanded(
                                                 child: AutoSizeText(' รถยนต์ของฉัน \n My Cars',
                                                    style: TextStylePage.bodyP16 ,maxLines: 2,minFontSize: 11,maxFontSize: 12,)),

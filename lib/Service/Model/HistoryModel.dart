@@ -31,7 +31,7 @@ class HistoryDB {
   factory HistoryDB.fromJson(Map<String, dynamic> json) => HistoryDB(
         currentPage: json["current_page"],
         data: List<HistoryDBAPI>.from(
-            json["data"].map((e) => HistoryDBAPI.fromJson(e))),
+        json["data"].map((e) => HistoryDBAPI.fromJson(e))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
@@ -51,24 +51,49 @@ class HistoryDBAPI {
     required this.his_id,
     required this.carid,
     required this.date,
+     required this.time,
     required this.carWhere,
     required this.carStatus,
+    required this.person,
   });
 
   int his_id;
   Carid carid;
   String date;
+  String time;
+
   CarWhere carWhere;
   CarStatus carStatus;
+  Person person;
 
   factory HistoryDBAPI.fromJson(Map<String, dynamic> json) => HistoryDBAPI(
         his_id: json["his_id"],
         carid: Carid.fromJson(json["car_id"]),
         date: json["date"],
+        time: json["time"],
         carWhere: CarWhere.fromJson(json["car_where"]),
         carStatus: CarStatus.fromJson(json["car_status"]),
+        person: Person.fromJson(json["person"]),
       );
 }
+class Person {
+  Person({
+    required this.id,
+    required this.fullname,
+    required this.lastname,
+
+  });
+  int id;
+  String fullname;
+  String lastname;
+
+  factory Person.fromJson(Map<String, dynamic> json) => Person(
+        id: json["id"],
+        fullname: json["fullname"],
+        lastname: json["lastname"],
+      );
+}
+
 
 class Carid {
   Carid({
@@ -76,23 +101,20 @@ class Carid {
     required this.car_chassis,
   
     required this.positId,
-    required this.fullname,
-    required this.lastname,
+    
   });
   int car_id;
   String car_chassis;
   
   PositId positId;
-  String fullname;
-  String lastname;
+ 
 
   factory Carid.fromJson(Map<String, dynamic> json) => Carid(
         car_id: json["car_id"],
         car_chassis: json["car_chassis"],
        
         positId: PositId.fromJson(json["posit_id"]),
-        fullname: json["fullname"],
-        lastname: json["lastname"],
+      
       );
 }
 

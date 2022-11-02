@@ -53,12 +53,12 @@ class CarAPI {
     required this.carStatus,
     required this.carWhere,
     required this.carPosition,
-    required this.fullname,
-    required this.lastname,
+  
     required this.date,
     required this.time,
     required this.carLine, 
     required this.sort, 
+    required this.person,
   });
 
   int carId;
@@ -66,12 +66,11 @@ class CarAPI {
   CarStatus carStatus;
   CarWhere carWhere;
   String carPosition;
-  String fullname;
-  String lastname;
   DateTime date;
   String time;
   String carLine;
   int sort;
+  Person person;
 
   factory CarAPI.fromJson(Map<String, dynamic> json) => CarAPI(
         carId: json["car_id"],
@@ -79,12 +78,26 @@ class CarAPI {
         carStatus: CarStatus.fromJson(json["car_status"]),
         carWhere: CarWhere.fromJson(json["car_where"]),
         carPosition: json["car_position"],
-        fullname: json["fullname"],
-        lastname: json["lastname"],
         date: DateTime.parse(json["date"]),
         time: json["time"],
         carLine: json["car_line"],
         sort: json["sort"],
+        person: Person.fromJson(json["person"]),
+      );
+}
+
+class Person {
+  Person({
+    required this.fullname,
+    required this.lastname,
+  });
+
+  int fullname;
+  String lastname;
+
+  factory Person.fromJson(Map<String, dynamic> json) => Person(
+        fullname: json["fullname"],
+        lastname: json["lastname"],
       );
 }
 

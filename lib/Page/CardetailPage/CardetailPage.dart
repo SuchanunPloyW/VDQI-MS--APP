@@ -16,7 +16,6 @@ import '../../Service/API/PostReqApi.dart';
 import '../../Service/Model/CarDBModel.dart';
 import '../../Service/Model/HistoryModel.dart';
 import '../../Service/Model/PositDBModel.dart';
-import '../FindcarPage/Model/FindcarModel.dart';
 import 'package:http/http.dart' as http;
 
 class CardetailPage extends StatefulWidget {
@@ -69,7 +68,7 @@ class _CardetailPageState extends State<CardetailPage> {
     }
 
     return Scaffold(
-       backgroundColor: const Color(0xfff5f5f5),
+        backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
@@ -97,17 +96,6 @@ class _CardetailPageState extends State<CardetailPage> {
           ),
           backgroundColor: baseColor1,
           elevation: 0,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.more_vert,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                // do something
-              },
-            )
-          ],
         ),
         body: SingleChildScrollView(
           child: Stack(children: <Widget>[
@@ -139,19 +127,17 @@ class _CardetailPageState extends State<CardetailPage> {
                                 padding:
                                     const EdgeInsets.only(left: 5, right: 5),
                                 child: Container(
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                       color: Colors.white,
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(12),
-                                          topRight: Radius.circular(12),
-                                          bottomLeft: Radius.circular(12),
-                                          bottomRight: Radius.circular(12)),
-                                      boxShadow: [
+                                      borderRadius: BorderRadius.circular(12),
+                                      boxShadow: const [
                                         BoxShadow(
-                                          color: Color.fromRGBO(0, 0, 0, 0.05),
-                                          blurRadius: 12,
-                                          /*   offset: Offset(0, 3), */
-                                        ),
+                                            color:
+                                                Color.fromRGBO(0, 0, 0, 0.05),
+                                            blurRadius: 12,
+                                            spreadRadius: 5
+                                            /*   offset: Offset(0, 3), */
+                                            ),
                                       ]),
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 10),
@@ -165,12 +151,12 @@ class _CardetailPageState extends State<CardetailPage> {
                                               color: Colors.white,
                                               borderRadius:
                                                   BorderRadius.circular(12),
-                                              boxShadow: [
+                                              boxShadow: const [
                                                 BoxShadow(
-                                                  color: Color.fromRGBO(
-                                                      0, 0, 0, 0.1),
-                                                  blurRadius: 10,
-                                                ),
+                                                    color: Color.fromRGBO(
+                                                        0, 0, 0, 0.1),
+                                                    blurRadius: 10,
+                                                    spreadRadius: 2),
                                               ]),
                                           height: 85,
                                           child: ListTile(
@@ -235,24 +221,18 @@ class _CardetailPageState extends State<CardetailPage> {
                                           height: 160,
                                           width: double.infinity,
                                           child: Container(
-                                            decoration: const BoxDecoration(
+                                            decoration: BoxDecoration(
                                                 color: Colors.white,
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(10),
-                                                    topRight:
-                                                        Radius.circular(10),
-                                                    bottomLeft:
-                                                        Radius.circular(10),
-                                                    bottomRight:
-                                                        Radius.circular(10)),
-                                                boxShadow: [
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                boxShadow: const [
                                                   BoxShadow(
-                                                    color: Color.fromRGBO(
-                                                        0, 0, 0, 0.1),
-                                                    blurRadius: 12,
-                                                    /*   offset: Offset(0, 3), */
-                                                  ),
+                                                      color: Color.fromRGBO(
+                                                          0, 0, 0, 0.1),
+                                                      blurRadius: 12,
+                                                      spreadRadius: 2
+                                                      /*   offset: Offset(0, 3), */
+                                                      ),
                                                 ]),
                                             child: GestureDetector(
                                                 onTap: () =>
@@ -297,9 +277,9 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                       -0.59),
                                                               child: Text(
                                                                   widget
-                                                                      .model.carWhere.carWhere
-                                                                      
-                                                                      ,
+                                                                      .model
+                                                                      .carWhere
+                                                                      .carWhere,
                                                                   style:
                                                                       TextStyle(
                                                                     color: Color(
@@ -340,10 +320,14 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                       -0.56,
                                                                       0.7),
                                                               child: Text(
-                                                                widget.model.positId.car_status == 0
-                                                                ? "-"
-                                                                : widget.model.positId.line,
-                                                                    
+                                                                widget.model.positId
+                                                                            .car_status ==
+                                                                        0
+                                                                    ? "-"
+                                                                    : widget
+                                                                        .model
+                                                                        .positId
+                                                                        .line,
                                                                 style:
                                                                     TextStyle(
                                                                   color: Color(
@@ -383,10 +367,15 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                       0.56,
                                                                       0.7),
                                                               child: Text(
-                                                                widget.model.positId.car_status == 0
-                                                                ? "-"
-                                                                : widget.model.positId.posit.toString(),
-                                                                    
+                                                                widget.model.positId
+                                                                            .car_status ==
+                                                                        0
+                                                                    ? "-"
+                                                                    : widget
+                                                                        .model
+                                                                        .positId
+                                                                        .posit
+                                                                        .toString(),
                                                                 style:
                                                                     TextStyle(
                                                                   fontSize: 40,
@@ -406,7 +395,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                         ),
                                       ),
 
-                                      const SizedBox(height: 5),
+                                      const SizedBox(height: 15),
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             left: 10, right: 10, top: 0),
@@ -532,7 +521,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                         )),
                                                                         DataCell(
                                                                             Text(
-                                                                          '${e.carid.fullname}',
+                                                                          '${e.person.fullname}',
                                                                           style: const TextStyle(
                                                                               fontSize: 14,
                                                                               fontFamily: ('Bai Jamjuree')),
@@ -558,9 +547,10 @@ class _CardetailPageState extends State<CardetailPage> {
                                       ),
 
                                       const SizedBox(height: 40),
-                                      Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 25.0),
+                                      Center(
+                                        child: SizedBox(
+                                          width: 280,
+                                          height: 36.55,
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                                 primary:
@@ -570,7 +560,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            10))),
+                                                            12))),
                                             onPressed: () => _request(context),
                                             child: AutoSizeText(
                                               'เบิกรถยนต์',
@@ -578,11 +568,14 @@ class _CardetailPageState extends State<CardetailPage> {
                                               maxFontSize: 12,
                                               minFontSize: 11,
                                             ),
-                                          )),
+                                          ),
+                                        ),
+                                      ),
                                       const SizedBox(height: 5),
-                                      Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 25.0),
+                                      Center(
+                                        child: SizedBox(
+                                          width: 280,
+                                          height: 36.55,
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                                 primary: Colors.cyan[900],
@@ -591,7 +584,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            10))),
+                                                            12))),
                                             onPressed: () {
                                               if (widget
                                                       .model.carWhere.whereId ==
@@ -660,35 +653,49 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                       child: Text(
                                                                           widget
                                                                               .model
-                                                                              .carWhere.carWhere,
+                                                                              .carWhere
+                                                                              .carWhere,
                                                                           style:
-                                                                              TextStyleAlert.body16bold)),
+                                                                              TextStyleAlert.body16)),
                                                                 ],
                                                               ),
                                                             )
                                                           ],
                                                         ),
                                                         actions: <Widget>[
-                                                          new ElevatedButton(
-                                                            onPressed: () {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                            },
-                                                            style: ElevatedButton.styleFrom(
-                                                                primary:
-                                                                    const Color(
-                                                                        0xffE52628),
-                                                                minimumSize:
-                                                                    const Size
-                                                                            .fromHeight(
-                                                                        40),
-                                                                shape: RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            10))),
-                                                            child: const Text(
-                                                                'ตกลง'),
+                                                          Center(
+                                                            child: SizedBox(
+                                                              width: 280,
+                                                              height: 36.55,
+                                                              child:
+                                                                  ElevatedButton(
+                                                                onPressed: () {
+                                                                  Navigator.of(
+                                                                          context)
+                                                                      .pop();
+                                                                },
+                                                                style: ElevatedButton.styleFrom(
+                                                                    primary:
+                                                                        const Color(
+                                                                            0xffE52628),
+                                                                    minimumSize:
+                                                                        const Size.fromHeight(
+                                                                            40),
+                                                                    shape: RoundedRectangleBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(12))),
+                                                                child:
+                                                                    AutoSizeText(
+                                                                  'ตกลง',
+                                                                  style: TextStyleBtn
+                                                                      .bodybtn,
+                                                                  maxFontSize:
+                                                                      12,
+                                                                  minFontSize:
+                                                                      11,
+                                                                ),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ],
                                                       );
@@ -701,7 +708,9 @@ class _CardetailPageState extends State<CardetailPage> {
                                               maxFontSize: 12,
                                               minFontSize: 11,
                                             ),
-                                          )),
+                                          ),
+                                        ),
+                                      ),
                                     ]),
                                   ),
                                 ),
@@ -741,16 +750,27 @@ class _CardetailPageState extends State<CardetailPage> {
         ],
       ),
       actions: <Widget>[
-        new ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          style: ElevatedButton.styleFrom(
-              primary: const Color(0xffE52628),
-              minimumSize: const Size.fromHeight(40),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10))),
-          child: const Text('ตกลง'),
+        Center(
+          child: SizedBox(
+            width: 280,
+            height: 36.55,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: ElevatedButton.styleFrom(
+                  primary: const Color(0xffE52628),
+                  minimumSize: const Size.fromHeight(40),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12))),
+              child: AutoSizeText(
+                'ตกลง',
+                style: TextStyleBtn.bodybtn,
+                maxFontSize: 12,
+                minFontSize: 11,
+              ),
+            ),
+          ),
         ),
       ],
     );
@@ -758,6 +778,7 @@ class _CardetailPageState extends State<CardetailPage> {
 
   Widget _DialogStockB(BuildContext context) {
     return new AlertDialog(
+      insetPadding: EdgeInsets.zero,
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -766,7 +787,7 @@ class _CardetailPageState extends State<CardetailPage> {
             child: Column(
               children: [
                 Center(
-                    child: Text('แผนผังแสดงลานจอด Stock B',
+                    child: Text('แผนผังแสดงลานจอด Stock B ',
                         style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockB(),
@@ -777,16 +798,27 @@ class _CardetailPageState extends State<CardetailPage> {
         ],
       ),
       actions: <Widget>[
-        new ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          style: ElevatedButton.styleFrom(
-              primary: const Color(0xffE52628),
-              minimumSize: const Size.fromHeight(40),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10))),
-          child: const Text('ตกลง'),
+        Center(
+          child: SizedBox(
+            width: 280,
+            height: 36.55,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: ElevatedButton.styleFrom(
+                  primary: const Color(0xffE52628),
+                  minimumSize: const Size.fromHeight(40),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12))),
+              child: AutoSizeText(
+                'ตกลง',
+                style: TextStyleBtn.bodybtn,
+                maxFontSize: 12,
+                minFontSize: 11,
+              ),
+            ),
+          ),
         ),
       ],
     );
@@ -794,6 +826,7 @@ class _CardetailPageState extends State<CardetailPage> {
 
   Widget _DialogStockC(BuildContext context) {
     return new AlertDialog(
+      insetPadding: EdgeInsets.zero,
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -802,7 +835,7 @@ class _CardetailPageState extends State<CardetailPage> {
             child: Column(
               children: [
                 Center(
-                    child: Text('แผนผังแสดงลานจอด Stock C',
+                    child: Text('แผนผังแสดงลานจอด Stock C ',
                         style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockC(),
@@ -813,16 +846,27 @@ class _CardetailPageState extends State<CardetailPage> {
         ],
       ),
       actions: <Widget>[
-        new ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          style: ElevatedButton.styleFrom(
-              primary: const Color(0xffE52628),
-              minimumSize: const Size.fromHeight(40),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10))),
-          child: const Text('ตกลง'),
+        Center(
+          child: SizedBox(
+            width: 280,
+            height: 36.55,
+            child: new ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: ElevatedButton.styleFrom(
+                  primary: const Color(0xffE52628),
+                  minimumSize: const Size.fromHeight(40),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12))),
+              child: AutoSizeText(
+                'ตกลง',
+                style: TextStyleBtn.bodybtn,
+                maxFontSize: 12,
+                minFontSize: 11,
+              ),
+            ),
+          ),
         ),
       ],
     );
@@ -830,6 +874,7 @@ class _CardetailPageState extends State<CardetailPage> {
 
   Widget _DialogStockD(BuildContext context) {
     return new AlertDialog(
+      insetPadding: EdgeInsets.zero,
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -838,7 +883,7 @@ class _CardetailPageState extends State<CardetailPage> {
             child: Column(
               children: [
                 Center(
-                    child: Text('แผนผังแสดงลานจอด Stock D',
+                    child: Text('แผนผังแสดงลานจอด Stock D ',
                         style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockD(),
@@ -849,16 +894,27 @@ class _CardetailPageState extends State<CardetailPage> {
         ],
       ),
       actions: <Widget>[
-        new ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          style: ElevatedButton.styleFrom(
-              primary: const Color(0xffE52628),
-              minimumSize: const Size.fromHeight(40),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10))),
-          child: const Text('ตกลง'),
+        Center(
+          child: SizedBox(
+            width: 280,
+            height: 36.55,
+            child: new ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: ElevatedButton.styleFrom(
+                  primary: const Color(0xffE52628),
+                  minimumSize: const Size.fromHeight(40),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12))),
+              child: AutoSizeText(
+                'ตกลง',
+                style: TextStyleBtn.bodybtn,
+                maxFontSize: 12,
+                minFontSize: 11,
+              ),
+            ),
+          ),
         ),
       ],
     );
@@ -867,9 +923,11 @@ class _CardetailPageState extends State<CardetailPage> {
 // <------------------------- Stock  -------------------------->
   Widget _buildStockA() {
     return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: const Color(0xffE2E8F0))),
       height: 395,
-      decoration:
-          BoxDecoration(border: Border.all(color: const Color(0xffE2E8F0))),
+      width: 290,
       child: Column(children: [
         SizedBox(
           height: 5,
@@ -885,45 +943,49 @@ class _CardetailPageState extends State<CardetailPage> {
                   children: [
                     Container(
                       height: 40,
-                      width: 10,
+                      width: 30,
                     ),
                     Expanded(
                       child: Container(
-                          height: 40,
-                          width: 20,
-                          child: GridView.count(
-                            physics: NeverScrollableScrollPhysics(),
-                            padding: const EdgeInsets.all(10),
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            crossAxisCount: 4,
-                            children: const [
-                              Center(
-                                  child: Text(
-                                'A',
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.bold),
-                              )),
-                              Center(
-                                  child: Text(
-                                'B',
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.bold),
-                              )),
-                              Center(
-                                  child: Text(
-                                'C',
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.bold),
-                              )),
-                              Center(
-                                  child: Text(
-                                'D',
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.bold),
-                              )),
-                            ],
-                          )),
+                        padding: const EdgeInsets.symmetric(horizontal: 35),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              "A",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "B",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "C",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "D",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -934,187 +996,214 @@ class _CardetailPageState extends State<CardetailPage> {
                     child: Row(
                       children: [
                         Container(
-                          width: 10,
+                          width: 30,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Column(children: [
                               Container(
-                                  height: 300,
+                                  height: 330,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Colors.black38,
+                                      color: const Color.fromARGB( 246, 231, 230, 236),
                                     ),
-                                    color: const Color.fromARGB(
-                                        246, 231, 230, 236),
-                                    borderRadius: BorderRadius.circular(10),
+                                    color: const Color.fromARGB( 246, 231, 230, 236),
+                                       
+                                    borderRadius: BorderRadius.circular(0),
                                   ),
                                   child: const Center(
-                                    child: Text(
-                                      '',
-                                      textScaleFactor: 1,
-                                    ),
+                                    child: RotatedBox(
+                                        quarterTurns: 1, child: Text("Lotus")),
                                   ))
                             ]),
                           ),
                         ),
+                        SizedBox(
+                          width: 8,
+                        ),
                         Expanded(
-                          child: Container(
-                              height: 350,
-                              child: FutureBuilder(
-                                  future: PostionService().getWhere1(),
-                                  builder: (BuildContext context,
-                                      AsyncSnapshot<List<PositDBAPI>?>
-                                          snapshot) {
-                                    if (snapshot.hasData) {
-                                      List<PositDBAPI>? data = snapshot.data;
-                                      return Container(
-                                          width: 20,
-                                          height: 20,
-                                          child: GridView.builder(
-                                              padding: const EdgeInsets.all(10),
-                                              gridDelegate:
-                                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                                mainAxisSpacing: 10,
-                                                crossAxisSpacing: 10,
-                                                crossAxisCount: 4,
-                                              ),
-                                              itemCount: data!.length,
-                                              itemBuilder: (context, index) {
-                                                return Container(
-                                                  width: 20,
-                                                  height: 20,
-                                                  decoration: BoxDecoration(
-                                                    color: (data[index]
-                                                                    .carid
-                                                                    .car_id ==
-                                                                widget.model
-                                                                    .carId &&
-                                                            data[index]
-                                                                    .car_status ==
-                                                                1
-                                                        ? Colors.blue
-                                                        : data[index]
-                                                                    .car_status ==
-                                                                1
-                                                            ? Colors.red
-                                                            : data[index]
-                                                                        .car_status ==
-                                                                    2
-                                                                ? Colors.grey
-                                                                : const Color(
-                                                                    0xff89EB80)),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return new AlertDialog(
-                                                              content:
-                                                                  new Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .center,
-                                                                children: <
-                                                                    Widget>[
-                                                                  SingleChildScrollView(
-                                                                      child:
-                                                                          Column(
-                                                                    children: [
-                                                                      Lottie.asset(
-                                                                          'assets/images/map.json',
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 5, right: 10),
+                            child: Container(
+                                height: 350,
+                                child: FutureBuilder(
+                                    future: PostionService().getWhere1(),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<List<PositDBAPI>?>
+                                            snapshot) {
+                                      if (snapshot.hasData) {
+                                        List<PositDBAPI>? data = snapshot.data;
+                                        return Container(
+                                            width: 20,
+                                            height: 20,
+                                            child: GridView.builder(
+                                                padding:
+                                                    const EdgeInsets.all(10),
+                                                gridDelegate:
+                                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                                  mainAxisSpacing: 10,
+                                                  crossAxisSpacing: 10,
+                                                  crossAxisCount: 4,
+                                                ),
+                                                itemCount: data!.length,
+                                                itemBuilder: (context, index) {
+                                                  return Container(
+                                                    width: 20,
+                                                    height: 20,
+                                                    decoration: BoxDecoration(
+                                                      color: (data[index]
+                                                                      .carid
+                                                                      .car_id ==
+                                                                  widget.model
+                                                                      .carId &&
+                                                              data[index]
+                                                                      .car_status ==
+                                                                  1
+                                                          ? Colors.blue
+                                                          : data[index]
+                                                                      .car_status ==
+                                                                  1
+                                                              ? Colors.red
+                                                              : data[index]
+                                                                          .car_status ==
+                                                                      2
+                                                                  ? Colors.grey
+                                                                  : const Color(
+                                                                      0xff89EB80)),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0),
+                                                    ),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
+                                                              return new AlertDialog(
+                                                                content:
+                                                                    new Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .min,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    SingleChildScrollView(
+                                                                        child:
+                                                                            Column(
+                                                                      children: [
+                                                                        Center(
+                                                                          child: Lottie.asset(
+                                                                              'assets/images/map.json',
+                                                                              height: 150,
+                                                                              width: 150),
+                                                                        ),
+                                                                        Center(
+                                                                            child:
+                                                                                Container(
                                                                           height:
-                                                                              150,
+                                                                              80,
                                                                           width:
-                                                                              150),
-                                                                      Column(
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Row(
+                                                                              500,
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
                                                                             children: [
-                                                                              Text("เลขตัวถัง : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("เลขตัวถัง ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("รุ่น  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("สี  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
                                                                             ],
                                                                           ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text("รุ่น : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
-                                                                            ],
-                                                                          ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text("สี : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
-                                                                            ],
-                                                                          ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
-                                                                            ],
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ],
-                                                                  ))
-                                                                ],
-                                                              ),
-                                                              actions: <Widget>[
-                                                                new ElevatedButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .pop();
-                                                                  },
-                                                                  style: ElevatedButton.styleFrom(
-                                                                      primary:
-                                                                          const Color(
-                                                                              0xffE52628),
-                                                                      minimumSize:
-                                                                          const Size.fromHeight(
-                                                                              40),
-                                                                      shape: RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(10))),
-                                                                  child:
-                                                                      const Text(
-                                                                          'ตกลง'),
+                                                                        ))
+                                                                      ],
+                                                                    ))
+                                                                  ],
                                                                 ),
-                                                              ],
-                                                            );
-                                                          });
-                                                    },
-                                                    child: Center(
-                                                      child: Text(
-                                                        textScaleFactor: 1,
-                                                        data[index]
-                                                            .posit
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white),
+                                                                actions: <
+                                                                    Widget>[
+                                                                  Center(
+                                                                    child:
+                                                                        SizedBox(
+                                                                      width:
+                                                                          280,
+                                                                      height:
+                                                                          36.55,
+                                                                      child:
+                                                                          ElevatedButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                        },
+                                                                        style: ElevatedButton.styleFrom(
+                                                                            primary:
+                                                                                const Color(0xffE52628),
+                                                                            minimumSize: const Size.fromHeight(40),
+                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                                                                        child:
+                                                                            AutoSizeText(
+                                                                          'ตกลง',
+                                                                          style:
+                                                                              TextStyleBtn.bodybtn,
+                                                                          maxFontSize:
+                                                                              12,
+                                                                          minFontSize:
+                                                                              11,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            });
+                                                      },
+                                                      child: Center(
+                                                        child: Text(
+                                                          textScaleFactor: 1,
+                                                          data[index]
+                                                              .posit
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                );
-                                              }));
-                                    }
-                                    return const Center(
-                                      child: CircularProgressIndicator(
-                                        color: Colors.red,
-                                      ),
-                                    );
-                                  })),
+                                                  );
+                                                }));
+                                      }
+                                      return const Center(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.red,
+                                        ),
+                                      );
+                                    })),
+                          ),
                         )
                       ],
                     )),
@@ -1128,12 +1217,14 @@ class _CardetailPageState extends State<CardetailPage> {
 
   Widget _buildStockB() {
     return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: const Color(0xffE2E8F0))),
       height: 395,
-      decoration:
-          BoxDecoration(border: Border.all(color: const Color(0xffE2E8F0))),
+      width: 290,
       child: Column(children: [
         SizedBox(
-          height: 20,
+          height: 5,
         ),
         Expanded(
             child: Container(
@@ -1145,47 +1236,58 @@ class _CardetailPageState extends State<CardetailPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      height: 30,
-                      width: 10,
+                      height: 40,
+                      width: 30,
                     ),
                     Expanded(
                       child: Container(
-                          height: 30,
-                          width: 20,
-                          child: GridView.count(
-                            physics: NeverScrollableScrollPhysics(),
-                            padding: const EdgeInsets.all(10),
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            crossAxisCount: 5,
-                            children: const [
-                              Center(
-                                  child: Text(
-                                'A',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                              Center(
-                                  child: Text(
-                                'B',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                              Center(
-                                  child: Text(
-                                'C',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                              Center(
-                                  child: Text(
-                                'D',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                              Center(
-                                  child: Text(
-                                'E',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                            ],
-                          )),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              "A",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "B",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "C",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "D",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "E",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -1196,187 +1298,214 @@ class _CardetailPageState extends State<CardetailPage> {
                     child: Row(
                       children: [
                         Container(
-                          width: 10,
+                          width: 30,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Column(children: [
                               Container(
-                                  height: 300,
+                                  height: 330,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Colors.black38,
+                                      color: const Color.fromARGB( 246, 231, 230, 236),
                                     ),
                                     color: const Color.fromARGB(
                                         246, 231, 230, 236),
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(0),
                                   ),
                                   child: const Center(
-                                    child: Text(
-                                      '',
-                                      textScaleFactor: 1,
-                                    ),
+                                    child: RotatedBox(
+                                        quarterTurns: 1, child: Text("Lotus")),
                                   ))
                             ]),
                           ),
                         ),
+                        SizedBox(
+                          width: 8,
+                        ),
                         Expanded(
-                          child: Container(
-                              height: 350,
-                              child: FutureBuilder(
-                                  future: PostionService().getWhere2(),
-                                  builder: (BuildContext context,
-                                      AsyncSnapshot<List<PositDBAPI>?>
-                                          snapshot) {
-                                    if (snapshot.hasData) {
-                                      List<PositDBAPI>? data = snapshot.data;
-                                      return Container(
-                                          width: 20,
-                                          height: 20,
-                                          child: GridView.builder(
-                                              padding: const EdgeInsets.all(10),
-                                              gridDelegate:
-                                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                                mainAxisSpacing: 10,
-                                                crossAxisSpacing: 10,
-                                                crossAxisCount: 5,
-                                              ),
-                                              itemCount: data!.length,
-                                              itemBuilder: (context, index) {
-                                                return Container(
-                                                  width: 20,
-                                                  height: 20,
-                                                  decoration: BoxDecoration(
-                                                    color: (data[index]
-                                                                    .carid
-                                                                    .car_id ==
-                                                                widget.model
-                                                                    .carId &&
-                                                            data[index]
-                                                                    .car_status ==
-                                                                1
-                                                        ? Colors.blue
-                                                        : data[index]
-                                                                    .car_status ==
-                                                                1
-                                                            ? Colors.red
-                                                            : data[index]
-                                                                        .car_status ==
-                                                                    2
-                                                                ? Colors.grey
-                                                                : const Color(
-                                                                    0xff89EB80)),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return new AlertDialog(
-                                                              content:
-                                                                  new Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .center,
-                                                                children: <
-                                                                    Widget>[
-                                                                  SingleChildScrollView(
-                                                                      child:
-                                                                          Column(
-                                                                    children: [
-                                                                      Lottie.asset(
-                                                                          'assets/images/map.json',
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 1, right: 5),
+                            child: Container(
+                                height: 350,
+                                child: FutureBuilder(
+                                    future: PostionService().getWhere2(),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<List<PositDBAPI>?>
+                                            snapshot) {
+                                      if (snapshot.hasData) {
+                                        List<PositDBAPI>? data = snapshot.data;
+                                        return Container(
+                                            width: 20,
+                                            height: 20,
+                                            child: GridView.builder(
+                                                padding:
+                                                    const EdgeInsets.all(10),
+                                                gridDelegate:
+                                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                                  mainAxisSpacing: 10,
+                                                  crossAxisSpacing: 10,
+                                                  crossAxisCount: 5,
+                                                ),
+                                                itemCount: data!.length,
+                                                itemBuilder: (context, index) {
+                                                  return Container(
+                                                    width: 20,
+                                                    height: 20,
+                                                    decoration: BoxDecoration(
+                                                      color: (data[index]
+                                                                      .carid
+                                                                      .car_id ==
+                                                                  widget.model
+                                                                      .carId &&
+                                                              data[index]
+                                                                      .car_status ==
+                                                                  1
+                                                          ? Colors.blue
+                                                          : data[index]
+                                                                      .car_status ==
+                                                                  1
+                                                              ? Colors.red
+                                                              : data[index]
+                                                                          .car_status ==
+                                                                      2
+                                                                  ? Colors.grey
+                                                                  : const Color(
+                                                                      0xff89EB80)),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0),
+                                                    ),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
+                                                              return new AlertDialog(
+                                                                content:
+                                                                    new Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .min,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    SingleChildScrollView(
+                                                                        child:
+                                                                            Column(
+                                                                      children: [
+                                                                        Center(
+                                                                          child: Lottie.asset(
+                                                                              'assets/images/map.json',
+                                                                              height: 150,
+                                                                              width: 150),
+                                                                        ),
+                                                                        Center(
+                                                                            child:
+                                                                                Container(
                                                                           height:
-                                                                              150,
+                                                                              80,
                                                                           width:
-                                                                              150),
-                                                                      Column(
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Row(
+                                                                              500,
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
                                                                             children: [
-                                                                              Text("เลขตัวถัง : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("เลขตัวถัง ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("รุ่น  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("สี  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
                                                                             ],
                                                                           ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text("รุ่น : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
-                                                                            ],
-                                                                          ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text("สี : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
-                                                                            ],
-                                                                          ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
-                                                                            ],
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ],
-                                                                  ))
-                                                                ],
-                                                              ),
-                                                              actions: <Widget>[
-                                                                new ElevatedButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .pop();
-                                                                  },
-                                                                  style: ElevatedButton.styleFrom(
-                                                                      primary:
-                                                                          const Color(
-                                                                              0xffE52628),
-                                                                      minimumSize:
-                                                                          const Size.fromHeight(
-                                                                              40),
-                                                                      shape: RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(10))),
-                                                                  child:
-                                                                      const Text(
-                                                                          'ตกลง'),
+                                                                        ))
+                                                                      ],
+                                                                    ))
+                                                                  ],
                                                                 ),
-                                                              ],
-                                                            );
-                                                          });
-                                                    },
-                                                    child: Center(
-                                                      child: Text(
-                                                        textScaleFactor: 1,
-                                                        data[index]
-                                                            .posit
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white),
+                                                                actions: <
+                                                                    Widget>[
+                                                                  Center(
+                                                                    child:
+                                                                        SizedBox(
+                                                                      width:
+                                                                          280,
+                                                                      height:
+                                                                          36.55,
+                                                                      child:
+                                                                          new ElevatedButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                        },
+                                                                        style: ElevatedButton.styleFrom(
+                                                                            primary:
+                                                                                const Color(0xffE52628),
+                                                                            minimumSize: const Size.fromHeight(40),
+                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                                                                        child:
+                                                                            AutoSizeText(
+                                                                          'ตกลง',
+                                                                          style:
+                                                                              TextStyleBtn.bodybtn,
+                                                                          maxFontSize:
+                                                                              12,
+                                                                          minFontSize:
+                                                                              11,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            });
+                                                      },
+                                                      child: Center(
+                                                        child: Text(
+                                                          textScaleFactor: 1,
+                                                          data[index]
+                                                              .posit
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                );
-                                              }));
-                                    }
-                                    return const Center(
-                                      child: CircularProgressIndicator(
-                                        color: Colors.red,
-                                      ),
-                                    );
-                                  })),
+                                                  );
+                                                }));
+                                      }
+                                      return const Center(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.red,
+                                        ),
+                                      );
+                                    })),
+                          ),
                         )
                       ],
                     )),
@@ -1390,12 +1519,14 @@ class _CardetailPageState extends State<CardetailPage> {
 
   Widget _buildStockC() {
     return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: const Color(0xffE2E8F0))),
       height: 395,
-      decoration:
-          BoxDecoration(border: Border.all(color: const Color(0xffE2E8F0))),
+      width: 290,
       child: Column(children: [
         SizedBox(
-          height: 20,
+          height: 5,
         ),
         Expanded(
             child: Container(
@@ -1407,47 +1538,58 @@ class _CardetailPageState extends State<CardetailPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      height: 30,
-                      width: 10,
+                      height: 40,
+                      width: 30,
                     ),
                     Expanded(
                       child: Container(
-                          height: 30,
-                          width: 20,
-                          child: GridView.count(
-                            physics: NeverScrollableScrollPhysics(),
-                            padding: const EdgeInsets.all(10),
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            crossAxisCount: 5,
-                            children: const [
-                              Center(
-                                  child: Text(
-                                'A',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                              Center(
-                                  child: Text(
-                                'B',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                              Center(
-                                  child: Text(
-                                'C',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                              Center(
-                                  child: Text(
-                                'D',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                              Center(
-                                  child: Text(
-                                'E',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                            ],
-                          )),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              "A",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "B",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "C",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "D",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "E",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -1458,187 +1600,214 @@ class _CardetailPageState extends State<CardetailPage> {
                     child: Row(
                       children: [
                         Container(
-                          width: 10,
+                          width: 30,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Column(children: [
                               Container(
-                                  height: 300,
+                                  height: 330,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Colors.black38,
+                                      color: const Color.fromARGB( 246, 231, 230, 236),
                                     ),
                                     color: const Color.fromARGB(
                                         246, 231, 230, 236),
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(0),
                                   ),
                                   child: const Center(
-                                    child: Text(
-                                      '',
-                                      textScaleFactor: 1,
-                                    ),
+                                    child: RotatedBox(
+                                        quarterTurns: 1, child: Text("Lotus")),
                                   ))
                             ]),
                           ),
                         ),
+                        SizedBox(
+                          width: 8,
+                        ),
                         Expanded(
-                          child: Container(
-                              height: 350,
-                              child: FutureBuilder(
-                                  future: PostionService().getWhere3(),
-                                  builder: (BuildContext context,
-                                      AsyncSnapshot<List<PositDBAPI>?>
-                                          snapshot) {
-                                    if (snapshot.hasData) {
-                                      List<PositDBAPI>? data = snapshot.data;
-                                      return Container(
-                                          width: 20,
-                                          height: 20,
-                                          child: GridView.builder(
-                                              padding: const EdgeInsets.all(10),
-                                              gridDelegate:
-                                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                                mainAxisSpacing: 10,
-                                                crossAxisSpacing: 10,
-                                                crossAxisCount: 5,
-                                              ),
-                                              itemCount: data!.length,
-                                              itemBuilder: (context, index) {
-                                                return Container(
-                                                  width: 20,
-                                                  height: 20,
-                                                  decoration: BoxDecoration(
-                                                    color: (data[index]
-                                                                    .carid
-                                                                    .car_id ==
-                                                                widget.model
-                                                                    .carId &&
-                                                            data[index]
-                                                                    .car_status ==
-                                                                1
-                                                        ? Colors.blue
-                                                        : data[index]
-                                                                    .car_status ==
-                                                                1
-                                                            ? Colors.red
-                                                            : data[index]
-                                                                        .car_status ==
-                                                                    2
-                                                                ? Colors.grey
-                                                                : const Color(
-                                                                    0xff89EB80)),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return new AlertDialog(
-                                                              content:
-                                                                  new Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .center,
-                                                                children: <
-                                                                    Widget>[
-                                                                  SingleChildScrollView(
-                                                                      child:
-                                                                          Column(
-                                                                    children: [
-                                                                      Lottie.asset(
-                                                                          'assets/images/map.json',
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 1, right: 5),
+                            child: Container(
+                                height: 350,
+                                child: FutureBuilder(
+                                    future: PostionService().getWhere3(),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<List<PositDBAPI>?>
+                                            snapshot) {
+                                      if (snapshot.hasData) {
+                                        List<PositDBAPI>? data = snapshot.data;
+                                        return Container(
+                                            width: 20,
+                                            height: 20,
+                                            child: GridView.builder(
+                                                padding:
+                                                    const EdgeInsets.all(10),
+                                                gridDelegate:
+                                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                                  mainAxisSpacing: 10,
+                                                  crossAxisSpacing: 10,
+                                                  crossAxisCount: 5,
+                                                ),
+                                                itemCount: data!.length,
+                                                itemBuilder: (context, index) {
+                                                  return Container(
+                                                    width: 20,
+                                                    height: 20,
+                                                    decoration: BoxDecoration(
+                                                      color: (data[index]
+                                                                      .carid
+                                                                      .car_id ==
+                                                                  widget.model
+                                                                      .carId &&
+                                                              data[index]
+                                                                      .car_status ==
+                                                                  1
+                                                          ? Colors.blue
+                                                          : data[index]
+                                                                      .car_status ==
+                                                                  1
+                                                              ? Colors.red
+                                                              : data[index]
+                                                                          .car_status ==
+                                                                      2
+                                                                  ? Colors.grey
+                                                                  : const Color(
+                                                                      0xff89EB80)),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0),
+                                                    ),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
+                                                              return new AlertDialog(
+                                                                content:
+                                                                    new Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .min,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    SingleChildScrollView(
+                                                                        child:
+                                                                            Column(
+                                                                      children: [
+                                                                        Center(
+                                                                          child: Lottie.asset(
+                                                                              'assets/images/map.json',
+                                                                              height: 150,
+                                                                              width: 150),
+                                                                        ),
+                                                                        Center(
+                                                                            child:
+                                                                                Container(
                                                                           height:
-                                                                              150,
+                                                                              80,
                                                                           width:
-                                                                              150),
-                                                                      Column(
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Row(
+                                                                              500,
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
                                                                             children: [
-                                                                              Text("เลขตัวถัง : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("เลขตัวถัง ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("รุ่น  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("สี  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
                                                                             ],
                                                                           ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text("รุ่น : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
-                                                                            ],
-                                                                          ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text("สี : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
-                                                                            ],
-                                                                          ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
-                                                                            ],
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ],
-                                                                  ))
-                                                                ],
-                                                              ),
-                                                              actions: <Widget>[
-                                                                new ElevatedButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .pop();
-                                                                  },
-                                                                  style: ElevatedButton.styleFrom(
-                                                                      primary:
-                                                                          const Color(
-                                                                              0xffE52628),
-                                                                      minimumSize:
-                                                                          const Size.fromHeight(
-                                                                              40),
-                                                                      shape: RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(10))),
-                                                                  child:
-                                                                      const Text(
-                                                                          'ตกลง'),
+                                                                        ))
+                                                                      ],
+                                                                    ))
+                                                                  ],
                                                                 ),
-                                                              ],
-                                                            );
-                                                          });
-                                                    },
-                                                    child: Center(
-                                                      child: Text(
-                                                        textScaleFactor: 1,
-                                                        data[index]
-                                                            .posit
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white),
+                                                                actions: <
+                                                                    Widget>[
+                                                                  Center(
+                                                                    child:
+                                                                        SizedBox(
+                                                                      width:
+                                                                          280,
+                                                                      height:
+                                                                          36.55,
+                                                                      child:
+                                                                          new ElevatedButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                        },
+                                                                        style: ElevatedButton.styleFrom(
+                                                                            primary:
+                                                                                const Color(0xffE52628),
+                                                                            minimumSize: const Size.fromHeight(40),
+                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                                                                        child:
+                                                                            AutoSizeText(
+                                                                          'ตกลง',
+                                                                          style:
+                                                                              TextStyleBtn.bodybtn,
+                                                                          maxFontSize:
+                                                                              12,
+                                                                          minFontSize:
+                                                                              11,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            });
+                                                      },
+                                                      child: Center(
+                                                        child: Text(
+                                                          textScaleFactor: 1,
+                                                          data[index]
+                                                              .posit
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                );
-                                              }));
-                                    }
-                                    return const Center(
-                                      child: CircularProgressIndicator(
-                                        color: Colors.red,
-                                      ),
-                                    );
-                                  })),
+                                                  );
+                                                }));
+                                      }
+                                      return const Center(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.red,
+                                        ),
+                                      );
+                                    })),
+                          ),
                         )
                       ],
                     )),
@@ -1652,12 +1821,14 @@ class _CardetailPageState extends State<CardetailPage> {
 
   Widget _buildStockD() {
     return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: const Color(0xffE2E8F0))),
       height: 395,
-      decoration:
-          BoxDecoration(border: Border.all(color: const Color(0xffE2E8F0))),
+      width: 290,
       child: Column(children: [
         SizedBox(
-          height: 20,
+          height: 5,
         ),
         Expanded(
             child: Container(
@@ -1669,47 +1840,58 @@ class _CardetailPageState extends State<CardetailPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      height: 30,
-                      width: 10,
+                      height: 40,
+                      width: 30,
                     ),
                     Expanded(
                       child: Container(
-                          height: 30,
-                          width: 20,
-                          child: GridView.count(
-                            physics: NeverScrollableScrollPhysics(),
-                            padding: const EdgeInsets.all(10),
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            crossAxisCount: 5,
-                            children: const [
-                              Center(
-                                  child: Text(
-                                'A',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                              Center(
-                                  child: Text(
-                                'B',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                              Center(
-                                  child: Text(
-                                'C',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                              Center(
-                                  child: Text(
-                                'D',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                              Center(
-                                  child: Text(
-                                'E',
-                                style: TextStyle(fontSize: 16),
-                              )),
-                            ],
-                          )),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              "A",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "B",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "C",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "D",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                            Text(
+                              "E",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textScaleFactor: 1,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -1720,187 +1902,214 @@ class _CardetailPageState extends State<CardetailPage> {
                     child: Row(
                       children: [
                         Container(
-                          width: 10,
+                          width: 30,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Column(children: [
                               Container(
-                                  height: 300,
+                                  height: 330,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Colors.black38,
+                                      color: const Color.fromARGB( 246, 231, 230, 236),
                                     ),
                                     color: const Color.fromARGB(
                                         246, 231, 230, 236),
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(0),
                                   ),
                                   child: const Center(
-                                    child: Text(
-                                      '',
-                                      textScaleFactor: 1,
-                                    ),
+                                    child: RotatedBox(
+                                        quarterTurns: 1, child: Text("Lotus")),
                                   ))
                             ]),
                           ),
                         ),
+                        SizedBox(
+                          width: 8,
+                        ),
                         Expanded(
-                          child: Container(
-                              height: 350,
-                              child: FutureBuilder(
-                                  future: PostionService().getWhere4(),
-                                  builder: (BuildContext context,
-                                      AsyncSnapshot<List<PositDBAPI>?>
-                                          snapshot) {
-                                    if (snapshot.hasData) {
-                                      List<PositDBAPI>? data = snapshot.data;
-                                      return Container(
-                                          width: 20,
-                                          height: 20,
-                                          child: GridView.builder(
-                                              padding: const EdgeInsets.all(10),
-                                              gridDelegate:
-                                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                                mainAxisSpacing: 10,
-                                                crossAxisSpacing: 10,
-                                                crossAxisCount: 5,
-                                              ),
-                                              itemCount: data!.length,
-                                              itemBuilder: (context, index) {
-                                                return Container(
-                                                  width: 20,
-                                                  height: 20,
-                                                  decoration: BoxDecoration(
-                                                    color: (data[index]
-                                                                    .carid
-                                                                    .car_id ==
-                                                                widget.model
-                                                                    .carId &&
-                                                            data[index]
-                                                                    .car_status ==
-                                                                1
-                                                        ? Colors.blue
-                                                        : data[index]
-                                                                    .car_status ==
-                                                                1
-                                                            ? Colors.red
-                                                            : data[index]
-                                                                        .car_status ==
-                                                                    2
-                                                                ? Colors.grey
-                                                                : const Color(
-                                                                    0xff89EB80)),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return new AlertDialog(
-                                                              content:
-                                                                  new Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .center,
-                                                                children: <
-                                                                    Widget>[
-                                                                  SingleChildScrollView(
-                                                                      child:
-                                                                          Column(
-                                                                    children: [
-                                                                      Lottie.asset(
-                                                                          'assets/images/map.json',
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 1, right: 5),
+                            child: Container(
+                                height: 350,
+                                child: FutureBuilder(
+                                    future: PostionService().getWhere4(),
+                                    builder: (BuildContext context,
+                                        AsyncSnapshot<List<PositDBAPI>?>
+                                            snapshot) {
+                                      if (snapshot.hasData) {
+                                        List<PositDBAPI>? data = snapshot.data;
+                                        return Container(
+                                            width: 20,
+                                            height: 20,
+                                            child: GridView.builder(
+                                                padding:
+                                                    const EdgeInsets.all(10),
+                                                gridDelegate:
+                                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                                  mainAxisSpacing: 10,
+                                                  crossAxisSpacing: 10,
+                                                  crossAxisCount: 5,
+                                                ),
+                                                itemCount: data!.length,
+                                                itemBuilder: (context, index) {
+                                                  return Container(
+                                                    width: 20,
+                                                    height: 20,
+                                                    decoration: BoxDecoration(
+                                                      color: (data[index]
+                                                                      .carid
+                                                                      .car_id ==
+                                                                  widget.model
+                                                                      .carId &&
+                                                              data[index]
+                                                                      .car_status ==
+                                                                  1
+                                                          ? Colors.blue
+                                                          : data[index]
+                                                                      .car_status ==
+                                                                  1
+                                                              ? Colors.red
+                                                              : data[index]
+                                                                          .car_status ==
+                                                                      2
+                                                                  ? Colors.grey
+                                                                  : const Color(
+                                                                      0xff89EB80)),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0),
+                                                    ),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
+                                                              return new AlertDialog(
+                                                                content:
+                                                                    new Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .min,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    SingleChildScrollView(
+                                                                        child:
+                                                                            Column(
+                                                                      children: [
+                                                                        Center(
+                                                                          child: Lottie.asset(
+                                                                              'assets/images/map.json',
+                                                                              height: 150,
+                                                                              width: 150),
+                                                                        ),
+                                                                        Center(
+                                                                            child:
+                                                                                Container(
                                                                           height:
-                                                                              150,
+                                                                              80,
                                                                           width:
-                                                                              150),
-                                                                      Column(
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Row(
+                                                                              500,
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
                                                                             children: [
-                                                                              Text("เลขตัวถัง : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("เลขตัวถัง ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("รุ่น  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("สี  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
                                                                             ],
                                                                           ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text("รุ่น : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
-                                                                            ],
-                                                                          ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text("สี : ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
-                                                                            ],
-                                                                          ),
-                                                                          Row(
-                                                                            children: [
-                                                                              Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                              Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
-                                                                            ],
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ],
-                                                                  ))
-                                                                ],
-                                                              ),
-                                                              actions: <Widget>[
-                                                                new ElevatedButton(
-                                                                  onPressed:
-                                                                      () {
-                                                                    Navigator.of(
-                                                                            context)
-                                                                        .pop();
-                                                                  },
-                                                                  style: ElevatedButton.styleFrom(
-                                                                      primary:
-                                                                          const Color(
-                                                                              0xffE52628),
-                                                                      minimumSize:
-                                                                          const Size.fromHeight(
-                                                                              40),
-                                                                      shape: RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(10))),
-                                                                  child:
-                                                                      const Text(
-                                                                          'ตกลง'),
+                                                                        ))
+                                                                      ],
+                                                                    ))
+                                                                  ],
                                                                 ),
-                                                              ],
-                                                            );
-                                                          });
-                                                    },
-                                                    child: Center(
-                                                      child: Text(
-                                                        textScaleFactor: 1,
-                                                        data[index]
-                                                            .posit
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white),
+                                                                actions: <
+                                                                    Widget>[
+                                                                  Center(
+                                                                    child:
+                                                                        SizedBox(
+                                                                      width:
+                                                                          280,
+                                                                      height:
+                                                                          36.55,
+                                                                      child:
+                                                                          new ElevatedButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                        },
+                                                                        style: ElevatedButton.styleFrom(
+                                                                            primary:
+                                                                                const Color(0xffE52628),
+                                                                            minimumSize: const Size.fromHeight(40),
+                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                                                                        child:
+                                                                            AutoSizeText(
+                                                                          'ตกลง',
+                                                                          style:
+                                                                              TextStyleBtn.bodybtn,
+                                                                          maxFontSize:
+                                                                              12,
+                                                                          minFontSize:
+                                                                              11,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            });
+                                                      },
+                                                      child: Center(
+                                                        child: Text(
+                                                          textScaleFactor: 1,
+                                                          data[index]
+                                                              .posit
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                );
-                                              }));
-                                    }
-                                    return const Center(
-                                      child: CircularProgressIndicator(
-                                        color: Colors.red,
-                                      ),
-                                    );
-                                  })),
+                                                  );
+                                                }));
+                                      }
+                                      return const Center(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.red,
+                                        ),
+                                      );
+                                    })),
+                          ),
                         )
                       ],
                     )),
@@ -1978,25 +2187,24 @@ class _CardetailPageState extends State<CardetailPage> {
             ResponseModel response = await ReqAPIDB().PostReq(
               widget.model.carId,
               DateFormat("yyyy-MM-dd").format(DateTime.now()),
-              DateFormat("hh:mm:ss a").format(DateTime.now()),
-              "${userData['fullname']}",
-              "${userData['lastname']}", );
-           
+              DateFormat.Hm().format(DateTime.now()),
+              "${userData['id']}",
+            );
+
             if (response.success) {
               ResponseModel respones1 = await PutCar(
                 "2",
                 widget.model.carWhere.whereId.toString(),
-                                                               
-                 );
-                
+              );
 
               if (respones1.success) {
                 ResponseModel response2 = await HistoryPost().PostHis(
-                  widget.model.carId,  
+                  widget.model.carId,
                   DateFormat("yyyy-MM-dd").format(DateTime.now()),
+                  DateFormat.Hm().format(DateTime.now()),
                   widget.model.carWhere.whereId.toString(),
                   "2",
-                 
+                  "${userData['id']}",
                 );
 
                 if (response2.success) {
@@ -2034,19 +2242,16 @@ class _CardetailPageState extends State<CardetailPage> {
   Future<ResponseModel> PutCar(
     dynamic car_status,
     dynamic car_where,
-  
   ) async {
     try {
       Map<String, String> data = {
         'car_status': car_status,
         'car_where': car_where,
-       
-        
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
-     /*  var ID = localStorage.getString('ID'); */
+      /*  var ID = localStorage.getString('ID'); */
       var IDCAR = widget.model.carId;
       Map<String, String> headers = {
         'Content-Type': 'application/json',

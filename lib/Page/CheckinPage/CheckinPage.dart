@@ -22,23 +22,21 @@ class CheckinPage extends StatefulWidget {
   final dynamic QR;
   final ReqDBAPI model;
 
-  const CheckinPage({Key? key, required this.model,  required this.QR,}) : super(key: key);
-
- 
+  const CheckinPage({
+    Key? key,
+    required this.model,
+    required this.QR,
+  }) : super(key: key);
 
   @override
   State<CheckinPage> createState() => _CheckinPageState();
 }
 
 class _CheckinPageState extends State<CheckinPage> {
-  
-  
-
 /*   String qrCode = ''; */
-   // <------------------------ updatereq ------------------------>
-    dynamic urlup = 'http://206.189.92.79/api/';
-    Future<ResponseModel> Putreq(
- 
+  // <------------------------ updatereq ------------------------>
+  dynamic urlup = 'http://206.189.92.79/api/';
+  Future<ResponseModel> Putreq(
     dynamic car_where,
     dynamic car_status,
   ) async {
@@ -46,7 +44,6 @@ class _CheckinPageState extends State<CheckinPage> {
       Map<String, String> data = {
         'car_status': car_status,
         'car_where': car_where,
-      
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -70,11 +67,8 @@ class _CheckinPageState extends State<CheckinPage> {
     }
   }
 
-
-
   dynamic urlup1 = 'http://206.189.92.79/api/';
-    Future<ResponseModel> PutPosit(
- 
+  Future<ResponseModel> PutPosit(
     dynamic car_status,
     dynamic car_id,
   ) async {
@@ -82,7 +76,6 @@ class _CheckinPageState extends State<CheckinPage> {
       Map<String, String> data = {
         'car_status': car_status,
         'car_id': car_id,
-      
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -106,10 +99,36 @@ class _CheckinPageState extends State<CheckinPage> {
     }
   }
 
-
-
-
- 
+  // <------------------------ updateperson------------------------>
+  dynamic urlup2 = 'http://206.189.92.79/api/';
+  Future<ResponseModel> Putperson(
+    dynamic person,
+  ) async {
+    try {
+      Map<String, String> data = {
+        'person': person,
+      };
+      var dataencode = jsonEncode(data);
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      var _authToken = localStorage.getString('token');
+      var reqID = widget.model.req_id;
+      Map<String, String> headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $_authToken'
+      };
+      if (_authToken != null) {
+        urlup2 = Uri.parse("http://206.189.92.79/api/reqDB/$reqID");
+        await http.put(
+          urlup2,
+          body: dataencode,
+          headers: headers,
+        );
+      }
+      return ResponseModel(success: true);
+    } catch (e) {
+      return ResponseModel(success: false, message: e.toString());
+    }
+  }
 
   //<--------------------   get Dropdown Station -------------------->
   List? station_data;
@@ -156,22 +175,10 @@ class _CheckinPageState extends State<CheckinPage> {
     });
   }
 
-   
-
   @override
   Widget build(BuildContext context) {
-
-    
-
-
-
-
-
-
-
-
     return Scaffold(
-       backgroundColor: const Color(0xfff5f5f5),
+        backgroundColor: const Color(0xfff5f5f5),
         //<--------------------   App Bar  -------------------->
         appBar: AppBar(
           toolbarHeight: 70,
@@ -242,14 +249,20 @@ class _CheckinPageState extends State<CheckinPage> {
                                 height: 550,
                                 child: Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Card(
-                                        color: const Color.fromARGB(
-                                            255, 255, 255, 255),
-                                        margin: const EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        shape: RoundedRectangleBorder(
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
                                             borderRadius:
-                                                BorderRadius.circular(10)),
+                                                BorderRadius.circular(12),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                  color: Color.fromRGBO(
+                                                      0, 0, 0, 0.05),
+                                                  blurRadius: 12,
+                                                  spreadRadius: 5
+                                                  /*   offset: Offset(0, 3), */
+                                                  ),
+                                            ]),
                                         child: Padding(
                                             padding:
                                                 const EdgeInsets.only(top: 10),
@@ -261,38 +274,27 @@ class _CheckinPageState extends State<CheckinPage> {
                                                       const EdgeInsets.only(
                                                           left: 10, right: 10),
                                                   child: Container(
-                                                    height: 80,
-                                                    decoration: const BoxDecoration(
+                                                    height: 85,
+                                                    decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         borderRadius:
-                                                            BorderRadius.only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        12),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        12),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        12),
-                                                                bottomRight: Radius
-                                                                    .circular(
-                                                                        12)),
-                                                        boxShadow: [
+                                                            BorderRadius
+                                                                .circular(12),
+                                                        boxShadow: const [
                                                           BoxShadow(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    0,
-                                                                    0,
-                                                                    0,
-                                                                    0.1),
-                                                            blurRadius: 10,
-                                                            /*   offset: Offset(0, 3), */
-                                                          ),
+                                                              color: Color
+                                                                  .fromRGBO(
+                                                                      0,
+                                                                      0,
+                                                                      0,
+                                                                      0.1),
+                                                              blurRadius: 10,
+                                                              spreadRadius: 2),
                                                         ]),
                                                     child: ListTile(
                                                       title: Text(
-                                                        widget.model.carid.car_chassis,
+                                                        widget.model.carid
+                                                            .car_chassis,
                                                         style: TextStyleinfor
                                                             .bodyinfor18,
                                                         textScaleFactor: 1,
@@ -313,10 +315,11 @@ class _CheckinPageState extends State<CheckinPage> {
                                                           ),
                                                         ),
                                                       ),
-                                                      subtitle: Text(
+                                                      subtitle: AutoSizeText(
                                                         'Yaris Ativ 1.2 G ',
-                                                        style: TextStyleinfor
-                                                            .bodyinfor18light,
+                                                        maxLines: 1,
+                                                        style: TextStyleMycar
+                                                            .subtitle,
                                                         textScaleFactor: 1,
                                                       ),
                                                     ),
@@ -406,12 +409,11 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                     ?.map(
                                                                         (item) {
                                                                   return DropdownMenuItem(
-                                                                    value: item[ 'where_id'].toString(),
-                                                                           
-                                                                        
-                                                                    child:
-                                                                         Text(item['car_where'],
-                                                                      
+                                                                    value: item[
+                                                                            'where_id']
+                                                                        .toString(),
+                                                                    child: Text(
+                                                                      item['car_where'],
                                                                           
                                                                       style:
                                                                           const TextStyle(
@@ -424,31 +426,33 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                   );
                                                                 }).toList(),
                                                                 onChanged:
-                                                                    (String?newVal) {
-                                                                        
+                                                                    (String?
+                                                                        newVal) {
                                                                   setState(() {
-                                                                    Staid = newVal;
-                                                                    StationController.text =Staid.toString();
-                                                                    print(Staid.toString());
-                                                                        
+                                                                    Staid =
+                                                                        newVal;
+                                                                    StationController
+                                                                            .text =
+                                                                        Staid
+                                                                            .toString();
+                                                                    print(Staid
+                                                                        .toString());
                                                                   });
                                                                 },
                                                                 value: Staid,
-                                                              )
-                                                              ),
-                                                              
+                                                              )),
                                                         ))),
-                                                       /*  Container(
+                                                /*  Container(
                                                           child: Text(widget.QR),
 
                                                         ), */
 
                                                 //<--------------------   Button -------------------->
-                                                const SizedBox(height: 250),
-                                                Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 25.0),
+                                                const SizedBox(height: 260),
+                                                Center(
+                                                  child: SizedBox(
+                                                    height: 36.55,
+                                                    width: 280,
                                                     child: ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
                                                           primary: const Color(
@@ -469,13 +473,11 @@ class _CheckinPageState extends State<CheckinPage> {
                                                         maxFontSize: 12,
                                                         minFontSize: 11,
                                                       ),
-                                                    ))
+                                                    ),
+                                                  ),
+                                                )
                                               ]),
-                                            )
-                                            )
-                                            )
-                                            )
-                                            ),
+                                            ))))),
 
                             //<--------------------   Foot -------------------->
                             const SizedBox(height: 10),
@@ -528,7 +530,6 @@ class _CheckinPageState extends State<CheckinPage> {
                 textScaleFactor: 1,
               ),
               const SizedBox(width: 5),
-              
             ],
           ),
           Column(
@@ -536,11 +537,11 @@ class _CheckinPageState extends State<CheckinPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                 Text(
-                "เข้าสถานี",
-                style: TextStyleAlert.body15normal,
-                textScaleFactor: 1,
-              ),
+                  Text(
+                    "เข้าสถานี",
+                    style: TextStyleAlert.body15normal,
+                    textScaleFactor: 1,
+                  ),
                   const SizedBox(width: 5),
                   Text(
                     "ใช่หรือไม่",
@@ -557,39 +558,42 @@ class _CheckinPageState extends State<CheckinPage> {
         DialogButton(
           onPressed: () async {
             ResponseModel response = await Putreq(
-              StationController.text, 
-              "2", 
-             );
-         
+              StationController.text,
+              "2",
+            );
+
             if (response.success) {
-               ResponseModel response2 = await HistoryPost().PostHis(
-                  widget.model.carid.car_id,
-                  DateFormat("yyyy-MM-dd").format(DateTime.now()),
-                  StationController.text,
-                  '1'
-                );
-                if (response2.success) {
-                  ResponseModel response3 = await PutPosit(
-                    "0", 
-                    "1");
-                    
-                    if(response3.success){
-                      Navigator.push(
+              ResponseModel response2 = await HistoryPost().PostHis(
+                widget.model.carid.car_id,
+                DateFormat("yyyy-MM-dd").format(DateTime.now()),
+                DateFormat.Hm().format(DateTime.now()),
+                StationController.text,
+                '1',
+                "${userData['id']}",
+              );
+              if (response2.success) {
+                ResponseModel response3 = await PutPosit("0", "1");
+                if (response3.success) {
+                  ResponseModel response4 = await Putperson("0");
+                  if (response4.success) {
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const CheckinSpach()),
-                      );
-                    }
+                            builder: (context) => const CheckinSpach()));
+                  }
 
-                  
-                 /*  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => CheckinSpach())); */
+                  /*  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CheckinSpach()),
+                  ); */
                 }
 
+                /*  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => CheckinSpach())); */
+              }
             }
           },
-
-          
           color: const Color(0xff44A73B),
           child: Text("ยืนยัน", style: TDialogButton.body14),
         ),

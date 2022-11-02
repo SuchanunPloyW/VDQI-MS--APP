@@ -61,16 +61,16 @@ class ReqAPIDB {
     int car_id,
     String req_date,
     String req_time,
-    String req_fullname,
-    String req_lastname,
+    String person,
+   
   ) async {
     try {
       Map<String, String> data = {
         'car_id': car_id.toString(),
         'req_date': req_date,
         'req_time': req_time,
-        'req_fullname': req_fullname,
-        'req_lastname': req_lastname,
+        'person': person,
+       
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -100,16 +100,20 @@ class HistoryPost {
    
     int car_id,
     String date,
+    String time,
     String car_where,
-    String car_status
+    String car_status,
+    String person
 
   ) async {
     try {
       Map<String, String> data = {
         'car_id': car_id.toString(),
         'date': date,
+        'time': time,
         'car_where': car_where,
         'car_status': car_status,
+        'person': person,
         
       };
       var dataencode = jsonEncode(data);

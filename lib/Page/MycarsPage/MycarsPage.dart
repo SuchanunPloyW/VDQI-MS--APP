@@ -45,8 +45,7 @@ class _MycarsPageState extends State<MycarsPage> {
 
     // response uri
     var response = await http.get(
-        Uri.parse(
-            'http://206.189.92.79/api/reqDB/mycar/${userData['fullname']}'),
+        Uri.parse('http://206.189.92.79/api/reqDB/mycar/${userData['id']}'),
         headers: {
           HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
         });
@@ -60,7 +59,7 @@ class _MycarsPageState extends State<MycarsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xfff5f5f5),
+        backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
@@ -88,17 +87,6 @@ class _MycarsPageState extends State<MycarsPage> {
           ),
           backgroundColor: baseColor1,
           elevation: 0,
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(
-                Icons.more_vert,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                // do something
-              },
-            )
-          ],
         ),
         body: SingleChildScrollView(
           child: Stack(children: <Widget>[
@@ -116,65 +104,67 @@ class _MycarsPageState extends State<MycarsPage> {
                 )),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: SingleChildScrollView(
-                child: Padding(
-                    padding: const EdgeInsets.only( top: 5),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(
-                              height: 650,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  margin: const EdgeInsets.only(
-                                      left: 10, right: 10),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: FutureBuilder(
-                                    future: getfullname(),
-                                    builder: (BuildContext context,
-                                        AsyncSnapshot<List<ReqDBAPI>?> snapshot) {
-                                      if (snapshot.hasData) {
-                                        List<ReqDBAPI>? data = snapshot.data;
-                                       
-                                        return Align(
-                                          alignment: Alignment.topCenter,
-                                          child: ListView.builder(
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount: data!.length,
-                                            itemBuilder: (context, index) =>
-                                                Listcar(
-                                              model: data[index],
-                                            ),
-                                            /*  Listcar(model: data[index],),  */
+            SingleChildScrollView(
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                            height: 650,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 5, right: 5),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.05),
+                                          blurRadius: 12,
+                                          spreadRadius: 5
+                                          /*   offset: Offset(0, 3), */
                                           ),
-                                        );
-                                      }
-                                      return const Center(
-                                       /*  child:CircularProgressIndicator() */
-                                         /* Text(
-                                          'ไม่พบรถยนต์ในรายการของฉัน',
-                                          style: TextStyle(
-                                            fontFamily: ('Bai Jamjuree'),
+                                    ]),
+                                child: FutureBuilder(
+                                  future: getfullname(),
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<List<ReqDBAPI>?> snapshot) {
+                                    if (snapshot.hasData) {
+                                      List<ReqDBAPI>? data = snapshot.data;
+
+                                      return Align(
+                                        alignment: Alignment.topCenter,
+                                        child: ListView.builder(
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.vertical,
+                                          itemCount: data!.length,
+                                          itemBuilder: (context, index) =>
+                                              Listcar(
+                                            model: data[index],
                                           ),
-                                          textScaleFactor: 1,
-                                        ), */
+                                          /*  Listcar(model: data[index],),  */
+                                        ),
                                       );
-                                    },
-                                  ),
+                                    }
+                                    return const Center(
+                                        /*  child:CircularProgressIndicator() */
+                                        /* Text(
+                                        'ไม่พบรถยนต์ในรายการของฉัน',
+                                        style: TextStyle(
+                                          fontFamily: ('Bai Jamjuree'),
+                                        ),
+                                        textScaleFactor: 1,
+                                      ), */
+                                        );
+                                  },
                                 ),
-                              )),
-                          const SizedBox(height: 10),
-                          Text('Powered by Weise Technika',
-                              style: TextStyleFoot.bodyfoot),
-                        ])),
-              ),
+                              ),
+                            )),
+                        const SizedBox(height: 10),
+                        Text('Powered by Weise Technika',
+                            style: TextStyleFoot.bodyfoot),
+                      ])),
             )
           ]),
         ));
@@ -183,14 +173,11 @@ class _MycarsPageState extends State<MycarsPage> {
   Widget Listcar({required ReqDBAPI model}) {
     return InkWell(
       onTap: () async {
-         dynamic carID = model.carid.car_id.toString();
-         SharedPreferences localStorage =await SharedPreferences.getInstance();
-         localStorage.setString('carID', carID);                                  
-                                                    
-                                            
-                                                
+        dynamic carID = model.carid.car_id.toString();
+        SharedPreferences localStorage = await SharedPreferences.getInstance();
+        localStorage.setString('carID', carID);
 
-
+        // ignore: use_build_context_synchronously
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -203,14 +190,16 @@ class _MycarsPageState extends State<MycarsPage> {
         width: 55,
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
-          child: Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            semanticContainer: true,
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            /* shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50.0),
-            ), */
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: const [
+                  BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.1),
+                      blurRadius: 10,
+                      spreadRadius: 5),
+                ]),
             child: ListTile(
               leading: AspectRatio(
                 aspectRatio: 1,

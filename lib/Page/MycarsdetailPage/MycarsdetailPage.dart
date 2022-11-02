@@ -18,7 +18,6 @@ import '../../Service/Model/HistoryModel.dart';
 import '../../Service/Model/ReqDBModel.dart';
 
 class MycarsdetailPage extends StatefulWidget {
-  
   const MycarsdetailPage({Key? key, required this.model}) : super(key: key);
   final ReqDBAPI model;
   @override
@@ -51,7 +50,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
     String qrCode = '';
     // --------------------------------- Scaffold -------------------------------------------------
     return Scaffold(
-      backgroundColor: const Color(0xfff5f5f5),
+        backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
@@ -79,17 +78,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
           ),
           backgroundColor: baseColor1,
           elevation: 0,
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(
-                Icons.more_vert,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                // do something
-              },
-            )
-          ],
+          
         ),
         body: SingleChildScrollView(
           child: Stack(children: <Widget>[
@@ -122,13 +111,19 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                               height: 600,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  margin: const EdgeInsets.only(
-                                      left: 10, right: 10),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                            color:
+                                                Color.fromRGBO(0, 0, 0, 0.05),
+                                            blurRadius: 12,
+                                            spreadRadius: 5
+                                            /*   offset: Offset(0, 3), */
+                                            ),
+                                      ]),
                                   child: SingleChildScrollView(
                                     child: Column(children: <Widget>[
                                       //////////////// /* Card เลขตัวถัง */   ////////////////
@@ -136,34 +131,18 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                         padding: const EdgeInsets.only(
                                             top: 10, right: 8, left: 8),
                                         child: Container(
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                               color: Colors.white,
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(12),
-                                                  topRight: Radius.circular(12),
-                                                  bottomLeft:
-                                                      Radius.circular(12),
-                                                  bottomRight:
-                                                      Radius.circular(12)),
-                                              boxShadow: [
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              boxShadow: const [
                                                 BoxShadow(
-                                                  color: Color.fromRGBO(
-                                                      0, 0, 0, 0.1),
-                                                  blurRadius: 10,
-                                                  /*   offset: Offset(0, 3), */
-                                                ),
+                                                    color: Color.fromRGBO(
+                                                        0, 0, 0, 0.1),
+                                                    blurRadius: 10,
+                                                    spreadRadius: 2),
                                               ]),
-
-                                          /* decoration: const BoxDecoration(
-                                        boxShadow: <BoxShadow>[
-                                          BoxShadow(
-                                            color: Color(0xffF6F6F6),
-                                            blurRadius: 20,
-                                            offset: Offset(5, 5),
-                                          ),
-                                        ],
-                                        ), */
-                                          height: 75.0,
+                                          height: 85.0,
                                           child: ListTile(
                                             title: Text(
                                               widget.model.carid.car_chassis,
@@ -212,25 +191,15 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                   style:
                                                       ElevatedButton.styleFrom(
                                                           primary: Colors.white,
-                                                         
-                                                          onPrimary:
-                                                              const Color.fromARGB(255,224,197,197),
-                                                                  
+                                                          onPrimary: const Color
+                                                                  .fromARGB(255,
+                                                              224, 197, 197),
                                                           shape:
-                                                              const RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.only(
-                                                                topLeft: Radius
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
                                                                     .circular(
-                                                                        10),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        10),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        10),
-                                                                bottomRight: Radius
-                                                                    .circular(
-                                                                        10)),
+                                                                        12),
                                                           )),
                                                   child: Column(
                                                     mainAxisAlignment:
@@ -249,7 +218,6 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                   ),
                                                   onPressed: () => scanQRCode(),
                                                 ),
-                                                
                                               ),
                                             ),
                                             Expanded(
@@ -258,27 +226,23 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                 width: double.infinity,
                                                 child: Container(
                                                   width: double.infinity,
-                                                  decoration: const BoxDecoration(
+                                                  decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       borderRadius:
-                                                          BorderRadius.only(
-                                                              topLeft: Radius
-                                                                  .circular(12),
-                                                              topRight: Radius
-                                                                  .circular(12),
-                                                              bottomLeft: Radius
-                                                                  .circular(12),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          12)),
-                                                      boxShadow: [
+                                                          BorderRadius.circular(
+                                                              12),
+                                                      boxShadow: const [
                                                         BoxShadow(
-                                                          color: Color.fromRGBO(
-                                                              0, 0, 0, 0.1),
-                                                          blurRadius: 10,
-                                                          /*   offset: Offset(0, 3), */
-                                                        ),
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    0,
+                                                                    0,
+                                                                    0,
+                                                                    0.1),
+                                                            blurRadius: 12,
+                                                            spreadRadius: 2
+                                                            /*   offset: Offset(0, 3), */
+                                                            ),
                                                       ]),
                                                   child: Stack(
                                                     children: <Widget>[
@@ -290,8 +254,8 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                             widget
                                                                 .model
                                                                 .carid
-                                                                .carWhere.carWhere
-                                                                ,
+                                                                .carWhere
+                                                                .carWhere,
                                                             style:
                                                                 TextStyleMycar
                                                                     .station,
@@ -333,26 +297,17 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                 height: 87,
                                                 width: double.infinity,
                                                 child: Container(
-                                                  decoration: const BoxDecoration(
+                                                  height: 85,
+                                                  decoration: BoxDecoration(
                                                       color: Colors.white,
                                                       borderRadius:
-                                                          BorderRadius.only(
-                                                              topLeft: Radius
-                                                                  .circular(12),
-                                                              topRight: Radius
-                                                                  .circular(12),
-                                                              bottomLeft: Radius
-                                                                  .circular(12),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          12)),
-                                                      boxShadow: [
+                                                          BorderRadius.circular(
+                                                              12),
+                                                      boxShadow: const [
                                                         BoxShadow(
                                                           color: Color.fromRGBO(
                                                               0, 0, 0, 0.1),
                                                           blurRadius: 10,
-                                                          /*   offset: Offset(0, 3), */
                                                         ),
                                                       ]),
                                                   child: Column(
@@ -378,10 +333,19 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                             EdgeInsets.only(
                                                                 top: 0),
                                                         child: AutoSizeText(
-                                                            widget.model.carid.positId.car_status == 0
-                                                            ? "-"
-                                                            : widget.model.carid.positId.line.toString(),
-                                                                
+                                                            widget
+                                                                        .model
+                                                                        .carid
+                                                                        .positId
+                                                                        .car_status ==
+                                                                    0
+                                                                ? "-"
+                                                                : widget
+                                                                    .model
+                                                                    .carid
+                                                                    .positId
+                                                                    .line
+                                                                    .toString(),
                                                             style:
                                                                 const TextStyle(
                                                               fontSize: 36,
@@ -401,87 +365,84 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                 ),
                                               ),
                                             ),
+                                             const SizedBox(
+                                                          width: 10,
+                                                        ),
                                             Expanded(
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8),
-                                                child: SizedBox(
-                                                  height: 87,
-                                                  width: double.infinity,
-                                                  child: Container(
-                                                    decoration: const BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        12),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        12),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        12),
-                                                                bottomRight: Radius
-                                                                    .circular(
-                                                                        12)),
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    0,
-                                                                    0,
-                                                                    0,
-                                                                    0.1),
-                                                            blurRadius: 10,
-                                                            /*   offset: Offset(0, 3), */
-                                                          ),
-                                                        ]),
-                                                    child: Column(
-                                                      children: <Widget>[
-                                                        const Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  top: 1),
-                                                          child: Text('ลำดับ',
-                                                              style: TextStyle(
-                                                                fontSize: 14,
-                                                                color: Color(
-                                                                    0xffD4D4D4),
-                                                                fontFamily:
-                                                                    ('Bai Jamjuree'),
-                                                              ),
-                                                              textScaleFactor:
-                                                                  1.0),
+                                              child: SizedBox(
+                                                height: 87,
+                                                width: double.infinity,
+                                                child: Container(
+                                                  height: 85,
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius
+                                                              .circular(12),
+                                                      boxShadow: const [
+                                                        BoxShadow(
+                                                          color:
+                                                              Color.fromRGBO(
+                                                                  0,
+                                                                  0,
+                                                                  0,
+                                                                  0.1),
+                                                          blurRadius: 10,
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .only(top: 1),
-                                                          child: Text(
-                                                            widget.model.carid.positId.car_status == 0
-                                                            ? '-'
-                                                            : widget.model.carid.positId.posit.toString(),
-                                                                 
-                                                              
-                                                             /*  widget.model.carid
-                                                                  .positId.posit.toString(), */
-                                                              style:
-                                                                  const TextStyle(
-                                                                fontSize: 36,
-                                                                color: Color(
-                                                                    0xff404040),
-                                                                fontFamily:
-                                                                    ('Kanit'),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                              textScaleFactor:
-                                                                  1.0),
-                                                        ),
-                                                      ],
-                                                    ),
+                                                      ]),
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      const Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 1),
+                                                        child: Text('ลำดับ',
+                                                            style: TextStyle(
+                                                              fontSize: 14,
+                                                              color: Color(
+                                                                  0xffD4D4D4),
+                                                              fontFamily:
+                                                                  ('Bai Jamjuree'),
+                                                            ),
+                                                            textScaleFactor:
+                                                                1.0),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(top: 1),
+                                                        child: Text(
+                                                            widget
+                                                                        .model
+                                                                        .carid
+                                                                        .positId
+                                                                        .car_status ==
+                                                                    0
+                                                                ? '-'
+                                                                : widget
+                                                                    .model
+                                                                    .carid
+                                                                    .positId
+                                                                    .posit
+                                                                    .toString(),
+
+                                                            /*  widget.model.carid
+                                                                .positId.posit.toString(), */
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 36,
+                                                              color: Color(
+                                                                  0xff404040),
+                                                              fontFamily:
+                                                                  ('Kanit'),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                            textScaleFactor:
+                                                                1.0),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
                                               ),
@@ -489,7 +450,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                           ],
                                         ),
                                       ),
-                                      const SizedBox(height: 5),
+                                      const SizedBox(height: 15),
                                       const Padding(
                                         padding: EdgeInsets.only(
                                             left: 10, right: 10, top: 0),
@@ -615,7 +576,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                                                         )),
                                                                         DataCell(
                                                                             Text(
-                                                                          '${e.carid.fullname}',
+                                                                          '${e.person.fullname}',
                                                                           style: const TextStyle(
                                                                               fontSize: 14,
                                                                               fontFamily: ('Bai Jamjuree')),
@@ -640,10 +601,11 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                         ),
                                       ),
 
-                                      const SizedBox(height: 30),
-                                      Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 25.0),
+                                      const SizedBox(height: 20),
+                                      Center(
+                                        child: SizedBox(
+                                          height: 36.55,
+                                          width: 280,
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                                 primary:
@@ -662,7 +624,9 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                               maxFontSize: 12,
                                               minFontSize: 11,
                                             ),
-                                          ))
+                                          ),
+                                        ),
+                                      )
                                     ]),
                                   ),
                                 ),
@@ -680,10 +644,13 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
 
   void _CheckIn({required ReqDBAPI model}) {
     Future.delayed(const Duration(milliseconds: 1000), () {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (_) => CheckinPage(model: widget.model ,QR : qrCode)));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => CheckinPage(model: widget.model, QR: qrCode)));
     });
   }
+
   Future<void> scanQRCode() async {
     try {
       final qrCode = await FlutterBarcodeScanner.scanBarcode(
@@ -697,9 +664,10 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
 
       setState(() {
         this.qrCode = qrCode;
-         Navigator.push(context,
-          MaterialPageRoute(builder: (_) => CheckinPage(model: widget.model , QR : qrCode)));
-
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (_) => CheckinPage(model: widget.model, QR: qrCode)));
       });
     } on PlatformException {
       qrCode = 'Failed to get platform version.';

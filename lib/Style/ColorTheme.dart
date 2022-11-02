@@ -10,4 +10,5 @@ class ColorTheme {
   static Color foot = Color.fromARGB(255, 228, 223, 223);
   static Color black1 = Color(0xff24262D);
   static Color grey1 = Color(0xffD4D4D4);
+  static Color grey2 = Color(0xff737373);
 }

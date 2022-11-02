@@ -33,36 +33,28 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
         backgroundColor: const Color(0xfff5f5f5),
-
         body: Stack(children: <Widget>[
           Positioned(
               top: 0,
               right: 0,
               left: 0,
               child: Container(
-                
                   height: 300,
-                  /* decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(
-                            "assets/images/logo.png",
-                          ),
-                          fit: BoxFit.none)), */
                   child: Container(
-                      child: Align(
-                          alignment: Alignment.topCenter,
-                          child: Image.asset(
-                            "assets/images/logo.png",
-                            height: 250,
-                            width: 250,
-                          )),
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
                         stops: const [0.0, 2.0],
                         begin: FractionalOffset.topCenter,
                         end: FractionalOffset.bottomCenter,
                         colors: [baseColor1, baseColor2],
-                      ))))),
+                      )),
+                      child: Align(
+                          alignment: Alignment.topCenter,
+                          child: Image.asset(
+                            "assets/images/logo.png",
+                            height: 250,
+                            width: 250,
+                          ))))),
           Positioned(
             top: 180,
             child: Container(
@@ -122,13 +114,15 @@ class _LoginPageState extends State<LoginPage> {
                           controller: mailController,
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
+
                               /* contentPadding:EdgeInsets.fromLTRB(left, top, right, bottom) */
                               contentPadding:
                                   EdgeInsets.fromLTRB(10, 10, 10, 0),
+
                               /* contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), */
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5.0))),
-                          style: TextStylelogin.body16b,
+                                  borderRadius: BorderRadius.circular(5.5))),
+                          style: TextStylelogin.body15,
                         ),
                       ),
                     ),
@@ -160,23 +154,25 @@ class _LoginPageState extends State<LoginPage> {
                             contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                             /* contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), */
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0)),
+                                borderRadius: BorderRadius.circular(5.5)),
                           ),
-                          style: TextStylelogin.body16b,
+                          style: TextStylelogin.body15,
                         ),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                const SizedBox(height: 30),
+                Center(
+                  child: SizedBox(
+                    width: 280,
+                    height: 36.55,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           primary: const Color(0xffE52628),
                           minimumSize: const Size.fromHeight(40),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10))),
+                              borderRadius: BorderRadius.circular(12))),
                       onPressed: _login,
                       child: AutoSizeText(
                         'เข้าสู่ระบบ',
@@ -184,11 +180,12 @@ class _LoginPageState extends State<LoginPage> {
                         maxFontSize: 12,
                         minFontSize: 11,
                       ),
-                    )),
-                    /*  const SizedBox(height: 60),
+                    ),
+                  ),
+                ),
+                /*  const SizedBox(height: 60),
                      Text('Powered by Weise Technika',
                       style: TextStyleFoot.bodyfoot, textScaleFactor: 1.0), */
-
               ]),
             ),
           ),

@@ -15,11 +15,11 @@ class TextStylelogin  {
     color: ColorTheme.black,
     fontFamily: ('Bai Jamjuree'),
   );
-  static TextStyle body16b = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
+  static TextStyle body15 = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w300,
     color: ColorTheme.black,
-    fontFamily: ('Bai Jamjuree'),
+    fontFamily: ('Kanit'),
   );
 
   static TextStyle body20 = TextStyle(
@@ -28,6 +28,16 @@ class TextStylelogin  {
     color: ColorTheme.black1,
     fontFamily: ('Kanit'),
   );
+}
+class TextStyleProfile {
+  static TextStyle body15 = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w300,
+    color: ColorTheme.grey2,
+    fontFamily: ('Kanit'),
+  );
+  
+
 }
 
 // < ------------------      HomePage        ------------------>

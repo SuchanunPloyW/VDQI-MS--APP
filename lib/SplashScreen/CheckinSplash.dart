@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:vdqims/Page/MenuPage/MenuPage.dart';
 import 'package:vdqims/Page/MycarsPage/MycarsPage.dart';
 
 import '../Style/TextStyle.dart';
@@ -21,7 +22,7 @@ class _CheckinSpachState extends State<CheckinSpach> {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context)
-          .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MycarsPage()), (Route<dynamic> route) => false);
+          .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => MenuPage()), (Route<dynamic> route) => false);
     });
   }
 

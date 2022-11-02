@@ -52,26 +52,42 @@ class ReqDBAPI {
     required this.carid,
     required this.req_date,
     required this.req_time,
-    required this.req_fullname,
-    required this.req_lastname,
+    required this.person,
   });
 
   int req_id;
   Carid carid;
   String req_date;
   String req_time;
-  String req_fullname;
-  String req_lastname;
+   Person person;
 
   factory ReqDBAPI.fromJson(Map<String, dynamic> json) => ReqDBAPI(
         req_id: json["req_id"],
         carid: Carid.fromJson(json["car_id"]),
         req_date: json["req_date"],
         req_time: json["req_time"],
-        req_fullname: json["req_fullname"],
-        req_lastname: json["req_lastname"],
+        person: Person.fromJson(json["person"]),
       );
 }
+
+class Person {
+  Person({
+    required this.id,
+    required this.fullname,
+    required this.lastname,
+
+  });
+  int id;
+  String fullname;
+  String lastname;
+
+  factory Person.fromJson(Map<String, dynamic> json) => Person(
+        id: json["id"],
+        fullname: json["fullname"],
+        lastname: json["lastname"],
+      );
+}
+
 
 class Carid {
   Carid({
@@ -79,7 +95,7 @@ class Carid {
     required this.car_chassis,
     required this.carStatus,
     required this.positId,
-     required this.carWhere,
+    required this.carWhere,
  
 
 
@@ -107,7 +123,7 @@ class PositId {
     required this.line,
     required this.posit,
     required this.sort,
-    required this.carWhere,
+  
     required this.car_status,
     
   });
@@ -116,7 +132,7 @@ class PositId {
   String line;
   int posit;
   int sort;
-  CarWhere carWhere;
+  
   int car_status;
   
   factory PositId.fromJson(Map<String, dynamic> json) => PositId(
@@ -124,7 +140,7 @@ class PositId {
         line: json["line"],
         posit: json["posit"],
         sort: json["sort"],
-        carWhere: CarWhere.fromJson(json["car_where"]),
+        
         car_status: json["car_status"],
         
       

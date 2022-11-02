@@ -11,7 +11,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:vdqims/Service/API/PositionAPI.dart';
-import 'package:vdqims/Service/API/PostCarApi.dart';
+
 import 'package:vdqims/Service/Model/PositionModel.dart';
 
 import 'package:vdqims/Style/TextStyle.dart';
@@ -120,7 +120,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   TextEditingController WhereController = TextEditingController();
   TextEditingController PositController = TextEditingController();
   TextEditingController lineController = TextEditingController();
-  
+
   // <------------------------ Function ------------------------>
 
   @override
@@ -140,7 +140,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
             mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
 
     return Scaffold(
-       backgroundColor: const Color(0xfff5f5f5),
+        backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           toolbarHeight: 70,
           centerTitle: true,
@@ -168,15 +168,6 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           ),
           backgroundColor: baseColor1,
           elevation: 0,
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(
-                Icons.more_vert,
-                color: Colors.white,
-              ),
-              onPressed: () {},
-            )
-          ],
         ),
         body: SingleChildScrollView(
             child: Stack(children: <Widget>[
@@ -195,478 +186,518 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           ),
           SingleChildScrollView(
               child: Padding(
-                  padding: const EdgeInsets.only(top: 5),
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         SizedBox(
                             height: 700,
                             child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Card(
-                                    color: const Color.fromARGB(
-                                        255, 255, 255, 255),
-                                    margin: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: SingleChildScrollView(
-                                            child: Column(children: <Widget>[
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 10.0),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    child: Text(
-                                                        textScaleFactor: 1,
-                                                        'เลขตัวถัง',
-                                                        style: TextStyleAdd
-                                                            .bodyAdd14),
-                                                  ),
+                              padding: const EdgeInsets.only(left: 5, right: 5),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                            color:
+                                                Color.fromRGBO(0, 0, 0, 0.05),
+                                            blurRadius: 12,
+                                            spreadRadius: 5
+                                            /*   offset: Offset(0, 3), */
+                                            ),
+                                      ]),
+                                  child: Padding(
+                                      padding: const EdgeInsets.only(top: 10),
+                                      child: SingleChildScrollView(
+                                          child: Column(children: <Widget>[
+                                        Container(
+                                          child: Column(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10.0),
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(
+                                                      textScaleFactor: 1,
+                                                      'เลขตัวถัง',
+                                                      style: TextStyleAdd
+                                                          .bodyAdd14),
                                                 ),
-                                                // <----------------- เลขตัวถัง ----------------->
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                    left: 10,
-                                                    right: 10,
-                                                  ),
-                                                  child: Row(
-                                                    children: [
-                                                      Flexible(
-                                                        child: SizedBox(
-                                                          height: 35.2,
-                                                          child: MediaQuery(
-                                                            data: mqDataNew,
-                                                            child:
-                                                                TextFormField(
-                                                              controller: ChassisController =
-                                                                  TextEditingController(
-                                                                      text:
-                                                                          "$qrCode"),
-                                                              style:
-                                                                  TextStyleAlert
-                                                                      .body15bold,
-                                                              readOnly: true,
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                contentPadding:
-                                                                    const EdgeInsets
-                                                                            .symmetric(
-                                                                        vertical:
-                                                                            25.0,
-                                                                        horizontal:
-                                                                            10),
-                                                                focusedBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5.5),
-                                                                ),
-                                                                enabledBorder:
-                                                                    const OutlineInputBorder(
-                                                                  borderSide: const BorderSide(
-                                                                      color: const Color(
-                                                                          0xffE2E8F0),
-                                                                      width: 1),
-                                                                ),
-                                                                filled: true,
-                                                                fillColor:
-                                                                    Colors
-                                                                        .white,
+                                              ),
+                                              // <----------------- เลขตัวถัง ----------------->
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                  left: 10,
+                                                  right: 10,
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    Flexible(
+                                                      child: SizedBox(
+                                                        height: 35.2,
+                                                        child: MediaQuery(
+                                                          data: mqDataNew,
+                                                          child: TextFormField(
+                                                            controller: ChassisController =
+                                                                TextEditingController(
+                                                                    text:
+                                                                        "$qrCode"),
+                                                            style:
+                                                                TextStyleAlert
+                                                                    .body15bold,
+                                                            readOnly: true,
+                                                            decoration:
+                                                                InputDecoration(
+                                                              contentPadding:
+                                                                  const EdgeInsets
+                                                                          .symmetric(
+                                                                      vertical:
+                                                                          25.0,
+                                                                      horizontal:
+                                                                          10),
+                                                              focusedBorder:
+                                                                  OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5.5),
                                                               ),
+                                                              enabledBorder:
+                                                                  const OutlineInputBorder(
+                                                                borderSide: const BorderSide(
+                                                                    color: const Color(
+                                                                        0xffE2E8F0),
+                                                                    width: 1),
+                                                              ),
+                                                              filled: true,
+                                                              fillColor:
+                                                                  Colors.white,
                                                             ),
                                                           ),
                                                         ),
                                                       ),
-                                                      const SizedBox(width: 5),
-                                                      InkWell(
-                                                          child: SizedBox(
-                                                              height: 40,
-                                                              width: 40,
-                                                              child: Card(
-                                                                semanticContainer:
-                                                                    true,
-                                                                shape:
-                                                                    const BeveledRectangleBorder(
-                                                                  side:
-                                                                      BorderSide(
-                                                                    color: Color(
-                                                                        0xffE2E8F0),
-                                                                    width: 0.1,
-                                                                  ),
+                                                    ),
+                                                    const SizedBox(width: 5),
+                                                    InkWell(
+                                                        child: SizedBox(
+                                                            height: 40,
+                                                            width: 40,
+                                                            child: Card(
+                                                              semanticContainer:
+                                                                  true,
+                                                              shape:
+                                                                  const BeveledRectangleBorder(
+                                                                side:
+                                                                    BorderSide(
+                                                                  color: Color(
+                                                                      0xffE2E8F0),
+                                                                  width: 0.1,
                                                                 ),
-                                                                child:
-                                                                    IconButton(
-                                                                  icon: Image
-                                                                      .asset(
-                                                                    'assets/images/iconscan.png',
-                                                                    height:
-                                                                        18.94,
-                                                                    width:
-                                                                        18.94,
-                                                                  ),
-                                                                  onPressed: () =>
-                                                                      scanQRCode(),
+                                                              ),
+                                                              child: IconButton(
+                                                                icon:
+                                                                    Image.asset(
+                                                                  'assets/images/iconscan.png',
+                                                                  height: 18.94,
+                                                                  width: 18.94,
                                                                 ),
-                                                              )))
+                                                                onPressed: () =>
+                                                                    scanQRCode(),
+                                                              ),
+                                                            )))
+                                                  ],
+                                                ),
+                                              ),
+                                              // <----------------- สถานี ----------------->
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10.0),
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(
+                                                    'สถานี',
+                                                    style:
+                                                        TextStyleAdd.bodyAdd14,
+                                                    textScaleFactor: 1,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10, right: 10),
+                                                child: DecoratedBox(
+                                                  decoration: BoxDecoration(
+                                                      border: new Border.all(
+                                                        color: const Color(
+                                                            0xffE2E8F0),
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5.5)),
+                                                  child: Container(
+                                                    height: 35.2,
+                                                    child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 10,
+                                                                right: 10),
+                                                        child: DropdownButton(
+                                                          hint: const Text(
+                                                            'กรุณาเลือกสถานี',
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                                  ('Bai Jamjuree'),
+                                                            ),
+                                                            textScaleFactor: 1,
+                                                          ),
+                                                          elevation: 10,
+                                                          icon: const Icon(Icons
+                                                              .arrow_drop_down),
+                                                          iconSize: 13.0,
+                                                          isExpanded: true,
+                                                          style: const TextStyle(
+                                                              color: Color(
+                                                                  0xff757575),
+                                                              fontSize: 14.0),
+                                                          items: where_data
+                                                              ?.map((item) {
+                                                            return DropdownMenuItem(
+                                                              value: item[
+                                                                      'where_id']
+                                                                  .toString(),
+                                                              child: new Text(
+                                                                item[
+                                                                    'car_where'],
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontFamily:
+                                                                      ('Bai Jamjuree'),
+                                                                ),
+                                                                textScaleFactor:
+                                                                    1,
+                                                              ),
+                                                            );
+                                                          }).toList(),
+                                                          onChanged:
+                                                              (String? newVal) {
+                                                            setState(() {
+                                                              Whereid = newVal;
+
+                                                              WhereController.text =
+                                                              Whereid.toString();        
+                                                                  
+                                                              selected = '';
+                                                              line = '';
+                                                              sort = '';
+                                                              
+                                                              print(Whereid);
+                                                            });
+                                                          },
+                                                          value: Whereid,
+                                                        )),
+                                                  ),
+                                                ),
+                                              ),
+                                              // <----------------- ตำแหน่ง ----------------->
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10.0),
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(
+                                                    'ตำแหน่ง',
+                                                    style:
+                                                        TextStyleAdd.bodyAdd14,
+                                                    textScaleFactor: 1,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10, right: 10),
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12),
+                                                      border: Border.all(
+                                                          color: const Color(
+                                                              0xffE2E8F0))),
+                                                  height: 360,
+                                                  child: Column(children: [
+                                                    const SizedBox(
+                                                      height: 20,
+                                                    ),
+                                                    const Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 25),
+                                                    ),
+                                                    Expanded(
+                                                        child: FutureBuilder(
+                                                            future: _future,
+                                                            builder: (BuildContext
+                                                                    context,
+                                                                AsyncSnapshot<
+                                                                        List<
+                                                                            PositionAPI>?>
+                                                                    snapshot) {
+                                                              if (snapshot
+                                                                  .hasData) {
+                                                                List<PositionAPI>?
+                                                                    data =
+                                                                    snapshot
+                                                                        .data;
+                                                                if (Whereid ==
+                                                                    '1') {
+                                                                  return StockA();
+                                                                } else if (Whereid ==
+                                                                    '2') {
+                                                                  return StockB();
+                                                                } else if (Whereid ==
+                                                                    '3') {
+                                                                  return StockC();
+                                                                } else if (Whereid ==
+                                                                    '4') {
+                                                                  return StockD();
+                                                                }
+                                                                /*  return Align(
+                                                                    alignment: Alignment.topCenter,
+                                                                   ); */
+                                                              }
+                                                              return const Center(
+                                                                  child: Text(
+                                                                'กรุณาเลือกสถานี',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontFamily:
+                                                                      ('Bai Jamjuree'),
+                                                                ),
+                                                                textScaleFactor:
+                                                                    1,
+                                                              ));
+                                                            }))
+                                                  ]),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 8,
+                                              ),
+
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10, right: 10),
+                                                child: Container(
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    boxShadow: <BoxShadow>[
+                                                      BoxShadow(
+                                                        color:
+                                                            Color(0xffF6F6F6),
+                                                        blurRadius: 20,
+                                                        offset: Offset(5, 5),
+                                                      ),
                                                     ],
                                                   ),
-                                                ),
-                                                // <----------------- สถานี ----------------->
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 10.0),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    child: Text(
-                                                      'สถานี',
-                                                      style: TextStyleAdd
-                                                          .bodyAdd14,
-                                                      textScaleFactor: 1,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10, right: 10),
-                                                  child: DecoratedBox(
-                                                    decoration: BoxDecoration(
-                                                        border: new Border.all(
-                                                          color: const Color(
-                                                              0xffE2E8F0),
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5.5)),
-                                                    child: Container(
-                                                      height: 35.2,
-                                                      child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 10,
-                                                                  right: 10),
-                                                          child: DropdownButton(
-                                                            hint: const Text(
-                                                              'VDQI station',
-                                                              textScaleFactor:
-                                                                  1,
-                                                            ),
-                                                            elevation: 10,
-                                                            icon: const Icon(Icons
-                                                                .arrow_drop_down),
-                                                            iconSize: 13.0,
-                                                            isExpanded: true,
-                                                            style: const TextStyle(
-                                                                color: Color(
-                                                                    0xff757575),
-                                                                fontSize: 14.0),
-                                                            items: where_data
-                                                                ?.map((item) {
-                                                              return DropdownMenuItem(
-                                                                value: item[
-                                                                        'where_id']
-                                                                    .toString(),
-                                                                child: new Text(
-                                                                  item[
-                                                                      'car_where'],
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        ('Bai Jamjuree'),
-                                                                  ),
-                                                                  textScaleFactor:
-                                                                      1,
-                                                                ),
-                                                              );
-                                                            }).toList(),
-                                                            onChanged: (String?
-                                                                newVal) {
-                                                              setState(() {
-                                                                Whereid =
-                                                                    newVal;
-
-                                                                WhereController
-                                                                        .text =
-                                                                    Whereid
-                                                                        .toString();
-
-                                                                print(Whereid);
-                                                              });
-                                                            },
-                                                            value: Whereid,
-                                                          )),
-                                                    ),
-                                                  ),
-                                                ),
-                                                // <----------------- ตำแหน่ง ----------------->
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 10.0),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    child: Text(
-                                                      'ตำแหน่ง',
-                                                      style: TextStyleAdd
-                                                          .bodyAdd14,
-                                                      textScaleFactor: 1,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10, right: 10),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                            color: const Color(
-                                                                0xffE2E8F0))),
-                                                    height: 350,
-                                                    child: Column(children: [
-                                                      const SizedBox(
-                                                        height: 20,
-                                                      ),
-                                                      const Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal: 25),
-                                                      ),
+                                                  height: 87.0,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
                                                       Expanded(
-                                                          child: FutureBuilder(
-                                                              future: _future,
-                                                              builder: (BuildContext
-                                                                      context,
-                                                                  AsyncSnapshot<
-                                                                          List<
-                                                                              PositionAPI>?>
-                                                                      snapshot) {
-                                                                if (snapshot
-                                                                    .hasData) {
-                                                                  List<PositionAPI>?
-                                                                      data =
-                                                                      snapshot
-                                                                          .data;
-                                                                  if (Whereid ==
-                                                                      '1') {
-                                                                    return StockA();
-                                                                  } else if (Whereid ==
-                                                                      '2') {
-                                                                    return StockB();
-                                                                  } else if (Whereid ==
-                                                                      '3') {
-                                                                    return StockC();
-                                                                  } else if (Whereid ==
-                                                                      '4') {
-                                                                    return StockD();
-                                                                  }
-                                                                  /*  return Align(
-                                                                      alignment: Alignment.topCenter,
-                                                                     ); */
-                                                                }
-                                                                return const Center(
-                                                                    child: Text(
-                                                                  'กรุณาเลือกสถานี',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        ('Bai Jamjuree'),
+                                                        child: SizedBox(
+                                                          width:
+                                                              double.infinity,
+                                                          child: Container(
+                                                            height: 85,
+                                                            decoration: BoxDecoration(
+                                                                color: Colors
+                                                                    .white,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            12),
+                                                                boxShadow: const [
+                                                                  BoxShadow(
+                                                                    color: Color
+                                                                        .fromRGBO(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            0.1),
+                                                                    blurRadius:
+                                                                        10,
                                                                   ),
-                                                                  textScaleFactor:
-                                                                      1,
-                                                                ));
-                                                              }))
-                                                    ]),
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10, right: 10),
-                                                  child: Container(
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      boxShadow: <BoxShadow>[
-                                                        BoxShadow(
-                                                          color:
-                                                              Color(0xffF6F6F6),
-                                                          blurRadius: 20,
-                                                          offset: Offset(5, 5),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    height: 87.0,
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Expanded(
-                                                          child: SizedBox(
-                                                            width:
-                                                                double.infinity,
-                                                            child: Card(
-                                                              child: Column(
-                                                                children: <
-                                                                    Widget>[
-                                                                  const Padding(
-                                                                    padding: EdgeInsets
-                                                                        .only(
-                                                                            top:
-                                                                                2),
-                                                                    child: Text(
-                                                                      'แถว',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                        color: Color(
-                                                                            0xffD4D4D4),
-                                                                        fontFamily:
-                                                                            ('Bai Jamjuree'),
-                                                                      ),
-                                                                      textScaleFactor:
-                                                                          1,
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    line!,
+                                                                ]),
+                                                            child: Column(
+                                                              children: <
+                                                                  Widget>[
+                                                                const Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 2),
+                                                                  child: Text(
+                                                                    'แถว',
                                                                     style:
-                                                                        const TextStyle(
-                                                                      color: Color(
-                                                                          0xff404040),
-                                                                      fontFamily:
-                                                                          ('Kanit'),
+                                                                        TextStyle(
                                                                       fontSize:
-                                                                          36,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
+                                                                          14,
+                                                                      color: Color(
+                                                                          0xffD4D4D4),
+                                                                      fontFamily:
+                                                                          ('Bai Jamjuree'),
                                                                     ),
                                                                     textScaleFactor:
                                                                         1,
                                                                   ),
-                                                                ],
-                                                              ),
+                                                                ),
+                                                                Text(
+                                                                  line!,
+                                                                  style:
+                                                                      const TextStyle(
+                                                                    color: Color(
+                                                                        0xff404040),
+                                                                    fontFamily:
+                                                                        ('Kanit'),
+                                                                    fontSize:
+                                                                        36,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                                  textScaleFactor:
+                                                                      1,
+                                                                ),
+                                                              ],
                                                             ),
                                                           ),
                                                         ),
-                                                        Expanded(
-                                                          child:
-                                                              SingleChildScrollView(
-                                                            child: SizedBox(
-                                                              height: 87,
-                                                              width: double
-                                                                  .infinity,
-                                                              child: Card(
-                                                                shape: RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            5)),
-                                                                child: Column(
-                                                                  children: <
-                                                                      Widget>[
-                                                                    const Padding(
-                                                                      padding: EdgeInsets
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Expanded(
+                                                        child: SizedBox(
+                                                          height: 87,
+                                                          width:
+                                                              double.infinity,
+                                                          child: Container(
+                                                            height: 85,
+                                                            decoration: BoxDecoration(
+                                                                color: Colors
+                                                                    .white,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            12),
+                                                                boxShadow: const [
+                                                                  BoxShadow(
+                                                                    color: Color
+                                                                        .fromRGBO(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            0.1),
+                                                                    blurRadius:
+                                                                        10,
+                                                                  ),
+                                                                ]),
+                                                            child: Column(
+                                                              children: <
+                                                                  Widget>[
+                                                                const Padding(
+                                                                  padding:
+                                                                      EdgeInsets
                                                                           .only(
                                                                               top: 2),
-                                                                      child:
-                                                                          Text(
-                                                                        'ลำดับ',
-                                                                        style:
-                                                                            TextStyle(
-                                                                          fontSize:
-                                                                              14,
-                                                                          color:
-                                                                              Color(0xffD4D4D4),
-                                                                          fontFamily:
-                                                                              ('Bai Jamjuree'),
-                                                                        ),
-                                                                        textScaleFactor:
-                                                                            1,
-                                                                      ),
+                                                                  child: Text(
+                                                                    'ลำดับ',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontSize:
+                                                                          14,
+                                                                      color: Color(
+                                                                          0xffD4D4D4),
+                                                                      fontFamily:
+                                                                          ('Bai Jamjuree'),
                                                                     ),
-                                                                    Text(
-                                                                      selected!,
-                                                                      style:
-                                                                          const TextStyle(
-                                                                        fontSize:
-                                                                            36,
-                                                                        color: Color(
-                                                                            0xff404040),
-                                                                        fontFamily:
-                                                                            ('Kanit'),
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                      textScaleFactor:
-                                                                          1,
-                                                                    ),
-                                                                  ],
+                                                                    textScaleFactor:
+                                                                        1,
+                                                                  ),
                                                                 ),
-                                                              ),
+                                                                Text(
+                                                                  selected!,
+                                                                  style:
+                                                                      const TextStyle(
+                                                                    fontSize:
+                                                                        36,
+                                                                    color: Color(
+                                                                        0xff404040),
+                                                                    fontFamily:
+                                                                        ('Kanit'),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                                  textScaleFactor:
+                                                                      1,
+                                                                ),
+                                                              ],
                                                             ),
                                                           ),
                                                         ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
-                                              ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(height: 30),
+                                        Center(
+                                          child: SizedBox(
+                                            height: 36.55,
+                                            width: 280,
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                  primary:
+                                                      const Color(0xffE52628),
+                                                  minimumSize:
+                                                      const Size.fromHeight(40),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10))),
+                                              onPressed: () => _AddCar(context),
+                                              child: AutoSizeText(
+                                                'บันทึก',
+                                                style: TextStyleBtn.bodybtn,
+                                                maxFontSize: 12,
+                                                minFontSize: 11,
+                                              ),
                                             ),
                                           ),
-                                          const SizedBox(height: 20),
-                                          Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 25.0),
-                                              child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    primary:
-                                                        const Color(0xffE52628),
-                                                    minimumSize: const Size
-                                                        .fromHeight(40),
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10))),
-                                                onPressed: () =>
-                                                    _AddCar(context),
-                                                child: AutoSizeText(
-                                                  'บันทึก',
-                                                  style: TextStyleBtn.bodybtn,
-                                                  maxFontSize: 12,
-                                                  minFontSize: 11,
-                                                ),
-                                              ))
-                                        ])))))),
+                                        )
+                                      ])))),
+                            )),
                         const SizedBox(height: 10),
                         Text('Powered by Weise Technika',
                             style: TextStyleFoot.bodyfoot,
@@ -735,23 +766,18 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           child: Text("ยืนยัน", style: TDialogButton.body14),
           onPressed: () async {
             ResponseModel respones = await PostcarDB().CarDB(
-              ChassisController.text, 
+              ChassisController.text,
               PositController.text,
-              "1", 
-              "${userData['fullname']}", 
-              "${userData['lastname']}",
-              DateFormat("yyyy-MM-dd").format(DateTime.now()), 
-              DateFormat("hh:mm:ss a").format(DateTime.now()), 
+              "1",
+              "${userData['id']}",
+              DateFormat("yyyy-MM-dd").format(DateTime.now()),
+              DateFormat.Hm().format(DateTime.now()),
               1.toString(),
               WhereController.text,
-
-              );
-            
+            );
 
             if (respones.success) {
               getcar();
-
-              
             } else {
               _ErrorAddcar(context);
             }
@@ -770,7 +796,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var _authToken = localStorage.getString('token');
     var response = await http.get(
-        Uri.parse('http://206.189.92.79/api/cardb/id/${ChassisController.text}'),
+        Uri.parse(
+            'http://206.189.92.79/api/cardb/id/${ChassisController.text}'),
         headers: {
           HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
         });
@@ -788,18 +815,17 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       IdData = cars;
     });
 
-     var AA = (IdData[0]['car_id']);
+    var AA = (IdData[0]['car_id']);
     print(AA);
     ResponseModel responesPut = await PutPosition(
       "1",
       "$AA", /* IdData[0]['car_id'] */
     );
-    if (responesPut.success){
-      Navigator.push(context, MaterialPageRoute(builder: (_) => AddnewSplash()));
-                   
+    if (responesPut.success) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => AddnewSplash()));
     }
   }
-  
 
   Future<void> scanQRCode() async {
     try {
@@ -878,56 +904,69 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     ).show();
   }
 
+
+
+
   //////////////// Stock A //////////////////
   Widget StockA() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20),
+      padding: const EdgeInsets.only(left: 10),
       child: Container(
         child: Column(
           children: [
+            Center(
+              child: Text(
+                "Stock A",
+                style: TextStyleAlert.body18bold,
+                textScaleFactor: 1,
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Container(
-                      height: 30,
-                      width: 50,
-                    ),
+                  Container(
+                    height: 30,
+                    width: 30,
                   ),
                   Expanded(
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 35),
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
-                          Text("A",
-                              textScaleFactor: 1,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              )),
-                          Text("B",
-                              textScaleFactor: 1,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              )),
-                          Text("C",
-                              textScaleFactor: 1,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              )),
                           Text(
-                            textScaleFactor: 1,
-                            "D",
+                            "A",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
+                            textScaleFactor: 1,
+                          ),
+                          Text(
+                            "B",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
+                          ),
+                          Text(
+                            "C",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
+                          ),
+                          Text(
+                            "D",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
                           ),
                         ],
                       ),
@@ -936,143 +975,147 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
             Expanded(
                 child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 children: [
                   Container(
-                    width: 50,
+                    width: 30,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Column(children: [
                         Container(
-                            height: 250,
+                            height: 285,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                color: Colors.black38,
+                                color: const Color.fromARGB(246, 231, 230, 236),
                               ),
                               color: const Color.fromARGB(246, 231, 230, 236),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(0),
                             ),
                             child: const Center(
-                              child: Text(
-                                'Lotus',
-                                textScaleFactor: 1,
-                              ),
+                              child: RotatedBox(
+                                  quarterTurns: 1, child: Text("Lotus")),
                             ))
                       ]),
                     ),
                   ),
                   SizedBox(
-                    width: 10,
+                    width: 8,
                   ),
                   Expanded(
-                    child: Container(
-                      child: FutureBuilder(
-                          future: PostionService().getWhere1(),
-                          builder: (BuildContext context,
-                              AsyncSnapshot<List<PositDBAPI>?> snapshot) {
-                            if (snapshot.hasData) {
-                              List<PositDBAPI>? data = snapshot.data;
-                              return Container(
-                                child: GridView.builder(
-                                    padding: const EdgeInsets.all(2),
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                      mainAxisSpacing: 10,
-                                      crossAxisSpacing: 10,
-                                      crossAxisCount: 4,
-                                    ),
-                                    itemCount: data!.length,
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        width: 20,
-                                        height: 20,
-                                        decoration: BoxDecoration(
-                                          color: (data[index].car_status == 1
-                                              ? Colors.red
-                                              : data[index].car_status == 2
-                                                  ? Colors.grey
-                                                  : sort ==
-                                                          data[index]
-                                                              .sort
-                                                              .toString()
-                                                      ? Colors.red
-                                                      : const Color(
-                                                          0xff89EB80)),
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                        ),
-                                        child: InkWell(
-                                          onTap: () async {
-                                            dynamic Idposit =data[index].posit_id.toString();
-                                                
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 25),
+                      child: Container(
+                        child: FutureBuilder(
+                            future: PostionService().getWhere1(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+                              if (snapshot.hasData) {
+                                List<PositDBAPI>? data = snapshot.data;
+                                return Container(
+                                  child: GridView.builder(
+                                      padding: const EdgeInsets.all(2),
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                        mainAxisSpacing: 8,
+                                        crossAxisSpacing: 8,
+                                        crossAxisCount: 4,
+                                      ),
+                                      itemCount: data!.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                          width: 20,
+                                          height: 20,
+                                          decoration: BoxDecoration(
+                                            color: (data[index].car_status == 1
+                                                ? Colors.red
+                                                : data[index].car_status == 2
+                                                    ? Colors.grey
+                                                    : sort ==
+                                                            data[index]
+                                                                .sort
+                                                                .toString()
+                                                        ? Colors.yellow
+                                                        : const Color(
+                                                            0xff89EB80)),
+                                            borderRadius:
+                                                BorderRadius.circular(0),
+                                          ),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              dynamic Idposit = data[index]
+                                                  .posit_id
+                                                  .toString();
 
-                                            SharedPreferences localStorage =
-                                                await SharedPreferences
-                                                    .getInstance();
-                                            localStorage.setString(
-                                                'ID', Idposit);
+                                              SharedPreferences localStorage =
+                                                  await SharedPreferences
+                                                      .getInstance();
+                                              localStorage.setString(
+                                                  'ID', Idposit);
 
-                                            setState(() {
-                                              if (data[index].car_status == 1) {
+                                              setState(() {
+                                                if (data[index].car_status ==
+                                                    1) {
+                                                  selected = '';
+                                                  line = '';
+                                                  sort = '';
+                                                } else if (data[index]
+                                                        .car_status ==
+                                                    2) {
+                                                  selected = '';
+                                                  line = '';
+                                                  sort = '';
+                                                } else {
+                                                  selected = data[index]
+                                                      .posit
+                                                      .toString();
+                                                  line = data[index]
+                                                      .line
+                                                      .toString();
+                                                  sort = data[index]
+                                                      .sort
+                                                      .toString();
+
+                                                  PositController.text =
+                                                      Idposit.toString();
+
+                                                  lineController.text =
+                                                      line.toString();
+
+                                                  print(data[index].posit);
+                                                  print(data[index].line);
+                                                }
+                                              });
+                                            },
+                                            onDoubleTap: () {
+                                              setState(() {
                                                 selected = '';
                                                 line = '';
                                                 sort = '';
-                                              } else if (data[index].car_status ==
-                                                  2) {
-                                                selected = '';
-                                                line = '';
-                                                sort = '';
-                                              } else {
-                                                selected = data[index]
-                                                    .posit
-                                                    .toString();
-                                                line =
-                                                    data[index].line.toString();
-                                                sort =
-                                                    data[index].sort.toString();
-
-                                                PositController.text = Idposit.toString();
-                                                   
-                                                lineController.text =
-                                                    line.toString();
-
-                                                print(data[index].posit);
-                                                print(data[index].line);
-                                              }
-                                            });
-                                          },
-                                          onDoubleTap: () {
-                                            setState(() {
-                                              selected = '';
-                                              line = '';
-                                              sort = '';
-                                            });
-                                          },
-                                          child: Center(
-                                            child: Text(
-                                              textScaleFactor: 1,
-                                              data[index].posit.toString(),
-                                              style: TextStyle(
-                                                  color: Colors.white),
+                                              });
+                                            },
+                                            child: Center(
+                                              child: Text(
+                                                textScaleFactor: 1,
+                                                data[index].posit.toString(),
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    }),
+                                        );
+                                      }),
+                                );
+                              }
+                              return const Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.red,
+                                ),
                               );
-                            }
-                            return const Center(
-                              child: CircularProgressIndicator(
-                                color: Colors.red,
-                              ),
-                            );
-                          }),
+                            }),
+                      ),
                     ),
                   )
                 ],
@@ -1086,26 +1129,29 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
 
   Widget StockB() {
     return Padding(
-      padding: const EdgeInsets.only(left: 1, right: 1),
+      padding: const EdgeInsets.only(left: 3),
       child: Container(
         child: Column(
           children: [
+            Center(
+              child: Text(
+                "Stock B",
+                style: TextStyleAlert.body18bold,
+                textScaleFactor: 1,
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Container(
-                      color: Colors.white,
-                      height: 30,
-                      width: 50,
-                    ),
+                  Container(
+                    height: 30,
+                    width: 30,
                   ),
                   Expanded(
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 35),
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
@@ -1156,143 +1202,147 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
             Expanded(
                 child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 children: [
                   Container(
-                    width: 50,
+                    width: 30,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Column(children: [
                         Container(
-                            height: 250,
+                            height: 285,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                color: Colors.black38,
+                                color: const Color.fromARGB(246, 231, 230, 236),
                               ),
                               color: const Color.fromARGB(246, 231, 230, 236),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(0),
                             ),
                             child: const Center(
-                              child: Text(
-                                'Lotus',
-                                textScaleFactor: 1,
-                              ),
+                              child: RotatedBox(
+                                  quarterTurns: 1, child: Text("Lotus")),
                             ))
                       ]),
                     ),
                   ),
                   SizedBox(
-                    width: 10,
+                    width: 8,
                   ),
                   Expanded(
-                    child: Container(
-                      child: FutureBuilder(
-                          future: PostionService().getWhere2(),
-                          builder: (BuildContext context,
-                              AsyncSnapshot<List<PositDBAPI>?> snapshot) {
-                            if (snapshot.hasData) {
-                              List<PositDBAPI>? data = snapshot.data;
-                              return Container(
-                                child: GridView.builder(
-                                    padding: const EdgeInsets.all(10),
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                      mainAxisSpacing: 10,
-                                      crossAxisSpacing: 10,
-                                      crossAxisCount: 5,
-                                    ),
-                                    itemCount: data!.length,
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        width: 20,
-                                        height: 20,
-                                        decoration: BoxDecoration(
-                                          color: (data[index].car_status == 1
-                                              ? Colors.red
-                                              : data[index].car_status == 2
-                                                  ? Colors.grey
-                                                  : sort ==
-                                                          data[index]
-                                                              .sort
-                                                              .toString()
-                                                      ? Colors.red
-                                                      : const Color(
-                                                          0xff89EB80)),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        child: InkWell(
-                                          onTap: () async {
-                                            dynamic Idposit =
-                                                data[index].posit_id.toString();
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 3, right: 12),
+                      child: Container(
+                        child: FutureBuilder(
+                            future: PostionService().getWhere2(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+                              if (snapshot.hasData) {
+                                List<PositDBAPI>? data = snapshot.data;
+                                return Container(
+                                  child: GridView.builder(
+                                      padding: const EdgeInsets.all(2),
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                        mainAxisSpacing: 8,
+                                        crossAxisSpacing: 8,
+                                        crossAxisCount: 5,
+                                      ),
+                                      itemCount: data!.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                          width: 20,
+                                          height: 20,
+                                          decoration: BoxDecoration(
+                                            color: (data[index].car_status == 1
+                                                ? Colors.red
+                                                : data[index].car_status == 2
+                                                    ? Colors.grey
+                                                    : sort ==
+                                                            data[index]
+                                                                .sort
+                                                                .toString()
+                                                        ? Colors.yellow
+                                                        : const Color(
+                                                            0xff89EB80)),
+                                            borderRadius:
+                                                BorderRadius.circular(0),
+                                          ),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              dynamic Idposit = data[index]
+                                                  .posit_id
+                                                  .toString();
 
-                                            SharedPreferences localStorage =
-                                                await SharedPreferences
-                                                    .getInstance();
-                                            localStorage.setString(
-                                                'ID', Idposit);
+                                              SharedPreferences localStorage =
+                                                  await SharedPreferences
+                                                      .getInstance();
+                                              localStorage.setString(
+                                                  'ID', Idposit);
 
-                                            setState(() {
-                                              if (data[index].car_status == 1) {
+                                              setState(() {
+                                                if (data[index].car_status ==
+                                                    1) {
+                                                  selected = '';
+                                                  line = '';
+                                                  sort = '';
+                                                } else if (data[index]
+                                                        .car_status ==
+                                                    2) {
+                                                  selected = '';
+                                                  line = '';
+                                                  sort = '';
+                                                } else {
+                                                  selected = data[index]
+                                                      .posit
+                                                      .toString();
+                                                  line = data[index]
+                                                      .line
+                                                      .toString();
+                                                  sort = data[index]
+                                                      .sort
+                                                      .toString();
+
+                                                  PositController.text =
+                                                      Idposit.toString();
+
+                                                  lineController.text =
+                                                      line.toString();
+
+                                                  print(data[index].posit);
+                                                  print(data[index].line);
+                                                }
+                                              });
+                                            },
+                                            onDoubleTap: () {
+                                              setState(() {
                                                 selected = '';
                                                 line = '';
                                                 sort = '';
-                                              } else if (data[index].car_status ==
-                                                  2) {
-                                                selected = '';
-                                                line = '';
-                                                sort = '';
-                                              } else {
-                                                selected = data[index]
-                                                    .posit
-                                                    .toString();
-                                                line =
-                                                    data[index].line.toString();
-                                                sort =
-                                                    data[index].sort.toString();
-
-                                                PositController.text =
-                                                    Idposit.toString();
-                                                lineController.text =
-                                                    line.toString();
-
-                                                print(data[index].posit);
-                                                print(data[index].line);
-                                              }
-                                            });
-                                          },
-                                          onDoubleTap: () {
-                                            setState(() {
-                                              selected = '';
-                                              line = '';
-                                              sort = '';
-                                            });
-                                          },
-                                          child: Center(
-                                            child: Text(
-                                              textScaleFactor: 1,
-                                              data[index].posit.toString(),
-                                              style: TextStyle(
-                                                  color: Colors.white),
+                                              });
+                                            },
+                                            child: Center(
+                                              child: Text(
+                                                textScaleFactor: 1,
+                                                data[index].posit.toString(),
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    }),
+                                        );
+                                      }),
+                                );
+                              }
+                              return const Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.red,
+                                ),
                               );
-                            }
-                            return const Center(
-                              child: CircularProgressIndicator(
-                                color: Colors.red,
-                              ),
-                            );
-                          }),
+                            }),
+                      ),
                     ),
                   )
                 ],
@@ -1305,416 +1355,458 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   }
 
   Widget StockC() {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Container(
-                  color: Colors.white,
-                  height: 30,
-                  width: 50,
-                ),
+    return Padding(
+      padding: const EdgeInsets.only(left: 3),
+      child: Container(
+        child: Column(
+          children: [
+            Center(
+              child: Text(
+                "Stock C",
+                style: TextStyleAlert.body18bold,
+                textScaleFactor: 1,
               ),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 35),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "A",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textScaleFactor: 1,
-                      ),
-                      Text(
-                        "B",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textScaleFactor: 1,
-                      ),
-                      Text(
-                        "C",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textScaleFactor: 1,
-                      ),
-                      Text(
-                        "D",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textScaleFactor: 1,
-                      ),
-                      Text(
-                        "E",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textScaleFactor: 1,
-                      ),
-                    ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    color: Colors.white,
+                    height: 30,
+                    width: 30,
                   ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Expanded(
-            child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Row(
-            children: [
-              Container(
-                width: 50,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(children: [
-                    Container(
-                        height: 250,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black38,
-                          ),
-                          color: const Color.fromARGB(246, 231, 230, 236),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Lotus',
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            "A",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                             textScaleFactor: 1,
                           ),
-                        ))
-                  ]),
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Container(
-                  child: FutureBuilder(
-                      future: PostionService().getWhere3(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<List<PositDBAPI>?> snapshot) {
-                        if (snapshot.hasData) {
-                          List<PositDBAPI>? data = snapshot.data;
-                          return Container(
-                            child: GridView.builder(
-                                padding: const EdgeInsets.all(10),
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  mainAxisSpacing: 10,
-                                  crossAxisSpacing: 10,
-                                  crossAxisCount: 5,
-                                ),
-                                itemCount: data!.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    width: 20,
-                                    height: 20,
-                                    decoration: BoxDecoration(
-                                      color: (data[index].car_status == 1
-                                          ? Colors.red
-                                          : data[index].car_status == 2
-                                              ? Colors.grey
-                                              : sort ==
-                                                      data[index]
-                                                          .sort
-                                                          .toString()
-                                                  ? Colors.red
-                                                  : const Color(0xff89EB80)),
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        dynamic Idposit =
-                                            data[index].posit_id.toString();
-
-                                        SharedPreferences localStorage =
-                                            await SharedPreferences
-                                                .getInstance();
-                                        localStorage.setString('ID', Idposit);
-
-                                        setState(() {
-                                          if (data[index].car_status == 1) {
-                                            selected = '';
-                                            line = '';
-                                            sort = '';
-                                          } else if (data[index].car_status == 2) {
-                                            selected = '';
-                                            line = '';
-                                            sort = '';
-                                          } else {
-                                            selected =
-                                                data[index].posit.toString();
-                                            line = data[index].line.toString();
-                                            sort = data[index].sort.toString();
-
-                                            PositController.text =
-                                                Idposit.toString();
-                                            lineController.text =
-                                                line.toString();
-
-                                            print(data[index].posit);
-                                            print(data[index].line);
-                                          }
-                                        });
-                                      },
-                                      onDoubleTap: () {
-                                        setState(() {
-                                          selected = '';
-                                          line = '';
-                                          sort = '';
-                                        });
-                                      },
-                                      child: Center(
-                                        child: Text(
-                                          textScaleFactor: 1,
-                                          data[index].posit.toString(),
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }),
-                          );
-                        }
-                        return const Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.red,
+                          Text(
+                            "B",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
                           ),
-                        );
-                      }),
-                ),
-              )
-            ],
-          ),
-        ))
-      ],
+                          Text(
+                            "C",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
+                          ),
+                          Text(
+                            "D",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
+                          ),
+                          Text(
+                            "E",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                children: [
+                  Container(
+                    width: 30,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(children: [
+                        Container(
+                            height: 285,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: const Color.fromARGB(246, 231, 230, 236),
+                              ),
+                              color: const Color.fromARGB(246, 231, 230, 236),
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: const Center(
+                              child: RotatedBox(
+                                  quarterTurns: 1, child: Text("Lotus")),
+                            ))
+                      ]),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 3, right: 12),
+                      child: Container(
+                        child: FutureBuilder(
+                            future: PostionService().getWhere3(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+                              if (snapshot.hasData) {
+                                List<PositDBAPI>? data = snapshot.data;
+                                return Container(
+                                  child: GridView.builder(
+                                      padding: const EdgeInsets.all(2),
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                        mainAxisSpacing: 8,
+                                        crossAxisSpacing: 8,
+                                        crossAxisCount: 5,
+                                      ),
+                                      itemCount: data!.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                          width: 20,
+                                          height: 20,
+                                          decoration: BoxDecoration(
+                                            color: (data[index].car_status == 1
+                                                ? Colors.red
+                                                : data[index].car_status == 2
+                                                    ? Colors.grey
+                                                    : sort ==
+                                                            data[index]
+                                                                .sort
+                                                                .toString()
+                                                        ? Colors.yellow
+                                                        : const Color(
+                                                            0xff89EB80)),
+                                            borderRadius:
+                                                BorderRadius.circular(0),
+                                          ),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              dynamic Idposit = data[index]
+                                                  .posit_id
+                                                  .toString();
+
+                                              SharedPreferences localStorage =
+                                                  await SharedPreferences
+                                                      .getInstance();
+                                              localStorage.setString(
+                                                  'ID', Idposit);
+
+                                              setState(() {
+                                                if (data[index].car_status ==
+                                                    1) {
+                                                  selected = '';
+                                                  line = '';
+                                                  sort = '';
+                                                } else if (data[index]
+                                                        .car_status ==
+                                                    2) {
+                                                  selected = '';
+                                                  line = '';
+                                                  sort = '';
+                                                } else {
+                                                  selected = data[index]
+                                                      .posit
+                                                      .toString();
+                                                  line = data[index]
+                                                      .line
+                                                      .toString();
+                                                  sort = data[index]
+                                                      .sort
+                                                      .toString();
+
+                                                  PositController.text =
+                                                      Idposit.toString();
+
+                                                  lineController.text =
+                                                      line.toString();
+
+                                                  print(data[index].posit);
+                                                  print(data[index].line);
+                                                }
+                                              });
+                                            },
+                                            onDoubleTap: () {
+                                              setState(() {
+                                                selected = '';
+                                                line = '';
+                                                sort = '';
+                                              });
+                                            },
+                                            child: Center(
+                                              child: Text(
+                                                textScaleFactor: 1,
+                                                data[index].posit.toString(),
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }),
+                                );
+                              }
+                              return const Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.red,
+                                ),
+                              );
+                            }),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ))
+          ],
+        ),
+      ),
     );
   }
 
   Widget StockD() {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Container(
-                  color: Colors.white,
-                  height: 30,
-                  width: 50,
-                ),
+    return Padding(
+      padding: const EdgeInsets.only(left: 3),
+      child: Container(
+        child: Column(
+          children: [
+            Center(
+              child: Text(
+                "Stock D",
+                style: TextStyleAlert.body18bold,
+                textScaleFactor: 1,
               ),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 35),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "A",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textScaleFactor: 1,
-                      ),
-                      Text(
-                        "B",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textScaleFactor: 1,
-                      ),
-                      Text(
-                        "C",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textScaleFactor: 1,
-                      ),
-                      Text(
-                        "D",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textScaleFactor: 1,
-                      ),
-                      Text(
-                        "E",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textScaleFactor: 1,
-                      ),
-                    ],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    color: Colors.white,
+                    height: 30,
+                    width: 30,
                   ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Expanded(
-            child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Row(
-            children: [
-              Container(
-                width: 50,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(children: [
-                    Container(
-                        height: 250,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black38,
-                          ),
-                          color: const Color.fromARGB(246, 231, 230, 236),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Lotus',
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            "A",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                             textScaleFactor: 1,
                           ),
-                        ))
-                  ]),
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Container(
-                  child: FutureBuilder(
-                      future: PostionService().getWhere4(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<List<PositDBAPI>?> snapshot) {
-                        if (snapshot.hasData) {
-                          List<PositDBAPI>? data = snapshot.data;
-                          return Container(
-                            child: GridView.builder(
-                                padding: const EdgeInsets.all(10),
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  mainAxisSpacing: 10,
-                                  crossAxisSpacing: 10,
-                                  crossAxisCount: 5,
-                                ),
-                                itemCount: data!.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    width: 20,
-                                    height: 20,
-                                    decoration: BoxDecoration(
-                                      color: (data[index].car_status == 1
-                                          ? Colors.red
-                                          : data[index].car_status == 2
-                                              ? Colors.grey
-                                              : sort ==
-                                                      data[index]
-                                                          .sort
-                                                          .toString()
-                                                  ? Colors.red
-                                                  : const Color(0xff89EB80)),
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        dynamic Idposit =
-                                            data[index].posit_id.toString();
-
-                                        SharedPreferences localStorage =
-                                            await SharedPreferences
-                                                .getInstance();
-                                        localStorage.setString('ID', Idposit);
-
-                                        setState(() {
-                                          if (data[index].car_status == 1) {
-                                            selected = '';
-                                            line = '';
-                                            sort = '';
-                                          } else if (data[index].car_status == 2) {
-                                            selected = '';
-                                            line = '';
-                                            sort = '';
-                                          } else {
-                                            selected =
-                                                data[index].posit.toString();
-                                            line = data[index].line.toString();
-                                            sort = data[index].sort.toString();
-
-                                            PositController.text =
-                                                Idposit.toString();
-                                            lineController.text =
-                                                line.toString();
-
-                                            print(data[index].posit);
-                                            print(data[index].line);
-                                          }
-                                        });
-                                      },
-                                      onDoubleTap: () {
-                                        setState(() {
-                                          selected = '';
-                                          line = '';
-                                          sort = '';
-                                        });
-                                      },
-                                      child: Center(
-                                        child: Text(
-                                          textScaleFactor: 1,
-                                          data[index].posit.toString(),
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }),
-                          );
-                        }
-                        return const Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.red,
+                          Text(
+                            "B",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
                           ),
-                        );
-                      }),
-                ),
-              )
-            ],
-          ),
-        ))
-      ],
+                          Text(
+                            "C",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
+                          ),
+                          Text(
+                            "D",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
+                          ),
+                          Text(
+                            "E",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textScaleFactor: 1,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                children: [
+                  Container(
+                    width: 30,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(children: [
+                        Container(
+                            height: 285,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: const Color.fromARGB(246, 231, 230, 236),
+                              ),
+                              color: const Color.fromARGB(246, 231, 230, 236),
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            child: const Center(
+                              child: RotatedBox(
+                                  quarterTurns: 1, child: Text("Lotus")),
+                            ))
+                      ]),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 3, right: 12),
+                      child: Container(
+                        child: FutureBuilder(
+                            future: PostionService().getWhere4(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+                              if (snapshot.hasData) {
+                                List<PositDBAPI>? data = snapshot.data;
+                                return Container(
+                                  child: GridView.builder(
+                                      padding: const EdgeInsets.all(2),
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                        mainAxisSpacing: 8,
+                                        crossAxisSpacing: 8,
+                                        crossAxisCount: 5,
+                                      ),
+                                      itemCount: data!.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                          width: 20,
+                                          height: 20,
+                                          decoration: BoxDecoration(
+                                            color: (data[index].car_status == 1
+                                                ? Colors.red
+                                                : data[index].car_status == 2
+                                                    ? Colors.grey
+                                                    : sort ==
+                                                            data[index]
+                                                                .sort
+                                                                .toString()
+                                                        ? Colors.yellow
+                                                        : const Color(
+                                                            0xff89EB80)),
+                                            borderRadius:
+                                                BorderRadius.circular(0),
+                                          ),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              dynamic Idposit = data[index]
+                                                  .posit_id
+                                                  .toString();
+
+                                              SharedPreferences localStorage =
+                                                  await SharedPreferences
+                                                      .getInstance();
+                                              localStorage.setString(
+                                                  'ID', Idposit);
+
+                                              setState(() {
+                                                if (data[index].car_status ==
+                                                    1) {
+                                                  selected = '';
+                                                  line = '';
+                                                  sort = '';
+                                                } else if (data[index]
+                                                        .car_status ==
+                                                    2) {
+                                                  selected = '';
+                                                  line = '';
+                                                  sort = '';
+                                                } else {
+                                                  selected = data[index]
+                                                      .posit
+                                                      .toString();
+                                                  line = data[index]
+                                                      .line
+                                                      .toString();
+                                                  sort = data[index]
+                                                      .sort
+                                                      .toString();
+
+                                                  PositController.text =
+                                                      Idposit.toString();
+
+                                                  lineController.text =
+                                                      line.toString();
+
+                                                  print(data[index].posit);
+                                                  print(data[index].line);
+                                                }
+                                              });
+                                            },
+                                            onDoubleTap: () {
+                                              setState(() {
+                                                selected = '';
+                                                line = '';
+                                                sort = '';
+                                              });
+                                            },
+                                            child: Center(
+                                              child: Text(
+                                                textScaleFactor: 1,
+                                                data[index].posit.toString(),
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }),
+                                );
+                              }
+                              return const Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.red,
+                                ),
+                              );
+                            }),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ))
+          ],
+        ),
+      ),
     );
   }
 }

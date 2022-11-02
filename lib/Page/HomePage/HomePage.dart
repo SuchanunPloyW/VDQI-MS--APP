@@ -18,9 +18,8 @@ class _HomePageState extends State<HomePage> {
   Color baseColor2 = const Color(0xffA10002);
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-       backgroundColor: const Color(0xfff5f5f5),
+        backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           actions: <Widget>[
             Padding(
@@ -108,18 +107,16 @@ class _HomePageState extends State<HomePage> {
                                     padding: const EdgeInsets.only(
                                         left: 5, right: 5),
                                     child: Container(
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                           color: Colors.white,
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(12),
-                                              topRight: Radius.circular(12),
-                                              bottomLeft: Radius.circular(12),
-                                              bottomRight: Radius.circular(12)),
-                                          boxShadow: [
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          boxShadow: const [
                                             BoxShadow(
                                               color:
                                                   Color.fromRGBO(0, 0, 0, 0.05),
                                               blurRadius: 12,
+                                              spreadRadius: 5
                                               /*   offset: Offset(0, 3), */
                                             ),
                                           ]),
@@ -130,159 +127,61 @@ class _HomePageState extends State<HomePage> {
                                         mainAxisSpacing: 8.0,
                                         children: <Widget>[
                                           Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 5,
-                                                left: 5,
-                                                right: 5,
-                                                bottom: 5),
-                                                child: ElevatedButton(
-                                                  onPressed: () {
-                                                     Future.delayed(
-                                                        Duration(
-                                                            milliseconds: 300),
-                                                        () {
-                                                      Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder: (_) =>
-                                                                  MenuPage()));
-                                                    });
-                                                    
-                                                  },
-                                                  style: ElevatedButton.styleFrom(
+                                            padding: const EdgeInsets.only(top: 10 ,left: 8, right: 8 ),
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                Future.delayed(
+                                                    Duration(milliseconds: 300),
+                                                    () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              MenuPage()));
+                                                });
+                                              },
+                                              style: ElevatedButton.styleFrom(
                                                   primary: Colors.white,
-                                                   shadowColor: Colors.grey,
+                                                  shadowColor: Colors.grey,
                                                   // background
                                                   onPrimary: Color.fromARGB(
                                                       255, 224, 197, 197),
                                                   padding: EdgeInsets.all(15),
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    12),
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    12),
-                                                            bottomLeft:
-                                                                Radius.circular(
-                                                                    12),
-                                                            bottomRight:
-                                                                Radius.circular(
-                                                                    12)),
+                                                        BorderRadius.circular(
+                                                            12),
+                                                            
                                                   )),
-                                                  child: Column(
-                                                   
-                                                    children: [
-                                                    const SizedBox(
-                                                          height: 10),
-                                                      Image.asset(
-                                                        'assets/images/car1.png',
-                                                        height: 70.0,
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                      const SizedBox(
-                                                          height: 12),
-                                                      Text(
-                                                        '   ระบบบริหารจัดการสต๊อครถยนต์',
-                                                        style: TextStylePage
-                                                            .bodyP10,
-                                                        maxLines: 1,
-                                                        textScaleFactor: 1,
-                                                      ),
-                                                      Text(
-                                                        'VDQI Stock Management',
-                                                        style: TextStylePage
-                                                            .bodyP10,
-                                                        maxLines: 1,
-                                                        textScaleFactor: 1,
-                                                      )
-
-                                                  ]),
+                                              child: Column(children: [
+                                                const SizedBox(height: 10),
+                                                Image.asset(
+                                                  'assets/images/car1.png',
+                                                  height: 70.0,
+                                                  fit: BoxFit.cover,
                                                 ),
-                                           /*  child: Container(
-                                              child: Container(
-                                                decoration: const BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    12),
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    12),
-                                                            bottomLeft:
-                                                                Radius.circular(
-                                                                    12),
-                                                            bottomRight:
-                                                                Radius.circular(
-                                                                    12)),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Color.fromRGBO(
-                                                            0, 0, 0, 0.1),
-                                                        blurRadius: 12,
-                                                        /*   offset: Offset(0, 3), */
-                                                      ),
-                                                    ]),
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    Future.delayed(
-                                                        Duration(
-                                                            milliseconds: 300),
-                                                        () {
-                                                      Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder: (_) =>
-                                                                  MenuPage()));
-                                                    });
-                                                  },
-                                                  splashColor: Colors.red,
-                                                  child: Center(
-                                                      child: Column(
-                                                    children: <Widget>[
-                                                      const SizedBox(
-                                                          height: 15),
-                                                      Image.asset(
-                                                        'assets/images/car1.png',
-                                                        height: 80.0,
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                      const SizedBox(
-                                                          height: 15),
-                                                      Text(
-                                                        'ระบบบริหารจัดการสต๊อครถยนต์',
-                                                        style: TextStylePage
-                                                            .bodyP10,
-                                                        maxLines: 1,
-                                                        textScaleFactor: 1,
-                                                      ),
-                                                      Text(
-                                                        'VDQI Stock Management',
-                                                        style: TextStylePage
-                                                            .bodyP10,
-                                                        maxLines: 1,
-                                                        textScaleFactor: 1,
-                                                      )
-                                                    ],
-                                                  )),
+                                                const SizedBox(height: 12),
+                                                Text(
+                                                  '   ระบบบริหารจัดการสต๊อครถยนต์',
+                                                  style: TextStylePage.bodyP10,
+                                                  maxLines: 1,
+                                                  textScaleFactor: 1,
                                                 ),
-                                              ),
-                                            ), */
+                                                Text(
+                                                  'VDQI Stock Management',
+                                                  style: TextStylePage.bodyP10,
+                                                  maxLines: 1,
+                                                  textScaleFactor: 1,
+                                                )
+                                              ]),
+                                            ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 5,
-                                                left: 5,
-                                                right: 5,
-                                                bottom: 5),
+                                            padding: const EdgeInsets.only(top: 10 ,left: 8, right: 8 ),
                                             child: ElevatedButton(
                                               onPressed: () {},
                                               style: ElevatedButton.styleFrom(
-                                                shadowColor: Colors.grey,
+                                                  shadowColor: Colors.grey,
                                                   primary: Colors.white,
                                                   // background
                                                   onPrimary: Color.fromARGB(
@@ -290,19 +189,8 @@ class _HomePageState extends State<HomePage> {
                                                   padding: EdgeInsets.all(15),
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    12),
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    12),
-                                                            bottomLeft:
-                                                                Radius.circular(
-                                                                    12),
-                                                            bottomRight:
-                                                                Radius.circular(
-                                                                    12)),
+                                                        BorderRadius.circular(
+                                                            12),
                                                   )),
                                               child: InkWell(
                                                 child: Center(
@@ -334,10 +222,7 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                               ),
                                             ),
-                                        
                                           ),
-
-                                          
                                         ],
                                       ),
                                     ),
