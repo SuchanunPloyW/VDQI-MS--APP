@@ -4,14 +4,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../Model/responsModel.dart';
 
-class PostcarDB{
-  dynamic url = 'http://206.189.92.79/api/';
+class PostcarDB {
+  dynamic url = 'https://vdqi-db.toyotaparagon.com/api/';
   Future<ResponseModel> CarDB(
     String car_chassis,
     String posit_id,
     String car_status,
     String person,
-  
     String date,
     String time,
     String sort,
@@ -36,7 +35,7 @@ class PostcarDB{
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        url = Uri.parse("http://206.189.92.79/api/cardb");
+        url = Uri.parse("https://vdqi-db.toyotaparagon.com/api/cardb");
         await http.post(
           url,
           body: dataencode,

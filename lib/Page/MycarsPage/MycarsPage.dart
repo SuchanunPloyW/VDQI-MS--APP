@@ -219,7 +219,7 @@ class _MycarsPageState extends State<MycarsPage> {
               ),
               /*  desc: (' คุณต้องการทำรายการเบิกรถยนต์' + "\n" + widget.model.carChassis + " ใช่หรือไม่"), */
               subtitle: Text(
-                'Yaris Ativ 1.2 G \nสถานที่ : ' + model.carid.carWhere.carWhere,
+                'รถยนต์ \nสถานที่ : ' + model.carid.carWhere.carWhere,
                 style: TextStyleMycar.subtitle,
                 textScaleFactor: 1,
               ),

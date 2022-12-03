@@ -196,7 +196,7 @@ class _CardetailPageState extends State<CardetailPage> {
                                                   )),
                                             ),
                                             subtitle: Text(
-                                              'Yaris Ativ 1.2 G \n' +
+                                              'รถยนต์ \n' +
                                                   'สถานะ :' +
                                                   ' ' +
                                                   widget.model.carStatus
@@ -1004,10 +1004,11 @@ class _CardetailPageState extends State<CardetailPage> {
                                   height: 330,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: const Color.fromARGB( 246, 231, 230, 236),
+                                      color: const Color.fromARGB(
+                                          246, 231, 230, 236),
                                     ),
-                                    color: const Color.fromARGB( 246, 231, 230, 236),
-                                       
+                                    color: const Color.fromARGB(
+                                        246, 231, 230, 236),
                                     borderRadius: BorderRadius.circular(0),
                                   ),
                                   child: const Center(
@@ -1121,20 +1122,26 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                               ),
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("รุ่น  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ประเภท  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("รถยนต์", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
-                                                                              Row(
+                                                                              /*  Row(
                                                                                 children: [
                                                                                   Text("สี  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
                                                                                   Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                                 ],
-                                                                              ),
+                                                                              ), */
                                                                               Row(
                                                                                 children: [
                                                                                   Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
                                                                                   Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("ลานจอด :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("${data[index].carWhere.carWhere} ", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                             ],
@@ -1306,7 +1313,8 @@ class _CardetailPageState extends State<CardetailPage> {
                                   height: 330,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: const Color.fromARGB( 246, 231, 230, 236),
+                                      color: const Color.fromARGB(
+                                          246, 231, 230, 236),
                                     ),
                                     color: const Color.fromARGB(
                                         246, 231, 230, 236),
@@ -1423,20 +1431,26 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                               ),
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("รุ่น  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ประเภท  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("รถยนต์", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
-                                                                              Row(
+                                                                              /*  Row(
                                                                                 children: [
                                                                                   Text("สี  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
                                                                                   Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                                 ],
-                                                                              ),
+                                                                              ), */
                                                                               Row(
                                                                                 children: [
                                                                                   Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
                                                                                   Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("ลานจอด :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("${data[index].carWhere.carWhere} ", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                             ],
@@ -1608,7 +1622,8 @@ class _CardetailPageState extends State<CardetailPage> {
                                   height: 330,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: const Color.fromARGB( 246, 231, 230, 236),
+                                      color: const Color.fromARGB(
+                                          246, 231, 230, 236),
                                     ),
                                     color: const Color.fromARGB(
                                         246, 231, 230, 236),
@@ -1725,20 +1740,26 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                               ),
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("รุ่น  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ประเภท  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("รถยนต์", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
-                                                                              Row(
+                                                                              /*  Row(
                                                                                 children: [
                                                                                   Text("สี  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
                                                                                   Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                                 ],
-                                                                              ),
+                                                                              ), */
                                                                               Row(
                                                                                 children: [
                                                                                   Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
                                                                                   Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("ลานจอด :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("${data[index].carWhere.carWhere} ", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                             ],
@@ -1910,7 +1931,8 @@ class _CardetailPageState extends State<CardetailPage> {
                                   height: 330,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: const Color.fromARGB( 246, 231, 230, 236),
+                                      color: const Color.fromARGB(
+                                          246, 231, 230, 236),
                                     ),
                                     color: const Color.fromARGB(
                                         246, 231, 230, 236),
@@ -2027,20 +2049,26 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                               ),
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("รุ่น  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("Yaris Ativ 1.2 G", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ประเภท  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("รถยนต์", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
-                                                                              Row(
+                                                                              /*  Row(
                                                                                 children: [
                                                                                   Text("สี  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
                                                                                   Text("แดง", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                                 ],
-                                                                              ),
+                                                                              ), */
                                                                               Row(
                                                                                 children: [
                                                                                   Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
                                                                                   Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text("ลานจอด :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
+                                                                                  Text("${data[index].carWhere.carWhere} ", textScaleFactor: 1, style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                             ],
@@ -2139,16 +2167,19 @@ class _CardetailPageState extends State<CardetailPage> {
     Alert(
       context: context,
       style: alertStyle,
-      image: Image.asset('assets/images/iconalert.png'),
+      image: Padding(
+        padding: const EdgeInsets.only(top: 15),
+        child: Image.asset('assets/images/iconalert.png'),
+      ),
       content: Padding(
-        padding: const EdgeInsets.only(top: 8.0),
+        padding: const EdgeInsets.only(top: 10.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(
             "ต้องการทำรายการ ?",
             style: TextStyleAlert.body18bold,
             textScaleFactor: 1,
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 8),
           Text(
             "คุณต้องการทำรายการเบิกรถยนต์",
             style: TextStyleAlert.body15normal,
@@ -2238,7 +2269,7 @@ class _CardetailPageState extends State<CardetailPage> {
   }
 
   // <------------------------ updateposition ------------------------>
-  dynamic urlup = 'http://206.189.92.79/api/';
+  dynamic urlup = 'https://vdqi-db.toyotaparagon.com/api/';
   Future<ResponseModel> PutCar(
     dynamic car_status,
     dynamic car_where,
@@ -2258,7 +2289,7 @@ class _CardetailPageState extends State<CardetailPage> {
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        urlup = Uri.parse("http://206.189.92.79/api/cardb/$IDCAR");
+        urlup = Uri.parse("https://vdqi-db.toyotaparagon.com/api/cardb/$IDCAR");
         await http.put(
           urlup,
           body: dataencode,

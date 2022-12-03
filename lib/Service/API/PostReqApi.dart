@@ -56,13 +56,12 @@ import '../Model/responsModel.dart';
 
 // New API
 class ReqAPIDB {
-  dynamic url = 'http://206.189.92.79/api/';
+  dynamic url = 'https://vdqi-db.toyotaparagon.com/api/';
   Future<ResponseModel> PostReq(
     int car_id,
     String req_date,
     String req_time,
     String person,
-   
   ) async {
     try {
       Map<String, String> data = {
@@ -70,7 +69,6 @@ class ReqAPIDB {
         'req_date': req_date,
         'req_time': req_time,
         'person': person,
-       
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -80,7 +78,7 @@ class ReqAPIDB {
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        url = Uri.parse("http://206.189.92.79/api/reqDB");
+        url = Uri.parse("https://vdqi-db.toyotaparagon.com/api/reqDB");
         await http.post(
           url,
           body: dataencode,
@@ -95,17 +93,9 @@ class ReqAPIDB {
 }
 
 class HistoryPost {
-  dynamic url = 'http://206.189.92.79/api/';
-  Future<ResponseModel> PostHis(
-   
-    int car_id,
-    String date,
-    String time,
-    String car_where,
-    String car_status,
-    String person
-
-  ) async {
+  dynamic url = 'https://vdqi-db.toyotaparagon.com/api/';
+  Future<ResponseModel> PostHis(int car_id, String date, String time,
+      String car_where, String car_status, String person) async {
     try {
       Map<String, String> data = {
         'car_id': car_id.toString(),
@@ -114,7 +104,6 @@ class HistoryPost {
         'car_where': car_where,
         'car_status': car_status,
         'person': person,
-        
       };
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -124,7 +113,7 @@ class HistoryPost {
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        url = Uri.parse("http://206.189.92.79/api/history");
+        url = Uri.parse("https://vdqi-db.toyotaparagon.com/api/history");
         await http.post(
           url,
           body: dataencode,
@@ -137,5 +126,3 @@ class HistoryPost {
     }
   }
 }
-
-

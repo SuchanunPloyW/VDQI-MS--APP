@@ -255,9 +255,12 @@ _ErrorLogin(context) {
   Alert(
     context: context,
     style: alertStyle,
-    image: Image.asset('assets/images/iconalert.png'),
+    image: Padding(
+       padding: const EdgeInsets.only(top: 15),
+      child: Image.asset('assets/images/iconalert.png'),
+    ),
     content: Padding(
-      padding: const EdgeInsets.only(top: 8.0),
+       padding: const EdgeInsets.only(top: 10.0),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text(
           "แจ้งเตือน ",

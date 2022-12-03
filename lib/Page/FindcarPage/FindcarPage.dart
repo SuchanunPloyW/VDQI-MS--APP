@@ -27,9 +27,9 @@ class _FindcarPageState extends State<FindcarPage> {
   Color baseColor2 = const Color(0xffA10002);
   @override
 
-  /* void initState() {
+  /*  void initState() {
     super.initState();
-     chassisController.text = '';
+     chassisController.text = '$qrCode';
   } */
   Widget build(BuildContext context) {
     final mqData = MediaQuery.of(context);
@@ -65,7 +65,6 @@ class _FindcarPageState extends State<FindcarPage> {
           ),
           backgroundColor: baseColor1,
           elevation: 0,
-          
         ),
         body: SingleChildScrollView(
           child: Stack(children: <Widget>[
@@ -103,7 +102,7 @@ class _FindcarPageState extends State<FindcarPage> {
                               decoration: InputDecoration(
                                   fillColor: Color(0xff9F1E1E),
                                   filled: true,
-                                  hintText: "เลขตัวถัง",
+                                  hintText: "แสกนค้นหาเลขตัวถัง",
                                   hintStyle: TextStyle(
                                     fontSize: 18,
                                     color: Colors.grey,
@@ -126,6 +125,7 @@ class _FindcarPageState extends State<FindcarPage> {
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
                                   wordSpacing: 1),
+                              readOnly: true,
                             ),
                           ),
                         ),
@@ -243,7 +243,6 @@ class _FindcarPageState extends State<FindcarPage> {
           ),
           child: ListTile(
             onTap: () async {
-              
               dynamic Id = model.carId.toString();
               SharedPreferences localStorage =
                   await SharedPreferences.getInstance();
@@ -297,11 +296,12 @@ class _FindcarPageState extends State<FindcarPage> {
               maxLines: 1,
             ),
             subtitle: AutoSizeText(
-              'Yaris Ativ 1.2 G',
+              'รถยนต์',
               style: TextStyle(
                 color: Color(0xff404040),
                 fontSize: 14,
-                fontFamily: ('IBM Plex Sans Thai'),
+                fontFamily: ('Bai Jamjuree'),
+                fontWeight: FontWeight.w300,
               ),
               maxFontSize: 11,
               minFontSize: 9,

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/SplashScreen/MainSplash.dart';
+import 'package:vdqims/Test/Test.dart';
 import 'SplashScreen/MainSplash1.dart';
 
 void main() => runApp(MyApp());
@@ -12,15 +13,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-    
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
 
-
-
   @override
-
-var userData;
+  var userData;
   @override
   void initState() {
     _getUserInfo();
@@ -35,18 +32,14 @@ var userData;
       userData = user;
     });
   }
+
   Widget build(BuildContext context) {
-   
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: const TextTheme(),
-      ),
-      debugShowCheckedModeBanner: false,
-      
-      home: userData == null 
-          ? const MainSplash() 
-          : MainSplash1()
-    );
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          textTheme: const TextTheme(),
+        ),
+        debugShowCheckedModeBanner: false,
+        home: userData == null ? const MainSplash() : MainSplash1());
   }
 }

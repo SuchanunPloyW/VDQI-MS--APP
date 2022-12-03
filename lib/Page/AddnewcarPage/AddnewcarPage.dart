@@ -9,11 +9,8 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:vdqims/Service/API/PositionAPI.dart';
-
 import 'package:vdqims/Service/Model/PositionModel.dart';
-
 import 'package:vdqims/Style/TextStyle.dart';
 import 'package:http/http.dart' as http;
 import '../../Service/API/PostCarDB.dart';
@@ -33,7 +30,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   late Future<List<PositionAPI>> _future;
 
   // <------------------------ updateposition ------------------------>
-  dynamic urlup = 'http://206.189.92.79/api/';
+  dynamic urlup = 'https://vdqi-db.toyotaparagon.com/api/';
   Future<ResponseModel> PutPosition(
     dynamic car_status,
     dynamic car_id,
@@ -52,7 +49,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        urlup = Uri.parse("http://206.189.92.79/api/posit/$IDposit");
+        urlup =
+            Uri.parse("https://vdqi-db.toyotaparagon.com/api/posit/$IDposit");
         await http.put(
           urlup,
           body: dataencode,
@@ -97,7 +95,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     });
   } */
 
-  var url = Uri.encodeFull('http://206.189.92.79/api/where/s/0');
+  var url = Uri.encodeFull('https://vdqi-db.toyotaparagon.com/api/where/s/0');
   Future<String> where() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var _authToken = localStorage.getString('token');
@@ -393,13 +391,15 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                             setState(() {
                                                               Whereid = newVal;
 
-                                                              WhereController.text =
-                                                              Whereid.toString();        
-                                                                  
+                                                              WhereController
+                                                                      .text =
+                                                                  Whereid
+                                                                      .toString();
+
                                                               selected = '';
                                                               line = '';
                                                               sort = '';
-                                                              
+
                                                               print(Whereid);
                                                             });
                                                           },
@@ -723,9 +723,12 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     Alert(
       context: context,
       style: alertStyle,
-      image: Image.asset('assets/images/iconalert.png'),
+      image: Padding(
+        padding: const EdgeInsets.only(top: 15),
+        child: Image.asset('assets/images/iconalert.png'),
+      ),
       content: Padding(
-        padding: const EdgeInsets.only(top: 8.0),
+        padding: const EdgeInsets.only(top: 10.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(
             "ต้องการทำรายการ ?",
@@ -904,9 +907,94 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     ).show();
   }
 
+ /*  Widget Stock() {
+    return FutureBuilder(
+        future: PostionService().getWhere1(),
+        builder:
+            (BuildContext context, AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+          if (snapshot.hasData) {
+            List<PositDBAPI>? data = snapshot.data;
+            return Container(
+              child: GridView.builder(
+                  padding: const EdgeInsets.all(2),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    crossAxisCount: 4,
+                  ),
+                  itemCount: data!.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: (data[index].car_status == 1
+                            ? Colors.red
+                            : data[index].car_status == 2
+                                ? Colors.grey
+                                : sort == data[index].sort.toString()
+                                    ? Colors.yellow
+                                    : const Color(0xff89EB80)),
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                      child: InkWell(
+                        onTap: () async {
+                          dynamic Idposit = data[index].posit_id.toString();
 
+                          SharedPreferences localStorage =
+                              await SharedPreferences.getInstance();
+                          localStorage.setString('ID', Idposit);
 
+                          setState(() {
+                            if (data[index].car_status == 1) {
+                              selected = '';
+                              line = '';
+                              sort = '';
+                            } else if (data[index].car_status == 2) {
+                              selected = '';
+                              line = '';
+                              sort = '';
+                            } else {
+                              selected = data[index].posit.toString();
+                              line = data[index].line.toString();
+                              sort = data[index].sort.toString();
 
+                              PositController.text = Idposit.toString();
+
+                              lineController.text = line.toString();
+
+                              print(data[index].posit);
+                              print(data[index].line);
+                            }
+                          });
+                        },
+                        onDoubleTap: () {
+                          setState(() {
+                            selected = '';
+                            line = '';
+                            sort = '';
+                          });
+                        },
+                        child: Center(
+                          child: Text(
+                            textScaleFactor: 1,
+                            data[index].posit.toString(),
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+            );
+          }
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.red,
+            ),
+          );
+        });
+  }
+ */
   //////////////// Stock A //////////////////
   Widget StockA() {
     return Padding(
@@ -1008,7 +1096,11 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15, right: 25),
                       child: Container(
-                        child: FutureBuilder(
+                          height: 285,
+                          width: double.infinity,
+                          
+                          /*  child: Stock()), */
+                           child: FutureBuilder(
                             future: PostionService().getWhere1(),
                             builder: (BuildContext context,
                                 AsyncSnapshot<List<PositDBAPI>?> snapshot) {
@@ -1114,8 +1206,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                   color: Colors.red,
                                 ),
                               );
-                            }),
-                      ),
+                            }), 
+                          ),
                     ),
                   )
                 ],

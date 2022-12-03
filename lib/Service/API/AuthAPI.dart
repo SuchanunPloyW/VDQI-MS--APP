@@ -3,10 +3,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class LoginAPI {
-  dynamic url = 'http://206.189.92.79/api/';
+  dynamic url = 'https://vdqi-db.toyotaparagon.com/api/';
   postData(data, apiUrl) async {
     var fullUrl = Uri.parse(url + apiUrl + await _getToken());
-    return await http.post(fullUrl, body: jsonEncode(data), headers: _setHeaders());
+    return await http.post(fullUrl,
+        body: jsonEncode(data), headers: _setHeaders());
   }
 
   getData(apiUrl) async {

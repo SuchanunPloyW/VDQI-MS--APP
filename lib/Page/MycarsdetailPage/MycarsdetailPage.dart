@@ -164,7 +164,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
                                               ),
                                             ),
                                             subtitle: AutoSizeText(
-                                              'Yaris Ativ 1.2 G ',
+                                              'รถยนต์ ',
                                               maxLines: 1,
                                               style: TextStyleMycar.subtitle,
                                               textScaleFactor: 1,

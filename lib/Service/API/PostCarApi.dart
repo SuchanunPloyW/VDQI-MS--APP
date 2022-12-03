@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import '../Model/responsModel.dart';
 
 class PostCarAPI {
-  dynamic url = 'http://206.189.92.79/api/';
+  dynamic url = 'https://vdqi-db.toyotaparagon.com/api/';
   Future<ResponseModel> PostCar(
     String car_chassis,
     String car_status,
@@ -40,7 +40,7 @@ class PostCarAPI {
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        url = Uri.parse("http://206.189.92.79/api/car");
+        url = Uri.parse("https://vdqi-db.toyotaparagon.com/api/car");
         await http.post(
           url,
           body: dataencode,

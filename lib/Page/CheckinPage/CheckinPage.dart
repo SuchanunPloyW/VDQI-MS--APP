@@ -35,7 +35,7 @@ class CheckinPage extends StatefulWidget {
 class _CheckinPageState extends State<CheckinPage> {
 /*   String qrCode = ''; */
   // <------------------------ updatereq ------------------------>
-  dynamic urlup = 'http://206.189.92.79/api/';
+  dynamic urlup = 'https://vdqi-db.toyotaparagon.com/api/';
   Future<ResponseModel> Putreq(
     dynamic car_where,
     dynamic car_status,
@@ -54,7 +54,7 @@ class _CheckinPageState extends State<CheckinPage> {
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        urlup = Uri.parse("http://206.189.92.79/api/cardb/$carID");
+        urlup = Uri.parse("https://vdqi-db.toyotaparagon.com/api/cardb/$carID");
         await http.put(
           urlup,
           body: dataencode,
@@ -67,7 +67,7 @@ class _CheckinPageState extends State<CheckinPage> {
     }
   }
 
-  dynamic urlup1 = 'http://206.189.92.79/api/';
+  dynamic urlup1 = 'https://vdqi-db.toyotaparagon.com/api/';
   Future<ResponseModel> PutPosit(
     dynamic car_status,
     dynamic car_id,
@@ -86,7 +86,8 @@ class _CheckinPageState extends State<CheckinPage> {
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        urlup1 = Uri.parse("http://206.189.92.79/api/posit/$carID");
+        urlup1 =
+            Uri.parse("https://vdqi-db.toyotaparagon.com/api/posit/$carID");
         await http.put(
           urlup1,
           body: dataencode,
@@ -100,7 +101,7 @@ class _CheckinPageState extends State<CheckinPage> {
   }
 
   // <------------------------ updateperson------------------------>
-  dynamic urlup2 = 'http://206.189.92.79/api/';
+  dynamic urlup2 = 'https://vdqi-db.toyotaparagon.com/api/';
   Future<ResponseModel> Putperson(
     dynamic person,
   ) async {
@@ -117,7 +118,8 @@ class _CheckinPageState extends State<CheckinPage> {
         'Authorization': 'Bearer $_authToken'
       };
       if (_authToken != null) {
-        urlup2 = Uri.parse("http://206.189.92.79/api/reqDB/$reqID");
+        urlup2 =
+            Uri.parse("https://vdqi-db.toyotaparagon.com/api/reqDB/$reqID");
         await http.put(
           urlup2,
           body: dataencode,
@@ -136,7 +138,7 @@ class _CheckinPageState extends State<CheckinPage> {
   String? itesmvalue;
   var userData;
 
-  var url = Uri.encodeFull('http://206.189.92.79/api/where/s/1');
+  var url = Uri.encodeFull('https://vdqi-db.toyotaparagon.com/api/where/s/1');
   Future<String> station() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var _authToken = localStorage.getString('token');
@@ -413,8 +415,8 @@ class _CheckinPageState extends State<CheckinPage> {
                                                                             'where_id']
                                                                         .toString(),
                                                                     child: Text(
-                                                                      item['car_where'],
-                                                                          
+                                                                      item[
+                                                                          'car_where'],
                                                                       style:
                                                                           const TextStyle(
                                                                         fontFamily:
@@ -506,9 +508,12 @@ class _CheckinPageState extends State<CheckinPage> {
     Alert(
       context: context,
       style: alertStyle,
-      image: Image.asset('assets/images/iconalert.png'),
+      image: Padding(
+        padding: const EdgeInsets.only(top: 15),
+        child: Image.asset('assets/images/iconalert.png'),
+      ),
       content: Padding(
-        padding: const EdgeInsets.only(top: 8.0),
+        padding: const EdgeInsets.only(top: 10.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text(
             "ต้องการทำรายการ ?",
@@ -538,16 +543,10 @@ class _CheckinPageState extends State<CheckinPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "เข้าสถานี",
+                    "เข้าสถานีใช่หรือไม่",
                     style: TextStyleAlert.body15normal,
                     textScaleFactor: 1,
                   ),
-                  const SizedBox(width: 5),
-                  Text(
-                    "ใช่หรือไม่",
-                    style: TextStyleAlert.body15normal,
-                    textScaleFactor: 1,
-                  )
                 ],
               )
             ],
