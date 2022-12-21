@@ -37,7 +37,7 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
 
       // response uri
       var response = await http.get(
-          Uri.parse('http://206.189.92.79/api/history/search/$carreq'),
+          Uri.parse('https://vdqi-db.toyotaparagon.com/api/history/search/$carreq'),
           headers: {
             HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
           });

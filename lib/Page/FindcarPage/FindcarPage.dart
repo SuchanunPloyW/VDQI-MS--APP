@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Page/CardetailPage/CardetailPage.dart';
-
 import 'package:vdqims/Style/TextStyle.dart';
 import '../../Service/Model/CarDBModel.dart';
 import '../MenuPage/MenuPage.dart';
@@ -32,6 +31,7 @@ class _FindcarPageState extends State<FindcarPage> {
      chassisController.text = '$qrCode';
   } */
   Widget build(BuildContext context) {
+    final FocusNode _focusNode = FocusNode();
     final mqData = MediaQuery.of(context);
     final mqDataNew = mqData.copyWith(
         textScaleFactor:
@@ -91,8 +91,12 @@ class _FindcarPageState extends State<FindcarPage> {
                           child: MediaQuery(
                             data: mqDataNew,
                             child: TextFormField(
+                              /* onChanged: (String? value) {
+                                setState(() {
+                                  qrCode = value.toString();
+                                });
+                              }, */
                               onChanged: (String? value) {
-                                print(value);
                                 setState(() {
                                   qrCode = value.toString();
                                 });
@@ -125,7 +129,7 @@ class _FindcarPageState extends State<FindcarPage> {
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
                                   wordSpacing: 1),
-                              readOnly: true,
+                              /*  readOnly: true, */
                             ),
                           ),
                         ),

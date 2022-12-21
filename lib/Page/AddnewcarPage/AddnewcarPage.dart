@@ -10,7 +10,6 @@ import 'package:intl/intl.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vdqims/Service/API/PositionAPI.dart';
-import 'package:vdqims/Service/Model/PositionModel.dart';
 import 'package:vdqims/Style/TextStyle.dart';
 import 'package:http/http.dart' as http;
 import '../../Service/API/PostCarDB.dart';
@@ -27,7 +26,7 @@ class AddnewcarPage extends StatefulWidget {
 }
 
 class _AddnewcarPageState extends State<AddnewcarPage> {
-  late Future<List<PositionAPI>> _future;
+  late Future<List<PositDBAPI>> _future;
 
   // <------------------------ updateposition ------------------------>
   dynamic urlup = 'https://vdqi-db.toyotaparagon.com/api/';
@@ -455,11 +454,11 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                     context,
                                                                 AsyncSnapshot<
                                                                         List<
-                                                                            PositionAPI>?>
+                                                                            PositDBAPI>?>
                                                                     snapshot) {
                                                               if (snapshot
                                                                   .hasData) {
-                                                                List<PositionAPI>?
+                                                                List<PositDBAPI>?
                                                                     data =
                                                                     snapshot
                                                                         .data;
@@ -780,7 +779,40 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
             );
 
             if (respones.success) {
-              getcar();
+              SharedPreferences localStorage =
+                  await SharedPreferences.getInstance();
+              var _authToken = localStorage.getString('token');
+              var response = await http.get(
+                  Uri.parse(
+                      'https://vdqi-db.toyotaparagon.com/api/cardb/id/${ChassisController.text}'),
+                  headers: {
+                    HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
+                  });
+              dynamic car = jsonDecode(response.body);
+              /* return car; */
+              SharedPreferences localStorage1 =
+                  await SharedPreferences.getInstance();
+              localStorage1.setString('car', json.encode(car));
+
+              var IdData;
+              SharedPreferences localStorage2 =
+                  await SharedPreferences.getInstance();
+              var carJson = localStorage2.getString('car');
+              var cars = json.decode(carJson!);
+              setState(() {
+                IdData = cars;
+              });
+
+              var AA = (IdData[0]['car_id']);
+              print(AA);
+              ResponseModel responesPut = await PutPosition(
+                "1",
+                "$AA", /* IdData[0]['car_id'] */
+              );
+              if (responesPut.success) {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => AddnewSplash()));
+              }
             } else {
               _ErrorAddcar(context);
             }
@@ -795,17 +827,16 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     ).show();
   }
 
-  getcar() async {
+ /*  getcar() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var _authToken = localStorage.getString('token');
     var response = await http.get(
         Uri.parse(
-            'http://206.189.92.79/api/cardb/id/${ChassisController.text}'),
+            'https://vdqi-db.toyotaparagon.com/api/cardb/id/${ChassisController.text}'),
         headers: {
           HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
         });
     dynamic car = jsonDecode(response.body);
-
     /* return car; */
     SharedPreferences localStorage1 = await SharedPreferences.getInstance();
     localStorage1.setString('car', json.encode(car));
@@ -828,7 +859,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       Navigator.push(
           context, MaterialPageRoute(builder: (_) => AddnewSplash()));
     }
-  }
+  } */
 
   Future<void> scanQRCode() async {
     try {
@@ -907,7 +938,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     ).show();
   }
 
- /*  Widget Stock() {
+  /*  Widget Stock() {
     return FutureBuilder(
         future: PostionService().getWhere1(),
         builder:
@@ -1096,11 +1127,11 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15, right: 25),
                       child: Container(
-                          height: 285,
-                          width: double.infinity,
-                          
-                          /*  child: Stock()), */
-                           child: FutureBuilder(
+                        height: 285,
+                        width: double.infinity,
+
+                        /*  child: Stock()), */
+                        child: FutureBuilder(
                             future: PostionService().getWhere1(),
                             builder: (BuildContext context,
                                 AsyncSnapshot<List<PositDBAPI>?> snapshot) {
@@ -1206,8 +1237,8 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                   color: Colors.red,
                                 ),
                               );
-                            }), 
-                          ),
+                            }),
+                      ),
                     ),
                   )
                 ],
