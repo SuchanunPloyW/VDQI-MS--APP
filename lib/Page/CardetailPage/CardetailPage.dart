@@ -58,7 +58,8 @@ class _CardetailPageState extends State<CardetailPage> {
 
       // response uri
       var response = await http.get(
-          Uri.parse('https://vdqi-db.toyotaparagon.com/api/history/search/$carreq'),
+          Uri.parse(
+              'https://vdqi-db.toyotaparagon.com/api/history/search/$carreq'),
           headers: {
             HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
           });
@@ -739,7 +740,7 @@ class _CardetailPageState extends State<CardetailPage> {
             child: Column(
               children: [
                 Center(
-                    child: Text('แผนผังแสดงลานจอด Stock A ',
+                    child: Text('แผนผังแสดงลานจอด ลานดิน ',
                         style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockA(),
@@ -787,7 +788,7 @@ class _CardetailPageState extends State<CardetailPage> {
             child: Column(
               children: [
                 Center(
-                    child: Text('แผนผังแสดงลานจอด Stock B ',
+                    child: Text('แผนผังแสดงลานจอด Stock A ',
                         style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockB(),
@@ -835,7 +836,7 @@ class _CardetailPageState extends State<CardetailPage> {
             child: Column(
               children: [
                 Center(
-                    child: Text('แผนผังแสดงลานจอด Stock C ',
+                    child: Text('แผนผังแสดงลานจอด Stock B ',
                         style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockC(),
@@ -883,7 +884,7 @@ class _CardetailPageState extends State<CardetailPage> {
             child: Column(
               children: [
                 Center(
-                    child: Text('แผนผังแสดงลานจอด Stock D ',
+                    child: Text('แผนผังแสดงลานจอด Stock C ',
                         style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockD(),

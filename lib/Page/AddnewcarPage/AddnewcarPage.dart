@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_new
+// ignore_for_file: unnecessary_new, unnecessary_const
 
 import 'dart:convert';
 import 'dart:io';
@@ -17,6 +17,7 @@ import '../../Service/Model/PositDBModel.dart';
 import '../../SplashScreen/AddnewSplash.dart';
 import '../../Service/Model/responsModel.dart';
 import '../MenuPage/MenuPage.dart';
+
 
 class AddnewcarPage extends StatefulWidget {
   const AddnewcarPage({Key? key}) : super(key: key);
@@ -237,8 +238,13 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                       child: SizedBox(
                                                         height: 35.2,
                                                         child: MediaQuery(
+                                                          
                                                           data: mqDataNew,
                                                           child: TextFormField(
+                                                            inputFormatters: [
+                                                              LengthLimitingTextInputFormatter(
+                                                                  17),
+                                                            ],
                                                             controller: ChassisController =
                                                                 TextEditingController(
                                                                     text:
@@ -246,7 +252,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                             style:
                                                                 TextStyleAlert
                                                                     .body15bold,
-                                                            readOnly: true,
+                                                            
                                                             decoration:
                                                                 InputDecoration(
                                                               contentPadding:
@@ -777,8 +783,16 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
               1.toString(),
               WhereController.text,
             );
-
+          
             if (respones.success) {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => const AddnewSplash()));
+            } else {
+              _ErrorAddcar(context);
+            }
+
+            /* if (respones.success) {
+              
               SharedPreferences localStorage =
                   await SharedPreferences.getInstance();
               var _authToken = localStorage.getString('token');
@@ -788,11 +802,19 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                   headers: {
                     HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
                   });
-              dynamic car = jsonDecode(response.body);
+
+              var car = jsonDecode(response.body);
+              print(car);
+             // dynamic car = jsonDecode(response.body);
+              
               /* return car; */
-              SharedPreferences localStorage1 =
-                  await SharedPreferences.getInstance();
+              SharedPreferences localStorage1 = await SharedPreferences.getInstance();
               localStorage1.setString('car', json.encode(car));
+              SharedPreferences localStorage2 = await SharedPreferences.getInstance();
+              var carJson = localStorage2.getString('car');
+              print(carJson);
+                  
+
 
               var IdData;
               SharedPreferences localStorage2 =
@@ -803,7 +825,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                 IdData = cars;
               });
 
-              var AA = (IdData[0]['car_id']);
+              var AA = (IdData[0]['car_id'] );
               print(AA);
               ResponseModel responesPut = await PutPosition(
                 "1",
@@ -815,7 +837,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
               }
             } else {
               _ErrorAddcar(context);
-            }
+            } */
           },
         ),
         DialogButton(
@@ -827,7 +849,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     ).show();
   }
 
- /*  getcar() async {
+   /* getcar() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
     var _authToken = localStorage.getString('token');
     var response = await http.get(
@@ -836,6 +858,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
         headers: {
           HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
         });
+    print(_authToken);
     dynamic car = jsonDecode(response.body);
     /* return car; */
     SharedPreferences localStorage1 = await SharedPreferences.getInstance();
@@ -849,7 +872,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       IdData = cars;
     });
 
-    var AA = (IdData[0]['car_id']);
+    var AA = (cars[0]['car_id']);
     print(AA);
     ResponseModel responesPut = await PutPosition(
       "1",
@@ -1035,7 +1058,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           children: [
             Center(
               child: Text(
-                "Stock A",
+                "ลานดิน",
                 style: TextStyleAlert.body18bold,
                 textScaleFactor: 1,
               ),
@@ -1258,7 +1281,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           children: [
             Center(
               child: Text(
-                "Stock B",
+                "Stock A ใกล้ลานดิน",
                 style: TextStyleAlert.body18bold,
                 textScaleFactor: 1,
               ),
@@ -1485,7 +1508,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           children: [
             Center(
               child: Text(
-                "Stock C",
+                "Stock B (Stock VDQI)",
                 style: TextStyleAlert.body18bold,
                 textScaleFactor: 1,
               ),
@@ -1713,7 +1736,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           children: [
             Center(
               child: Text(
-                "Stock D",
+                "Stock C (No.1)",
                 style: TextStyleAlert.body18bold,
                 textScaleFactor: 1,
               ),
