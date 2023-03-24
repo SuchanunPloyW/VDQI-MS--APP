@@ -643,6 +643,9 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
   }
 
   void _CheckIn({required ReqDBAPI model}) {
+    setState(() {
+      _fetchData(context);
+    });
     Future.delayed(const Duration(milliseconds: 1000), () {
       Navigator.push(
           context,
@@ -673,4 +676,18 @@ class _MycarsdetailPageState extends State<MycarsdetailPage> {
       qrCode = 'Failed to get platform version.';
     }
   }
+}
+
+
+_fetchData(BuildContext context, [bool mounted = true]) async {
+  showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+          ),
+        );
+      });
 }

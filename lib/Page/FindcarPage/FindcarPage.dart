@@ -19,17 +19,27 @@ class FindcarPage extends StatefulWidget {
 
 class _FindcarPageState extends State<FindcarPage> {
   String qrCode = '';
-  TextEditingController chassisController = TextEditingController(text: '');
+  TextEditingController ChassisController = TextEditingController();
+  Future<void> scanBarcode() async {
+    String barcodeScanRes;
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+      print(barcodeScanRes);
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+    if (!mounted) return;
+    setState(() {
+      qrCode = barcodeScanRes;
+      ChassisController.text = qrCode;
+    });
+  }
 
   @override
   Color baseColor1 = const Color(0xffE52628);
   Color baseColor2 = const Color(0xffA10002);
   @override
-
-  /*  void initState() {
-    super.initState();
-     chassisController.text = '$qrCode';
-  } */
   Widget build(BuildContext context) {
     final FocusNode _focusNode = FocusNode();
     final mqData = MediaQuery.of(context);
@@ -91,18 +101,12 @@ class _FindcarPageState extends State<FindcarPage> {
                           child: MediaQuery(
                             data: mqDataNew,
                             child: TextFormField(
-                              /* onChanged: (String? value) {
-                                setState(() {
-                                  qrCode = value.toString();
-                                });
-                              }, */
                               onChanged: (String? value) {
                                 setState(() {
                                   qrCode = value.toString();
                                 });
                               },
-                              controller: chassisController =
-                                  TextEditingController(text: "$qrCode"),
+                              controller: ChassisController,
                               decoration: InputDecoration(
                                   fillColor: Color(0xff9F1E1E),
                                   filled: true,
@@ -135,7 +139,6 @@ class _FindcarPageState extends State<FindcarPage> {
                         ),
                         SizedBox(width: 10),
                         InkWell(
-                          onTap: () => scanQRCode(),
                           child: SizedBox(
                             height: 65,
                             width: 65,
@@ -152,7 +155,7 @@ class _FindcarPageState extends State<FindcarPage> {
                                     height: 18.94,
                                     width: 18.94,
                                   ),
-                                  onPressed: () => scanQRCode(),
+                                  onPressed: () => scanBarcode(),
                                 )),
                           ),
                         )
@@ -195,7 +198,7 @@ class _FindcarPageState extends State<FindcarPage> {
                                             itemCount: data!.length,
                                             itemBuilder: (context, index) {
                                               //String postion = snapshot.data[index]
-                                              if (chassisController
+                                              if (ChassisController
                                                   .text.isEmpty) {
                                                 return Listcar(
                                                   model: data[index],
@@ -203,7 +206,7 @@ class _FindcarPageState extends State<FindcarPage> {
                                               } else if (snapshot
                                                   .data![index].carChassis
                                                   .contains(
-                                                      chassisController.text)) {
+                                                      ChassisController.text)) {
                                                 return Listcar(
                                                   model: data[index],
                                                 );

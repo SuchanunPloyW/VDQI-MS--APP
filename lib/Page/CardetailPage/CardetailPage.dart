@@ -2216,6 +2216,9 @@ class _CardetailPageState extends State<CardetailPage> {
             ),
           ),
           onPressed: () async {
+            setState(() {
+              _fetchData(context);
+            });
             ResponseModel response = await ReqAPIDB().PostReq(
               widget.model.carId,
               DateFormat("yyyy-MM-dd").format(DateTime.now()),
@@ -2269,6 +2272,18 @@ class _CardetailPageState extends State<CardetailPage> {
     ).show();
   }
 
+_fetchData(BuildContext context, [bool mounted = true]) async {
+  showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+          ),
+        );
+      });
+}
   // <------------------------ updateposition ------------------------>
   dynamic urlup = 'https://vdqi-db.toyotaparagon.com/api/';
   Future<ResponseModel> PutCar(

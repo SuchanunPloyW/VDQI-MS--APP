@@ -19,6 +19,7 @@ import '../../Service/Model/responsModel.dart';
 import '../MenuPage/MenuPage.dart';
 
 
+
 class AddnewcarPage extends StatefulWidget {
   const AddnewcarPage({Key? key}) : super(key: key);
 
@@ -27,7 +28,9 @@ class AddnewcarPage extends StatefulWidget {
 }
 
 class _AddnewcarPageState extends State<AddnewcarPage> {
+  
   late Future<List<PositDBAPI>> _future;
+  
 
   // <------------------------ updateposition ------------------------>
   dynamic urlup = 'https://vdqi-db.toyotaparagon.com/api/';
@@ -76,6 +79,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   var userData;
   var carData;
 
+
 // <------------------------ Service ------------------------>
   void _getUserInfo() async {
     SharedPreferences localStorage = await SharedPreferences.getInstance();
@@ -120,6 +124,21 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   TextEditingController lineController = TextEditingController();
 
   // <------------------------ Function ------------------------>
+  Future<void> scanBarcode() async {
+    String barcodeScanRes;
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+      print(barcodeScanRes);
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+    if (!mounted) return;
+    setState(() {
+      qrCode = barcodeScanRes;
+      ChassisController.text = qrCode;
+    });
+  }
 
   @override
   void initState() {
@@ -245,10 +264,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                               LengthLimitingTextInputFormatter(
                                                                   17),
                                                             ],
-                                                            controller: ChassisController =
-                                                                TextEditingController(
-                                                                    text:
-                                                                        "$qrCode"),
+                                                            controller: ChassisController,
                                                             style:
                                                                 TextStyleAlert
                                                                     .body15bold,
@@ -309,7 +325,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
                                                                   width: 18.94,
                                                                 ),
                                                                 onPressed: () =>
-                                                                    scanQRCode(),
+                                                                    scanBarcode(),
                                                               ),
                                                             )))
                                                   ],
@@ -713,6 +729,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
 
   //<-----------------------------------------------  Method Function ----------------------------------------------------->
   _AddCar(context) {
+      bool isLoading = false;
     var alertStyle = AlertStyle(
       animationType: AnimationType.fromBottom,
       isCloseButton: false,
@@ -772,8 +789,14 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           }, */
           color: const Color(0xff44A73B),
           child: Text("ยืนยัน", style: TDialogButton.body14),
-          onPressed: () async {
-            ResponseModel respones = await PostcarDB().CarDB(
+          onPressed:   () async {
+           //CircularProgressIndicator()
+           //_fetchData(context);
+
+           setState(() {
+             _fetchData(context);
+           });
+           ResponseModel respones = await PostcarDB().CarDB(
               ChassisController.text,
               PositController.text,
               "1",
@@ -783,61 +806,36 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
               1.toString(),
               WhereController.text,
             );
-          
             if (respones.success) {
+              
               Navigator.push(
                   context, MaterialPageRoute(builder: (_) => const AddnewSplash()));
             } else {
               _ErrorAddcar(context);
             }
+           
+            /* ResponseModel respones = await PostcarDB().CarDB(
+              ChassisController.text,
+              PositController.text,
+              "1",
+              "${userData['id']}",
+              DateFormat("yyyy-MM-dd").format(DateTime.now()),
+              DateFormat.Hm().format(DateTime.now()),
+              1.toString(),
+              WhereController.text,
+            ); */
+          
 
+          
             /* if (respones.success) {
               
-              SharedPreferences localStorage =
-                  await SharedPreferences.getInstance();
-              var _authToken = localStorage.getString('token');
-              var response = await http.get(
-                  Uri.parse(
-                      'https://vdqi-db.toyotaparagon.com/api/cardb/id/${ChassisController.text}'),
-                  headers: {
-                    HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
-                  });
-
-              var car = jsonDecode(response.body);
-              print(car);
-             // dynamic car = jsonDecode(response.body);
-              
-              /* return car; */
-              SharedPreferences localStorage1 = await SharedPreferences.getInstance();
-              localStorage1.setString('car', json.encode(car));
-              SharedPreferences localStorage2 = await SharedPreferences.getInstance();
-              var carJson = localStorage2.getString('car');
-              print(carJson);
-                  
-
-
-              var IdData;
-              SharedPreferences localStorage2 =
-                  await SharedPreferences.getInstance();
-              var carJson = localStorage2.getString('car');
-              var cars = json.decode(carJson!);
-              setState(() {
-                IdData = cars;
-              });
-
-              var AA = (IdData[0]['car_id'] );
-              print(AA);
-              ResponseModel responesPut = await PutPosition(
-                "1",
-                "$AA", /* IdData[0]['car_id'] */
-              );
-              if (responesPut.success) {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => AddnewSplash()));
-              }
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => const AddnewSplash()));
             } else {
               _ErrorAddcar(context);
             } */
+
+            
           },
         ),
         DialogButton(
@@ -849,59 +847,20 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     ).show();
   }
 
-   /* getcar() async {
-    SharedPreferences localStorage = await SharedPreferences.getInstance();
-    var _authToken = localStorage.getString('token');
-    var response = await http.get(
-        Uri.parse(
-            'https://vdqi-db.toyotaparagon.com/api/cardb/id/${ChassisController.text}'),
-        headers: {
-          HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
-        });
-    print(_authToken);
-    dynamic car = jsonDecode(response.body);
-    /* return car; */
-    SharedPreferences localStorage1 = await SharedPreferences.getInstance();
-    localStorage1.setString('car', json.encode(car));
-
-    var IdData;
-    SharedPreferences localStorage2 = await SharedPreferences.getInstance();
-    var carJson = localStorage2.getString('car');
-    var cars = json.decode(carJson!);
-    setState(() {
-      IdData = cars;
-    });
-
-    var AA = (cars[0]['car_id']);
-    print(AA);
-    ResponseModel responesPut = await PutPosition(
-      "1",
-      "$AA", /* IdData[0]['car_id'] */
-    );
-    if (responesPut.success) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (_) => AddnewSplash()));
-    }
-  } */
-
-  Future<void> scanQRCode() async {
-    try {
-      final qrCode = await FlutterBarcodeScanner.scanBarcode(
-        '#ff6666',
-        'Cancel',
-        true,
-        ScanMode.QR,
-      );
-
-      if (!mounted) return;
-
-      setState(() {
-        this.qrCode = qrCode;
+_fetchData(BuildContext context, [bool mounted = true]) async {
+  showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+          ),
+        );
       });
-    } on PlatformException {
-      qrCode = 'Failed to get platform version.';
-    }
-  }
+  
+
+}
 
   _ErrorAddcar(context) {
     // Reusable alert style
@@ -1051,6 +1010,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
  */
   //////////////// Stock A //////////////////
   Widget StockA() {
+   
     return Padding(
       padding: const EdgeInsets.only(left: 10),
       child: Container(

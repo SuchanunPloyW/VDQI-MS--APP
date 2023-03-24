@@ -556,6 +556,9 @@ class _CheckinPageState extends State<CheckinPage> {
       buttons: [
         DialogButton(
           onPressed: () async {
+            setState(() {
+              _fetchData(context);
+            });
             ResponseModel response = await Putreq(
               StationController.text,
               "2",
@@ -604,6 +607,18 @@ class _CheckinPageState extends State<CheckinPage> {
       ],
     ).show();
   }
+}
+_fetchData(BuildContext context, [bool mounted = true]) async {
+  showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+          ),
+        );
+      });
 }
 
 //<--------------------   SplashScreen  -------------------->
