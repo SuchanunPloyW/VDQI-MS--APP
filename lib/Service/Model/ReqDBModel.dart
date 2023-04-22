@@ -30,8 +30,7 @@ class ReqDB {
 
   factory ReqDB.fromJson(Map<String, dynamic> json) => ReqDB(
         currentPage: json["current_page"],
-        data:
-            List<ReqDBAPI>.from(json["data"].map((e) => ReqDBAPI.fromJson(e))),
+        data: List<ReqDBAPI>.from(json["data"].map((e) => ReqDBAPI.fromJson(e))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
@@ -59,7 +58,7 @@ class ReqDBAPI {
   Carid carid;
   String req_date;
   String req_time;
-   Person person;
+  Person person;
 
   factory ReqDBAPI.fromJson(Map<String, dynamic> json) => ReqDBAPI(
         req_id: json["req_id"],
@@ -75,7 +74,6 @@ class Person {
     required this.id,
     required this.fullname,
     required this.lastname,
-
   });
   int id;
   String fullname;
@@ -88,7 +86,6 @@ class Person {
       );
 }
 
-
 class Carid {
   Carid({
     required this.car_id,
@@ -96,9 +93,6 @@ class Carid {
     required this.carStatus,
     required this.positId,
     required this.carWhere,
- 
-
-
   });
   int car_id;
   String car_chassis;
@@ -106,44 +100,37 @@ class Carid {
   PositId positId;
   CarWhere carWhere;
 
-
-
   factory Carid.fromJson(Map<String, dynamic> json) => Carid(
         car_id: json["car_id"],
         car_chassis: json["car_chassis"],
         carStatus: CarStatus.fromJson(json["car_status"]),
         positId: PositId.fromJson(json["posit_id"]),
         carWhere: CarWhere.fromJson(json["car_where"]),
-      
       );
 }
+
 class PositId {
   PositId({
     required this.positId,
     required this.line,
     required this.posit,
     required this.sort,
-  
     required this.car_status,
-    
   });
 
   int positId;
   String line;
   int posit;
   int sort;
-  
+
   int car_status;
-  
+
   factory PositId.fromJson(Map<String, dynamic> json) => PositId(
         positId: json["posit_id"],
         line: json["line"],
         posit: json["posit"],
         sort: json["sort"],
-        
         car_status: json["car_status"],
-        
-      
       );
 }
 

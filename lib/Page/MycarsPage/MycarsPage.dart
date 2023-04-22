@@ -43,11 +43,10 @@ class _MycarsPageState extends State<MycarsPage> {
     var _authToken = localStorage.getString('token');
 
     // response uri
-    var response = await http.get(
-        Uri.parse('https://vdqi-db.toyotaparagon.com/api/reqDB/mycar/${userData['id']}'),
-        headers: {
-          HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
-        });
+    var response =
+        await http.get(Uri.parse('https://vdqi-db.toyotaparagon.com/api/reqDB/mycar/${userData['id']}'), headers: {
+      HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
+    });
     // return value
     var req = ReqDB.fromJson(jsonDecode(response.body));
     return req.data;
@@ -64,19 +63,13 @@ class _MycarsPageState extends State<MycarsPage> {
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
-              text: TextSpan(
-                  text: "รถยนต์ของฉัน",
-                  style: TextStyleMenuName.bodyMenuThai,
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: '\nMy Cars',
-                        style: TextStyleMenuName.bodyMenuEng),
-                  ])),
+              text: TextSpan(text: "รถยนต์ของฉัน", style: TextStyleMenuName.bodyMenuThai, children: <TextSpan>[
+                TextSpan(text: '\nMy Cars', style: TextStyleMenuName.bodyMenuEng),
+              ])),
           leading: IconButton(
             onPressed: () {
               Future.delayed(const Duration(milliseconds: 200), () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const MenuPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const MenuPage()));
               });
             },
             icon: const Icon(
@@ -106,64 +99,56 @@ class _MycarsPageState extends State<MycarsPage> {
             SingleChildScrollView(
               child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(
-                            height: 650,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 5, right: 5),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(12),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: Color.fromRGBO(0, 0, 0, 0.05),
-                                          blurRadius: 12,
-                                          spreadRadius: 5
-                                          /*   offset: Offset(0, 3), */
-                                          ),
-                                    ]),
-                                child: FutureBuilder(
-                                  future: getfullname(),
-                                  builder: (BuildContext context,
-                                      AsyncSnapshot<List<ReqDBAPI>?> snapshot) {
-                                    if (snapshot.hasData) {
-                                      List<ReqDBAPI>? data = snapshot.data;
+                  child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                    SizedBox(
+                        height: 650,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: const [
+                                  BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.05), blurRadius: 12, spreadRadius: 5
+                                      /*   offset: Offset(0, 3), */
+                                      ),
+                                ]),
+                            child: FutureBuilder(
+                              future: getfullname(),
+                              builder: (BuildContext context, AsyncSnapshot<List<ReqDBAPI>?> snapshot) {
+                                if (snapshot.hasData) {
+                                  List<ReqDBAPI>? data = snapshot.data;
 
-                                      return Align(
-                                        alignment: Alignment.topCenter,
-                                        child: ListView.builder(
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: data!.length,
-                                          itemBuilder: (context, index) =>
-                                              Listcar(
-                                            model: data[index],
-                                          ),
-                                          /*  Listcar(model: data[index],),  */
-                                        ),
-                                      );
-                                    }
-                                    return const Center(
-                                        /*  child:CircularProgressIndicator() */
-                                        /* Text(
+                                  return Align(
+                                    alignment: Alignment.topCenter,
+                                    child: ListView.builder(
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: data!.length,
+                                      itemBuilder: (context, index) => Listcar(
+                                        model: data[index],
+                                      ),
+                                      /*  Listcar(model: data[index],),  */
+                                    ),
+                                  );
+                                }
+                                return const Center(
+                                    /*  child:CircularProgressIndicator() */
+                                    /* Text(
                                         'ไม่พบรถยนต์ในรายการของฉัน',
                                         style: TextStyle(
                                           fontFamily: ('Bai Jamjuree'),
                                         ),
                                         textScaleFactor: 1,
                                       ), */
-                                        );
-                                  },
-                                ),
-                              ),
-                            )),
-                        const SizedBox(height: 10),
-                        Text('Powered by Weise Technika',
-                            style: TextStyleFoot.bodyfoot),
-                      ])),
+                                    );
+                              },
+                            ),
+                          ),
+                        )),
+                    const SizedBox(height: 10),
+                    Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot),
+                  ])),
             )
           ]),
         ));
@@ -190,15 +175,9 @@ class _MycarsPageState extends State<MycarsPage> {
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
           child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.1),
-                      blurRadius: 10,
-                      spreadRadius: 5),
-                ]),
+            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12), boxShadow: const [
+              BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.1), blurRadius: 10, spreadRadius: 5),
+            ]),
             child: ListTile(
               leading: AspectRatio(
                 aspectRatio: 1,

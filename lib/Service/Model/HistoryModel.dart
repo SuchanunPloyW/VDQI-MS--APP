@@ -30,8 +30,7 @@ class HistoryDB {
 
   factory HistoryDB.fromJson(Map<String, dynamic> json) => HistoryDB(
         currentPage: json["current_page"],
-        data: List<HistoryDBAPI>.from(
-        json["data"].map((e) => HistoryDBAPI.fromJson(e))),
+        data: List<HistoryDBAPI>.from(json["data"].map((e) => HistoryDBAPI.fromJson(e))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
@@ -51,7 +50,7 @@ class HistoryDBAPI {
     required this.his_id,
     required this.carid,
     required this.date,
-     required this.time,
+    required this.time,
     required this.carWhere,
     required this.carStatus,
     required this.person,
@@ -76,12 +75,12 @@ class HistoryDBAPI {
         person: Person.fromJson(json["person"]),
       );
 }
+
 class Person {
   Person({
     required this.id,
     required this.fullname,
     required this.lastname,
-
   });
   int id;
   String fullname;
@@ -94,27 +93,21 @@ class Person {
       );
 }
 
-
 class Carid {
   Carid({
     required this.car_id,
     required this.car_chassis,
-  
     required this.positId,
-    
   });
   int car_id;
   String car_chassis;
-  
+
   PositId positId;
- 
 
   factory Carid.fromJson(Map<String, dynamic> json) => Carid(
         car_id: json["car_id"],
         car_chassis: json["car_chassis"],
-       
         positId: PositId.fromJson(json["posit_id"]),
-      
       );
 }
 
@@ -124,21 +117,18 @@ class PositId {
     required this.line,
     required this.posit,
     required this.sort,
-  
   });
 
   int positId;
   String line;
   int posit;
   int sort;
- 
 
   factory PositId.fromJson(Map<String, dynamic> json) => PositId(
         positId: json["posit_id"],
         line: json["line"],
         posit: json["posit"],
         sort: json["sort"],
-        
       );
 }
 

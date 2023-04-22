@@ -18,8 +18,6 @@ import '../../SplashScreen/AddnewSplash.dart';
 import '../../Service/Model/responsModel.dart';
 import '../MenuPage/MenuPage.dart';
 
-
-
 class AddnewcarPage extends StatefulWidget {
   const AddnewcarPage({Key? key}) : super(key: key);
 
@@ -28,9 +26,7 @@ class AddnewcarPage extends StatefulWidget {
 }
 
 class _AddnewcarPageState extends State<AddnewcarPage> {
-  
   late Future<List<PositDBAPI>> _future;
-  
 
   // <------------------------ updateposition ------------------------>
   dynamic urlup = 'https://vdqi-db.toyotaparagon.com/api/';
@@ -47,13 +43,9 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
       var IDposit = localStorage.getString('ID');
-      Map<String, String> headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_authToken'
-      };
+      Map<String, String> headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer $_authToken'};
       if (_authToken != null) {
-        urlup =
-            Uri.parse("https://vdqi-db.toyotaparagon.com/api/posit/$IDposit");
+        urlup = Uri.parse("https://vdqi-db.toyotaparagon.com/api/posit/$IDposit");
         await http.put(
           urlup,
           body: dataencode,
@@ -78,7 +70,6 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   Color baseColor2 = const Color(0xffA10002);
   var userData;
   var carData;
-
 
 // <------------------------ Service ------------------------>
   void _getUserInfo() async {
@@ -127,8 +118,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   Future<void> scanBarcode() async {
     String barcodeScanRes;
     try {
-      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode('#ff6666', 'Cancel', true, ScanMode.BARCODE);
       print(barcodeScanRes);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
@@ -152,9 +142,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
   @override
   Widget build(BuildContext context) {
     final mqData = MediaQuery.of(context);
-    final mqDataNew = mqData.copyWith(
-        textScaleFactor:
-            mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
+    final mqDataNew = mqData.copyWith(textScaleFactor: mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
 
     return Scaffold(
         backgroundColor: const Color(0xfff5f5f5),
@@ -163,19 +151,13 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
-              text: TextSpan(
-                  text: "เพิ่มรถยนต์ใหม่",
-                  style: TextStyleMenuName.bodyMenuThai,
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: '\nAdd New Car',
-                        style: TextStyleMenuName.bodyMenuEng),
-                  ])),
+              text: TextSpan(text: "เพิ่มรถยนต์ใหม่", style: TextStyleMenuName.bodyMenuThai, children: <TextSpan>[
+                TextSpan(text: '\nAdd New Car', style: TextStyleMenuName.bodyMenuEng),
+              ])),
           leading: IconButton(
             onPressed: () {
               Future.delayed(const Duration(milliseconds: 200), () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const MenuPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const MenuPage()));
               });
             },
             icon: const Icon(
@@ -204,532 +186,375 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           SingleChildScrollView(
               child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(
-                            height: 700,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 5, right: 5),
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(12),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                            color:
-                                                Color.fromRGBO(0, 0, 0, 0.05),
-                                            blurRadius: 12,
-                                            spreadRadius: 5
-                                            /*   offset: Offset(0, 3), */
+                  child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                    SizedBox(
+                        height: 700,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                  boxShadow: const [
+                                    BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.05), blurRadius: 12, spreadRadius: 5
+                                        /*   offset: Offset(0, 3), */
+                                        ),
+                                  ]),
+                              child: Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: SingleChildScrollView(
+                                      child: Column(children: <Widget>[
+                                    Container(
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child:
+                                                  Text(textScaleFactor: 1, 'เลขตัวถัง', style: TextStyleAdd.bodyAdd14),
                                             ),
-                                      ]),
-                                  child: Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: SingleChildScrollView(
-                                          child: Column(children: <Widget>[
-                                        Container(
-                                          child: Column(
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10.0),
-                                                child: Align(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: Text(
-                                                      textScaleFactor: 1,
-                                                      'เลขตัวถัง',
-                                                      style: TextStyleAdd
-                                                          .bodyAdd14),
-                                                ),
-                                              ),
-                                              // <----------------- เลขตัวถัง ----------------->
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                  left: 10,
-                                                  right: 10,
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    Flexible(
-                                                      child: SizedBox(
-                                                        height: 35.2,
-                                                        child: MediaQuery(
-                                                          
-                                                          data: mqDataNew,
-                                                          child: TextFormField(
-                                                            inputFormatters: [
-                                                              LengthLimitingTextInputFormatter(
-                                                                  17),
-                                                            ],
-                                                            controller: ChassisController,
-                                                            style:
-                                                                TextStyleAlert
-                                                                    .body15bold,
-                                                            
-                                                            decoration:
-                                                                InputDecoration(
-                                                              contentPadding:
-                                                                  const EdgeInsets
-                                                                          .symmetric(
-                                                                      vertical:
-                                                                          25.0,
-                                                                      horizontal:
-                                                                          10),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5.5),
-                                                              ),
-                                                              enabledBorder:
-                                                                  const OutlineInputBorder(
-                                                                borderSide: const BorderSide(
-                                                                    color: const Color(
-                                                                        0xffE2E8F0),
-                                                                    width: 1),
-                                                              ),
-                                                              filled: true,
-                                                              fillColor:
-                                                                  Colors.white,
-                                                            ),
+                                          ),
+                                          // <----------------- เลขตัวถัง ----------------->
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              left: 10,
+                                              right: 10,
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Flexible(
+                                                  child: SizedBox(
+                                                    height: 35.2,
+                                                    child: MediaQuery(
+                                                      data: mqDataNew,
+                                                      child: TextFormField(
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(17),
+                                                        ],
+                                                        controller: ChassisController,
+                                                        style: TextStyleAlert.body15bold,
+                                                        decoration: InputDecoration(
+                                                          contentPadding: const EdgeInsets.symmetric(
+                                                              vertical: 25.0, horizontal: 10),
+                                                          focusedBorder: OutlineInputBorder(
+                                                            borderRadius: BorderRadius.circular(5.5),
                                                           ),
+                                                          enabledBorder: const OutlineInputBorder(
+                                                            borderSide: const BorderSide(
+                                                                color: const Color(0xffE2E8F0), width: 1),
+                                                          ),
+                                                          filled: true,
+                                                          fillColor: Colors.white,
                                                         ),
                                                       ),
                                                     ),
-                                                    const SizedBox(width: 5),
-                                                    InkWell(
-                                                        child: SizedBox(
-                                                            height: 40,
-                                                            width: 40,
-                                                            child: Card(
-                                                              semanticContainer:
-                                                                  true,
-                                                              shape:
-                                                                  const BeveledRectangleBorder(
-                                                                side:
-                                                                    BorderSide(
-                                                                  color: Color(
-                                                                      0xffE2E8F0),
-                                                                  width: 0.1,
-                                                                ),
-                                                              ),
-                                                              child: IconButton(
-                                                                icon:
-                                                                    Image.asset(
-                                                                  'assets/images/iconscan.png',
-                                                                  height: 18.94,
-                                                                  width: 18.94,
-                                                                ),
-                                                                onPressed: () =>
-                                                                    scanBarcode(),
-                                                              ),
-                                                            )))
-                                                  ],
-                                                ),
-                                              ),
-                                              // <----------------- สถานี ----------------->
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10.0),
-                                                child: Align(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: Text(
-                                                    'สถานี',
-                                                    style:
-                                                        TextStyleAdd.bodyAdd14,
-                                                    textScaleFactor: 1,
                                                   ),
                                                 ),
+                                                const SizedBox(width: 5),
+                                                InkWell(
+                                                    child: SizedBox(
+                                                        height: 40,
+                                                        width: 40,
+                                                        child: Card(
+                                                          semanticContainer: true,
+                                                          shape: const BeveledRectangleBorder(
+                                                            side: BorderSide(
+                                                              color: Color(0xffE2E8F0),
+                                                              width: 0.1,
+                                                            ),
+                                                          ),
+                                                          child: IconButton(
+                                                            icon: Image.asset(
+                                                              'assets/images/iconscan.png',
+                                                              height: 18.94,
+                                                              width: 18.94,
+                                                            ),
+                                                            onPressed: () => scanBarcode(),
+                                                          ),
+                                                        )))
+                                              ],
+                                            ),
+                                          ),
+                                          // <----------------- สถานี ----------------->
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                'สถานี',
+                                                style: TextStyleAdd.bodyAdd14,
+                                                textScaleFactor: 1,
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 10, right: 10),
-                                                child: DecoratedBox(
-                                                  decoration: BoxDecoration(
-                                                      border: new Border.all(
-                                                        color: const Color(
-                                                            0xffE2E8F0),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 10, right: 10),
+                                            child: DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                  border: new Border.all(
+                                                    color: const Color(0xffE2E8F0),
+                                                  ),
+                                                  borderRadius: BorderRadius.circular(5.5)),
+                                              child: Container(
+                                                height: 35.2,
+                                                child: Padding(
+                                                    padding: const EdgeInsets.only(left: 10, right: 10),
+                                                    child: DropdownButton(
+                                                      hint: const Text(
+                                                        'กรุณาเลือกสถานี',
+                                                        style: TextStyle(
+                                                          fontFamily: ('Bai Jamjuree'),
+                                                        ),
+                                                        textScaleFactor: 1,
                                                       ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5.5)),
-                                                  child: Container(
-                                                    height: 35.2,
-                                                    child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 10,
-                                                                right: 10),
-                                                        child: DropdownButton(
-                                                          hint: const Text(
-                                                            'กรุณาเลือกสถานี',
+                                                      elevation: 10,
+                                                      icon: const Icon(Icons.arrow_drop_down),
+                                                      iconSize: 13.0,
+                                                      isExpanded: true,
+                                                      style: const TextStyle(color: Color(0xff757575), fontSize: 14.0),
+                                                      items: where_data?.map((item) {
+                                                        return DropdownMenuItem(
+                                                          value: item['where_id'].toString(),
+                                                          child: new Text(
+                                                            item['car_where'],
                                                             style: TextStyle(
-                                                              fontFamily:
-                                                                  ('Bai Jamjuree'),
+                                                              fontFamily: ('Bai Jamjuree'),
                                                             ),
                                                             textScaleFactor: 1,
                                                           ),
-                                                          elevation: 10,
-                                                          icon: const Icon(Icons
-                                                              .arrow_drop_down),
-                                                          iconSize: 13.0,
-                                                          isExpanded: true,
-                                                          style: const TextStyle(
-                                                              color: Color(
-                                                                  0xff757575),
-                                                              fontSize: 14.0),
-                                                          items: where_data
-                                                              ?.map((item) {
-                                                            return DropdownMenuItem(
-                                                              value: item[
-                                                                      'where_id']
-                                                                  .toString(),
-                                                              child: new Text(
-                                                                item[
-                                                                    'car_where'],
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      ('Bai Jamjuree'),
-                                                                ),
-                                                                textScaleFactor:
-                                                                    1,
-                                                              ),
-                                                            );
-                                                          }).toList(),
-                                                          onChanged:
-                                                              (String? newVal) {
-                                                            setState(() {
-                                                              Whereid = newVal;
+                                                        );
+                                                      }).toList(),
+                                                      onChanged: (String? newVal) {
+                                                        setState(() {
+                                                          Whereid = newVal;
 
-                                                              WhereController
-                                                                      .text =
-                                                                  Whereid
-                                                                      .toString();
+                                                          WhereController.text = Whereid.toString();
 
-                                                              selected = '';
-                                                              line = '';
-                                                              sort = '';
+                                                          selected = '';
+                                                          line = '';
+                                                          sort = '';
 
-                                                              print(Whereid);
-                                                            });
-                                                          },
-                                                          value: Whereid,
-                                                        )),
-                                                  ),
-                                                ),
-                                              ),
-                                              // <----------------- ตำแหน่ง ----------------->
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10.0),
-                                                child: Align(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: Text(
-                                                    'ตำแหน่ง',
-                                                    style:
-                                                        TextStyleAdd.bodyAdd14,
-                                                    textScaleFactor: 1,
-                                                  ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 10, right: 10),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12),
-                                                      border: Border.all(
-                                                          color: const Color(
-                                                              0xffE2E8F0))),
-                                                  height: 360,
-                                                  child: Column(children: [
-                                                    const SizedBox(
-                                                      height: 20,
-                                                    ),
-                                                    const Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 25),
-                                                    ),
-                                                    Expanded(
-                                                        child: FutureBuilder(
-                                                            future: _future,
-                                                            builder: (BuildContext
-                                                                    context,
-                                                                AsyncSnapshot<
-                                                                        List<
-                                                                            PositDBAPI>?>
-                                                                    snapshot) {
-                                                              if (snapshot
-                                                                  .hasData) {
-                                                                List<PositDBAPI>?
-                                                                    data =
-                                                                    snapshot
-                                                                        .data;
-                                                                if (Whereid ==
-                                                                    '1') {
-                                                                  return StockA();
-                                                                } else if (Whereid ==
-                                                                    '2') {
-                                                                  return StockB();
-                                                                } else if (Whereid ==
-                                                                    '3') {
-                                                                  return StockC();
-                                                                } else if (Whereid ==
-                                                                    '4') {
-                                                                  return StockD();
-                                                                }
-                                                                /*  return Align(
-                                                                    alignment: Alignment.topCenter,
-                                                                   ); */
-                                                              }
-                                                              return const Center(
-                                                                  child: Text(
-                                                                'กรุณาเลือกสถานี',
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      ('Bai Jamjuree'),
-                                                                ),
-                                                                textScaleFactor:
-                                                                    1,
-                                                              ));
-                                                            }))
-                                                  ]),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 8,
-                                              ),
-
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 10, right: 10),
-                                                child: Container(
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    boxShadow: <BoxShadow>[
-                                                      BoxShadow(
-                                                        color:
-                                                            Color(0xffF6F6F6),
-                                                        blurRadius: 20,
-                                                        offset: Offset(5, 5),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  height: 87.0,
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Expanded(
-                                                        child: SizedBox(
-                                                          width:
-                                                              double.infinity,
-                                                          child: Container(
-                                                            height: 85,
-                                                            decoration: BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12),
-                                                                boxShadow: const [
-                                                                  BoxShadow(
-                                                                    color: Color
-                                                                        .fromRGBO(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            0.1),
-                                                                    blurRadius:
-                                                                        10,
-                                                                  ),
-                                                                ]),
-                                                            child: Column(
-                                                              children: <
-                                                                  Widget>[
-                                                                const Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .only(
-                                                                              top: 2),
-                                                                  child: Text(
-                                                                    'แถว',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontSize:
-                                                                          14,
-                                                                      color: Color(
-                                                                          0xffD4D4D4),
-                                                                      fontFamily:
-                                                                          ('Bai Jamjuree'),
-                                                                    ),
-                                                                    textScaleFactor:
-                                                                        1,
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  line!,
-                                                                  style:
-                                                                      const TextStyle(
-                                                                    color: Color(
-                                                                        0xff404040),
-                                                                    fontFamily:
-                                                                        ('Kanit'),
-                                                                    fontSize:
-                                                                        36,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                                  textScaleFactor:
-                                                                      1,
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Expanded(
-                                                        child: SizedBox(
-                                                          height: 87,
-                                                          width:
-                                                              double.infinity,
-                                                          child: Container(
-                                                            height: 85,
-                                                            decoration: BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12),
-                                                                boxShadow: const [
-                                                                  BoxShadow(
-                                                                    color: Color
-                                                                        .fromRGBO(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            0.1),
-                                                                    blurRadius:
-                                                                        10,
-                                                                  ),
-                                                                ]),
-                                                            child: Column(
-                                                              children: <
-                                                                  Widget>[
-                                                                const Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .only(
-                                                                              top: 2),
-                                                                  child: Text(
-                                                                    'ลำดับ',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontSize:
-                                                                          14,
-                                                                      color: Color(
-                                                                          0xffD4D4D4),
-                                                                      fontFamily:
-                                                                          ('Bai Jamjuree'),
-                                                                    ),
-                                                                    textScaleFactor:
-                                                                        1,
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  selected!,
-                                                                  style:
-                                                                      const TextStyle(
-                                                                    fontSize:
-                                                                        36,
-                                                                    color: Color(
-                                                                        0xff404040),
-                                                                    fontFamily:
-                                                                        ('Kanit'),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                                  textScaleFactor:
-                                                                      1,
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const SizedBox(height: 30),
-                                        Center(
-                                          child: SizedBox(
-                                            height: 36.55,
-                                            width: 280,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  primary:
-                                                      const Color(0xffE52628),
-                                                  minimumSize:
-                                                      const Size.fromHeight(40),
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10))),
-                                              onPressed: () => _AddCar(context),
-                                              child: AutoSizeText(
-                                                'บันทึก',
-                                                style: TextStyleBtn.bodybtn,
-                                                maxFontSize: 12,
-                                                minFontSize: 11,
+                                                          print(Whereid);
+                                                        });
+                                                      },
+                                                      value: Whereid,
+                                                    )),
                                               ),
                                             ),
                                           ),
-                                        )
-                                      ])))),
-                            )),
-                        const SizedBox(height: 10),
-                        Text('Powered by Weise Technika',
-                            style: TextStyleFoot.bodyfoot,
-                            textScaleFactor: 1.0),
-                      ]))),
+                                          // <----------------- ตำแหน่ง ----------------->
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                'ตำแหน่ง',
+                                                style: TextStyleAdd.bodyAdd14,
+                                                textScaleFactor: 1,
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 10, right: 10),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(12),
+                                                  border: Border.all(color: const Color(0xffE2E8F0))),
+                                              height: 360,
+                                              child: Column(children: [
+                                                const SizedBox(
+                                                  height: 20,
+                                                ),
+                                                const Padding(
+                                                  padding: EdgeInsets.symmetric(horizontal: 25),
+                                                ),
+                                                Expanded(
+                                                    child: FutureBuilder(
+                                                        future: _future,
+                                                        builder: (BuildContext context,
+                                                            AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+                                                          if (snapshot.hasData) {
+                                                            List<PositDBAPI>? data = snapshot.data;
+                                                            if (Whereid == '1') {
+                                                              return StockA();
+                                                            } else if (Whereid == '2') {
+                                                              return StockB();
+                                                            } else if (Whereid == '3') {
+                                                              return StockC();
+                                                            } else if (Whereid == '4') {
+                                                              return StockD();
+                                                            }
+                                                            /*  return Align(
+                                                                    alignment: Alignment.topCenter,
+                                                                   ); */
+                                                          }
+                                                          return const Center(
+                                                              child: Text(
+                                                            'กรุณาเลือกสถานี',
+                                                            style: TextStyle(
+                                                              fontFamily: ('Bai Jamjuree'),
+                                                            ),
+                                                            textScaleFactor: 1,
+                                                          ));
+                                                        }))
+                                              ]),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 8,
+                                          ),
+
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 10, right: 10),
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                boxShadow: <BoxShadow>[
+                                                  BoxShadow(
+                                                    color: Color(0xffF6F6F6),
+                                                    blurRadius: 20,
+                                                    offset: Offset(5, 5),
+                                                  ),
+                                                ],
+                                              ),
+                                              height: 87.0,
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Expanded(
+                                                    child: SizedBox(
+                                                      width: double.infinity,
+                                                      child: Container(
+                                                        height: 85,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius: BorderRadius.circular(12),
+                                                            boxShadow: const [
+                                                              BoxShadow(
+                                                                color: Color.fromRGBO(0, 0, 0, 0.1),
+                                                                blurRadius: 10,
+                                                              ),
+                                                            ]),
+                                                        child: Column(
+                                                          children: <Widget>[
+                                                            const Padding(
+                                                              padding: EdgeInsets.only(top: 2),
+                                                              child: Text(
+                                                                'แถว',
+                                                                style: TextStyle(
+                                                                  fontSize: 14,
+                                                                  color: Color(0xffD4D4D4),
+                                                                  fontFamily: ('Bai Jamjuree'),
+                                                                ),
+                                                                textScaleFactor: 1,
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              line!,
+                                                              style: const TextStyle(
+                                                                color: Color(0xff404040),
+                                                                fontFamily: ('Kanit'),
+                                                                fontSize: 36,
+                                                                fontWeight: FontWeight.bold,
+                                                              ),
+                                                              textScaleFactor: 1,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Expanded(
+                                                    child: SizedBox(
+                                                      height: 87,
+                                                      width: double.infinity,
+                                                      child: Container(
+                                                        height: 85,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius: BorderRadius.circular(12),
+                                                            boxShadow: const [
+                                                              BoxShadow(
+                                                                color: Color.fromRGBO(0, 0, 0, 0.1),
+                                                                blurRadius: 10,
+                                                              ),
+                                                            ]),
+                                                        child: Column(
+                                                          children: <Widget>[
+                                                            const Padding(
+                                                              padding: EdgeInsets.only(top: 2),
+                                                              child: Text(
+                                                                'ลำดับ',
+                                                                style: TextStyle(
+                                                                  fontSize: 14,
+                                                                  color: Color(0xffD4D4D4),
+                                                                  fontFamily: ('Bai Jamjuree'),
+                                                                ),
+                                                                textScaleFactor: 1,
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              selected!,
+                                                              style: const TextStyle(
+                                                                fontSize: 36,
+                                                                color: Color(0xff404040),
+                                                                fontFamily: ('Kanit'),
+                                                                fontWeight: FontWeight.bold,
+                                                              ),
+                                                              textScaleFactor: 1,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(height: 30),
+                                    Center(
+                                      child: SizedBox(
+                                        height: 36.55,
+                                        width: 280,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              primary: const Color(0xffE52628),
+                                              minimumSize: const Size.fromHeight(40),
+                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                                          onPressed: () => _AddCar(context),
+                                          child: AutoSizeText(
+                                            'บันทึก',
+                                            style: TextStyleBtn.bodybtn,
+                                            maxFontSize: 12,
+                                            minFontSize: 11,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ])))),
+                        )),
+                    const SizedBox(height: 10),
+                    Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot, textScaleFactor: 1.0),
+                  ]))),
         ])));
   }
 
   //<-----------------------------------------------  Method Function ----------------------------------------------------->
   _AddCar(context) {
-      bool isLoading = false;
+    bool isLoading = false;
     var alertStyle = AlertStyle(
       animationType: AnimationType.fromBottom,
       isCloseButton: false,
@@ -789,14 +614,14 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
           }, */
           color: const Color(0xff44A73B),
           child: Text("ยืนยัน", style: TDialogButton.body14),
-          onPressed:   () async {
-           //CircularProgressIndicator()
-           //_fetchData(context);
+          onPressed: () async {
+            //CircularProgressIndicator()
+            //_fetchData(context);
 
-           setState(() {
-             _fetchData(context);
-           });
-           ResponseModel respones = await PostcarDB().CarDB(
+            setState(() {
+              _fetchData(context);
+            });
+            ResponseModel respones = await PostcarDB().CarDB(
               ChassisController.text,
               PositController.text,
               "1",
@@ -807,13 +632,11 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
               WhereController.text,
             );
             if (respones.success) {
-              
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => const AddnewSplash()));
+              Navigator.push(context, MaterialPageRoute(builder: (_) => const AddnewSplash()));
             } else {
               _ErrorAddcar(context);
             }
-           
+
             /* ResponseModel respones = await PostcarDB().CarDB(
               ChassisController.text,
               PositController.text,
@@ -824,9 +647,7 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
               1.toString(),
               WhereController.text,
             ); */
-          
 
-          
             /* if (respones.success) {
               
               Navigator.push(
@@ -834,8 +655,6 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
             } else {
               _ErrorAddcar(context);
             } */
-
-            
           },
         ),
         DialogButton(
@@ -847,20 +666,18 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     ).show();
   }
 
-_fetchData(BuildContext context, [bool mounted = true]) async {
-  showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return const Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
-          ),
-        );
-      });
-  
-
-}
+  _fetchData(BuildContext context, [bool mounted = true]) async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return const Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+            ),
+          );
+        });
+  }
 
   _ErrorAddcar(context) {
     // Reusable alert style
@@ -910,8 +727,7 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
       buttons: [
         DialogButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const AddnewcarPage()));
+            Navigator.push(context, MaterialPageRoute(builder: (_) => const AddnewcarPage()));
           },
           color: const Color(0xff44A73B),
           child: Text("ตกลง", style: TDialogButton.body14),
@@ -1010,7 +826,6 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
  */
   //////////////// Stock A //////////////////
   Widget StockA() {
-   
     return Padding(
       padding: const EdgeInsets.only(left: 10),
       child: Container(
@@ -1097,8 +912,7 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                               borderRadius: BorderRadius.circular(0),
                             ),
                             child: const Center(
-                              child: RotatedBox(
-                                  quarterTurns: 1, child: Text("Lotus")),
+                              child: RotatedBox(quarterTurns: 1, child: Text("Lotus")),
                             ))
                       ]),
                     ),
@@ -1116,15 +930,13 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                         /*  child: Stock()), */
                         child: FutureBuilder(
                             future: PostionService().getWhere1(),
-                            builder: (BuildContext context,
-                                AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+                            builder: (BuildContext context, AsyncSnapshot<List<PositDBAPI>?> snapshot) {
                               if (snapshot.hasData) {
                                 List<PositDBAPI>? data = snapshot.data;
                                 return Container(
                                   child: GridView.builder(
                                       padding: const EdgeInsets.all(2),
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                         mainAxisSpacing: 8,
                                         crossAxisSpacing: 8,
                                         crossAxisCount: 4,
@@ -1139,56 +951,35 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                                                 ? Colors.red
                                                 : data[index].car_status == 2
                                                     ? Colors.grey
-                                                    : sort ==
-                                                            data[index]
-                                                                .sort
-                                                                .toString()
+                                                    : sort == data[index].sort.toString()
                                                         ? Colors.yellow
-                                                        : const Color(
-                                                            0xff89EB80)),
-                                            borderRadius:
-                                                BorderRadius.circular(0),
+                                                        : const Color(0xff89EB80)),
+                                            borderRadius: BorderRadius.circular(0),
                                           ),
                                           child: InkWell(
                                             onTap: () async {
-                                              dynamic Idposit = data[index]
-                                                  .posit_id
-                                                  .toString();
+                                              dynamic Idposit = data[index].posit_id.toString();
 
-                                              SharedPreferences localStorage =
-                                                  await SharedPreferences
-                                                      .getInstance();
-                                              localStorage.setString(
-                                                  'ID', Idposit);
+                                              SharedPreferences localStorage = await SharedPreferences.getInstance();
+                                              localStorage.setString('ID', Idposit);
 
                                               setState(() {
-                                                if (data[index].car_status ==
-                                                    1) {
+                                                if (data[index].car_status == 1) {
                                                   selected = '';
                                                   line = '';
                                                   sort = '';
-                                                } else if (data[index]
-                                                        .car_status ==
-                                                    2) {
+                                                } else if (data[index].car_status == 2) {
                                                   selected = '';
                                                   line = '';
                                                   sort = '';
                                                 } else {
-                                                  selected = data[index]
-                                                      .posit
-                                                      .toString();
-                                                  line = data[index]
-                                                      .line
-                                                      .toString();
-                                                  sort = data[index]
-                                                      .sort
-                                                      .toString();
+                                                  selected = data[index].posit.toString();
+                                                  line = data[index].line.toString();
+                                                  sort = data[index].sort.toString();
 
-                                                  PositController.text =
-                                                      Idposit.toString();
+                                                  PositController.text = Idposit.toString();
 
-                                                  lineController.text =
-                                                      line.toString();
+                                                  lineController.text = line.toString();
 
                                                   print(data[index].posit);
                                                   print(data[index].line);
@@ -1206,8 +997,7 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                                               child: Text(
                                                 textScaleFactor: 1,
                                                 data[index].posit.toString(),
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                                style: TextStyle(color: Colors.white),
                                               ),
                                             ),
                                           ),
@@ -1328,8 +1118,7 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                               borderRadius: BorderRadius.circular(0),
                             ),
                             child: const Center(
-                              child: RotatedBox(
-                                  quarterTurns: 1, child: Text("Lotus")),
+                              child: RotatedBox(quarterTurns: 1, child: Text("Lotus")),
                             ))
                       ]),
                     ),
@@ -1343,15 +1132,13 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                       child: Container(
                         child: FutureBuilder(
                             future: PostionService().getWhere2(),
-                            builder: (BuildContext context,
-                                AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+                            builder: (BuildContext context, AsyncSnapshot<List<PositDBAPI>?> snapshot) {
                               if (snapshot.hasData) {
                                 List<PositDBAPI>? data = snapshot.data;
                                 return Container(
                                   child: GridView.builder(
                                       padding: const EdgeInsets.all(2),
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                         mainAxisSpacing: 8,
                                         crossAxisSpacing: 8,
                                         crossAxisCount: 5,
@@ -1366,56 +1153,35 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                                                 ? Colors.red
                                                 : data[index].car_status == 2
                                                     ? Colors.grey
-                                                    : sort ==
-                                                            data[index]
-                                                                .sort
-                                                                .toString()
+                                                    : sort == data[index].sort.toString()
                                                         ? Colors.yellow
-                                                        : const Color(
-                                                            0xff89EB80)),
-                                            borderRadius:
-                                                BorderRadius.circular(0),
+                                                        : const Color(0xff89EB80)),
+                                            borderRadius: BorderRadius.circular(0),
                                           ),
                                           child: InkWell(
                                             onTap: () async {
-                                              dynamic Idposit = data[index]
-                                                  .posit_id
-                                                  .toString();
+                                              dynamic Idposit = data[index].posit_id.toString();
 
-                                              SharedPreferences localStorage =
-                                                  await SharedPreferences
-                                                      .getInstance();
-                                              localStorage.setString(
-                                                  'ID', Idposit);
+                                              SharedPreferences localStorage = await SharedPreferences.getInstance();
+                                              localStorage.setString('ID', Idposit);
 
                                               setState(() {
-                                                if (data[index].car_status ==
-                                                    1) {
+                                                if (data[index].car_status == 1) {
                                                   selected = '';
                                                   line = '';
                                                   sort = '';
-                                                } else if (data[index]
-                                                        .car_status ==
-                                                    2) {
+                                                } else if (data[index].car_status == 2) {
                                                   selected = '';
                                                   line = '';
                                                   sort = '';
                                                 } else {
-                                                  selected = data[index]
-                                                      .posit
-                                                      .toString();
-                                                  line = data[index]
-                                                      .line
-                                                      .toString();
-                                                  sort = data[index]
-                                                      .sort
-                                                      .toString();
+                                                  selected = data[index].posit.toString();
+                                                  line = data[index].line.toString();
+                                                  sort = data[index].sort.toString();
 
-                                                  PositController.text =
-                                                      Idposit.toString();
+                                                  PositController.text = Idposit.toString();
 
-                                                  lineController.text =
-                                                      line.toString();
+                                                  lineController.text = line.toString();
 
                                                   print(data[index].posit);
                                                   print(data[index].line);
@@ -1433,8 +1199,7 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                                               child: Text(
                                                 textScaleFactor: 1,
                                                 data[index].posit.toString(),
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                                style: TextStyle(color: Colors.white),
                                               ),
                                             ),
                                           ),
@@ -1556,8 +1321,7 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                               borderRadius: BorderRadius.circular(0),
                             ),
                             child: const Center(
-                              child: RotatedBox(
-                                  quarterTurns: 1, child: Text("Lotus")),
+                              child: RotatedBox(quarterTurns: 1, child: Text("Lotus")),
                             ))
                       ]),
                     ),
@@ -1571,15 +1335,13 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                       child: Container(
                         child: FutureBuilder(
                             future: PostionService().getWhere3(),
-                            builder: (BuildContext context,
-                                AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+                            builder: (BuildContext context, AsyncSnapshot<List<PositDBAPI>?> snapshot) {
                               if (snapshot.hasData) {
                                 List<PositDBAPI>? data = snapshot.data;
                                 return Container(
                                   child: GridView.builder(
                                       padding: const EdgeInsets.all(2),
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                         mainAxisSpacing: 8,
                                         crossAxisSpacing: 8,
                                         crossAxisCount: 5,
@@ -1594,56 +1356,35 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                                                 ? Colors.red
                                                 : data[index].car_status == 2
                                                     ? Colors.grey
-                                                    : sort ==
-                                                            data[index]
-                                                                .sort
-                                                                .toString()
+                                                    : sort == data[index].sort.toString()
                                                         ? Colors.yellow
-                                                        : const Color(
-                                                            0xff89EB80)),
-                                            borderRadius:
-                                                BorderRadius.circular(0),
+                                                        : const Color(0xff89EB80)),
+                                            borderRadius: BorderRadius.circular(0),
                                           ),
                                           child: InkWell(
                                             onTap: () async {
-                                              dynamic Idposit = data[index]
-                                                  .posit_id
-                                                  .toString();
+                                              dynamic Idposit = data[index].posit_id.toString();
 
-                                              SharedPreferences localStorage =
-                                                  await SharedPreferences
-                                                      .getInstance();
-                                              localStorage.setString(
-                                                  'ID', Idposit);
+                                              SharedPreferences localStorage = await SharedPreferences.getInstance();
+                                              localStorage.setString('ID', Idposit);
 
                                               setState(() {
-                                                if (data[index].car_status ==
-                                                    1) {
+                                                if (data[index].car_status == 1) {
                                                   selected = '';
                                                   line = '';
                                                   sort = '';
-                                                } else if (data[index]
-                                                        .car_status ==
-                                                    2) {
+                                                } else if (data[index].car_status == 2) {
                                                   selected = '';
                                                   line = '';
                                                   sort = '';
                                                 } else {
-                                                  selected = data[index]
-                                                      .posit
-                                                      .toString();
-                                                  line = data[index]
-                                                      .line
-                                                      .toString();
-                                                  sort = data[index]
-                                                      .sort
-                                                      .toString();
+                                                  selected = data[index].posit.toString();
+                                                  line = data[index].line.toString();
+                                                  sort = data[index].sort.toString();
 
-                                                  PositController.text =
-                                                      Idposit.toString();
+                                                  PositController.text = Idposit.toString();
 
-                                                  lineController.text =
-                                                      line.toString();
+                                                  lineController.text = line.toString();
 
                                                   print(data[index].posit);
                                                   print(data[index].line);
@@ -1661,8 +1402,7 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                                               child: Text(
                                                 textScaleFactor: 1,
                                                 data[index].posit.toString(),
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                                style: TextStyle(color: Colors.white),
                                               ),
                                             ),
                                           ),
@@ -1784,8 +1524,7 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                               borderRadius: BorderRadius.circular(0),
                             ),
                             child: const Center(
-                              child: RotatedBox(
-                                  quarterTurns: 1, child: Text("Lotus")),
+                              child: RotatedBox(quarterTurns: 1, child: Text("Lotus")),
                             ))
                       ]),
                     ),
@@ -1799,15 +1538,13 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                       child: Container(
                         child: FutureBuilder(
                             future: PostionService().getWhere4(),
-                            builder: (BuildContext context,
-                                AsyncSnapshot<List<PositDBAPI>?> snapshot) {
+                            builder: (BuildContext context, AsyncSnapshot<List<PositDBAPI>?> snapshot) {
                               if (snapshot.hasData) {
                                 List<PositDBAPI>? data = snapshot.data;
                                 return Container(
                                   child: GridView.builder(
                                       padding: const EdgeInsets.all(2),
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                         mainAxisSpacing: 8,
                                         crossAxisSpacing: 8,
                                         crossAxisCount: 5,
@@ -1822,56 +1559,35 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                                                 ? Colors.red
                                                 : data[index].car_status == 2
                                                     ? Colors.grey
-                                                    : sort ==
-                                                            data[index]
-                                                                .sort
-                                                                .toString()
+                                                    : sort == data[index].sort.toString()
                                                         ? Colors.yellow
-                                                        : const Color(
-                                                            0xff89EB80)),
-                                            borderRadius:
-                                                BorderRadius.circular(0),
+                                                        : const Color(0xff89EB80)),
+                                            borderRadius: BorderRadius.circular(0),
                                           ),
                                           child: InkWell(
                                             onTap: () async {
-                                              dynamic Idposit = data[index]
-                                                  .posit_id
-                                                  .toString();
+                                              dynamic Idposit = data[index].posit_id.toString();
 
-                                              SharedPreferences localStorage =
-                                                  await SharedPreferences
-                                                      .getInstance();
-                                              localStorage.setString(
-                                                  'ID', Idposit);
+                                              SharedPreferences localStorage = await SharedPreferences.getInstance();
+                                              localStorage.setString('ID', Idposit);
 
                                               setState(() {
-                                                if (data[index].car_status ==
-                                                    1) {
+                                                if (data[index].car_status == 1) {
                                                   selected = '';
                                                   line = '';
                                                   sort = '';
-                                                } else if (data[index]
-                                                        .car_status ==
-                                                    2) {
+                                                } else if (data[index].car_status == 2) {
                                                   selected = '';
                                                   line = '';
                                                   sort = '';
                                                 } else {
-                                                  selected = data[index]
-                                                      .posit
-                                                      .toString();
-                                                  line = data[index]
-                                                      .line
-                                                      .toString();
-                                                  sort = data[index]
-                                                      .sort
-                                                      .toString();
+                                                  selected = data[index].posit.toString();
+                                                  line = data[index].line.toString();
+                                                  sort = data[index].sort.toString();
 
-                                                  PositController.text =
-                                                      Idposit.toString();
+                                                  PositController.text = Idposit.toString();
 
-                                                  lineController.text =
-                                                      line.toString();
+                                                  lineController.text = line.toString();
 
                                                   print(data[index].posit);
                                                   print(data[index].line);
@@ -1889,8 +1605,7 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
                                               child: Text(
                                                 textScaleFactor: 1,
                                                 data[index].posit.toString(),
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                                style: TextStyle(color: Colors.white),
                                               ),
                                             ),
                                           ),

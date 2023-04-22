@@ -73,10 +73,7 @@ class ReqAPIDB {
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
-      Map<String, String> headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_authToken'
-      };
+      Map<String, String> headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer $_authToken'};
       if (_authToken != null) {
         url = Uri.parse("https://vdqi-db.toyotaparagon.com/api/reqDB");
         await http.post(
@@ -94,8 +91,8 @@ class ReqAPIDB {
 
 class HistoryPost {
   dynamic url = 'https://vdqi-db.toyotaparagon.com/api/';
-  Future<ResponseModel> PostHis(int car_id, String date, String time,
-      String car_where, String car_status, String person) async {
+  Future<ResponseModel> PostHis(
+      int car_id, String date, String time, String car_where, String car_status, String person) async {
     try {
       Map<String, String> data = {
         'car_id': car_id.toString(),
@@ -108,10 +105,7 @@ class HistoryPost {
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
-      Map<String, String> headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_authToken'
-      };
+      Map<String, String> headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer $_authToken'};
       if (_authToken != null) {
         url = Uri.parse("https://vdqi-db.toyotaparagon.com/api/history");
         await http.post(

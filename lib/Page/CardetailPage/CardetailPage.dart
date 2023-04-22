@@ -57,12 +57,10 @@ class _CardetailPageState extends State<CardetailPage> {
       var _authToken = localStorage.getString('token');
 
       // response uri
-      var response = await http.get(
-          Uri.parse(
-              'https://vdqi-db.toyotaparagon.com/api/history/search/$carreq'),
-          headers: {
-            HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
-          });
+      var response =
+          await http.get(Uri.parse('https://vdqi-db.toyotaparagon.com/api/history/search/$carreq'), headers: {
+        HttpHeaders.authorizationHeader: 'Bearer ${_authToken}',
+      });
       // return value
       var req = HistoryDB.fromJson(jsonDecode(response.body));
       return req.data;
@@ -75,19 +73,13 @@ class _CardetailPageState extends State<CardetailPage> {
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
-              text: TextSpan(
-                  text: "รายละเอียดรถยนต์",
-                  style: TextStyleMenuName.bodyMenuThai,
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: '\nCar Infomation',
-                        style: TextStyleMenuName.bodyMenuEng),
-                  ])),
+              text: TextSpan(text: "รายละเอียดรถยนต์", style: TextStyleMenuName.bodyMenuThai, children: <TextSpan>[
+                TextSpan(text: '\nCar Infomation', style: TextStyleMenuName.bodyMenuEng),
+              ])),
           leading: IconButton(
             onPressed: () {
               Future.delayed(Duration(milliseconds: 200), () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => FindcarPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => FindcarPage()));
               });
             },
             icon: Icon(
@@ -118,610 +110,412 @@ class _CardetailPageState extends State<CardetailPage> {
               child: SingleChildScrollView(
                 child: Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          //////////////// /* Card white */   ////////////////
-                          SizedBox(
-                              height: 650,
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                      //////////////// /* Card white */   ////////////////
+                      SizedBox(
+                          height: 650,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 5, right: 5),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                  boxShadow: const [
+                                    BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.05), blurRadius: 12, spreadRadius: 5
+                                        /*   offset: Offset(0, 3), */
+                                        ),
+                                  ]),
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 5, right: 5),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(12),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                            color:
-                                                Color.fromRGBO(0, 0, 0, 0.05),
-                                            blurRadius: 12,
-                                            spreadRadius: 5
-                                            /*   offset: Offset(0, 3), */
-                                            ),
-                                      ]),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: Column(children: <Widget>[
-                                      //////////////// /* Card เลขตัวถัง */   ////////////////
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              boxShadow: const [
-                                                BoxShadow(
-                                                    color: Color.fromRGBO(
-                                                        0, 0, 0, 0.1),
-                                                    blurRadius: 10,
-                                                    spreadRadius: 2),
-                                              ]),
-                                          height: 85,
-                                          child: ListTile(
-                                            title: Text(
-                                              widget.model.carChassis,
-                                              style: const TextStyle(
-                                                color: Color(0xff404040),
-                                                fontFamily:
-                                                    ('IBM Plex Sans Thai'),
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              maxLines: 1,
-                                              textScaleFactor: 1,
-                                            ),
-                                            leading: AspectRatio(
-                                              aspectRatio: 1,
-                                              child: ClipRRect(
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(1.0)),
-                                                  child: CircleAvatar(
-                                                    child: Image.asset(
-                                                      'assets/images/car4.png',
-                                                      height: 28.0,
-                                                      width: 30,
-                                                    ),
-                                                    radius: 62.0,
-                                                    backgroundColor: (widget
-                                                                .model
-                                                                .carStatus
-                                                                .statusId ==
-                                                            1
-                                                        ? const Color(
-                                                            0xff89EB80)
-                                                        : const Color(
-                                                            0xffEB8080)),
-                                                  )),
-                                            ),
-                                            subtitle: Text(
-                                              'รถยนต์ \n' +
-                                                  'สถานะ :' +
-                                                  ' ' +
-                                                  widget.model.carStatus
-                                                      .carStatus,
-                                              style: TextStyle(
-                                                color: Color(0xff404040),
-                                                fontFamily: ('Bai Jamjuree'),
-                                                fontWeight: FontWeight.w300,
-                                              ),
-                                              textScaleFactor: 1,
-                                            ),
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Column(children: <Widget>[
+                                  //////////////// /* Card เลขตัวถัง */   ////////////////
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, right: 10),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(12),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                                color: Color.fromRGBO(0, 0, 0, 0.1), blurRadius: 10, spreadRadius: 2),
+                                          ]),
+                                      height: 85,
+                                      child: ListTile(
+                                        title: Text(
+                                          widget.model.carChassis,
+                                          style: const TextStyle(
+                                            color: Color(0xff404040),
+                                            fontFamily: ('IBM Plex Sans Thai'),
+                                            fontWeight: FontWeight.bold,
                                           ),
+                                          maxLines: 1,
+                                          textScaleFactor: 1,
                                         ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        child: SizedBox(
-                                          height: 160,
-                                          width: double.infinity,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(12),
-                                                boxShadow: const [
-                                                  BoxShadow(
-                                                      color: Color.fromRGBO(
-                                                          0, 0, 0, 0.1),
-                                                      blurRadius: 12,
-                                                      spreadRadius: 2
-                                                      /*   offset: Offset(0, 3), */
-                                                      ),
-                                                ]),
-                                            child: GestureDetector(
-                                                onTap: () =>
-                                                    FocusScope.of(context)
-                                                        .unfocus(),
-                                                child: Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0, -0.1),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 10,
-                                                              right: 10),
-                                                      child: Container(
-                                                          height: 160,
-                                                          child:
-                                                              Stack(children: [
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -0.9,
-                                                                      -0.9),
-                                                              child: Text(
-                                                                'สถานที่',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Color(
-                                                                      0xffD4D4D4),
-                                                                  fontSize: 16,
-                                                                  fontFamily:
-                                                                      ('Bai Jamjuree'),
-                                                                ),
-                                                                textScaleFactor:
-                                                                    1,
-                                                              ),
-                                                            ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -0.05,
-                                                                      -0.59),
-                                                              child: Text(
-                                                                  widget
-                                                                      .model
-                                                                      .carWhere
-                                                                      .carWhere,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Color(
-                                                                        0xff404040),
-                                                                    fontSize:
-                                                                        36,
-                                                                    fontFamily:
-                                                                        ('Kanit'),
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w900,
-                                                                  ),
-                                                                  textScaleFactor:
-                                                                      1.0),
-                                                            ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -0.9,
-                                                                      0.1),
-                                                              child: Text(
-                                                                'แถว',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Color(
-                                                                      0xffD4D4D4),
-                                                                  fontSize: 16,
-                                                                  fontFamily:
-                                                                      ('Bai Jamjuree'),
-                                                                ),
-                                                                textScaleFactor:
-                                                                    1,
-                                                              ),
-                                                            ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -0.56,
-                                                                      0.7),
-                                                              child: Text(
-                                                                widget.model.positId
-                                                                            .car_status ==
-                                                                        0
-                                                                    ? "-"
-                                                                    : widget
-                                                                        .model
-                                                                        .positId
-                                                                        .line,
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Color(
-                                                                      0xff404040),
-                                                                  fontSize: 36,
-                                                                  fontFamily:
-                                                                      ('Kanit'),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w900,
-                                                                ),
-                                                                textScaleFactor:
-                                                                    1,
-                                                              ),
-                                                            ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.1, 0.1),
-                                                              child: Text(
-                                                                'ลำดับ',
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize: 16,
-                                                                  fontFamily:
-                                                                      ('Bai Jamjuree'),
-                                                                  color: Color(
-                                                                      0xffD4D4D4),
-                                                                ),
-                                                                textScaleFactor:
-                                                                    1,
-                                                              ),
-                                                            ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.56,
-                                                                      0.7),
-                                                              child: Text(
-                                                                widget.model.positId
-                                                                            .car_status ==
-                                                                        0
-                                                                    ? "-"
-                                                                    : widget
-                                                                        .model
-                                                                        .positId
-                                                                        .posit
-                                                                        .toString(),
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize: 40,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w900,
-                                                                  fontFamily:
-                                                                      ('Kanit'),
-                                                                ),
-                                                                textScaleFactor:
-                                                                    1,
-                                                              ),
-                                                            ),
-                                                          ])),
-                                                    ))),
+                                        leading: AspectRatio(
+                                          aspectRatio: 1,
+                                          child: ClipRRect(
+                                              borderRadius: const BorderRadius.all(Radius.circular(1.0)),
+                                              child: CircleAvatar(
+                                                child: Image.asset(
+                                                  'assets/images/car4.png',
+                                                  height: 28.0,
+                                                  width: 30,
+                                                ),
+                                                radius: 62.0,
+                                                backgroundColor: (widget.model.carStatus.statusId == 1
+                                                    ? const Color(0xff89EB80)
+                                                    : const Color(0xffEB8080)),
+                                              )),
+                                        ),
+                                        subtitle: Text(
+                                          'รถยนต์ \n' + 'สถานะ :' + ' ' + widget.model.carStatus.carStatus,
+                                          style: TextStyle(
+                                            color: Color(0xff404040),
+                                            fontFamily: ('Bai Jamjuree'),
+                                            fontWeight: FontWeight.w300,
                                           ),
+                                          textScaleFactor: 1,
                                         ),
                                       ),
-
-                                      const SizedBox(height: 15),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10, top: 0),
-                                        child: Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                              ' ประวัติรถยนต์',
-                                              style: TextStyle(
-                                                fontFamily: ('Kanit'),
-                                                fontSize: 18,
-                                                color: Color(0xffD4D4D4),
-                                              ),
-                                              textScaleFactor: 1,
-                                            )),
-                                      ),
-                                      const SizedBox(height: 2),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10, top: 0),
-                                        child: SingleChildScrollView(
-                                          child:
-                                              FutureBuilder<List<HistoryDBAPI>>(
-                                                  future: getreq(),
-                                                  builder: (context, snapShot) {
-                                                    if (snapShot.hasData) {
-                                                      return SingleChildScrollView(
-                                                        child: Container(
-                                                          height: 190,
-                                                          width:
-                                                              double.infinity,
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 10,
-                                                                    right: 10,
-                                                                    top: 0),
-                                                            child: Container(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 10,
-                                                                      right: 10,
-                                                                      top: 0),
-                                                              child:
-                                                                  SingleChildScrollView(
-                                                                child:
-                                                                    DataTable(
-                                                                  headingRowHeight:
-                                                                      2,
-                                                                  horizontalMargin:
-                                                                      0,
-                                                                  columnSpacing:
-                                                                      0,
-                                                                  columns: const <
-                                                                      DataColumn>[
-                                                                    DataColumn(
-                                                                        label:
-                                                                            Expanded(
-                                                                      child:
-                                                                          Text(
-                                                                        '',
-                                                                      ),
-                                                                    )),
-                                                                    DataColumn(
-                                                                        label:
-                                                                            Expanded(
-                                                                      child:
-                                                                          Text(
-                                                                        '',
-                                                                      ),
-                                                                    )),
-                                                                    DataColumn(
-                                                                        label:
-                                                                            Expanded(
-                                                                      child:
-                                                                          Text(
-                                                                        '',
-                                                                      ),
-                                                                    )),
-                                                                    DataColumn(
-                                                                        label:
-                                                                            Expanded(
-                                                                      child:
-                                                                          Text(
-                                                                        '',
-                                                                      ),
-                                                                    )),
-                                                                  ],
-                                                                  rows: snapShot
-                                                                      .data!
-                                                                      .map<DataRow>(
-                                                                          (e) {
-                                                                    return DataRow(
-                                                                      cells: <
-                                                                          DataCell>[
-                                                                        DataCell(
-                                                                            Text(
-                                                                          '${e.date}',
-                                                                          style: const TextStyle(
-                                                                              fontSize: 14,
-                                                                              fontFamily: ('Bai Jamjuree')),
-                                                                          textScaleFactor:
-                                                                              1,
-                                                                        )),
-                                                                        DataCell(
-                                                                            Text(
-                                                                          '${e.carStatus.car_status}',
-                                                                          style: const TextStyle(
-                                                                              fontSize: 14,
-                                                                              fontFamily: ('Bai Jamjuree')),
-                                                                          textScaleFactor:
-                                                                              1,
-                                                                        )),
-                                                                        DataCell(
-                                                                            Text(
-                                                                          '${e.carWhere.carWhere}',
-                                                                          style: const TextStyle(
-                                                                              fontSize: 14,
-                                                                              fontFamily: ('Bai Jamjuree')),
-                                                                          textScaleFactor:
-                                                                              1,
-                                                                        )),
-                                                                        DataCell(
-                                                                            Text(
-                                                                          '${e.person.fullname}',
-                                                                          style: const TextStyle(
-                                                                              fontSize: 14,
-                                                                              fontFamily: ('Bai Jamjuree')),
-                                                                          textScaleFactor:
-                                                                              1,
-                                                                        )),
-                                                                      ],
-                                                                    );
-                                                                  }).toList(),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    } else {
-                                                      return Container(
-                                                        height: 190,
-                                                      );
-                                                    }
-                                                  }),
-                                        ),
-                                      ),
-
-                                      const SizedBox(height: 40),
-                                      Center(
-                                        child: SizedBox(
-                                          width: 280,
-                                          height: 36.55,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                primary:
-                                                    const Color(0xffE52628),
-                                                minimumSize:
-                                                    const Size.fromHeight(40),
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12))),
-                                            onPressed: () => _request(context),
-                                            child: AutoSizeText(
-                                              'เบิกรถยนต์',
-                                              style: TextStyleBtn.bodybtn,
-                                              maxFontSize: 12,
-                                              minFontSize: 11,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 5),
-                                      Center(
-                                        child: SizedBox(
-                                          width: 280,
-                                          height: 36.55,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                primary: Colors.cyan[900],
-                                                minimumSize:
-                                                    const Size.fromHeight(40),
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12))),
-                                            onPressed: () {
-                                              if (widget
-                                                      .model.carWhere.whereId ==
-                                                  1) {
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (BuildContext
-                                                          context) =>
-                                                      _DialogStockA(context),
-                                                );
-                                              } else if (widget
-                                                      .model.carWhere.whereId ==
-                                                  2) {
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (BuildContext
-                                                          context) =>
-                                                      _DialogStockB(context),
-                                                );
-                                              } else if (widget
-                                                      .model.carWhere.whereId ==
-                                                  3) {
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (BuildContext
-                                                          context) =>
-                                                      _DialogStockC(context),
-                                                );
-                                              } else if (widget
-                                                      .model.carWhere.whereId ==
-                                                  4) {
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (BuildContext
-                                                          context) =>
-                                                      _DialogStockD(context),
-                                                );
-                                              } else {
-                                                showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (BuildContext context) {
-                                                      return AlertDialog(
-                                                        content: new Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: <Widget>[
-                                                            SingleChildScrollView(
-                                                              child: Column(
-                                                                children: [
-                                                                  Lottie.asset(
-                                                                      'assets/images/map.json',
-                                                                      height:
-                                                                          150,
-                                                                      width:
-                                                                          150),
-                                                                  Center(
-                                                                      child: Text(
-                                                                          'รถกำลังดำเนินการที่',
-                                                                          style:
-                                                                              TextStyleAlert.body16bold)),
-                                                                  Center(
-                                                                      child: Text(
-                                                                          widget
-                                                                              .model
-                                                                              .carWhere
-                                                                              .carWhere,
-                                                                          style:
-                                                                              TextStyleAlert.body16)),
-                                                                ],
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        actions: <Widget>[
-                                                          Center(
-                                                            child: SizedBox(
-                                                              width: 280,
-                                                              height: 36.55,
-                                                              child:
-                                                                  ElevatedButton(
-                                                                onPressed: () {
-                                                                  Navigator.of(
-                                                                          context)
-                                                                      .pop();
-                                                                },
-                                                                style: ElevatedButton.styleFrom(
-                                                                    primary:
-                                                                        const Color(
-                                                                            0xffE52628),
-                                                                    minimumSize:
-                                                                        const Size.fromHeight(
-                                                                            40),
-                                                                    shape: RoundedRectangleBorder(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(12))),
-                                                                child:
-                                                                    AutoSizeText(
-                                                                  'ตกลง',
-                                                                  style: TextStyleBtn
-                                                                      .bodybtn,
-                                                                  maxFontSize:
-                                                                      12,
-                                                                  minFontSize:
-                                                                      11,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    });
-                                              }
-                                            },
-                                            child: AutoSizeText(
-                                              'แผนผังแสดงลานจอด',
-                                              style: TextStyleBtn.bodybtn,
-                                              maxFontSize: 12,
-                                              minFontSize: 11,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ]),
+                                    ),
                                   ),
-                                ),
-                              )),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, right: 10),
+                                    child: SizedBox(
+                                      height: 160,
+                                      width: double.infinity,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(12),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                  color: Color.fromRGBO(0, 0, 0, 0.1), blurRadius: 12, spreadRadius: 2
+                                                  /*   offset: Offset(0, 3), */
+                                                  ),
+                                            ]),
+                                        child: GestureDetector(
+                                            onTap: () => FocusScope.of(context).unfocus(),
+                                            child: Align(
+                                                alignment: AlignmentDirectional(0, -0.1),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.only(left: 10, right: 10),
+                                                  child: Container(
+                                                      height: 160,
+                                                      child: Stack(children: [
+                                                        Align(
+                                                          alignment: AlignmentDirectional(-0.9, -0.9),
+                                                          child: Text(
+                                                            'สถานที่',
+                                                            style: TextStyle(
+                                                              color: Color(0xffD4D4D4),
+                                                              fontSize: 16,
+                                                              fontFamily: ('Bai Jamjuree'),
+                                                            ),
+                                                            textScaleFactor: 1,
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment: AlignmentDirectional(-0.05, -0.59),
+                                                          child: Text(widget.model.carWhere.carWhere,
+                                                              style: TextStyle(
+                                                                color: Color(0xff404040),
+                                                                fontSize: 36,
+                                                                fontFamily: ('Kanit'),
+                                                                fontWeight: FontWeight.w900,
+                                                              ),
+                                                              textScaleFactor: 1.0),
+                                                        ),
+                                                        Align(
+                                                          alignment: AlignmentDirectional(-0.9, 0.1),
+                                                          child: Text(
+                                                            'แถว',
+                                                            style: TextStyle(
+                                                              color: Color(0xffD4D4D4),
+                                                              fontSize: 16,
+                                                              fontFamily: ('Bai Jamjuree'),
+                                                            ),
+                                                            textScaleFactor: 1,
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment: AlignmentDirectional(-0.56, 0.7),
+                                                          child: Text(
+                                                            widget.model.positId.car_status == 0
+                                                                ? "-"
+                                                                : widget.model.positId.line,
+                                                            style: TextStyle(
+                                                              color: Color(0xff404040),
+                                                              fontSize: 36,
+                                                              fontFamily: ('Kanit'),
+                                                              fontWeight: FontWeight.w900,
+                                                            ),
+                                                            textScaleFactor: 1,
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment: AlignmentDirectional(0.1, 0.1),
+                                                          child: Text(
+                                                            'ลำดับ',
+                                                            style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontFamily: ('Bai Jamjuree'),
+                                                              color: Color(0xffD4D4D4),
+                                                            ),
+                                                            textScaleFactor: 1,
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment: AlignmentDirectional(0.56, 0.7),
+                                                          child: Text(
+                                                            widget.model.positId.car_status == 0
+                                                                ? "-"
+                                                                : widget.model.positId.posit.toString(),
+                                                            style: TextStyle(
+                                                              fontSize: 40,
+                                                              fontWeight: FontWeight.w900,
+                                                              fontFamily: ('Kanit'),
+                                                            ),
+                                                            textScaleFactor: 1,
+                                                          ),
+                                                        ),
+                                                      ])),
+                                                ))),
+                                      ),
+                                    ),
+                                  ),
 
-                          const SizedBox(height: 10),
-                          Text('Powered by Weise Technika',
-                              style: TextStyleFoot.bodyfoot,
-                              textScaleFactor: 1.0),
-                        ])),
+                                  const SizedBox(height: 15),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, right: 10, top: 0),
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          ' ประวัติรถยนต์',
+                                          style: TextStyle(
+                                            fontFamily: ('Kanit'),
+                                            fontSize: 18,
+                                            color: Color(0xffD4D4D4),
+                                          ),
+                                          textScaleFactor: 1,
+                                        )),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10, right: 10, top: 0),
+                                    child: SingleChildScrollView(
+                                      child: FutureBuilder<List<HistoryDBAPI>>(
+                                          future: getreq(),
+                                          builder: (context, snapShot) {
+                                            if (snapShot.hasData) {
+                                              return SingleChildScrollView(
+                                                child: Container(
+                                                  height: 190,
+                                                  width: double.infinity,
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.only(left: 10, right: 10, top: 0),
+                                                    child: Container(
+                                                      padding: const EdgeInsets.only(left: 10, right: 10, top: 0),
+                                                      child: SingleChildScrollView(
+                                                        child: DataTable(
+                                                          headingRowHeight: 2,
+                                                          horizontalMargin: 0,
+                                                          columnSpacing: 0,
+                                                          columns: const <DataColumn>[
+                                                            DataColumn(
+                                                                label: Expanded(
+                                                              child: Text(
+                                                                '',
+                                                              ),
+                                                            )),
+                                                            DataColumn(
+                                                                label: Expanded(
+                                                              child: Text(
+                                                                '',
+                                                              ),
+                                                            )),
+                                                            DataColumn(
+                                                                label: Expanded(
+                                                              child: Text(
+                                                                '',
+                                                              ),
+                                                            )),
+                                                            DataColumn(
+                                                                label: Expanded(
+                                                              child: Text(
+                                                                '',
+                                                              ),
+                                                            )),
+                                                          ],
+                                                          rows: snapShot.data!.map<DataRow>((e) {
+                                                            return DataRow(
+                                                              cells: <DataCell>[
+                                                                DataCell(Text(
+                                                                  '${e.date}',
+                                                                  style: const TextStyle(
+                                                                      fontSize: 14, fontFamily: ('Bai Jamjuree')),
+                                                                  textScaleFactor: 1,
+                                                                )),
+                                                                DataCell(Text(
+                                                                  '${e.carStatus.car_status}',
+                                                                  style: const TextStyle(
+                                                                      fontSize: 14, fontFamily: ('Bai Jamjuree')),
+                                                                  textScaleFactor: 1,
+                                                                )),
+                                                                DataCell(Text(
+                                                                  '${e.carWhere.carWhere}',
+                                                                  style: const TextStyle(
+                                                                      fontSize: 14, fontFamily: ('Bai Jamjuree')),
+                                                                  textScaleFactor: 1,
+                                                                )),
+                                                                DataCell(Text(
+                                                                  '${e.person.fullname}',
+                                                                  style: const TextStyle(
+                                                                      fontSize: 14, fontFamily: ('Bai Jamjuree')),
+                                                                  textScaleFactor: 1,
+                                                                )),
+                                                              ],
+                                                            );
+                                                          }).toList(),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            } else {
+                                              return Container(
+                                                height: 190,
+                                              );
+                                            }
+                                          }),
+                                    ),
+                                  ),
+
+                                  const SizedBox(height: 40),
+                                  Center(
+                                    child: SizedBox(
+                                      width: 280,
+                                      height: 36.55,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: const Color(0xffE52628),
+                                            minimumSize: const Size.fromHeight(40),
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                                        onPressed: () => _request(context),
+                                        child: AutoSizeText(
+                                          'เบิกรถยนต์',
+                                          style: TextStyleBtn.bodybtn,
+                                          maxFontSize: 12,
+                                          minFontSize: 11,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Center(
+                                    child: SizedBox(
+                                      width: 280,
+                                      height: 36.55,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.cyan[900],
+                                            minimumSize: const Size.fromHeight(40),
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                                        onPressed: () {
+                                          if (widget.model.carWhere.whereId == 1) {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) => _DialogStockA(context),
+                                            );
+                                          } else if (widget.model.carWhere.whereId == 2) {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) => _DialogStockB(context),
+                                            );
+                                          } else if (widget.model.carWhere.whereId == 3) {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) => _DialogStockC(context),
+                                            );
+                                          } else if (widget.model.carWhere.whereId == 4) {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) => _DialogStockD(context),
+                                            );
+                                          } else {
+                                            showDialog(
+                                                context: context,
+                                                builder: (BuildContext context) {
+                                                  return AlertDialog(
+                                                    content: new Column(
+                                                      mainAxisSize: MainAxisSize.min,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: <Widget>[
+                                                        SingleChildScrollView(
+                                                          child: Column(
+                                                            children: [
+                                                              Lottie.asset('assets/images/map.json',
+                                                                  height: 150, width: 150),
+                                                              Center(
+                                                                  child: Text('รถกำลังดำเนินการที่',
+                                                                      style: TextStyleAlert.body16bold)),
+                                                              Center(
+                                                                  child: Text(widget.model.carWhere.carWhere,
+                                                                      style: TextStyleAlert.body16)),
+                                                            ],
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                    actions: <Widget>[
+                                                      Center(
+                                                        child: SizedBox(
+                                                          width: 280,
+                                                          height: 36.55,
+                                                          child: ElevatedButton(
+                                                            onPressed: () {
+                                                              Navigator.of(context).pop();
+                                                            },
+                                                            style: ElevatedButton.styleFrom(
+                                                                primary: const Color(0xffE52628),
+                                                                minimumSize: const Size.fromHeight(40),
+                                                                shape: RoundedRectangleBorder(
+                                                                    borderRadius: BorderRadius.circular(12))),
+                                                            child: AutoSizeText(
+                                                              'ตกลง',
+                                                              style: TextStyleBtn.bodybtn,
+                                                              maxFontSize: 12,
+                                                              minFontSize: 11,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  );
+                                                });
+                                          }
+                                        },
+                                        child: AutoSizeText(
+                                          'แผนผังแสดงลานจอด',
+                                          style: TextStyleBtn.bodybtn,
+                                          maxFontSize: 12,
+                                          minFontSize: 11,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ]),
+                              ),
+                            ),
+                          )),
+
+                      const SizedBox(height: 10),
+                      Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot, textScaleFactor: 1.0),
+                    ])),
               ),
             )
           ]),
@@ -739,9 +533,7 @@ class _CardetailPageState extends State<CardetailPage> {
           SingleChildScrollView(
             child: Column(
               children: [
-                Center(
-                    child: Text('แผนผังแสดงลานจอด ลานดิน ',
-                        style: TextStyleAlert.body16bold)),
+                Center(child: Text('แผนผังแสดงลานจอด ลานดิน ', style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockA(),
                 )
@@ -762,8 +554,7 @@ class _CardetailPageState extends State<CardetailPage> {
               style: ElevatedButton.styleFrom(
                   primary: const Color(0xffE52628),
                   minimumSize: const Size.fromHeight(40),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12))),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
               child: AutoSizeText(
                 'ตกลง',
                 style: TextStyleBtn.bodybtn,
@@ -787,9 +578,7 @@ class _CardetailPageState extends State<CardetailPage> {
           SingleChildScrollView(
             child: Column(
               children: [
-                Center(
-                    child: Text('แผนผังแสดงลานจอด Stock A ',
-                        style: TextStyleAlert.body16bold)),
+                Center(child: Text('แผนผังแสดงลานจอด Stock A ', style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockB(),
                 )
@@ -810,8 +599,7 @@ class _CardetailPageState extends State<CardetailPage> {
               style: ElevatedButton.styleFrom(
                   primary: const Color(0xffE52628),
                   minimumSize: const Size.fromHeight(40),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12))),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
               child: AutoSizeText(
                 'ตกลง',
                 style: TextStyleBtn.bodybtn,
@@ -835,9 +623,7 @@ class _CardetailPageState extends State<CardetailPage> {
           SingleChildScrollView(
             child: Column(
               children: [
-                Center(
-                    child: Text('แผนผังแสดงลานจอด Stock B ',
-                        style: TextStyleAlert.body16bold)),
+                Center(child: Text('แผนผังแสดงลานจอด Stock B ', style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockC(),
                 )
@@ -858,8 +644,7 @@ class _CardetailPageState extends State<CardetailPage> {
               style: ElevatedButton.styleFrom(
                   primary: const Color(0xffE52628),
                   minimumSize: const Size.fromHeight(40),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12))),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
               child: AutoSizeText(
                 'ตกลง',
                 style: TextStyleBtn.bodybtn,
@@ -883,9 +668,7 @@ class _CardetailPageState extends State<CardetailPage> {
           SingleChildScrollView(
             child: Column(
               children: [
-                Center(
-                    child: Text('แผนผังแสดงลานจอด Stock C ',
-                        style: TextStyleAlert.body16bold)),
+                Center(child: Text('แผนผังแสดงลานจอด Stock C ', style: TextStyleAlert.body16bold)),
                 Center(
                   child: _buildStockD(),
                 )
@@ -906,8 +689,7 @@ class _CardetailPageState extends State<CardetailPage> {
               style: ElevatedButton.styleFrom(
                   primary: const Color(0xffE52628),
                   minimumSize: const Size.fromHeight(40),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12))),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
               child: AutoSizeText(
                 'ตกลง',
                 style: TextStyleBtn.bodybtn,
@@ -924,9 +706,8 @@ class _CardetailPageState extends State<CardetailPage> {
 // <------------------------- Stock  -------------------------->
   Widget _buildStockA() {
     return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color(0xffE2E8F0))),
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(12), border: Border.all(color: const Color(0xffE2E8F0))),
       height: 395,
       width: 290,
       child: Column(children: [
@@ -1005,16 +786,13 @@ class _CardetailPageState extends State<CardetailPage> {
                                   height: 330,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: const Color.fromARGB(
-                                          246, 231, 230, 236),
+                                      color: const Color.fromARGB(246, 231, 230, 236),
                                     ),
-                                    color: const Color.fromARGB(
-                                        246, 231, 230, 236),
+                                    color: const Color.fromARGB(246, 231, 230, 236),
                                     borderRadius: BorderRadius.circular(0),
                                   ),
                                   child: const Center(
-                                    child: RotatedBox(
-                                        quarterTurns: 1, child: Text("Lotus")),
+                                    child: RotatedBox(quarterTurns: 1, child: Text("Lotus")),
                                   ))
                             ]),
                           ),
@@ -1029,19 +807,15 @@ class _CardetailPageState extends State<CardetailPage> {
                                 height: 350,
                                 child: FutureBuilder(
                                     future: PostionService().getWhere1(),
-                                    builder: (BuildContext context,
-                                        AsyncSnapshot<List<PositDBAPI>?>
-                                            snapshot) {
+                                    builder: (BuildContext context, AsyncSnapshot<List<PositDBAPI>?> snapshot) {
                                       if (snapshot.hasData) {
                                         List<PositDBAPI>? data = snapshot.data;
                                         return Container(
                                             width: 20,
                                             height: 20,
                                             child: GridView.builder(
-                                                padding:
-                                                    const EdgeInsets.all(10),
-                                                gridDelegate:
-                                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                                padding: const EdgeInsets.all(10),
+                                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                                   mainAxisSpacing: 10,
                                                   crossAxisSpacing: 10,
                                                   crossAxisCount: 4,
@@ -1052,79 +826,60 @@ class _CardetailPageState extends State<CardetailPage> {
                                                     width: 20,
                                                     height: 20,
                                                     decoration: BoxDecoration(
-                                                      color: (data[index]
-                                                                      .carid
-                                                                      .car_id ==
-                                                                  widget.model
-                                                                      .carId &&
-                                                              data[index]
-                                                                      .car_status ==
-                                                                  1
+                                                      color: (data[index].carid.car_id == widget.model.carId &&
+                                                              data[index].car_status == 1
                                                           ? Colors.blue
-                                                          : data[index]
-                                                                      .car_status ==
-                                                                  1
+                                                          : data[index].car_status == 1
                                                               ? Colors.red
-                                                              : data[index]
-                                                                          .car_status ==
-                                                                      2
+                                                              : data[index].car_status == 2
                                                                   ? Colors.grey
-                                                                  : const Color(
-                                                                      0xff89EB80)),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              0),
+                                                                  : const Color(0xff89EB80)),
+                                                      borderRadius: BorderRadius.circular(0),
                                                     ),
                                                     child: InkWell(
                                                       onTap: () {
                                                         showDialog(
                                                             context: context,
-                                                            builder:
-                                                                (BuildContext
-                                                                    context) {
+                                                            builder: (BuildContext context) {
                                                               return new AlertDialog(
-                                                                content:
-                                                                    new Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  children: <
-                                                                      Widget>[
+                                                                content: new Column(
+                                                                  mainAxisSize: MainAxisSize.min,
+                                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                                  children: <Widget>[
                                                                     SingleChildScrollView(
-                                                                        child:
-                                                                            Column(
+                                                                        child: Column(
                                                                       children: [
                                                                         Center(
-                                                                          child: Lottie.asset(
-                                                                              'assets/images/map.json',
-                                                                              height: 150,
-                                                                              width: 150),
+                                                                          child: Lottie.asset('assets/images/map.json',
+                                                                              height: 150, width: 150),
                                                                         ),
                                                                         Center(
-                                                                            child:
-                                                                                Container(
-                                                                          height:
-                                                                              80,
-                                                                          width:
-                                                                              500,
-                                                                          child:
-                                                                              Column(
+                                                                            child: Container(
+                                                                          height: 80,
+                                                                          width: 500,
+                                                                          child: Column(
                                                                             crossAxisAlignment:
                                                                                 CrossAxisAlignment.start,
                                                                             children: [
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("เลขตัวถัง ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("เลขตัวถัง ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text(
+                                                                                      "${data[index].carid.car_chassis}",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("ประเภท  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("รถยนต์", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ประเภท  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text("รถยนต์",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                               /*  Row(
@@ -1135,14 +890,24 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                               ), */
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ตำแหน่ง :  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text(
+                                                                                      "${data[index].line}${data[index].posit}  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("ลานจอด :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("${data[index].carWhere.carWhere} ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ลานจอด :  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text(
+                                                                                      "${data[index].carWhere.carWhere} ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                             ],
@@ -1152,36 +917,26 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                     ))
                                                                   ],
                                                                 ),
-                                                                actions: <
-                                                                    Widget>[
+                                                                actions: <Widget>[
                                                                   Center(
-                                                                    child:
-                                                                        SizedBox(
-                                                                      width:
-                                                                          280,
-                                                                      height:
-                                                                          36.55,
-                                                                      child:
-                                                                          ElevatedButton(
-                                                                        onPressed:
-                                                                            () {
-                                                                          Navigator.of(context)
-                                                                              .pop();
+                                                                    child: SizedBox(
+                                                                      width: 280,
+                                                                      height: 36.55,
+                                                                      child: ElevatedButton(
+                                                                        onPressed: () {
+                                                                          Navigator.of(context).pop();
                                                                         },
                                                                         style: ElevatedButton.styleFrom(
-                                                                            primary:
-                                                                                const Color(0xffE52628),
+                                                                            primary: const Color(0xffE52628),
                                                                             minimumSize: const Size.fromHeight(40),
-                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                                                                        child:
-                                                                            AutoSizeText(
+                                                                            shape: RoundedRectangleBorder(
+                                                                                borderRadius:
+                                                                                    BorderRadius.circular(12))),
+                                                                        child: AutoSizeText(
                                                                           'ตกลง',
-                                                                          style:
-                                                                              TextStyleBtn.bodybtn,
-                                                                          maxFontSize:
-                                                                              12,
-                                                                          minFontSize:
-                                                                              11,
+                                                                          style: TextStyleBtn.bodybtn,
+                                                                          maxFontSize: 12,
+                                                                          minFontSize: 11,
                                                                         ),
                                                                       ),
                                                                     ),
@@ -1193,12 +948,8 @@ class _CardetailPageState extends State<CardetailPage> {
                                                       child: Center(
                                                         child: Text(
                                                           textScaleFactor: 1,
-                                                          data[index]
-                                                              .posit
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white),
+                                                          data[index].posit.toString(),
+                                                          style: TextStyle(color: Colors.white),
                                                         ),
                                                       ),
                                                     ),
@@ -1225,9 +976,8 @@ class _CardetailPageState extends State<CardetailPage> {
 
   Widget _buildStockB() {
     return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color(0xffE2E8F0))),
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(12), border: Border.all(color: const Color(0xffE2E8F0))),
       height: 395,
       width: 290,
       child: Column(children: [
@@ -1314,16 +1064,13 @@ class _CardetailPageState extends State<CardetailPage> {
                                   height: 330,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: const Color.fromARGB(
-                                          246, 231, 230, 236),
+                                      color: const Color.fromARGB(246, 231, 230, 236),
                                     ),
-                                    color: const Color.fromARGB(
-                                        246, 231, 230, 236),
+                                    color: const Color.fromARGB(246, 231, 230, 236),
                                     borderRadius: BorderRadius.circular(0),
                                   ),
                                   child: const Center(
-                                    child: RotatedBox(
-                                        quarterTurns: 1, child: Text("Lotus")),
+                                    child: RotatedBox(quarterTurns: 1, child: Text("Lotus")),
                                   ))
                             ]),
                           ),
@@ -1338,19 +1085,15 @@ class _CardetailPageState extends State<CardetailPage> {
                                 height: 350,
                                 child: FutureBuilder(
                                     future: PostionService().getWhere2(),
-                                    builder: (BuildContext context,
-                                        AsyncSnapshot<List<PositDBAPI>?>
-                                            snapshot) {
+                                    builder: (BuildContext context, AsyncSnapshot<List<PositDBAPI>?> snapshot) {
                                       if (snapshot.hasData) {
                                         List<PositDBAPI>? data = snapshot.data;
                                         return Container(
                                             width: 20,
                                             height: 20,
                                             child: GridView.builder(
-                                                padding:
-                                                    const EdgeInsets.all(10),
-                                                gridDelegate:
-                                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                                padding: const EdgeInsets.all(10),
+                                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                                   mainAxisSpacing: 10,
                                                   crossAxisSpacing: 10,
                                                   crossAxisCount: 5,
@@ -1361,79 +1104,60 @@ class _CardetailPageState extends State<CardetailPage> {
                                                     width: 20,
                                                     height: 20,
                                                     decoration: BoxDecoration(
-                                                      color: (data[index]
-                                                                      .carid
-                                                                      .car_id ==
-                                                                  widget.model
-                                                                      .carId &&
-                                                              data[index]
-                                                                      .car_status ==
-                                                                  1
+                                                      color: (data[index].carid.car_id == widget.model.carId &&
+                                                              data[index].car_status == 1
                                                           ? Colors.blue
-                                                          : data[index]
-                                                                      .car_status ==
-                                                                  1
+                                                          : data[index].car_status == 1
                                                               ? Colors.red
-                                                              : data[index]
-                                                                          .car_status ==
-                                                                      2
+                                                              : data[index].car_status == 2
                                                                   ? Colors.grey
-                                                                  : const Color(
-                                                                      0xff89EB80)),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              0),
+                                                                  : const Color(0xff89EB80)),
+                                                      borderRadius: BorderRadius.circular(0),
                                                     ),
                                                     child: InkWell(
                                                       onTap: () {
                                                         showDialog(
                                                             context: context,
-                                                            builder:
-                                                                (BuildContext
-                                                                    context) {
+                                                            builder: (BuildContext context) {
                                                               return new AlertDialog(
-                                                                content:
-                                                                    new Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  children: <
-                                                                      Widget>[
+                                                                content: new Column(
+                                                                  mainAxisSize: MainAxisSize.min,
+                                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                                  children: <Widget>[
                                                                     SingleChildScrollView(
-                                                                        child:
-                                                                            Column(
+                                                                        child: Column(
                                                                       children: [
                                                                         Center(
-                                                                          child: Lottie.asset(
-                                                                              'assets/images/map.json',
-                                                                              height: 150,
-                                                                              width: 150),
+                                                                          child: Lottie.asset('assets/images/map.json',
+                                                                              height: 150, width: 150),
                                                                         ),
                                                                         Center(
-                                                                            child:
-                                                                                Container(
-                                                                          height:
-                                                                              80,
-                                                                          width:
-                                                                              500,
-                                                                          child:
-                                                                              Column(
+                                                                            child: Container(
+                                                                          height: 80,
+                                                                          width: 500,
+                                                                          child: Column(
                                                                             crossAxisAlignment:
                                                                                 CrossAxisAlignment.start,
                                                                             children: [
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("เลขตัวถัง ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("เลขตัวถัง ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text(
+                                                                                      "${data[index].carid.car_chassis}",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("ประเภท  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("รถยนต์", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ประเภท  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text("รถยนต์",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                               /*  Row(
@@ -1444,14 +1168,24 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                               ), */
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ตำแหน่ง :  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text(
+                                                                                      "${data[index].line}${data[index].posit}  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("ลานจอด :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("${data[index].carWhere.carWhere} ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ลานจอด :  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text(
+                                                                                      "${data[index].carWhere.carWhere} ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                             ],
@@ -1461,36 +1195,26 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                     ))
                                                                   ],
                                                                 ),
-                                                                actions: <
-                                                                    Widget>[
+                                                                actions: <Widget>[
                                                                   Center(
-                                                                    child:
-                                                                        SizedBox(
-                                                                      width:
-                                                                          280,
-                                                                      height:
-                                                                          36.55,
-                                                                      child:
-                                                                          new ElevatedButton(
-                                                                        onPressed:
-                                                                            () {
-                                                                          Navigator.of(context)
-                                                                              .pop();
+                                                                    child: SizedBox(
+                                                                      width: 280,
+                                                                      height: 36.55,
+                                                                      child: new ElevatedButton(
+                                                                        onPressed: () {
+                                                                          Navigator.of(context).pop();
                                                                         },
                                                                         style: ElevatedButton.styleFrom(
-                                                                            primary:
-                                                                                const Color(0xffE52628),
+                                                                            primary: const Color(0xffE52628),
                                                                             minimumSize: const Size.fromHeight(40),
-                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                                                                        child:
-                                                                            AutoSizeText(
+                                                                            shape: RoundedRectangleBorder(
+                                                                                borderRadius:
+                                                                                    BorderRadius.circular(10))),
+                                                                        child: AutoSizeText(
                                                                           'ตกลง',
-                                                                          style:
-                                                                              TextStyleBtn.bodybtn,
-                                                                          maxFontSize:
-                                                                              12,
-                                                                          minFontSize:
-                                                                              11,
+                                                                          style: TextStyleBtn.bodybtn,
+                                                                          maxFontSize: 12,
+                                                                          minFontSize: 11,
                                                                         ),
                                                                       ),
                                                                     ),
@@ -1502,12 +1226,8 @@ class _CardetailPageState extends State<CardetailPage> {
                                                       child: Center(
                                                         child: Text(
                                                           textScaleFactor: 1,
-                                                          data[index]
-                                                              .posit
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white),
+                                                          data[index].posit.toString(),
+                                                          style: TextStyle(color: Colors.white),
                                                         ),
                                                       ),
                                                     ),
@@ -1534,9 +1254,8 @@ class _CardetailPageState extends State<CardetailPage> {
 
   Widget _buildStockC() {
     return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color(0xffE2E8F0))),
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(12), border: Border.all(color: const Color(0xffE2E8F0))),
       height: 395,
       width: 290,
       child: Column(children: [
@@ -1623,16 +1342,13 @@ class _CardetailPageState extends State<CardetailPage> {
                                   height: 330,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: const Color.fromARGB(
-                                          246, 231, 230, 236),
+                                      color: const Color.fromARGB(246, 231, 230, 236),
                                     ),
-                                    color: const Color.fromARGB(
-                                        246, 231, 230, 236),
+                                    color: const Color.fromARGB(246, 231, 230, 236),
                                     borderRadius: BorderRadius.circular(0),
                                   ),
                                   child: const Center(
-                                    child: RotatedBox(
-                                        quarterTurns: 1, child: Text("Lotus")),
+                                    child: RotatedBox(quarterTurns: 1, child: Text("Lotus")),
                                   ))
                             ]),
                           ),
@@ -1647,19 +1363,15 @@ class _CardetailPageState extends State<CardetailPage> {
                                 height: 350,
                                 child: FutureBuilder(
                                     future: PostionService().getWhere3(),
-                                    builder: (BuildContext context,
-                                        AsyncSnapshot<List<PositDBAPI>?>
-                                            snapshot) {
+                                    builder: (BuildContext context, AsyncSnapshot<List<PositDBAPI>?> snapshot) {
                                       if (snapshot.hasData) {
                                         List<PositDBAPI>? data = snapshot.data;
                                         return Container(
                                             width: 20,
                                             height: 20,
                                             child: GridView.builder(
-                                                padding:
-                                                    const EdgeInsets.all(10),
-                                                gridDelegate:
-                                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                                padding: const EdgeInsets.all(10),
+                                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                                   mainAxisSpacing: 10,
                                                   crossAxisSpacing: 10,
                                                   crossAxisCount: 5,
@@ -1670,79 +1382,60 @@ class _CardetailPageState extends State<CardetailPage> {
                                                     width: 20,
                                                     height: 20,
                                                     decoration: BoxDecoration(
-                                                      color: (data[index]
-                                                                      .carid
-                                                                      .car_id ==
-                                                                  widget.model
-                                                                      .carId &&
-                                                              data[index]
-                                                                      .car_status ==
-                                                                  1
+                                                      color: (data[index].carid.car_id == widget.model.carId &&
+                                                              data[index].car_status == 1
                                                           ? Colors.blue
-                                                          : data[index]
-                                                                      .car_status ==
-                                                                  1
+                                                          : data[index].car_status == 1
                                                               ? Colors.red
-                                                              : data[index]
-                                                                          .car_status ==
-                                                                      2
+                                                              : data[index].car_status == 2
                                                                   ? Colors.grey
-                                                                  : const Color(
-                                                                      0xff89EB80)),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              0),
+                                                                  : const Color(0xff89EB80)),
+                                                      borderRadius: BorderRadius.circular(0),
                                                     ),
                                                     child: InkWell(
                                                       onTap: () {
                                                         showDialog(
                                                             context: context,
-                                                            builder:
-                                                                (BuildContext
-                                                                    context) {
+                                                            builder: (BuildContext context) {
                                                               return new AlertDialog(
-                                                                content:
-                                                                    new Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  children: <
-                                                                      Widget>[
+                                                                content: new Column(
+                                                                  mainAxisSize: MainAxisSize.min,
+                                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                                  children: <Widget>[
                                                                     SingleChildScrollView(
-                                                                        child:
-                                                                            Column(
+                                                                        child: Column(
                                                                       children: [
                                                                         Center(
-                                                                          child: Lottie.asset(
-                                                                              'assets/images/map.json',
-                                                                              height: 150,
-                                                                              width: 150),
+                                                                          child: Lottie.asset('assets/images/map.json',
+                                                                              height: 150, width: 150),
                                                                         ),
                                                                         Center(
-                                                                            child:
-                                                                                Container(
-                                                                          height:
-                                                                              80,
-                                                                          width:
-                                                                              500,
-                                                                          child:
-                                                                              Column(
+                                                                            child: Container(
+                                                                          height: 80,
+                                                                          width: 500,
+                                                                          child: Column(
                                                                             crossAxisAlignment:
                                                                                 CrossAxisAlignment.start,
                                                                             children: [
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("เลขตัวถัง ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("เลขตัวถัง ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text(
+                                                                                      "${data[index].carid.car_chassis}",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("ประเภท  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("รถยนต์", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ประเภท  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text("รถยนต์",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                               /*  Row(
@@ -1753,14 +1446,24 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                               ), */
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ตำแหน่ง :  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text(
+                                                                                      "${data[index].line}${data[index].posit}  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("ลานจอด :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("${data[index].carWhere.carWhere} ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ลานจอด :  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text(
+                                                                                      "${data[index].carWhere.carWhere} ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                             ],
@@ -1770,36 +1473,26 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                     ))
                                                                   ],
                                                                 ),
-                                                                actions: <
-                                                                    Widget>[
+                                                                actions: <Widget>[
                                                                   Center(
-                                                                    child:
-                                                                        SizedBox(
-                                                                      width:
-                                                                          280,
-                                                                      height:
-                                                                          36.55,
-                                                                      child:
-                                                                          new ElevatedButton(
-                                                                        onPressed:
-                                                                            () {
-                                                                          Navigator.of(context)
-                                                                              .pop();
+                                                                    child: SizedBox(
+                                                                      width: 280,
+                                                                      height: 36.55,
+                                                                      child: new ElevatedButton(
+                                                                        onPressed: () {
+                                                                          Navigator.of(context).pop();
                                                                         },
                                                                         style: ElevatedButton.styleFrom(
-                                                                            primary:
-                                                                                const Color(0xffE52628),
+                                                                            primary: const Color(0xffE52628),
                                                                             minimumSize: const Size.fromHeight(40),
-                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                                                                        child:
-                                                                            AutoSizeText(
+                                                                            shape: RoundedRectangleBorder(
+                                                                                borderRadius:
+                                                                                    BorderRadius.circular(10))),
+                                                                        child: AutoSizeText(
                                                                           'ตกลง',
-                                                                          style:
-                                                                              TextStyleBtn.bodybtn,
-                                                                          maxFontSize:
-                                                                              12,
-                                                                          minFontSize:
-                                                                              11,
+                                                                          style: TextStyleBtn.bodybtn,
+                                                                          maxFontSize: 12,
+                                                                          minFontSize: 11,
                                                                         ),
                                                                       ),
                                                                     ),
@@ -1811,12 +1504,8 @@ class _CardetailPageState extends State<CardetailPage> {
                                                       child: Center(
                                                         child: Text(
                                                           textScaleFactor: 1,
-                                                          data[index]
-                                                              .posit
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white),
+                                                          data[index].posit.toString(),
+                                                          style: TextStyle(color: Colors.white),
                                                         ),
                                                       ),
                                                     ),
@@ -1843,9 +1532,8 @@ class _CardetailPageState extends State<CardetailPage> {
 
   Widget _buildStockD() {
     return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color(0xffE2E8F0))),
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(12), border: Border.all(color: const Color(0xffE2E8F0))),
       height: 395,
       width: 290,
       child: Column(children: [
@@ -1932,16 +1620,13 @@ class _CardetailPageState extends State<CardetailPage> {
                                   height: 330,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: const Color.fromARGB(
-                                          246, 231, 230, 236),
+                                      color: const Color.fromARGB(246, 231, 230, 236),
                                     ),
-                                    color: const Color.fromARGB(
-                                        246, 231, 230, 236),
+                                    color: const Color.fromARGB(246, 231, 230, 236),
                                     borderRadius: BorderRadius.circular(0),
                                   ),
                                   child: const Center(
-                                    child: RotatedBox(
-                                        quarterTurns: 1, child: Text("Lotus")),
+                                    child: RotatedBox(quarterTurns: 1, child: Text("Lotus")),
                                   ))
                             ]),
                           ),
@@ -1956,19 +1641,15 @@ class _CardetailPageState extends State<CardetailPage> {
                                 height: 350,
                                 child: FutureBuilder(
                                     future: PostionService().getWhere4(),
-                                    builder: (BuildContext context,
-                                        AsyncSnapshot<List<PositDBAPI>?>
-                                            snapshot) {
+                                    builder: (BuildContext context, AsyncSnapshot<List<PositDBAPI>?> snapshot) {
                                       if (snapshot.hasData) {
                                         List<PositDBAPI>? data = snapshot.data;
                                         return Container(
                                             width: 20,
                                             height: 20,
                                             child: GridView.builder(
-                                                padding:
-                                                    const EdgeInsets.all(10),
-                                                gridDelegate:
-                                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                                padding: const EdgeInsets.all(10),
+                                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                                   mainAxisSpacing: 10,
                                                   crossAxisSpacing: 10,
                                                   crossAxisCount: 5,
@@ -1979,79 +1660,60 @@ class _CardetailPageState extends State<CardetailPage> {
                                                     width: 20,
                                                     height: 20,
                                                     decoration: BoxDecoration(
-                                                      color: (data[index]
-                                                                      .carid
-                                                                      .car_id ==
-                                                                  widget.model
-                                                                      .carId &&
-                                                              data[index]
-                                                                      .car_status ==
-                                                                  1
+                                                      color: (data[index].carid.car_id == widget.model.carId &&
+                                                              data[index].car_status == 1
                                                           ? Colors.blue
-                                                          : data[index]
-                                                                      .car_status ==
-                                                                  1
+                                                          : data[index].car_status == 1
                                                               ? Colors.red
-                                                              : data[index]
-                                                                          .car_status ==
-                                                                      2
+                                                              : data[index].car_status == 2
                                                                   ? Colors.grey
-                                                                  : const Color(
-                                                                      0xff89EB80)),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              0),
+                                                                  : const Color(0xff89EB80)),
+                                                      borderRadius: BorderRadius.circular(0),
                                                     ),
                                                     child: InkWell(
                                                       onTap: () {
                                                         showDialog(
                                                             context: context,
-                                                            builder:
-                                                                (BuildContext
-                                                                    context) {
+                                                            builder: (BuildContext context) {
                                                               return new AlertDialog(
-                                                                content:
-                                                                    new Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .min,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .center,
-                                                                  children: <
-                                                                      Widget>[
+                                                                content: new Column(
+                                                                  mainAxisSize: MainAxisSize.min,
+                                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                                  children: <Widget>[
                                                                     SingleChildScrollView(
-                                                                        child:
-                                                                            Column(
+                                                                        child: Column(
                                                                       children: [
                                                                         Center(
-                                                                          child: Lottie.asset(
-                                                                              'assets/images/map.json',
-                                                                              height: 150,
-                                                                              width: 150),
+                                                                          child: Lottie.asset('assets/images/map.json',
+                                                                              height: 150, width: 150),
                                                                         ),
                                                                         Center(
-                                                                            child:
-                                                                                Container(
-                                                                          height:
-                                                                              80,
-                                                                          width:
-                                                                              500,
-                                                                          child:
-                                                                              Column(
+                                                                            child: Container(
+                                                                          height: 80,
+                                                                          width: 500,
+                                                                          child: Column(
                                                                             crossAxisAlignment:
                                                                                 CrossAxisAlignment.start,
                                                                             children: [
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("เลขตัวถัง ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("${data[index].carid.car_chassis}", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("เลขตัวถัง ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text(
+                                                                                      "${data[index].carid.car_chassis}",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("ประเภท  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("รถยนต์", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ประเภท  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text("รถยนต์",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                               /*  Row(
@@ -2062,14 +1724,24 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                               ), */
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("ตำแหน่ง :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("${data[index].line}${data[index].posit}  ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ตำแหน่ง :  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text(
+                                                                                      "${data[index].line}${data[index].posit}  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                               Row(
                                                                                 children: [
-                                                                                  Text("ลานจอด :  ", textScaleFactor: 1, style: TextStyleAlert.body16bold),
-                                                                                  Text("${data[index].carWhere.carWhere} ", textScaleFactor: 1, style: TextStyleAlert.body16),
+                                                                                  Text("ลานจอด :  ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16bold),
+                                                                                  Text(
+                                                                                      "${data[index].carWhere.carWhere} ",
+                                                                                      textScaleFactor: 1,
+                                                                                      style: TextStyleAlert.body16),
                                                                                 ],
                                                                               ),
                                                                             ],
@@ -2079,36 +1751,26 @@ class _CardetailPageState extends State<CardetailPage> {
                                                                     ))
                                                                   ],
                                                                 ),
-                                                                actions: <
-                                                                    Widget>[
+                                                                actions: <Widget>[
                                                                   Center(
-                                                                    child:
-                                                                        SizedBox(
-                                                                      width:
-                                                                          280,
-                                                                      height:
-                                                                          36.55,
-                                                                      child:
-                                                                          new ElevatedButton(
-                                                                        onPressed:
-                                                                            () {
-                                                                          Navigator.of(context)
-                                                                              .pop();
+                                                                    child: SizedBox(
+                                                                      width: 280,
+                                                                      height: 36.55,
+                                                                      child: new ElevatedButton(
+                                                                        onPressed: () {
+                                                                          Navigator.of(context).pop();
                                                                         },
                                                                         style: ElevatedButton.styleFrom(
-                                                                            primary:
-                                                                                const Color(0xffE52628),
+                                                                            primary: const Color(0xffE52628),
                                                                             minimumSize: const Size.fromHeight(40),
-                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                                                                        child:
-                                                                            AutoSizeText(
+                                                                            shape: RoundedRectangleBorder(
+                                                                                borderRadius:
+                                                                                    BorderRadius.circular(10))),
+                                                                        child: AutoSizeText(
                                                                           'ตกลง',
-                                                                          style:
-                                                                              TextStyleBtn.bodybtn,
-                                                                          maxFontSize:
-                                                                              12,
-                                                                          minFontSize:
-                                                                              11,
+                                                                          style: TextStyleBtn.bodybtn,
+                                                                          maxFontSize: 12,
+                                                                          minFontSize: 11,
                                                                         ),
                                                                       ),
                                                                     ),
@@ -2120,12 +1782,8 @@ class _CardetailPageState extends State<CardetailPage> {
                                                       child: Center(
                                                         child: Text(
                                                           textScaleFactor: 1,
-                                                          data[index]
-                                                              .posit
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white),
+                                                          data[index].posit.toString(),
+                                                          style: TextStyle(color: Colors.white),
                                                         ),
                                                       ),
                                                     ),
@@ -2243,8 +1901,7 @@ class _CardetailPageState extends State<CardetailPage> {
                 );
 
                 if (response2.success) {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => Reqsplash()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => Reqsplash()));
                 }
                 /* Navigator.push(
                     context, MaterialPageRoute(builder: (_) => Reqsplash())); */
@@ -2272,18 +1929,19 @@ class _CardetailPageState extends State<CardetailPage> {
     ).show();
   }
 
-_fetchData(BuildContext context, [bool mounted = true]) async {
-  showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return const Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
-          ),
-        );
-      });
-}
+  _fetchData(BuildContext context, [bool mounted = true]) async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return const Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+            ),
+          );
+        });
+  }
+
   // <------------------------ updateposition ------------------------>
   dynamic urlup = 'https://vdqi-db.toyotaparagon.com/api/';
   Future<ResponseModel> PutCar(
@@ -2300,10 +1958,7 @@ _fetchData(BuildContext context, [bool mounted = true]) async {
       var _authToken = localStorage.getString('token');
       /*  var ID = localStorage.getString('ID'); */
       var IDCAR = widget.model.carId;
-      Map<String, String> headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_authToken'
-      };
+      Map<String, String> headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer $_authToken'};
       if (_authToken != null) {
         urlup = Uri.parse("https://vdqi-db.toyotaparagon.com/api/cardb/$IDCAR");
         await http.put(

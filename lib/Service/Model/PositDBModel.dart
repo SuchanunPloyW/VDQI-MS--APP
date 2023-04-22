@@ -30,8 +30,7 @@ class PositDB {
 
   factory PositDB.fromJson(Map<String, dynamic> json) => PositDB(
         currentPage: json["current_page"],
-        data: List<PositDBAPI>.from(
-            json["data"].map((e) => PositDBAPI.fromJson(e))),
+        data: List<PositDBAPI>.from(json["data"].map((e) => PositDBAPI.fromJson(e))),
         firstPageUrl: json["first_page_url"],
         from: json["from"],
         lastPage: json["last_page"],
@@ -74,21 +73,18 @@ class PositDBAPI {
         carid: Carid.fromJson(json["car_id"]),
       );
 }
+
 class Carid {
   Carid({
     required this.car_id,
     required this.car_chassis,
-    
   });
   int car_id;
   String car_chassis;
- 
 
   factory Carid.fromJson(Map<String, dynamic> json) => Carid(
         car_id: json["car_id"],
         car_chassis: json["car_chassis"],
-       
-       
       );
 }
 

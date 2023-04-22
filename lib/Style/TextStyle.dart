@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vdqims/Style/ColorTheme.dart';
 
 // < ------------------      login        ------------------>
-class TextStylelogin  {
+class TextStylelogin {
   static TextStyle body14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w300,
@@ -29,6 +29,7 @@ class TextStylelogin  {
     fontFamily: ('Kanit'),
   );
 }
+
 class TextStyleProfile {
   static TextStyle body15 = TextStyle(
     fontSize: 15,
@@ -36,8 +37,6 @@ class TextStyleProfile {
     color: ColorTheme.grey2,
     fontFamily: ('Kanit'),
   );
-  
-
 }
 
 // < ------------------      HomePage        ------------------>
@@ -47,7 +46,6 @@ class TextStylePage {
     fontWeight: FontWeight.w400,
     color: ColorTheme.bold,
     fontFamily: ('Bai Jamjuree'),
-    
   );
 
   static TextStyle bodyP16 = TextStyle(
@@ -74,7 +72,6 @@ class TextStyleAlert {
   );
   static TextStyle body16 = TextStyle(
     fontSize: 16,
-   
     color: ColorTheme.bold,
     fontFamily: ('Bai Jamjuree'),
   );
@@ -229,7 +226,6 @@ class TextStyleBtn {
 
 // < ------------------      Foot        ------------------>
 class TextStyleFoot {
-  
   static TextStyle bodyfoot = TextStyle(
     fontSize: 11,
     color: ColorTheme.foot,

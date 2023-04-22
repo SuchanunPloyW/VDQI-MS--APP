@@ -23,8 +23,7 @@ class _FindcarPageState extends State<FindcarPage> {
   Future<void> scanBarcode() async {
     String barcodeScanRes;
     try {
-      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode('#ff6666', 'Cancel', true, ScanMode.BARCODE);
       print(barcodeScanRes);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
@@ -43,9 +42,7 @@ class _FindcarPageState extends State<FindcarPage> {
   Widget build(BuildContext context) {
     final FocusNode _focusNode = FocusNode();
     final mqData = MediaQuery.of(context);
-    final mqDataNew = mqData.copyWith(
-        textScaleFactor:
-            mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
+    final mqDataNew = mqData.copyWith(textScaleFactor: mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
     return Scaffold(
         backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
@@ -53,19 +50,13 @@ class _FindcarPageState extends State<FindcarPage> {
           centerTitle: true,
           title: RichText(
               textAlign: TextAlign.center,
-              text: TextSpan(
-                  text: "ค้นหารถยนต์",
-                  style: TextStyleMenuName.bodyMenuThai,
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: '\nFind My Car',
-                        style: TextStyleMenuName.bodyMenuEng),
-                  ])),
+              text: TextSpan(text: "ค้นหารถยนต์", style: TextStyleMenuName.bodyMenuThai, children: <TextSpan>[
+                TextSpan(text: '\nFind My Car', style: TextStyleMenuName.bodyMenuEng),
+              ])),
           leading: IconButton(
             onPressed: () {
               Future.delayed(Duration(milliseconds: 200), () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => MenuPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => MenuPage()));
               });
             },
             icon: Icon(
@@ -116,11 +107,9 @@ class _FindcarPageState extends State<FindcarPage> {
                                     color: Colors.grey,
                                     fontFamily: ('Bai Jamjuree'),
                                   ),
-                                  contentPadding:
-                                      EdgeInsets.only(left: 15, right: 10),
+                                  contentPadding: EdgeInsets.only(left: 15, right: 10),
                                   border: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(30)),
+                                    borderRadius: BorderRadius.all(Radius.circular(30)),
                                     borderSide: BorderSide.none,
                                   ),
                                   suffixIcon: Icon(
@@ -129,10 +118,7 @@ class _FindcarPageState extends State<FindcarPage> {
                                   ),
                                   suffixIconColor: Colors.grey),
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400,
-                                  wordSpacing: 1),
+                                  color: Colors.white, fontSize: 15, fontWeight: FontWeight.w400, wordSpacing: 1),
                               /*  readOnly: true, */
                             ),
                           ),
@@ -174,65 +160,59 @@ class _FindcarPageState extends State<FindcarPage> {
               child: SingleChildScrollView(
                 child: Padding(
                     padding: const EdgeInsets.only(left: 5, right: 5, top: 46),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(
-                              height: 550,
-                              child: Card(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: FutureBuilder(
-                                  future: FindCarService().getcar(),
-                                  builder: (BuildContext context,
-                                      AsyncSnapshot<List<CarDBAPI>?> snapshot) {
-                                    if (snapshot.hasData) {
-                                      List<CarDBAPI>? data = snapshot.data;
-                                      return Align(
-                                        alignment: Alignment.topCenter,
-                                        child: ListView.builder(
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount: data!.length,
-                                            itemBuilder: (context, index) {
-                                              //String postion = snapshot.data[index]
-                                              if (ChassisController
-                                                  .text.isEmpty) {
-                                                return Listcar(
-                                                  model: data[index],
-                                                );
-                                              } else if (snapshot
-                                                  .data![index].carChassis
-                                                  .contains(
-                                                      ChassisController.text)) {
-                                                return Listcar(
-                                                  model: data[index],
-                                                );
-                                              } else {
-                                                return Container();
-                                              }
-                                            }
-                                            /*  Listcar(model: data[index],),  */
-                                            ),
-                                      );
-                                    }
-                                    return Center(
-                                      child: CircularProgressIndicator(
-                                        color: baseColor1,
-                                      ),
-                                    );
-                                  },
-                                ),
-                              )),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Powered by Weise Technika',
-                            style: TextStyleFoot.bodyfoot,
-                            textScaleFactor: 1,
-                          ),
-                        ])),
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                      SizedBox(
+                          height: 550,
+                          child: Card(
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: FutureBuilder(
+                              future: FindCarService().getcar(),
+                              builder: (BuildContext context, AsyncSnapshot<List<CarDBAPI>?> snapshot) {
+                                if (snapshot.hasData) {
+                                  List<CarDBAPI>? data = snapshot.data;
+                                  return Align(
+                                    alignment: Alignment.topCenter,
+                                    child: ListView.builder(
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: data!.length,
+                                        itemBuilder: (context, index) {
+                                          //String postion = snapshot.data[index]
+                                          if (ChassisController.text.isEmpty) {
+                                            return Listcar(
+                                              model: data[index],
+                                            );
+                                          } else if (snapshot.data![index].carChassis
+                                              .contains(ChassisController.text)) {
+                                            return Listcar(
+                                              model: data[index],
+                                            );
+                                          } else {
+                                            return Container();
+                                          }
+                                        }
+                                        /*  Listcar(model: data[index],),  */
+                                        ),
+                                  );
+                                }
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    color: baseColor1,
+                                  ),
+                                );
+                              },
+                            ),
+                          )),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Powered by Weise Technika',
+                        style: TextStyleFoot.bodyfoot,
+                        textScaleFactor: 1,
+                      ),
+                    ])),
               ),
             )
           ]),
@@ -251,8 +231,7 @@ class _FindcarPageState extends State<FindcarPage> {
           child: ListTile(
             onTap: () async {
               dynamic Id = model.carId.toString();
-              SharedPreferences localStorage =
-                  await SharedPreferences.getInstance();
+              SharedPreferences localStorage = await SharedPreferences.getInstance();
               localStorage.setString('ID', Id);
               // ignore: use_build_context_synchronously
               Navigator.push(
@@ -273,9 +252,8 @@ class _FindcarPageState extends State<FindcarPage> {
                       width: 30,
                     ),
                     radius: 62.0,
-                    backgroundColor: (model.carStatus.statusId == 1
-                        ? const Color(0xff89EB80)
-                        : const Color(0xffEB8080)),
+                    backgroundColor:
+                        (model.carStatus.statusId == 1 ? const Color(0xff89EB80) : const Color(0xffEB8080)),
                   )),
             ),
             /* leading: CircleAvatar(

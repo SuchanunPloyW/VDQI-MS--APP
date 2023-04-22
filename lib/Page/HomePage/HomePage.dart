@@ -67,108 +67,130 @@ class _HomePageState extends State<HomePage> {
               child: SingleChildScrollView(
                 child: Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20.0),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 40),
+                            child: AutoSizeText(
+                              'หน้าหลัก',
+                              style: TextStyleMenuName.bodyMenuThai,
+                              maxFontSize: 18,
+                              minFontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: AutoSizeText(
+                            'Home Page',
+                            style: TextStyleMenuName.bodyMenuEng,
+                            maxLines: 1,
+                            minFontSize: 14,
+                            maxFontSize: 16,
+                          ),
+                        ),
+                      ),
+                      SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: SizedBox(
+                              height: 450,
                               child: Padding(
-                                padding: const EdgeInsets.only(top: 40),
-                                child: AutoSizeText(
-                                  'หน้าหลัก',
-                                  style: TextStyleMenuName.bodyMenuThai,
-                                  maxFontSize: 18,
-                                  minFontSize: 16,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20.0),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: AutoSizeText(
-                                'Home Page',
-                                style: TextStyleMenuName.bodyMenuEng,
-                                maxLines: 1,
-                                minFontSize: 14,
-                                maxFontSize: 16,
-                              ),
-                            ),
-                          ),
-                          SingleChildScrollView(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: SizedBox(
-                                  height: 450,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 5, right: 5),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color:
-                                                  Color.fromRGBO(0, 0, 0, 0.05),
-                                              blurRadius: 12,
-                                              spreadRadius: 5
-                                              /*   offset: Offset(0, 3), */
+                                padding: const EdgeInsets.only(left: 5, right: 5),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                      boxShadow: const [
+                                        BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.05), blurRadius: 12, spreadRadius: 5
+                                            /*   offset: Offset(0, 3), */
                                             ),
+                                      ]),
+                                  child: GridView.count(
+                                    padding: EdgeInsets.all(5.0),
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 4.0,
+                                    mainAxisSpacing: 8.0,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            Future.delayed(Duration(milliseconds: 300), () {
+                                              Navigator.push(context, MaterialPageRoute(builder: (_) => MenuPage()));
+                                            });
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                              primary: Colors.white,
+                                              shadowColor: Colors.grey,
+                                              // background
+                                              onPrimary: Color.fromARGB(255, 224, 197, 197),
+                                              padding: EdgeInsets.all(15),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(12),
+                                              )),
+                                          child: Column(children: [
+                                            const SizedBox(height: 10),
+                                            Image.asset(
+                                              'assets/images/car1.png',
+                                              height: 70.0,
+                                              fit: BoxFit.cover,
+                                            ),
+                                            const SizedBox(height: 12),
+                                            Text(
+                                              '   ระบบบริหารจัดการสต๊อครถยนต์',
+                                              style: TextStylePage.bodyP10,
+                                              maxLines: 1,
+                                              textScaleFactor: 1,
+                                            ),
+                                            Text(
+                                              'VDQI Stock Management',
+                                              style: TextStylePage.bodyP10,
+                                              maxLines: 1,
+                                              textScaleFactor: 1,
+                                            )
                                           ]),
-                                      child: GridView.count(
-                                        padding: EdgeInsets.all(5.0),
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 4.0,
-                                        mainAxisSpacing: 8.0,
-                                        children: <Widget>[
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 10 ,left: 8, right: 8 ),
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                Future.delayed(
-                                                    Duration(milliseconds: 300),
-                                                    () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (_) =>
-                                                              MenuPage()));
-                                                });
-                                              },
-                                              style: ElevatedButton.styleFrom(
-                                                  primary: Colors.white,
-                                                  shadowColor: Colors.grey,
-                                                  // background
-                                                  onPrimary: Color.fromARGB(
-                                                      255, 224, 197, 197),
-                                                  padding: EdgeInsets.all(15),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
-                                                            
-                                                  )),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
+                                        child: ElevatedButton(
+                                          onPressed: () {},
+                                          style: ElevatedButton.styleFrom(
+                                              shadowColor: Colors.grey,
+                                              primary: Colors.white,
+                                              // background
+                                              onPrimary: Color.fromARGB(255, 224, 197, 197),
+                                              padding: EdgeInsets.all(15),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(12),
+                                              )),
+                                          child: InkWell(
+                                            child: Center(
                                               child: Column(children: [
                                                 const SizedBox(height: 10),
                                                 Image.asset(
-                                                  'assets/images/car1.png',
+                                                  'assets/images/setting.png',
                                                   height: 70.0,
                                                   fit: BoxFit.cover,
                                                 ),
-                                                const SizedBox(height: 12),
+                                                SizedBox(
+                                                  height: 12,
+                                                ),
                                                 Text(
-                                                  '   ระบบบริหารจัดการสต๊อครถยนต์',
+                                                  'ตั้งค่าการใช้งาน',
                                                   style: TextStylePage.bodyP10,
                                                   maxLines: 1,
                                                   textScaleFactor: 1,
                                                 ),
                                                 Text(
-                                                  'VDQI Stock Management',
+                                                  'Setting',
                                                   style: TextStylePage.bodyP10,
                                                   maxLines: 1,
                                                   textScaleFactor: 1,
@@ -176,66 +198,21 @@ class _HomePageState extends State<HomePage> {
                                               ]),
                                             ),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 10 ,left: 8, right: 8 ),
-                                            child: ElevatedButton(
-                                              onPressed: () {},
-                                              style: ElevatedButton.styleFrom(
-                                                  shadowColor: Colors.grey,
-                                                  primary: Colors.white,
-                                                  // background
-                                                  onPrimary: Color.fromARGB(
-                                                      255, 224, 197, 197),
-                                                  padding: EdgeInsets.all(15),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
-                                                  )),
-                                              child: InkWell(
-                                                child: Center(
-                                                  child: Column(children: [
-                                                    const SizedBox(height: 10),
-                                                    Image.asset(
-                                                      'assets/images/setting.png',
-                                                      height: 70.0,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                    SizedBox(
-                                                      height: 12,
-                                                    ),
-                                                    Text(
-                                                      'ตั้งค่าการใช้งาน',
-                                                      style:
-                                                          TextStylePage.bodyP10,
-                                                      maxLines: 1,
-                                                      textScaleFactor: 1,
-                                                    ),
-                                                    Text(
-                                                      'Setting',
-                                                      style:
-                                                          TextStylePage.bodyP10,
-                                                      maxLines: 1,
-                                                      textScaleFactor: 1,
-                                                    )
-                                                  ]),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  )),
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Powered by Weise Technika',
-                            style: TextStyleFoot.bodyfoot,
-                            textScaleFactor: 1,
-                          ),
-                        ])),
+                                    ],
+                                  ),
+                                ),
+                              )),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Powered by Weise Technika',
+                        style: TextStyleFoot.bodyfoot,
+                        textScaleFactor: 1,
+                      ),
+                    ])),
               ),
             )
           ]),

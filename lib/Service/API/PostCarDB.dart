@@ -30,10 +30,7 @@ class PostcarDB {
       var dataencode = jsonEncode(data);
       SharedPreferences localStorage = await SharedPreferences.getInstance();
       var _authToken = localStorage.getString('token');
-      Map<String, String> headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $_authToken'
-      };
+      Map<String, String> headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer $_authToken'};
       if (_authToken != null) {
         url = Uri.parse("https://vdqi-db.toyotaparagon.com/api/cardb");
         await http.post(

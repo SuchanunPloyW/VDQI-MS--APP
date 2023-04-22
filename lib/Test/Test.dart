@@ -115,18 +115,14 @@ class _TestState extends State<Test> {
                           ),
                         ],
                       ),
-                    )
-                    ),
-
+                    )),
                   ],
-                )
-                ),
-                Expanded(
-                  child: Container(
-                    color: Colors.red,
-                  ),
-                )
-               
+                )),
+            Expanded(
+              child: Container(
+                color: Colors.red,
+              ),
+            )
           ],
         )));
   }

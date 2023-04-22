@@ -4,7 +4,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class AroundcarPage extends StatefulWidget {
   const AroundcarPage({super.key});
 
@@ -13,14 +12,14 @@ class AroundcarPage extends StatefulWidget {
 }
 
 class _AroundcarPageState extends State<AroundcarPage> {
-   static const String flutterUrl = 'https://flutter.io/';
-   static const String githubUrl = 'http://www.codesnippettalk.com';
+  static const String flutterUrl = 'https://flutter.io/';
+  static const String githubUrl = 'http://www.codesnippettalk.com';
 
-   static const TextStyle linkStyle = const TextStyle(
+  static const TextStyle linkStyle = const TextStyle(
     color: Colors.blue,
     decoration: TextDecoration.underline,
   );
-   late TapGestureRecognizer _flutterTapRecognizer;
+  late TapGestureRecognizer _flutterTapRecognizer;
   late TapGestureRecognizer _githubTapRecognizer;
   @override
   void initState() {
@@ -28,12 +27,14 @@ class _AroundcarPageState extends State<AroundcarPage> {
     _flutterTapRecognizer = new TapGestureRecognizer()..onTap = () => _openUrl(flutterUrl);
     _githubTapRecognizer = new TapGestureRecognizer()..onTap = () => _openUrl(githubUrl);
   }
-    @override
+
+  @override
   void dispose() {
     _flutterTapRecognizer.dispose();
     _githubTapRecognizer.dispose();
     super.dispose();
   }
+
   void _openUrl(String url) async {
     // Close the about dialog.
     Navigator.pop(context);
@@ -45,16 +46,13 @@ class _AroundcarPageState extends State<AroundcarPage> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-      return new Material(
+    return new Material(
       child: new TextButton(
         child: const Text('Show Pop-up'),
-         
 
-      /*   color: Theme.of(context).accentColor,
+        /*   color: Theme.of(context).accentColor,
         elevation: 4.0,
         splashColor: Colors.amberAccent,
         textColor: const Color(0xFFFFFFFF), */
@@ -85,13 +83,10 @@ class _AroundcarPageState extends State<AroundcarPage> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-         style: ElevatedButton.styleFrom(
-                                            primary: const Color(0xffE52628),
-                                            minimumSize:
-                                                const Size.fromHeight(40),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10))),
+          style: ElevatedButton.styleFrom(
+              primary: const Color(0xffE52628),
+              minimumSize: const Size.fromHeight(40),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
           child: const Text('Okay, got it!'),
         ),
       ],
@@ -101,7 +96,8 @@ class _AroundcarPageState extends State<AroundcarPage> {
   Widget _buildAboutText() {
     return new RichText(
       text: new TextSpan(
-        text: 'Android Popup Menu displays the menu below the anchor text if space is available otherwise above the anchor text. It disappears if you click outside the popup menu.\n\n',
+        text:
+            'Android Popup Menu displays the menu below the anchor text if space is available otherwise above the anchor text. It disappears if you click outside the popup menu.\n\n',
         style: const TextStyle(color: Colors.black87),
         children: <TextSpan>[
           const TextSpan(text: 'The app was developed with '),
@@ -150,7 +146,4 @@ class _AroundcarPageState extends State<AroundcarPage> {
       ),
     );
   }
-
-  
-  
 }

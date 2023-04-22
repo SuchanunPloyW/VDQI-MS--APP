@@ -27,9 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final mqData = MediaQuery.of(context);
-    final mqDataNew = mqData.copyWith(
-        textScaleFactor:
-            mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
+    final mqDataNew = mqData.copyWith(textScaleFactor: mqData.textScaleFactor > 1.0 ? 1.0 : mqData.textScaleFactor);
 
     return Scaffold(
         backgroundColor: const Color(0xfff5f5f5),
@@ -61,17 +59,10 @@ class _LoginPageState extends State<LoginPage> {
               height: 350,
               width: MediaQuery.of(context).size.width - 40,
               margin: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    const BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.05),
-                        blurRadius: 12,
-                        spreadRadius: 5),
-                  ]),
-              child:
-                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12), boxShadow: [
+                const BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.05), blurRadius: 12, spreadRadius: 5),
+              ]),
+              child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
                 const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -89,8 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(" ลงชื่อเข้าใช้งาน ",
-                        style: TextStylelogin.body20, textScaleFactor: 1.0),
+                    child: Text(" ลงชื่อเข้าใช้งาน ", style: TextStylelogin.body20, textScaleFactor: 1.0),
                   ),
                 ),
                 const SizedBox(height: 5),
@@ -98,8 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(" ชื่อผู้ใช้งาน",
-                        style: TextStylelogin.body16, textScaleFactor: 1.0),
+                    child: Text(" ชื่อผู้ใช้งาน", style: TextStylelogin.body16, textScaleFactor: 1.0),
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -116,12 +105,10 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: InputDecoration(
 
                               /* contentPadding:EdgeInsets.fromLTRB(left, top, right, bottom) */
-                              contentPadding:
-                                  EdgeInsets.fromLTRB(10, 10, 10, 0),
+                              contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 0),
 
                               /* contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), */
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5.5))),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.5))),
                           style: TextStylelogin.body15,
                         ),
                       ),
@@ -133,8 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(" พาสเวิร์ด",
-                        style: TextStylelogin.body16, textScaleFactor: 1.0),
+                    child: Text(" พาสเวิร์ด", style: TextStylelogin.body16, textScaleFactor: 1.0),
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -153,8 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                             /* contentPadding:EdgeInsets.fromLTRB(left, top, right, bottom) */
                             contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                             /* contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), */
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.5)),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.5)),
                           ),
                           style: TextStylelogin.body15,
                         ),
@@ -171,8 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: ElevatedButton.styleFrom(
                           primary: const Color(0xffE52628),
                           minimumSize: const Size.fromHeight(40),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12))),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                       onPressed: _login,
                       child: AutoSizeText(
                         'เข้าสู่ระบบ',
@@ -195,8 +179,7 @@ class _LoginPageState extends State<LoginPage> {
               left: 0,
               child: Column(
                 children: [
-                  Text('Powered by Weise Technika',
-                      style: TextStyleFoot.bodyfoot, textScaleFactor: 1.0),
+                  Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot, textScaleFactor: 1.0),
                 ],
               ))
 
@@ -213,10 +196,7 @@ class _LoginPageState extends State<LoginPage> {
       _isLoading = true;
     });
 
-    var data = {
-      'email': mailController.text,
-      'password': passwordController.text
-    };
+    var data = {'email': mailController.text, 'password': passwordController.text};
 
     var res = await LoginAPI().postData(data, 'login');
     var body = json.decode(res.body);
@@ -225,9 +205,8 @@ class _LoginPageState extends State<LoginPage> {
       localStorage.setString('token', body['token']);
       localStorage.setString('user', json.encode(body['user']));
 
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => LoginSplash()),
-          (Route<dynamic> route) => false);
+      Navigator.of(context)
+          .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginSplash()), (Route<dynamic> route) => false);
     } else {
       _ErrorLogin(context);
     }
@@ -256,11 +235,11 @@ _ErrorLogin(context) {
     context: context,
     style: alertStyle,
     image: Padding(
-       padding: const EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.only(top: 15),
       child: Image.asset('assets/images/iconalert.png'),
     ),
     content: Padding(
-       padding: const EdgeInsets.only(top: 10.0),
+      padding: const EdgeInsets.only(top: 10.0),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text(
           "แจ้งเตือน ",
@@ -289,8 +268,7 @@ _ErrorLogin(context) {
     buttons: [
       DialogButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => const LoginPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const LoginPage()));
         },
         color: const Color(0xff44A73B),
         child: Text("ตกลง", style: TDialogButton.body14),

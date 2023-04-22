@@ -20,7 +20,7 @@ class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: const Color(0xfff5f5f5),
+        backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           actions: <Widget>[
             Padding(
@@ -61,8 +61,7 @@ class _MenuPageState extends State<MenuPage> {
                     begin: FractionalOffset.topCenter,
                     end: FractionalOffset.bottomCenter,
                     colors: [baseColor1, baseColor2],
-                  ))
-                  ),
+                  ))),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30),
@@ -76,7 +75,13 @@ class _MenuPageState extends State<MenuPage> {
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: const EdgeInsets.only(top: 40.0),
-                            child: AutoSizeText('ระบบบริหารจัดการรถยนต์', style: TextStyleMenuName.bodyMenuThai, maxLines: 1,maxFontSize: 16,minFontSize: 14,),
+                            child: AutoSizeText(
+                              'ระบบบริหารจัดการรถยนต์',
+                              style: TextStyleMenuName.bodyMenuThai,
+                              maxLines: 1,
+                              maxFontSize: 16,
+                              minFontSize: 14,
+                            ),
                           ),
                         ),
                       ),
@@ -84,29 +89,29 @@ class _MenuPageState extends State<MenuPage> {
                         padding: EdgeInsets.symmetric(horizontal: 20.0),
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: AutoSizeText('VDQI Stock Management', style: TextStyleMenuName.bodyMenuEng,maxLines: 1,minFontSize: 12,maxFontSize: 14,),
+                          child: AutoSizeText(
+                            'VDQI Stock Management',
+                            style: TextStyleMenuName.bodyMenuEng,
+                            maxLines: 1,
+                            minFontSize: 12,
+                            maxFontSize: 14,
+                          ),
                         ),
                       ),
                       SingleChildScrollView(
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 5 ,right: 5),
+                          padding: const EdgeInsets.only(top: 20, left: 5, right: 5),
                           child: SizedBox(
                               height: 450,
                               child: Container(
-                                decoration:  BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(12),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color:
-                                                  Color.fromRGBO(0, 0, 0, 0.05),
-                                              blurRadius: 12,
-                                              spreadRadius: 5
-                                              /*   offset: Offset(0, 3), */
-                                            ),
-                                          ]),
-
-                               
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12),
+                                    boxShadow: const [
+                                      BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.05), blurRadius: 12, spreadRadius: 5
+                                          /*   offset: Offset(0, 3), */
+                                          ),
+                                    ]),
                                 child: GridView.count(
                                   padding: EdgeInsets.all(5.0),
                                   crossAxisCount: 1,
@@ -116,7 +121,7 @@ class _MenuPageState extends State<MenuPage> {
                                   children: <Widget>[
                                     //------------------------------- ค้นหา  -----------------------------------
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 10 ,left: 8, right: 8 ),
+                                      padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             primary: Color(0xfffafafa), // background
@@ -135,8 +140,11 @@ class _MenuPageState extends State<MenuPage> {
                                           ),
                                           SizedBox(width: 40),
                                           Expanded(
-                                              child: AutoSizeText(' ค้นหารถยนต์ \n Find My Car', maxLines: 2,minFontSize: 11,maxFontSize: 12,
-                                                   style: TextStylePage.bodyP16)),
+                                              child: AutoSizeText(' ค้นหารถยนต์ \n Find My Car',
+                                                  maxLines: 2,
+                                                  minFontSize: 11,
+                                                  maxFontSize: 12,
+                                                  style: TextStylePage.bodyP16)),
                                           Icon(
                                             Icons.arrow_forward_ios,
                                             color: Color(0xffDDDDDD),
@@ -154,10 +162,10 @@ class _MenuPageState extends State<MenuPage> {
                                     //------------------------------- ค้นหา  -----------------------------------
                                     //------------------------------- เพิ่มรถ  -----------------------------------
                                     Padding(
-                                        padding: const EdgeInsets.only(top: 8 ,left: 8, right: 10),
+                                        padding: const EdgeInsets.only(top: 8, left: 8, right: 10),
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                               primary: Color(0xfffafafa), // background
+                                              primary: Color(0xfffafafa), // background
                                               onPrimary: Color.fromARGB(255, 224, 197, 197),
                                               padding: EdgeInsets.all(15),
                                               shape: RoundedRectangleBorder(
@@ -173,8 +181,13 @@ class _MenuPageState extends State<MenuPage> {
                                             ),
                                             SizedBox(width: 45),
                                             Expanded(
-                                                child: AutoSizeText(' เพิ่มรถยนต์ใหม่ \n Add New Car',
-                                                    style: TextStylePage.bodyP16,maxLines: 2,minFontSize: 11,maxFontSize: 12,)),
+                                                child: AutoSizeText(
+                                              ' เพิ่มรถยนต์ใหม่ \n Add New Car',
+                                              style: TextStylePage.bodyP16,
+                                              maxLines: 2,
+                                              minFontSize: 11,
+                                              maxFontSize: 12,
+                                            )),
                                             Icon(
                                               Icons.arrow_forward_ios,
                                               color: Color(0xffDDDDDD),
@@ -191,11 +204,11 @@ class _MenuPageState extends State<MenuPage> {
                                     //------------------------------- เพิ่มรถ  -----------------------------------
                                     //------------------------------- รถยนต์ของฉัน  -----------------------------------
                                     Padding(
-                                       padding: const EdgeInsets.only(top: 10 ,left: 8, right: 8),
+                                        padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                               // ignore: deprecated_member_use
-                                               primary: Color(0xfffafafa), // background
+                                              primary: Color(0xfffafafa), // background
                                               onPrimary: Color.fromARGB(255, 224, 197, 197), // foreground
                                               padding: EdgeInsets.all(15),
                                               shape: RoundedRectangleBorder(
@@ -211,8 +224,13 @@ class _MenuPageState extends State<MenuPage> {
                                             ),
                                             SizedBox(width: 45),
                                             Expanded(
-                                                child: AutoSizeText(' รถยนต์ของฉัน \n My Cars',
-                                                   style: TextStylePage.bodyP16 ,maxLines: 2,minFontSize: 11,maxFontSize: 12,)),
+                                                child: AutoSizeText(
+                                              ' รถยนต์ของฉัน \n My Cars',
+                                              style: TextStylePage.bodyP16,
+                                              maxLines: 2,
+                                              minFontSize: 11,
+                                              maxFontSize: 12,
+                                            )),
                                             Icon(
                                               Icons.arrow_forward_ios,
                                               color: Color(0xffDDDDDD),
@@ -232,7 +250,11 @@ class _MenuPageState extends State<MenuPage> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Text('Powered by Weise Technika', style: TextStyleFoot.bodyfoot,textScaleFactor: 1,),
+                      Text(
+                        'Powered by Weise Technika',
+                        style: TextStyleFoot.bodyfoot,
+                        textScaleFactor: 1,
+                      ),
                     ])),
               ),
             )

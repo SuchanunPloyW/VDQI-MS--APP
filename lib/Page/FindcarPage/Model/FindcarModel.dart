@@ -53,11 +53,10 @@ class CarAPI {
     required this.carStatus,
     required this.carWhere,
     required this.carPosition,
-  
     required this.date,
     required this.time,
-    required this.carLine, 
-    required this.sort, 
+    required this.carLine,
+    required this.sort,
     required this.person,
   });
 
