@@ -125,8 +125,11 @@ class _AddnewcarPageState extends State<AddnewcarPage> {
     }
     if (!mounted) return;
     setState(() {
+      //scan เสดแล้ว ให้เก็บค่าไว้ในตัวแปร qrCode แล้วลบค่าตัวสุดท้ายออก
       qrCode = barcodeScanRes;
-      ChassisController.text = qrCode;
+      ChassisController.text = qrCode.substring(0, qrCode.length - 1);
+      /* qrCode = barcodeScanRes;
+      ChassisController.text = qrCode; */
     });
   }
 

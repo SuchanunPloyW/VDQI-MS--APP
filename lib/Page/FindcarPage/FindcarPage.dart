@@ -31,7 +31,7 @@ class _FindcarPageState extends State<FindcarPage> {
     if (!mounted) return;
     setState(() {
       qrCode = barcodeScanRes;
-      ChassisController.text = qrCode;
+      ChassisController.text = qrCode.substring(0, qrCode.length - 1);
     });
   }
 
